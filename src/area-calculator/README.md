@@ -1,4 +1,4 @@
 area-calculator
 ===============
 
-Program that can calculate area from an image.
+Code that can calculate area from an image.

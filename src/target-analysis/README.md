@@ -1,4 +1,4 @@
 target-analysis
 ===============
 
-This program finds the targets (fancy image processing) and then provides a target "type" as well as a centroid. This means it must locate the object in the picture, and then find the middle of the shape.
+This code should use the pixel locations of the images provided by the target identifier to geolocate the centroid of the target, determine the type and calculate possible error for the target's geolocation.

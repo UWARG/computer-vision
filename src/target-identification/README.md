@@ -1,4 +1,4 @@
 target-identification
 ===============
 
-This program should be able to detect potential targets and provide the images that may have appropriate objects for analysis.
+This code should be able to detect potential targets in the images using OpenCV and provide the pixel locations of the targets as well as data that can be used for unique target identification such as target colour, pixel area, perimeter and possibly shape.
