@@ -5,13 +5,13 @@
 /**
     File: frame.h
   
-   System:         Post Processing
-   Component Name: Frame
-   Language: C++
+    System:         Post Processing
+    Component Name: Frame
+    Language: C++
   
-   (c) Copyright UWARG 2015
+    (c) Copyright UWARG 2015
   
-   Description: Container class for storing photos or frames of video to be
+    Description: Container class for storing photos or frames of video to be
                 processed and analyzed
   
 **/

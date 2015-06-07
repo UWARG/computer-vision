@@ -5,13 +5,13 @@
 /**
     File: metadata.h
   
-   System:         Post Processing
-   Component Name: Metadata
-   Language: C++
+    System:         Post Processing
+    Component Name: Metadata
+    Language: C++
   
-   (c) Copyright UWARG 2015
+    (c) Copyright UWARG 2015
   
-   Description: Structure for storing plane status information from the time
+    Description: Structure for storing plane status information from the time
                 that an image was taken
   
 **/

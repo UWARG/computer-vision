@@ -5,14 +5,14 @@
 /**
     File: target.h
   
-   System:         Post Processing
-   Component Name: Target
-   Language: C++
+    System:         Post Processing
+    Component Name: Target
+    Language: C++
   
-   (c) Copyright UWARG 2015
+    (c) Copyright UWARG 2015
   
-   Description: Container class for storing information about
-                targets located in photos or video frames
+    Description: Container class for storing information about
+                 targets located in photos or video frames
   
 **/
 // ----------------------------------------------------------------------------
