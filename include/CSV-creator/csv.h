@@ -3,18 +3,20 @@
 
 // ----------------------------------------------------------------------------
 /**
-    File: csv.h
+    @file csv.h
      
-    System:         Post Processing
-    Component Name: CSV creator
-    Language: C++
-  
-    (c) Copyright UWARG 2015
-  
-    Description:    Module for creating formatting csv files to store target
-                    data
+    @brief Module for creating formatting csv files to store target data
   
 **/
 // ----------------------------------------------------------------------------
+
+#include "target.h"
+
+/**
+ * @brief Creates the file "Results.csv" using the information from the Targets given
+ *
+ * @param targets Targets that should be included in the CSV
+ */
+void createCSV(Target * [] targets);
 
 #endif // CSV_H_INCLUDED

@@ -1,23 +1,29 @@
 #ifndef VOLUME_CALC_H_INCLUDED
 #define VOLUME_CALC_H_INCLUDED
 
-// ----------------------------------------------------------------------------
 /**
-    File: volume_calc.h
-     
-    System:         Post Processing
-    Component Name: Volume Calculator
-    Language: C++
-  
-    (c) Copyright UWARG 2015
-  
-    Description:    Module for calculating the volume of a target using 
-                    a point cloud mesh
+ * @file volume_calc.h
+ * 
+ * @brief Module for calculating the volume of a target using 
+ *        a point cloud mesh
+ *
+ */
 
-    Notes:          Not a priority, Correlator 3D may be used instead of a 
-                    custom implementation
-  
-**/
-// ----------------------------------------------------------------------------
+class volumeCalc {
+    public:
+        volumeCalc();
+        ~volumeCalc();
+
+        /**
+         * @brief Calculates the volume of a given target
+         *
+         * @param frames Frames containing the images to be analyzed
+         *
+         * @param target Target that should be analyzed
+         *
+         * @return volume of the specified Target
+         */
+        double getVolume(const Frame * [] frames, const Target * target);
+};
 
 #endif // VOLUME_CALC_H_INCLUDED
