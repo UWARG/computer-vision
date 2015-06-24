@@ -23,7 +23,7 @@ class volumeCalc {
          *
          * @return volume of the specified Target
          */
-        double getVolume(const Frame * [] frames, const Target * target);
+        double get_volume(const Frame * [] frames, const Target * target);
 };
 
 #endif // VOLUME_CALC_H_INCLUDED

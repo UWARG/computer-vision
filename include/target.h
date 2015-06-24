@@ -25,7 +25,7 @@ public:
      *
      * @return The best image of the Target from one of the PixelTargets
      */
-    Mat getImage();
+    Mat get_image();
 
     /**
      * @brief Getter for type field
@@ -82,7 +82,7 @@ public:
      *
      * @param t PixelTarget to be added
      */
-    void addPixelTarget(PixelTarget * t);
+    void add_pixel_target(PixelTarget * t);
 
     /**
      * @brief Getter for pixel Targets
@@ -90,7 +90,7 @@ public:
      * @return Array containing all of the PixelTargets that were used to 
      *         create this instance of Target
      */
-    PixelTarget * [] getPixelTargets();
+    PixelTarget * [] get_pixel_targets();
 private:
 
     /**

@@ -25,7 +25,7 @@ class TargetIdentifier{
          *
          * @param f Frame to be processed
          */
-        void processFrame(Frame * f);
+        void process_frame(Frame * f);
 
         /**
          * @brief retrieves a vector containing all of the frames that have
@@ -38,7 +38,7 @@ class TargetIdentifier{
          *
          * @return vector containing tthe frames which have been processed 
          */
-        vector<Frame *> popProcessed();
+        vector<Frame *> pop_processed();
 };
 
 

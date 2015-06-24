@@ -24,7 +24,7 @@ class TargetAnalyzer{
          *
          * @param f Frame containing the targets to analyze
          */
-        void analyzeTargetsInFrame(Frame * f);
+        void analyze_targets_in_frame(Frame * f);
 
         /**
          * @brief retrieves a vector containing all of the unique Targets that 
@@ -34,7 +34,7 @@ class TargetAnalyzer{
          *        
          * @return vector containing the unique Targets which have been analyzed
          */
-        vector<Target *> getProcessed();
+        vector<Target *> get_processed();
 };
 
 #endif // TARGET_ANALYZER_H_INCLUDED

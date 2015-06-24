@@ -17,6 +17,6 @@
  *
  * @param targets Targets that should be included in the CSV
  */
-void createCSV(Target * [] targets);
+void create_csv(Target * [] targets);
 
 #endif // CSV_H_INCLUDED

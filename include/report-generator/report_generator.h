@@ -10,6 +10,6 @@
 
 #include "target.h"
 
-void generateReport(Target[] targets);
+void generate_report(Target[] targets);
 
 #endif // REPORT_GENERATOR_H_INCLUDED
