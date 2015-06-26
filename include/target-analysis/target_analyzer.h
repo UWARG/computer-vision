@@ -6,7 +6,8 @@
   
     @brief Module for geolocating targets using their pixel locations
            and photo metadata, determine target type and calculate 
-           possible error
+           possible error. As targets are processed unique targets will 
+           be identified and the data combined into a single object.
   
 **/
 
