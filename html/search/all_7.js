@@ -4,6 +4,6 @@ var searchData=
   ['pitchrate',['pitchRate',['../structMetadata.html#afe2f2ded1fb219356adf0ca7bce4b8d7',1,'Metadata']]],
   ['pixel_5ftarget_2eh',['pixel_target.h',['../pixel__target_8h.html',1,'']]],
   ['pixeltarget',['PixelTarget',['../classPixelTarget.html',1,'']]],
-  ['popprocessed',['popProcessed',['../classTargetIdentifier.html#a1ce7398e4e2dda5e91e971f05da4cc9e',1,'TargetIdentifier']]],
-  ['processframe',['processFrame',['../classTargetIdentifier.html#a0cec44f2830d5d6143a76d21711b422a',1,'TargetIdentifier']]]
+  ['pop_5fprocessed',['pop_processed',['../classTargetIdentifier.html#a50383fe7ac969178298237e024bcd3a7',1,'TargetIdentifier']]],
+  ['process_5fframe',['process_frame',['../classTargetIdentifier.html#a0ccbb8e432191f1fb3c4fc3dcf058592',1,'TargetIdentifier']]]
 ];

@@ -92,20 +92,20 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a0cec44f2830d5d6143a76d21711b422a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTargetIdentifier.html#a0cec44f2830d5d6143a76d21711b422a">processFrame</a> (<a class="el" href="classFrame.html">Frame</a> *f)</td></tr>
-<tr class="memdesc:a0cec44f2830d5d6143a76d21711b422a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Puts the given <a class="el" href="classFrame.html">Frame</a> into the processing queue.  <a href="#a0cec44f2830d5d6143a76d21711b422a">More...</a><br /></td></tr>
-<tr class="separator:a0cec44f2830d5d6143a76d21711b422a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1ce7398e4e2dda5e91e971f05da4cc9e"><td class="memItemLeft" align="right" valign="top">vector&lt; <a class="el" href="classFrame.html">Frame</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTargetIdentifier.html#a1ce7398e4e2dda5e91e971f05da4cc9e">popProcessed</a> ()</td></tr>
-<tr class="memdesc:a1ce7398e4e2dda5e91e971f05da4cc9e"><td class="mdescLeft">&#160;</td><td class="mdescRight">retrieves a vector containing all of the frames that have been processed and now contain targets and removes them from from the <a class="el" href="classTargetIdentifier.html">TargetIdentifier</a>'s buffer The caller of the function is responsible for deleting the frames Not all frames passed to the identifier will leave through <a class="el" href="classTargetIdentifier.html#a1ce7398e4e2dda5e91e971f05da4cc9e" title="retrieves a vector containing all of the frames that have been processed and now contain targets and ...">popProcessed()</a>  <a href="#a1ce7398e4e2dda5e91e971f05da4cc9e">More...</a><br /></td></tr>
-<tr class="separator:a1ce7398e4e2dda5e91e971f05da4cc9e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0ccbb8e432191f1fb3c4fc3dcf058592"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTargetIdentifier.html#a0ccbb8e432191f1fb3c4fc3dcf058592">process_frame</a> (<a class="el" href="classFrame.html">Frame</a> *f)</td></tr>
+<tr class="memdesc:a0ccbb8e432191f1fb3c4fc3dcf058592"><td class="mdescLeft">&#160;</td><td class="mdescRight">Puts the given <a class="el" href="classFrame.html">Frame</a> into the processing queue.  <a href="#a0ccbb8e432191f1fb3c4fc3dcf058592">More...</a><br /></td></tr>
+<tr class="separator:a0ccbb8e432191f1fb3c4fc3dcf058592"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a50383fe7ac969178298237e024bcd3a7"><td class="memItemLeft" align="right" valign="top">vector&lt; <a class="el" href="classFrame.html">Frame</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTargetIdentifier.html#a50383fe7ac969178298237e024bcd3a7">pop_processed</a> ()</td></tr>
+<tr class="memdesc:a50383fe7ac969178298237e024bcd3a7"><td class="mdescLeft">&#160;</td><td class="mdescRight">retrieves a vector containing all of the frames that have been processed and now contain targets and removes them from from the <a class="el" href="classTargetIdentifier.html">TargetIdentifier</a>'s buffer The caller of the function is responsible for deleting the frames Not all frames passed to the identifier will leave through popProcessed()  <a href="#a50383fe7ac969178298237e024bcd3a7">More...</a><br /></td></tr>
+<tr class="separator:a50383fe7ac969178298237e024bcd3a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="a1ce7398e4e2dda5e91e971f05da4cc9e"></a>
+<a class="anchor" id="a50383fe7ac969178298237e024bcd3a7"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">vector&lt;<a class="el" href="classFrame.html">Frame</a> *&gt; TargetIdentifier::popProcessed </td>
+          <td class="memname">vector&lt;<a class="el" href="classFrame.html">Frame</a> *&gt; TargetIdentifier::pop_processed </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -113,17 +113,17 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>retrieves a vector containing all of the frames that have been processed and now contain targets and removes them from from the <a class="el" href="classTargetIdentifier.html">TargetIdentifier</a>'s buffer The caller of the function is responsible for deleting the frames Not all frames passed to the identifier will leave through <a class="el" href="classTargetIdentifier.html#a1ce7398e4e2dda5e91e971f05da4cc9e" title="retrieves a vector containing all of the frames that have been processed and now contain targets and ...">popProcessed()</a> </p>
+<p>retrieves a vector containing all of the frames that have been processed and now contain targets and removes them from from the <a class="el" href="classTargetIdentifier.html">TargetIdentifier</a>'s buffer The caller of the function is responsible for deleting the frames Not all frames passed to the identifier will leave through popProcessed() </p>
 <dl class="section return"><dt>Returns</dt><dd>vector containing tthe frames which have been processed </dd></dl>
 
 </div>
 </div>
-<a class="anchor" id="a0cec44f2830d5d6143a76d21711b422a"></a>
+<a class="anchor" id="a0ccbb8e432191f1fb3c4fc3dcf058592"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void TargetIdentifier::processFrame </td>
+          <td class="memname">void TargetIdentifier::process_frame </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="classFrame.html">Frame</a> *&#160;</td>
           <td class="paramname"><em>f</em></td><td>)</td>
