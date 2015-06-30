@@ -38,7 +38,7 @@ public:
      *
      * @param t target identified as being in the frame
      */
-    void add_target(Target * t);
+    void add_target(PixelTarget * t);
 
     /**
      * @brief 
