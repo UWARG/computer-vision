@@ -66,6 +66,13 @@ public:
      * @return Angle in radians between the direction of the error and the vertical
      */
     double get_error_angle();
+
+    /**
+     * @brief Getter for image
+     *
+     * @return Frame associated with this PixelTarget
+     */
+    Frame * get_image();
 private:
     /**
      * @brief PixelTarget type description 
@@ -106,6 +113,11 @@ private:
      * @brief Angle of the error as radians clockwise from vertical
      */
     double error-angle;
+
+    /**
+     * @brief Frame described by this PixelTarget
+     */
+    Frame * image;
 };
 
 
