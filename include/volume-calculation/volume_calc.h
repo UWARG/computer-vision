@@ -8,6 +8,9 @@
  *
  */
 
+#include "frame.h" 
+#include "target.h"
+
 class VolumeCalc {
     public:
         VolumeCalc();

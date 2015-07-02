@@ -18,7 +18,7 @@ using cv::Mat, cv::Scalar, cv::Point2f, cv::Point;
 
 class Target{
 public:
-    RealTarget(string type);
+    Target(string type);
    
     /**
      * @brief Getter for Target image

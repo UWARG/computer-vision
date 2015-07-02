@@ -6,12 +6,14 @@
  *
  * @brief Module for identifying targets in Frames
  *
- * @section Description
- *
  * Module analyzes frames using OpenCV tools,
  * locates objects of interest and gathers information 
  * about the objects such as target colour, pixel area,
  * perimeter and shape.
+ *
+ * Frames that do not contain targets will be deleted
+ * Otherwise, the responsibility for deleting Frames and the PixelTargets created
+ * by the TargetIdentifier passes to whoever invokes popProcessed;
 **/
 
 #include "frame.h"
