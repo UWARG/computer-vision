@@ -1,14 +1,12 @@
 #ifndef CSV_H_INCLUDED
 #define CSV_H_INCLUDED
 
-// ----------------------------------------------------------------------------
 /**
-    @file csv.h
-     
-    @brief Module for creating formatting csv files to store target data
-  
+ * @file csv.h
+ *
+ * @brief Module for creating formatting csv files to store target data
+ *
 **/
-// ----------------------------------------------------------------------------
 
 #include "target.h"
 

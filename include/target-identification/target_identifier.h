@@ -2,13 +2,16 @@
 #define TARGET_IDENTIFIER_H_INCLUDED
 
 /**
-    @file target_identifier.h
-     
-    @brief Module for analyzing frames using OpenCV tools and 
-           locating objects of interest and gathering information 
-           about the objects such as target colour, pixel area,
-           perimeter and shape.
-  
+ * @file target_identifier.h
+ *
+ * @brief Module for identifying targets in Frames
+ *
+ * @section Description
+ *
+ * Module analyzes frames using OpenCV tools,
+ * locates objects of interest and gathers information 
+ * about the objects such as target colour, pixel area,
+ * perimeter and shape.
 **/
 
 #include "frame.h"

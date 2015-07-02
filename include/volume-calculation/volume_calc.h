@@ -4,15 +4,14 @@
 /**
  * @file volume_calc.h
  * 
- * @brief Module for calculating the volume of a target using 
- *        a point cloud mesh
+ * @brief Module for calculating the volume of a target
  *
  */
 
-class volumeCalc {
+class VolumeCalc {
     public:
-        volumeCalc();
-        ~volumeCalc();
+        VolumeCalc();
+        ~VolumeCalc();
 
         /**
          * @brief Calculates the volume of a given target

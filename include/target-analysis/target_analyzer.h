@@ -2,13 +2,18 @@
 #define TARGET_ANALYZER_H_INCLUDED
 
 /**
-    @file target_analyzer.h
-  
-    @brief Module for geolocating targets using their pixel locations
-           and photo metadata, determine target type and calculate 
-           possible error. As targets are processed unique targets will 
-           be identified and the data combined into a single object.
-  
+ * @file target_analyzer.h
+ *
+ * @brief Module for analyzing individual PixelTargets and combining them into 
+ *        a set of unique Targets
+ *
+ * @section Description
+ *
+ * Module geolocates targets using their pixel locations
+ * and photo metadata, determines target type and calculates 
+ * possible error. As targets are processed unique targets will 
+ * be identified and the data combined into a single object.
+ *
 **/
 
 #include "frame.h"

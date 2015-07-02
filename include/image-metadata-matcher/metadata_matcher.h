@@ -7,14 +7,15 @@
  * @brief Module for matching frames with telemetry information that 
  *        corresponds to them
  *
+ * @section Notes   
+ *
+ * Ideally this should use both the timestamp in the image's
+ * exif metadata and the time that the plane records sending
+ * the signal to take a picture plus whatever delay that
+ * exists between when the signal is sent to the camera and
+ * when the camera takes the photograph.
+ *
  */
-/*
-    Notes:          Ideally this should use both the timestamp in the image's
-                    exif metadata and the time that the plane records sending
-                    the signal to take a picture plus whatever delay that
-                    exists between when the signal is sent to the camera and
-                    when the camera takes the photograph.
-  */
 
 class MetadataMatcher {
     public:
