@@ -13,25 +13,23 @@
 #include "target.h"
 #include <vector>
 
-using cv::Mat;
-
 class Frame{
 public:
-    Frame(Mat img, string id, Metadata m);
+    Frame(std::Mat img, std::string id, Metadata m);
     
     /**
      * @brief 
      *
      * @return timestamp identifier for the frame
      */
-    string getId();
+    std::string getId();
 
     /**
      * @brief 
      *
      * @return image associated with the frame
      */
-    Mat & get_img(); 
+    std::Mat & get_img(); 
 
     /**
      * @brief Adds given target to the list of targets 
@@ -51,12 +49,12 @@ private:
     /**
      * @brief image associated with the Frame 
      */
-    Mat img;
+    std::Mat img;
 
     /**
      * @brief Timestamp for the frame
      */
-    string id;
+    std::string id;
 
     /**
      * @brief Data collected from telemetry about the plane when the image was captured

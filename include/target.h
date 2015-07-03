@@ -14,32 +14,30 @@
 #include <opencv2/core/core.hpp>
 #include <vector>
 
-using cv::Mat, cv::Scalar, cv::Point2f, cv::Point;
-
 class Target{
 public:
-    Target(string type);
+    Target(std::string type);
    
     /**
      * @brief Getter for Target image
      *
      * @return The best image of the Target from one of the PixelTargets
      */
-    Mat get_image();
+    cv::Mat get_image();
 
     /**
      * @brief Getter for type field
      *
-     * @return Type string associated with the Target
+     * @return Type std::string associated with the Target
      */
-    string get_type();
+    std::string get_type();
 
     /**
      * @brief Getter for centroid
      *
      * @return GPS co-ordinates of the Target
      */
-    Point2f get_centroid();
+    cv::Point2f get_centroid();
 
     /**
      * @brief Getter for area
@@ -60,14 +58,14 @@ public:
      *
      * @return Average colour of the interiour of the Target
      */
-    Scalar get_colour();
+    cv::Scalar get_colour();
 
     /**
      * @brief Getter for error
      *
      * @return 2D error magnitude of the Target's location in metres
      */
-    Point2f get_error();
+    cv::Point2f get_error();
 
     /**
      * @brief Getter for error angle
@@ -96,7 +94,7 @@ private:
     /**
      * @brief Cropped Image of the Target
      */
-    Mat image;
+    cv::Mat image;
 
     /**
      * @brief current quality of the Image
@@ -106,12 +104,12 @@ private:
     /**
      * @brief PixelTarget type description 
      */
-    string type;
+    std::string type;
 
     /**
      * @brief GPS co-ordinates of the centre of the Target
      */
-    Point2f centroid;
+    cv::Point2f centroid;
     
     /**
      * @brief area of the target in square metres
@@ -126,12 +124,12 @@ private:
     /**
      * @brief Colour of the target in BGR (Blue, Green, Red) format
      */
-    Scalar colour;
+    cv::Scalar colour;
     
     /**
      * @brief Calculated location error of the target as a 2D rectangle in metres
      */
-    Point2f error;
+    cv::Point2f error;
     
     /**
      * @brief Angle of the error as degrees clockwise from North
@@ -141,7 +139,7 @@ private:
     /**
      * @brief PixelTargets used to form this Target instance
      */
-    vector<PixelTarget *> pixelTargets;
+    std::vector<PixelTarget *> pixelTargets;
 };
 
 
