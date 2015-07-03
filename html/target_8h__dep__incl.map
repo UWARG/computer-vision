@@ -1,0 +1,8 @@
+<map id="include/target.h" name="include/target.h">
+<area shape="rect" id="node3" href="$csv_8h.html" title="Module for creating formatting csv files to store target data. " alt="" coords="113,83,247,127"/>
+<area shape="rect" id="node5" href="$frame_8h.html" title="Container class for storing photos or frames of video to be processed and analyzed. " alt="" coords="271,91,383,119"/>
+<area shape="rect" id="node11" href="$volume__calc_8h.html" title="Module for calculating the volume of a target. " alt="" coords="387,177,563,221"/>
+<area shape="rect" id="node13" href="$report__generator_8h.html" title="Module for generating a document containing result data and extrapolated information. " alt="" coords="457,83,620,127"/>
+<area shape="rect" id="node7" href="$target__analyzer_8h.html" title="Module for analyzing individual PixelTargets and combining them into a set of unique Targets..." alt="" coords="5,177,160,221"/>
+<area shape="rect" id="node9" href="$target__identifier_8h.html" title="Module for identifying targets in Frames. " alt="" coords="184,177,363,221"/>
+</map>

@@ -1,0 +1,5 @@
+<map id="include/frame.h" name="include/frame.h">
+<area shape="rect" id="node3" href="$target__analyzer_8h.html" title="Module for analyzing individual PixelTargets and combining them into a set of unique Targets..." alt="" coords="5,83,160,127"/>
+<area shape="rect" id="node5" href="$target__identifier_8h.html" title="Module for identifying targets in Frames. " alt="" coords="184,83,363,127"/>
+<area shape="rect" id="node7" href="$volume__calc_8h.html" title="Module for calculating the volume of a target. " alt="" coords="387,83,563,127"/>
+</map>

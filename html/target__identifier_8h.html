@@ -92,9 +92,16 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 
-<p>Module for analyzing frames using OpenCV tools and locating objects of interest and gathering information about the objects such as target colour, pixel area, perimeter and shape.  
+<p>Module for identifying targets in Frames.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="frame_8h_source.html">frame.h</a>&quot;</code><br />
+</div><div class="textblock"><div class="dynheader">
+Include dependency graph for target_identifier.h:</div>
+<div class="dyncontent">
+<div class="center"><img src="target__identifier_8h__incl.png" border="0" usemap="#include_2target-identification_2target__identifier_8h" alt=""/></div>
+<map name="include_2target-identification_2target__identifier_8h" id="include_2target-identification_2target__identifier_8h">
+<area shape="rect" id="node3" href="frame_8h.html" title="Container class for storing photos or frames of video to be processed and analyzed. " alt="" coords="119,99,185,127"/><area shape="rect" id="node7" href="target_8h.html" title="Container class for storing information about identified targets in real&#45;world measurements Adding Pi..." alt="" coords="119,177,185,205"/></map>
+</div>
 </div>
 <p><a href="target__identifier_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
@@ -104,7 +111,9 @@ Classes</h2></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Module for analyzing frames using OpenCV tools and locating objects of interest and gathering information about the objects such as target colour, pixel area, perimeter and shape. </p>
+<div class="textblock"><p>Module for identifying targets in Frames. </p>
+<p>Module analyzes frames using OpenCV tools, locates objects of interest and gathers information about the objects such as target colour, pixel area, perimeter and shape.</p>
+<p>Frames that do not contain targets will be deleted Otherwise, the responsibility for deleting Frames and the PixelTargets created by the <a class="el" href="classTargetIdentifier.html">TargetIdentifier</a> passes to whoever invokes popProcessed; </p>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

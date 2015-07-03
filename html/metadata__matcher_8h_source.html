@@ -92,28 +92,20 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a href="metadata__matcher_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef METADATA_MATCHER_H_INCLUDED</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#define METADATA_MATCHER_H_INCLUDED</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="comment">/*</span></div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="comment">    Notes:          Ideally this should use both the timestamp in the image&#39;s</span></div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="comment">                    exif metadata and the time that the plane records sending</span></div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="comment">                    the signal to take a picture plus whatever delay that</span></div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="comment">                    exists between when the signal is sent to the camera and</span></div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="comment">                    when the camera takes the photograph.</span></div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="comment">  */</span></div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;</div>
-<div class="line"><a name="l00019"></a><span class="lineno"><a class="line" href="classMetadataMatcher.html">   19</a></span>&#160;<span class="keyword">class </span><a class="code" href="classMetadataMatcher.html">MetadataMatcher</a> {</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;        <a class="code" href="classMetadataMatcher.html#acdb200da2013d0923ac3f48cb85c08d4">MetadataMatcher</a>(<span class="keywordtype">string</span> path);</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;        ~<a class="code" href="classMetadataMatcher.html">MetadataMatcher</a>();</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classMetadataMatcher.html#ad19f2cffc5f8484251c1a14793a742af">match_frame</a>(<a class="code" href="classFrame.html">Frame</a> * f);</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;};</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="preprocessor">#endif // METADATA_MATCHER_H_INCLUDED</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno"><a class="line" href="classMetadataMatcher.html">   20</a></span>&#160;<span class="keyword">class </span><a class="code" href="classMetadataMatcher.html">MetadataMatcher</a> {</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;        <a class="code" href="classMetadataMatcher.html#acdb200da2013d0923ac3f48cb85c08d4">MetadataMatcher</a>(<span class="keywordtype">string</span> path);</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;        ~<a class="code" href="classMetadataMatcher.html">MetadataMatcher</a>();</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classMetadataMatcher.html#ad19f2cffc5f8484251c1a14793a742af">match_frame</a>(<a class="code" href="classFrame.html">Frame</a> * f);</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;};</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="preprocessor">#endif // METADATA_MATCHER_H_INCLUDED</span></div>
 <div class="ttc" id="classMetadataMatcher_html_ad19f2cffc5f8484251c1a14793a742af"><div class="ttname"><a href="classMetadataMatcher.html#ad19f2cffc5f8484251c1a14793a742af">MetadataMatcher::match_frame</a></div><div class="ttdeci">void match_frame(Frame *f)</div><div class="ttdoc">Fills in the given frame&#39;s metadata structure. </div></div>
 <div class="ttc" id="classMetadataMatcher_html_acdb200da2013d0923ac3f48cb85c08d4"><div class="ttname"><a href="classMetadataMatcher.html#acdb200da2013d0923ac3f48cb85c08d4">MetadataMatcher::MetadataMatcher</a></div><div class="ttdeci">MetadataMatcher(string path)</div><div class="ttdoc">Creates a MetadataMatcher for the telemetry file at the given path. </div></div>
 <div class="ttc" id="classFrame_html"><div class="ttname"><a href="classFrame.html">Frame</a></div><div class="ttdef"><b>Definition:</b> frame.h:18</div></div>
-<div class="ttc" id="classMetadataMatcher_html"><div class="ttname"><a href="classMetadataMatcher.html">MetadataMatcher</a></div><div class="ttdef"><b>Definition:</b> metadata_matcher.h:19</div></div>
+<div class="ttc" id="classMetadataMatcher_html"><div class="ttname"><a href="classMetadataMatcher.html">MetadataMatcher</a></div><div class="ttdef"><b>Definition:</b> metadata_matcher.h:20</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
