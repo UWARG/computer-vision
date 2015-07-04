@@ -6,7 +6,7 @@ A set of libraries and projects which will be used in all computer vision applic
 [Documentation](http://uwarg.github.io/computer-vision/html/)
 
 System Overview:
-![Computer Vision Flowchart](http://i.imgur.com/zt84SZQ.jpg)
+<p><img src="http://i.imgur.com/zt84SZQ.jpg" alt="Computer Vision Flowchart" width="400px" height="530px"></p>
 
 Photos to use for testing:
 * [2014 Competition](https://drive.google.com/open?id=0BySpWXvmBM4JWGhrZGk5UWNqNm8&authuser=0)
