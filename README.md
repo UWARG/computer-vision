@@ -5,7 +5,7 @@ A set of libraries and projects which will be used in all computer vision applic
 
 [Documentation](http://uwarg.github.io/computer-vision/html/)
 
-####nstallation Instructions:
+####Installation Instructions:
 1. Clone the Project
 2. Get [OpenCV](http://opencv.org/downloads.html)
 3. Get [JsonCpp](https://github.com/open-source-parsers/jsoncpp)
