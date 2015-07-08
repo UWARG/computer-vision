@@ -5,6 +5,13 @@ A set of libraries and projects which will be used in all computer vision applic
 
 [Documentation](http://uwarg.github.io/computer-vision/html/)
 
+#Installation Instructions:
+1. Clone the Project
+2. Get [OpenCV](http://opencv.org/downloads.html)
+3. Get [JsonCpp](https://github.com/open-source-parsers/jsoncpp)
+4. Use CMake to setup the project from the CMake list
+5. Compile
+
 System Overview:
 <p><img src="http://i.imgur.com/zt84SZQ.jpg" alt="Computer Vision Flowchart" width="400px" height="530px"></p>
 
