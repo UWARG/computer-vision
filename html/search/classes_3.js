@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['pixeltarget',['PixelTarget',['../classPixelTarget.html',1,'']]]
+  ['metadata',['Metadata',['../structMetadata.html',1,'']]],
+  ['metadatamatcher',['MetadataMatcher',['../classMetadataMatcher.html',1,'']]]
 ];

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['frame',['Frame',['../classFrame.html',1,'']]]
+  ['contourcreator',['ContourCreator',['../classContourCreator.html',1,'']]]
 ];

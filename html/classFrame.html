@@ -38,7 +38,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
-      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -93,17 +92,19 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 Collaboration diagram for Frame:</div>
 <div class="dyncontent">
 <div class="center"><img src="classFrame__coll__graph.png" border="0" usemap="#Frame_coll__map" alt="Collaboration graph"/></div>
+<map name="Frame_coll__map" id="Frame_coll__map">
+</map>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ab7b87a4b8045a146f9bbca7ab8601ac5"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab7b87a4b8045a146f9bbca7ab8601ac5"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Frame</b> (Mat img, string id, <a class="el" href="structMetadata.html">Metadata</a> m)</td></tr>
-<tr class="separator:ab7b87a4b8045a146f9bbca7ab8601ac5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4c6dae193ae889f3534dba171e24ed8e"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFrame.html#a4c6dae193ae889f3534dba171e24ed8e">getId</a> ()</td></tr>
-<tr class="separator:a4c6dae193ae889f3534dba171e24ed8e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af8153ed8f0d8432d27caaa11c547b446"><td class="memItemLeft" align="right" valign="top">Mat &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFrame.html#af8153ed8f0d8432d27caaa11c547b446">get_img</a> ()</td></tr>
-<tr class="separator:af8153ed8f0d8432d27caaa11c547b446"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2a37d7bb3f90d951cb13b835f63d19a7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2a37d7bb3f90d951cb13b835f63d19a7"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>Frame</b> (std::Mat img, std::string id, <a class="el" href="structMetadata.html">Metadata</a> m)</td></tr>
+<tr class="separator:a2a37d7bb3f90d951cb13b835f63d19a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af65f00928295d18429434fd4c1df07c6"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFrame.html#af65f00928295d18429434fd4c1df07c6">get_id</a> ()</td></tr>
+<tr class="separator:af65f00928295d18429434fd4c1df07c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab8c869563dc86c9b60c22e4e84a3de2a"><td class="memItemLeft" align="right" valign="top">cv::Mat &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFrame.html#ab8c869563dc86c9b60c22e4e84a3de2a">get_img</a> ()</td></tr>
+<tr class="separator:ab8c869563dc86c9b60c22e4e84a3de2a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adc3f60d05bf6b3910e6e041b2b38b78f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFrame.html#adc3f60d05bf6b3910e6e041b2b38b78f">add_target</a> (<a class="el" href="classPixelTarget.html">PixelTarget</a> *t)</td></tr>
 <tr class="memdesc:adc3f60d05bf6b3910e6e041b2b38b78f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds given target to the list of targets.  <a href="#adc3f60d05bf6b3910e6e041b2b38b78f">More...</a><br /></td></tr>
 <tr class="separator:adc3f60d05bf6b3910e6e041b2b38b78f"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -135,12 +136,28 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="af8153ed8f0d8432d27caaa11c547b446"></a>
+<a class="anchor" id="af65f00928295d18429434fd4c1df07c6"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">Mat&amp; Frame::get_img </td>
+          <td class="memname">std::string Frame::get_id </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>timestamp identifier for the frame </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ab8c869563dc86c9b60c22e4e84a3de2a"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">cv::Mat&amp; Frame::get_img </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -164,22 +181,6 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <dl class="section return"><dt>Returns</dt><dd>iterator pointing at the first target in the target list </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="a4c6dae193ae889f3534dba171e24ed8e"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">string Frame::getId </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<dl class="section return"><dt>Returns</dt><dd>timestamp identifier for the frame </dd></dl>
 
 </div>
 </div>

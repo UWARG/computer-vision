@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['gmapsmatcher',['GMapsMatcher',['../classGMapsMatcher.html',1,'']]]
+  ['filter',['Filter',['../classFilter.html',1,'']]],
+  ['frame',['Frame',['../classFrame.html',1,'']]]
 ];

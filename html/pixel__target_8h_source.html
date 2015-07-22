@@ -38,7 +38,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
-      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -95,59 +94,57 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &lt;opencv2/core/core.hpp&gt;</span></div>
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &lt;vector&gt;</span></div>
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="keyword">using</span> cv::Mat, cv::Scalar, cv::Point2f, cv::Point;</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;</div>
-<div class="line"><a name="l00017"></a><span class="lineno"><a class="line" href="classPixelTarget.html">   17</a></span>&#160;<span class="keyword">class </span><a class="code" href="classPixelTarget.html">PixelTarget</a>{</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    <a class="code" href="classPixelTarget.html">PixelTarget</a>(<span class="keywordtype">string</span> type, Point2f centroid, <span class="keywordtype">double</span> area, <span class="keywordtype">double</span> perimeter, Scalar colour, Point2f error, <span class="keywordtype">double</span> errorAngle);</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    </div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <span class="keywordtype">string</span> <a class="code" href="classPixelTarget.html#abe3d32cadd39b78da2757ab9e09a31e8">get_type</a>();</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    Point2f <a class="code" href="classPixelTarget.html#a7d2c2a2aba80b3a6ab79e6586ab4e5a4">get_centroid</a>();</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <span class="keywordtype">double</span> <a class="code" href="classPixelTarget.html#a27ebb602d1fd3b7326b930781c6cf9c9">get_area</a>();</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="keywordtype">double</span> <a class="code" href="classPixelTarget.html#a212064b03c678324491ac6273d0490d0">get_perimeter</a>();</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    Scalar <a class="code" href="classPixelTarget.html#a8b6e7c70a4d705fa90c861e6bcc50a4e">get_colour</a>();</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    Point2f <a class="code" href="classPixelTarget.html#af79ab23166ce273816b20d134a687f18">get_error</a>();</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    <span class="keywordtype">double</span> <a class="code" href="classPixelTarget.html#ab919198610075e2bb33c11af1a28278d">get_error_angle</a>();</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    <a class="code" href="classFrame.html">Frame</a> * <a class="code" href="classPixelTarget.html#afe9f5d94dfc90e69ff0ba470b8586468">get_image</a>();</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    <span class="keywordtype">string</span> type;</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    vector&lt;Point&gt; contour;</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    </div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    Point2f centroid;</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    </div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    <span class="keywordtype">double</span> area;</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;    <span class="keywordtype">double</span> perimeter;</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;    </div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;    Scalar colour;</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    </div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;    Point2f error;</div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;    </div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;    <span class="keywordtype">double</span> error-angle;</div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;</div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;    <a class="code" href="classFrame.html">Frame</a> * image;</div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;};</div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;</div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;</div>
-<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;<span class="preprocessor">#endif // PIXEL_TARGET_H_INCLUDED</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno"><a class="line" href="classPixelTarget.html">   15</a></span>&#160;<span class="keyword">class </span><a class="code" href="classPixelTarget.html">PixelTarget</a>{</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    <a class="code" href="classPixelTarget.html">PixelTarget</a>(std::string type, cv::Point2f centroid, <span class="keywordtype">double</span> area, <span class="keywordtype">double</span> perimeter, cv::Scalar colour, cv::Point2f error, <span class="keywordtype">double</span> errorAngle);</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    </div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    std::string <a class="code" href="classPixelTarget.html#a978b97f02c3b306de3e0fd3c81981124">get_type</a>();</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    cv::Point2f <a class="code" href="classPixelTarget.html#aac609ad681cc0d5d6fad09993440814d">get_centroid</a>();</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <span class="keywordtype">double</span> <a class="code" href="classPixelTarget.html#a27ebb602d1fd3b7326b930781c6cf9c9">get_area</a>();</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="keywordtype">double</span> <a class="code" href="classPixelTarget.html#a212064b03c678324491ac6273d0490d0">get_perimeter</a>();</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    cv::Scalar <a class="code" href="classPixelTarget.html#ad02c9965f78c215ffdd3ebd62a2e4161">get_colour</a>();</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    cv::Point2f <a class="code" href="classPixelTarget.html#a84be56c903a98de2d1fddd2f27a8b9ac">get_error</a>();</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    <span class="keywordtype">double</span> <a class="code" href="classPixelTarget.html#ab919198610075e2bb33c11af1a28278d">get_error_angle</a>();</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    <a class="code" href="classFrame.html">Frame</a> * <a class="code" href="classPixelTarget.html#afe9f5d94dfc90e69ff0ba470b8586468">get_image</a>();</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    std::string type;</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    std::vector&lt;cv::Point&gt; contour;</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    </div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    cv::Point2f centroid;</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    </div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    <span class="keywordtype">double</span> area;</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    <span class="keywordtype">double</span> perimeter;</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    </div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;    cv::Scalar colour;</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    </div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;    cv::Point2f error;</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;    </div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;    <span class="keywordtype">double</span> error-angle;</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;    <a class="code" href="classFrame.html">Frame</a> * image;</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;};</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;<span class="preprocessor">#endif // PIXEL_TARGET_H_INCLUDED</span></div>
 <div class="ttc" id="classPixelTarget_html_a27ebb602d1fd3b7326b930781c6cf9c9"><div class="ttname"><a href="classPixelTarget.html#a27ebb602d1fd3b7326b930781c6cf9c9">PixelTarget::get_area</a></div><div class="ttdeci">double get_area()</div><div class="ttdoc">Getter for area. </div></div>
 <div class="ttc" id="classPixelTarget_html_ab919198610075e2bb33c11af1a28278d"><div class="ttname"><a href="classPixelTarget.html#ab919198610075e2bb33c11af1a28278d">PixelTarget::get_error_angle</a></div><div class="ttdeci">double get_error_angle()</div><div class="ttdoc">Getter for error angle. </div></div>
-<div class="ttc" id="classPixelTarget_html"><div class="ttname"><a href="classPixelTarget.html">PixelTarget</a></div><div class="ttdef"><b>Definition:</b> pixel_target.h:17</div></div>
-<div class="ttc" id="classPixelTarget_html_a8b6e7c70a4d705fa90c861e6bcc50a4e"><div class="ttname"><a href="classPixelTarget.html#a8b6e7c70a4d705fa90c861e6bcc50a4e">PixelTarget::get_colour</a></div><div class="ttdeci">Scalar get_colour()</div><div class="ttdoc">Getter for colour. </div></div>
-<div class="ttc" id="classPixelTarget_html_af79ab23166ce273816b20d134a687f18"><div class="ttname"><a href="classPixelTarget.html#af79ab23166ce273816b20d134a687f18">PixelTarget::get_error</a></div><div class="ttdeci">Point2f get_error()</div><div class="ttdoc">Getter for error. </div></div>
-<div class="ttc" id="classPixelTarget_html_abe3d32cadd39b78da2757ab9e09a31e8"><div class="ttname"><a href="classPixelTarget.html#abe3d32cadd39b78da2757ab9e09a31e8">PixelTarget::get_type</a></div><div class="ttdeci">string get_type()</div><div class="ttdoc">Getter for type field. </div></div>
+<div class="ttc" id="classPixelTarget_html"><div class="ttname"><a href="classPixelTarget.html">PixelTarget</a></div><div class="ttdef"><b>Definition:</b> pixel_target.h:15</div></div>
+<div class="ttc" id="classPixelTarget_html_a978b97f02c3b306de3e0fd3c81981124"><div class="ttname"><a href="classPixelTarget.html#a978b97f02c3b306de3e0fd3c81981124">PixelTarget::get_type</a></div><div class="ttdeci">std::string get_type()</div><div class="ttdoc">Getter for type field. </div></div>
+<div class="ttc" id="classPixelTarget_html_ad02c9965f78c215ffdd3ebd62a2e4161"><div class="ttname"><a href="classPixelTarget.html#ad02c9965f78c215ffdd3ebd62a2e4161">PixelTarget::get_colour</a></div><div class="ttdeci">cv::Scalar get_colour()</div><div class="ttdoc">Getter for colour. </div></div>
+<div class="ttc" id="classPixelTarget_html_aac609ad681cc0d5d6fad09993440814d"><div class="ttname"><a href="classPixelTarget.html#aac609ad681cc0d5d6fad09993440814d">PixelTarget::get_centroid</a></div><div class="ttdeci">cv::Point2f get_centroid()</div><div class="ttdoc">Getter for centroid. </div></div>
+<div class="ttc" id="classPixelTarget_html_a84be56c903a98de2d1fddd2f27a8b9ac"><div class="ttname"><a href="classPixelTarget.html#a84be56c903a98de2d1fddd2f27a8b9ac">PixelTarget::get_error</a></div><div class="ttdeci">cv::Point2f get_error()</div><div class="ttdoc">Getter for error. </div></div>
 <div class="ttc" id="classPixelTarget_html_afe9f5d94dfc90e69ff0ba470b8586468"><div class="ttname"><a href="classPixelTarget.html#afe9f5d94dfc90e69ff0ba470b8586468">PixelTarget::get_image</a></div><div class="ttdeci">Frame * get_image()</div><div class="ttdoc">Getter for image. </div></div>
 <div class="ttc" id="classFrame_html"><div class="ttname"><a href="classFrame.html">Frame</a></div><div class="ttdef"><b>Definition:</b> frame.h:18</div></div>
 <div class="ttc" id="classPixelTarget_html_a212064b03c678324491ac6273d0490d0"><div class="ttname"><a href="classPixelTarget.html#a212064b03c678324491ac6273d0490d0">PixelTarget::get_perimeter</a></div><div class="ttdeci">double get_perimeter()</div><div class="ttdoc">Getter for perimeter. </div></div>
-<div class="ttc" id="classPixelTarget_html_a7d2c2a2aba80b3a6ab79e6586ab4e5a4"><div class="ttname"><a href="classPixelTarget.html#a7d2c2a2aba80b3a6ab79e6586ab4e5a4">PixelTarget::get_centroid</a></div><div class="ttdeci">Point2f get_centroid()</div><div class="ttdoc">Getter for centroid. </div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

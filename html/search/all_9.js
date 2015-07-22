@@ -1,11 +1,8 @@
 var searchData=
 [
-  ['target',['Target',['../classTarget.html',1,'']]],
-  ['target_2eh',['target.h',['../target_8h.html',1,'']]],
-  ['target_5fanalyzer_2eh',['target_analyzer.h',['../target__analyzer_8h.html',1,'']]],
-  ['target_5fidentifier_2eh',['target_identifier.h',['../target__identifier_8h.html',1,'']]],
-  ['targetanalyzer',['TargetAnalyzer',['../classTargetAnalyzer.html',1,'']]],
-  ['targetidentifier',['TargetIdentifier',['../classTargetIdentifier.html',1,'']]],
-  ['time',['time',['../structMetadata.html#a656a2110ec42848c4e83dd476b9225d7',1,'Metadata']]],
-  ['timeerror',['timeError',['../structMetadata.html#abe665e45399ea2eea86f2e1b7bc8ddd5',1,'Metadata']]]
+  ['pitch',['pitch',['../structMetadata.html#a04f93c7d7ca95de8d6ec07f740222ac3',1,'Metadata']]],
+  ['pitchrate',['pitchRate',['../structMetadata.html#afe2f2ded1fb219356adf0ca7bce4b8d7',1,'Metadata']]],
+  ['pixel_5ftarget_2eh',['pixel_target.h',['../pixel__target_8h.html',1,'']]],
+  ['pixeltarget',['PixelTarget',['../classPixelTarget.html',1,'']]],
+  ['process_5fframe',['process_frame',['../classTargetIdentifier.html#a0ccbb8e432191f1fb3c4fc3dcf058592',1,'TargetIdentifier']]]
 ];

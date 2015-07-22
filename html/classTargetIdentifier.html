@@ -38,7 +38,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
-      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -93,36 +92,16 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 Collaboration diagram for TargetIdentifier:</div>
 <div class="dyncontent">
 <div class="center"><img src="classTargetIdentifier__coll__graph.png" border="0" usemap="#TargetIdentifier_coll__map" alt="Collaboration graph"/></div>
+<map name="TargetIdentifier_coll__map" id="TargetIdentifier_coll__map">
+</map>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a0ccbb8e432191f1fb3c4fc3dcf058592"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTargetIdentifier.html#a0ccbb8e432191f1fb3c4fc3dcf058592">process_frame</a> (<a class="el" href="classFrame.html">Frame</a> *f)</td></tr>
-<tr class="memdesc:a0ccbb8e432191f1fb3c4fc3dcf058592"><td class="mdescLeft">&#160;</td><td class="mdescRight">Puts the given <a class="el" href="classFrame.html">Frame</a> into the processing queue.  <a href="#a0ccbb8e432191f1fb3c4fc3dcf058592">More...</a><br /></td></tr>
 <tr class="separator:a0ccbb8e432191f1fb3c4fc3dcf058592"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a50383fe7ac969178298237e024bcd3a7"><td class="memItemLeft" align="right" valign="top">vector&lt; <a class="el" href="classFrame.html">Frame</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTargetIdentifier.html#a50383fe7ac969178298237e024bcd3a7">pop_processed</a> ()</td></tr>
-<tr class="memdesc:a50383fe7ac969178298237e024bcd3a7"><td class="mdescLeft">&#160;</td><td class="mdescRight">retrieves a vector containing all of the frames that have been processed and now contain targets and removes them from from the <a class="el" href="classTargetIdentifier.html">TargetIdentifier</a>'s buffer The caller of the function is responsible for deleting the frames Not all frames passed to the identifier will leave through popProcessed()  <a href="#a50383fe7ac969178298237e024bcd3a7">More...</a><br /></td></tr>
-<tr class="separator:a50383fe7ac969178298237e024bcd3a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="a50383fe7ac969178298237e024bcd3a7"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">vector&lt;<a class="el" href="classFrame.html">Frame</a> *&gt; TargetIdentifier::pop_processed </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>retrieves a vector containing all of the frames that have been processed and now contain targets and removes them from from the <a class="el" href="classTargetIdentifier.html">TargetIdentifier</a>'s buffer The caller of the function is responsible for deleting the frames Not all frames passed to the identifier will leave through popProcessed() </p>
-<dl class="section return"><dt>Returns</dt><dd>vector containing tthe frames which have been processed </dd></dl>
-
-</div>
-</div>
 <a class="anchor" id="a0ccbb8e432191f1fb3c4fc3dcf058592"></a>
 <div class="memitem">
 <div class="memproto">
@@ -136,8 +115,7 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Puts the given <a class="el" href="classFrame.html">Frame</a> into the processing queue. </p>
+<p>Processes frame and identifies targets</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">f</td><td><a class="el" href="classFrame.html">Frame</a> to be processed </td></tr>
@@ -147,8 +125,9 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<hr/>The documentation for this class was generated from the following file:<ul>
+<hr/>The documentation for this class was generated from the following files:<ul>
 <li>include/target-identification/<a class="el" href="target__identifier_8h_source.html">target_identifier.h</a></li>
+<li>src/target-identification/target_identifier.cpp</li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
