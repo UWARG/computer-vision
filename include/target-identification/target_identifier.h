@@ -17,8 +17,10 @@
 **/
 
 #include "frame.h"
+#include "target-identification/object_detector.h"
 
 class TargetIdentifier{
+    ObjectDetector * detector;
     public:
         TargetIdentifier();
 
@@ -26,24 +28,11 @@ class TargetIdentifier{
 
 
         /**
-         * @brief Puts the given Frame into the processing queue
+         * @brieif Processes frame and identifies targets
          *
          * @param f Frame to be processed
          */
         void process_frame(Frame * f);
-
-        /**
-         * @brief retrieves a vector containing all of the frames that have
-         *        been processed and now contain targets and removes them from
-         *        from the TargetIdentifier's buffer
-         *        The caller of the function is responsible for deleting the 
-         *        frames
-         *        Not all frames passed to the identifier will leave through
-         *        popProcessed()
-         *
-         * @return vector containing tthe frames which have been processed 
-         */
-        vector<Frame *> pop_processed();
 };
 
 

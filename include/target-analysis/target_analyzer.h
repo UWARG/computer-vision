@@ -19,10 +19,13 @@
 #include "frame.h"
 
 class TargetAnalyzer {
+    static TargetAnalyzer * analyzer;
+    TargetAnalyzer();
+
+    void cleanup();                
     public:
-        TargetAnalyzer();
-        
-        ~TargetAnalyzer();
+
+        static const TargetAnalyzer * getInstance();
 
         /**
          * @brief Puts the given frame into the analysis queue

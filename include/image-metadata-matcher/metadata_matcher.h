@@ -33,7 +33,7 @@ class MetadataMatcher {
          *
          * @param f Frame to be analysed
          */
-        void match_frame(Frame * f);
+        Frame * next_frame();
 };
 
 #endif // METADATA_MATCHER_H_INCLUDED

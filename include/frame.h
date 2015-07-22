@@ -11,6 +11,8 @@
 
 #include <opencv2/core/core.hpp>
 #include "target.h"
+#include "metadata.h"
+#include "pixel_target.h"
 #include <vector>
 
 class Frame{
@@ -22,14 +24,14 @@ public:
      *
      * @return timestamp identifier for the frame
      */
-    std::string getId();
+    std::string get_id();
 
     /**
      * @brief 
      *
      * @return image associated with the frame
      */
-    std::Mat & get_img(); 
+    cv::Mat & get_img(); 
 
     /**
      * @brief Adds given target to the list of targets 
@@ -49,7 +51,7 @@ private:
     /**
      * @brief image associated with the Frame 
      */
-    std::Mat img;
+    cv::Mat img;
 
     /**
      * @brief Timestamp for the frame
