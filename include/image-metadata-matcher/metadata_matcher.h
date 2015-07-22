@@ -17,6 +17,9 @@
  *
  */
 
+#include "frame.h"
+#include <string>
+
 class MetadataMatcher {
     public:
         /**
@@ -24,7 +27,7 @@ class MetadataMatcher {
          *
          * @param path Path of the telemetry file
          */
-        MetadataMatcher(string path);
+        MetadataMatcher(std::string path);
 
         ~MetadataMatcher();
 

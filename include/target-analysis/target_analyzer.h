@@ -28,12 +28,14 @@ class TargetAnalyzer {
         static const TargetAnalyzer * getInstance();
 
         /**
-         * @brief Puts the given frame into the analysis queue
-         * Frame will be freed after analysis
+         * @brief Analyzes a pixeltarget and returns a pointer to the unique target 
+         *        it belongs to
          *
-         * @param f Frame containing the targets to analyze
+         * @param p PixelTarget to be analyzed
+         * @param f Frame that the PixelTarget belongs to
+         * @return pointer to the Target that the PixelTarget belongs to
          */
-        void analyze_targets_in_frame(Frame * f);
+        Target * analyze_targets_in_frame(PixelTarget * p, Frame * f);
 
         /**
          * @brief retrieves a vector containing all of the unique Targets that 

@@ -41,11 +41,18 @@ public:
     void add_target(PixelTarget * t);
 
     /**
-     * @brief 
+     * @brief getter for targets
      *
      * @return iterator pointing at the first target in the target list
      */
     iterator get_targets();
+
+    /** 
+     * @brief getter for metadata
+     *
+     * @return const pointer to internal metadata structure
+     */
+    const Metadata * get_metadata();
 private:
     
     /**
