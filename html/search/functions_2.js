@@ -8,6 +8,7 @@ var searchData=
   ['get_5fid',['get_id',['../classFrame.html#af65f00928295d18429434fd4c1df07c6',1,'Frame']]],
   ['get_5fimage',['get_image',['../classPixelTarget.html#afe9f5d94dfc90e69ff0ba470b8586468',1,'PixelTarget::get_image()'],['../classTarget.html#a6349615c6cf5c878464457478bdbc3c7',1,'Target::get_image()']]],
   ['get_5fimg',['get_img',['../classFrame.html#ab8c869563dc86c9b60c22e4e84a3de2a',1,'Frame']]],
+  ['get_5fmetadata',['get_metadata',['../classFrame.html#ae9d02ba479dbebb74f972505aa1bdea0',1,'Frame']]],
   ['get_5fperimeter',['get_perimeter',['../classPixelTarget.html#a212064b03c678324491ac6273d0490d0',1,'PixelTarget::get_perimeter()'],['../classTarget.html#aa852c75af3d30d83fd4aec1f0cd0cb0d',1,'Target::get_perimeter()']]],
   ['get_5fpixel_5ftargets',['get_pixel_targets',['../classTarget.html#a9f69308feffebf5ff6f641aacfde2507',1,'Target']]],
   ['get_5fprocessed',['get_processed',['../classGMapsMatcher.html#aa72997a5f507e102758d39da607d7567',1,'GMapsMatcher::get_processed()'],['../classTargetAnalyzer.html#a4808850fa9fe529d16b5a2d9ebf1c102',1,'TargetAnalyzer::get_processed()']]],

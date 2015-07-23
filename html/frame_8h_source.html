@@ -108,19 +108,21 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classFrame.html#adc3f60d05bf6b3910e6e041b2b38b78f">add_target</a>(<a class="code" href="classPixelTarget.html">PixelTarget</a> * t);</div>
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;</div>
 <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    iterator <a class="code" href="classFrame.html#aa79c2e181ee20b8abd9da927b2b89ae1">get_targets</a>();</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    </div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    cv::Mat img;</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    std::string id;</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <a class="code" href="structMetadata.html">Metadata</a> data;</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    vector&lt;Target *&gt; targets;</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;};</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <span class="keyword">const</span> <a class="code" href="structMetadata.html">Metadata</a> * <a class="code" href="classFrame.html#ae9d02ba479dbebb74f972505aa1bdea0">get_metadata</a>();</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    </div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    cv::Mat img;</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    std::string id;</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    <a class="code" href="structMetadata.html">Metadata</a> data;</div>
 <div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="preprocessor">#endif // FRAME_H_INCLUDED</span></div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    vector&lt;Target *&gt; targets;</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;};</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="preprocessor">#endif // FRAME_H_INCLUDED</span></div>
 <div class="ttc" id="structMetadata_html"><div class="ttname"><a href="structMetadata.html">Metadata</a></div><div class="ttdef"><b>Definition:</b> metadata.h:12</div></div>
 <div class="ttc" id="classFrame_html_adc3f60d05bf6b3910e6e041b2b38b78f"><div class="ttname"><a href="classFrame.html#adc3f60d05bf6b3910e6e041b2b38b78f">Frame::add_target</a></div><div class="ttdeci">void add_target(PixelTarget *t)</div><div class="ttdoc">Adds given target to the list of targets. </div></div>
 <div class="ttc" id="classFrame_html_af65f00928295d18429434fd4c1df07c6"><div class="ttname"><a href="classFrame.html#af65f00928295d18429434fd4c1df07c6">Frame::get_id</a></div><div class="ttdeci">std::string get_id()</div></div>
@@ -128,9 +130,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="ttc" id="classPixelTarget_html"><div class="ttname"><a href="classPixelTarget.html">PixelTarget</a></div><div class="ttdef"><b>Definition:</b> pixel_target.h:15</div></div>
 <div class="ttc" id="classFrame_html_ab8c869563dc86c9b60c22e4e84a3de2a"><div class="ttname"><a href="classFrame.html#ab8c869563dc86c9b60c22e4e84a3de2a">Frame::get_img</a></div><div class="ttdeci">cv::Mat &amp; get_img()</div></div>
 <div class="ttc" id="pixel__target_8h_html"><div class="ttname"><a href="pixel__target_8h.html">pixel_target.h</a></div><div class="ttdoc">Container class for storing information about targets located in photos or video frames using pixels ...</div></div>
+<div class="ttc" id="classFrame_html_ae9d02ba479dbebb74f972505aa1bdea0"><div class="ttname"><a href="classFrame.html#ae9d02ba479dbebb74f972505aa1bdea0">Frame::get_metadata</a></div><div class="ttdeci">const Metadata * get_metadata()</div><div class="ttdoc">getter for metadata </div></div>
 <div class="ttc" id="target_8h_html"><div class="ttname"><a href="target_8h.html">target.h</a></div><div class="ttdoc">Container class for storing information about identified targets in real-world measurements Adding Pi...</div></div>
 <div class="ttc" id="classFrame_html"><div class="ttname"><a href="classFrame.html">Frame</a></div><div class="ttdef"><b>Definition:</b> frame.h:18</div></div>
-<div class="ttc" id="classFrame_html_aa79c2e181ee20b8abd9da927b2b89ae1"><div class="ttname"><a href="classFrame.html#aa79c2e181ee20b8abd9da927b2b89ae1">Frame::get_targets</a></div><div class="ttdeci">iterator get_targets()</div></div>
+<div class="ttc" id="classFrame_html_aa79c2e181ee20b8abd9da927b2b89ae1"><div class="ttname"><a href="classFrame.html#aa79c2e181ee20b8abd9da927b2b89ae1">Frame::get_targets</a></div><div class="ttdeci">iterator get_targets()</div><div class="ttdoc">getter for targets </div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

@@ -93,15 +93,13 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 Collaboration diagram for TargetAnalyzer:</div>
 <div class="dyncontent">
 <div class="center"><img src="classTargetAnalyzer__coll__graph.png" border="0" usemap="#TargetAnalyzer_coll__map" alt="Collaboration graph"/></div>
-<map name="TargetAnalyzer_coll__map" id="TargetAnalyzer_coll__map">
-</map>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a020a03fdf3073796d49721f6796bdc15"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTargetAnalyzer.html#a020a03fdf3073796d49721f6796bdc15">analyze_targets_in_frame</a> (<a class="el" href="classFrame.html">Frame</a> *f)</td></tr>
-<tr class="memdesc:a020a03fdf3073796d49721f6796bdc15"><td class="mdescLeft">&#160;</td><td class="mdescRight">Puts the given frame into the analysis queue <a class="el" href="classFrame.html">Frame</a> will be freed after analysis.  <a href="#a020a03fdf3073796d49721f6796bdc15">More...</a><br /></td></tr>
-<tr class="separator:a020a03fdf3073796d49721f6796bdc15"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a06186d0cf1adecce827f6123f2eb45f0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classTarget.html">Target</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTargetAnalyzer.html#a06186d0cf1adecce827f6123f2eb45f0">analyze_targets_in_frame</a> (<a class="el" href="classPixelTarget.html">PixelTarget</a> *p, <a class="el" href="classFrame.html">Frame</a> *f)</td></tr>
+<tr class="memdesc:a06186d0cf1adecce827f6123f2eb45f0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Analyzes a pixeltarget and returns a pointer to the unique target it belongs to.  <a href="#a06186d0cf1adecce827f6123f2eb45f0">More...</a><br /></td></tr>
+<tr class="separator:a06186d0cf1adecce827f6123f2eb45f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4808850fa9fe529d16b5a2d9ebf1c102"><td class="memItemLeft" align="right" valign="top">vector&lt; <a class="el" href="classTarget.html">Target</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTargetAnalyzer.html#a4808850fa9fe529d16b5a2d9ebf1c102">get_processed</a> ()</td></tr>
 <tr class="memdesc:a4808850fa9fe529d16b5a2d9ebf1c102"><td class="mdescLeft">&#160;</td><td class="mdescRight">retrieves a vector containing all of the unique Targets that have been indentified. The caller of the function should not delete the Targets as they will be deleted by the <a class="el" href="classTargetAnalyzer.html">TargetAnalyzer</a> destructor  <a href="#a4808850fa9fe529d16b5a2d9ebf1c102">More...</a><br /></td></tr>
 <tr class="separator:a4808850fa9fe529d16b5a2d9ebf1c102"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -113,27 +111,39 @@ static const <a class="el" href="classTargetAnalyzer.html">TargetAnalyzer</a> *&
 <tr class="separator:a350c3fe0c1a21204e4bb7f7f48bd076f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="a020a03fdf3073796d49721f6796bdc15"></a>
+<a class="anchor" id="a06186d0cf1adecce827f6123f2eb45f0"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void TargetAnalyzer::analyze_targets_in_frame </td>
+          <td class="memname"><a class="el" href="classTarget.html">Target</a>* TargetAnalyzer::analyze_targets_in_frame </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classFrame.html">Frame</a> *&#160;</td>
-          <td class="paramname"><em>f</em></td><td>)</td>
+          <td class="paramtype"><a class="el" href="classPixelTarget.html">PixelTarget</a> *&#160;</td>
+          <td class="paramname"><em>p</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype"><a class="el" href="classFrame.html">Frame</a> *&#160;</td>
+          <td class="paramname"><em>f</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Puts the given frame into the analysis queue <a class="el" href="classFrame.html">Frame</a> will be freed after analysis. </p>
+<p>Analyzes a pixeltarget and returns a pointer to the unique target it belongs to. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">f</td><td><a class="el" href="classFrame.html">Frame</a> containing the targets to analyze </td></tr>
+    <tr><td class="paramname">p</td><td><a class="el" href="classPixelTarget.html">PixelTarget</a> to be analyzed </td></tr>
+    <tr><td class="paramname">f</td><td><a class="el" href="classFrame.html">Frame</a> that the <a class="el" href="classPixelTarget.html">PixelTarget</a> belongs to </td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section return"><dt>Returns</dt><dd>pointer to the <a class="el" href="classTarget.html">Target</a> that the <a class="el" href="classPixelTarget.html">PixelTarget</a> belongs to </dd></dl>
 
 </div>
 </div>
