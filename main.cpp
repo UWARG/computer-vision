@@ -21,7 +21,6 @@ namespace logging = boost::log;
 namespace po = boost::program_options;
 
 Frame * next_image();
-void GetFilenames(vector<string> &file_names, string dir);
 int handle_args(int argc, char** argv);
 queue<Frame *> in_buffer;
 queue<Target *> out_buffer;
@@ -126,3 +125,6 @@ int main( int argc, char** argv )
     return 0;
 }
 
+int handle_args(int argc, char ** argv){
+    return 0; 
+}
