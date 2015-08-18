@@ -11,8 +11,8 @@
 #include <iostream>
 #include <fstream>
 #include "frame.h"
-#include "target-identification/target_identifier.h"
-#include "image-metadata-matcher/metadata_matcher.h"
+#include "target_identifier.h"
+#include "imgimport.h"
 
 using namespace std;
 using namespace boost;
@@ -31,11 +31,10 @@ boost::thread_group threadpool;
 
 vector<string> file_names;
 int workers = 0;
-
-string help_message = "Usage: warg-cv [OPTION]";
+bool hasMoreFrames = true;
 
 // Processing module classes
-MetadataMatcher matcher("telemetry.csv");
+ImageImport importer("telemetry.csv");
 TargetIdentifier identifier;
 
 void worker(Frame *f)
@@ -50,9 +49,15 @@ void worker(Frame *f)
 void read_images()
 {
     Frame *currentFrame;
-    while(1)
+    while(hasMoreFrames)
     {
-		in_buffer.push(matcher.next_frame());
+		Frame * f = importer.next_frame();
+        if(f){
+            in_buffer.push(f);
+        } else {
+            hasMoreFrames = false;       
+            ioService.stop();
+        }
         boost::this_thread::sleep(boost::posix_time::milliseconds(30));
     }
 }
@@ -60,7 +65,7 @@ void read_images()
 void assign_workers()
 {
 	Frame * current;
-    while(true)
+    while(hasMoreFrames || in_buffer.size() > 0)
     {
         if(in_buffer.size() > 0)
         {
@@ -78,7 +83,7 @@ void assign_workers()
 void output()
 {
     filebuf fb;
-    while(true)
+    while(hasMoreFrames || out_buffer.size() > 0)
     {
         if(out_buffer.size() > 0)
         {
@@ -126,5 +131,22 @@ int main( int argc, char** argv )
 }
 
 int handle_args(int argc, char ** argv){
+    po::options_description description("Usage: warg-cv [OPTION]");
+
+    description.add_options()
+        ("help,h", "Display this help message")
+        ("version,v", "Display the version number")
+        ("images,i", po::value<string>(), "Directory containing image files to be processed")
+        ("video,v", po::value<int>(), "Video device to capture images from");
+    
+    po::variables_map vm;
+    po::store(po::parse_command_line(argc, argv, description), vm);
+    po::notify(vm);  
+
+    if (vm.count("help")) {
+       cout << description << "\n";
+        return 1;
+    }
+
     return 0; 
 }

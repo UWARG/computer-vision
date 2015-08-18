@@ -1,1 +1,0 @@
-add_library(TargetIdentification target_identifier.cpp object_detector.cpp)

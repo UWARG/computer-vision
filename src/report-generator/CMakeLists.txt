@@ -1,1 +1,0 @@
-add_library(ReportGenerator report_generator.cpp)
