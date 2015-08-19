@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.9.1"/>
-<title>UWARG Computer Vision: include/frame.h Source File</title>
+<title>UWARG Computer Vision: modules/core/include/frame.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -80,7 +80,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_e05d7e2b1ecd646af5bb94391405f3b5.html">modules</a></li><li class="navelem"><a class="el" href="dir_6d4da112a1331882b0b6514a341190a0.html">core</a></li><li class="navelem"><a class="el" href="dir_a9796c9e39ac7e13d6bbfc7502720b2e.html">include</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -92,48 +92,48 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#define FRAME_H_INCLUDED</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;</div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &lt;opencv2/core/core.hpp&gt;</span></div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="target_8h.html">target.h</a>&quot;</span></div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="metadata_8h.html">metadata.h</a>&quot;</span></div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="pixel__target_8h.html">pixel_target.h</a>&quot;</span></div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#include &lt;vector&gt;</span></div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;</div>
-<div class="line"><a name="l00018"></a><span class="lineno"><a class="line" href="classFrame.html">   18</a></span>&#160;<span class="keyword">class </span><a class="code" href="classFrame.html">Frame</a>{</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <a class="code" href="classFrame.html">Frame</a>(std::Mat img, std::string <span class="keywordtype">id</span>, <a class="code" href="structMetadata.html">Metadata</a> m);</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    </div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    std::string <a class="code" href="classFrame.html#af65f00928295d18429434fd4c1df07c6">get_id</a>();</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    cv::Mat &amp; <a class="code" href="classFrame.html#ab8c869563dc86c9b60c22e4e84a3de2a">get_img</a>(); </div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classFrame.html#adc3f60d05bf6b3910e6e041b2b38b78f">add_target</a>(<a class="code" href="classPixelTarget.html">PixelTarget</a> * t);</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    iterator <a class="code" href="classFrame.html#aa79c2e181ee20b8abd9da927b2b89ae1">get_targets</a>();</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <span class="keyword">const</span> <a class="code" href="structMetadata.html">Metadata</a> * <a class="code" href="classFrame.html#ae9d02ba479dbebb74f972505aa1bdea0">get_metadata</a>();</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    </div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    cv::Mat img;</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    std::string id;</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    <a class="code" href="structMetadata.html">Metadata</a> data;</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    vector&lt;Target *&gt; targets;</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;};</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="metadata_8h.html">metadata.h</a>&quot;</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="keyword">class </span><a class="code" href="classTarget.html">Target</a>;</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="keyword">class </span><a class="code" href="classPixelTarget.html">PixelTarget</a>;</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;</div>
+<div class="line"><a name="l00019"></a><span class="lineno"><a class="line" href="classFrame.html">   19</a></span>&#160;<span class="keyword">class </span><a class="code" href="classFrame.html">Frame</a>{</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <a class="code" href="classFrame.html">Frame</a>(cv::Mat img, std::string <span class="keywordtype">id</span>, <a class="code" href="structMetadata.html">Metadata</a> m);</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    </div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    std::string <a class="code" href="classFrame.html#af65f00928295d18429434fd4c1df07c6">get_id</a>();</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    cv::Mat &amp; <a class="code" href="classFrame.html#a1831991b586a2b54bb79fe084f2684aa">get_img</a>(); </div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classFrame.html#adc3f60d05bf6b3910e6e041b2b38b78f">add_target</a>(<a class="code" href="classPixelTarget.html">PixelTarget</a> * t);</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    std::vector&lt;Target*&gt;::iterator <a class="code" href="classFrame.html#a2bb5c2caf4640c6ff8ee6d6d312d21da">get_targets</a>();</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <span class="keyword">const</span> <a class="code" href="structMetadata.html">Metadata</a> * <a class="code" href="classFrame.html#a3526162794232df016d381ace6a32b5c">get_metadata</a>();</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    </div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    cv::Mat img;</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    std::string id;</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    <a class="code" href="structMetadata.html">Metadata</a> data;</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    std::vector&lt;Target *&gt; targets;</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;};</div>
 <div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="preprocessor">#endif // FRAME_H_INCLUDED</span></div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="preprocessor">#endif // FRAME_H_INCLUDED</span></div>
 <div class="ttc" id="structMetadata_html"><div class="ttname"><a href="structMetadata.html">Metadata</a></div><div class="ttdef"><b>Definition:</b> metadata.h:12</div></div>
-<div class="ttc" id="classFrame_html_adc3f60d05bf6b3910e6e041b2b38b78f"><div class="ttname"><a href="classFrame.html#adc3f60d05bf6b3910e6e041b2b38b78f">Frame::add_target</a></div><div class="ttdeci">void add_target(PixelTarget *t)</div><div class="ttdoc">Adds given target to the list of targets. </div></div>
-<div class="ttc" id="classFrame_html_af65f00928295d18429434fd4c1df07c6"><div class="ttname"><a href="classFrame.html#af65f00928295d18429434fd4c1df07c6">Frame::get_id</a></div><div class="ttdeci">std::string get_id()</div></div>
+<div class="ttc" id="classFrame_html_adc3f60d05bf6b3910e6e041b2b38b78f"><div class="ttname"><a href="classFrame.html#adc3f60d05bf6b3910e6e041b2b38b78f">Frame::add_target</a></div><div class="ttdeci">void add_target(PixelTarget *t)</div><div class="ttdoc">Adds given target to the list of targets. </div><div class="ttdef"><b>Definition:</b> frame.cpp:15</div></div>
+<div class="ttc" id="classTarget_html"><div class="ttname"><a href="classTarget.html">Target</a></div><div class="ttdef"><b>Definition:</b> target.h:19</div></div>
+<div class="ttc" id="classFrame_html_af65f00928295d18429434fd4c1df07c6"><div class="ttname"><a href="classFrame.html#af65f00928295d18429434fd4c1df07c6">Frame::get_id</a></div><div class="ttdeci">std::string get_id()</div><div class="ttdef"><b>Definition:</b> frame.cpp:7</div></div>
 <div class="ttc" id="metadata_8h_html"><div class="ttname"><a href="metadata_8h.html">metadata.h</a></div><div class="ttdoc">Structure for storing plane status information from the time that an image was taken. </div></div>
-<div class="ttc" id="classPixelTarget_html"><div class="ttname"><a href="classPixelTarget.html">PixelTarget</a></div><div class="ttdef"><b>Definition:</b> pixel_target.h:15</div></div>
-<div class="ttc" id="classFrame_html_ab8c869563dc86c9b60c22e4e84a3de2a"><div class="ttname"><a href="classFrame.html#ab8c869563dc86c9b60c22e4e84a3de2a">Frame::get_img</a></div><div class="ttdeci">cv::Mat &amp; get_img()</div></div>
-<div class="ttc" id="pixel__target_8h_html"><div class="ttname"><a href="pixel__target_8h.html">pixel_target.h</a></div><div class="ttdoc">Container class for storing information about targets located in photos or video frames using pixels ...</div></div>
-<div class="ttc" id="classFrame_html_ae9d02ba479dbebb74f972505aa1bdea0"><div class="ttname"><a href="classFrame.html#ae9d02ba479dbebb74f972505aa1bdea0">Frame::get_metadata</a></div><div class="ttdeci">const Metadata * get_metadata()</div><div class="ttdoc">getter for metadata </div></div>
-<div class="ttc" id="target_8h_html"><div class="ttname"><a href="target_8h.html">target.h</a></div><div class="ttdoc">Container class for storing information about identified targets in real-world measurements Adding Pi...</div></div>
-<div class="ttc" id="classFrame_html"><div class="ttname"><a href="classFrame.html">Frame</a></div><div class="ttdef"><b>Definition:</b> frame.h:18</div></div>
-<div class="ttc" id="classFrame_html_aa79c2e181ee20b8abd9da927b2b89ae1"><div class="ttname"><a href="classFrame.html#aa79c2e181ee20b8abd9da927b2b89ae1">Frame::get_targets</a></div><div class="ttdeci">iterator get_targets()</div><div class="ttdoc">getter for targets </div></div>
+<div class="ttc" id="classPixelTarget_html"><div class="ttname"><a href="classPixelTarget.html">PixelTarget</a></div><div class="ttdef"><b>Definition:</b> pixel_target.h:17</div></div>
+<div class="ttc" id="classFrame_html_a1831991b586a2b54bb79fe084f2684aa"><div class="ttname"><a href="classFrame.html#a1831991b586a2b54bb79fe084f2684aa">Frame::get_img</a></div><div class="ttdeci">cv::Mat &amp; get_img()</div><div class="ttdef"><b>Definition:</b> frame.cpp:11</div></div>
+<div class="ttc" id="classFrame_html"><div class="ttname"><a href="classFrame.html">Frame</a></div><div class="ttdef"><b>Definition:</b> frame.h:19</div></div>
+<div class="ttc" id="classFrame_html_a2bb5c2caf4640c6ff8ee6d6d312d21da"><div class="ttname"><a href="classFrame.html#a2bb5c2caf4640c6ff8ee6d6d312d21da">Frame::get_targets</a></div><div class="ttdeci">std::vector&lt; Target * &gt;::iterator get_targets()</div><div class="ttdoc">getter for targets </div><div class="ttdef"><b>Definition:</b> frame.cpp:19</div></div>
+<div class="ttc" id="classFrame_html_a3526162794232df016d381ace6a32b5c"><div class="ttname"><a href="classFrame.html#a3526162794232df016d381ace6a32b5c">Frame::get_metadata</a></div><div class="ttdeci">const Metadata * get_metadata()</div><div class="ttdoc">getter for metadata </div><div class="ttdef"><b>Definition:</b> frame.cpp:23</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

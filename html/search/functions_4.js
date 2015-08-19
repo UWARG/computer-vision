@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['next_5fframe',['next_frame',['../classMetadataMatcher.html#adb85af67e2dec588e562ac2ce847fcce',1,'MetadataMatcher']]]
+  ['next_5fframe',['next_frame',['../classImageImport.html#a2990ed2eb1d4c29bb2f4aaf491950a67',1,'ImageImport']]]
 ];

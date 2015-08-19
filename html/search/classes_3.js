@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['metadata',['Metadata',['../structMetadata.html',1,'']]],
-  ['metadatamatcher',['MetadataMatcher',['../classMetadataMatcher.html',1,'']]]
+  ['imageimport',['ImageImport',['../classImageImport.html',1,'']]]
 ];

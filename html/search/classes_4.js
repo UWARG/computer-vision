@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['objectdetector',['ObjectDetector',['../classObjectDetector.html',1,'']]]
+  ['metadata',['Metadata',['../structMetadata.html',1,'']]]
 ];
