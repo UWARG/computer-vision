@@ -1,6 +1,8 @@
 var searchData=
 [
-  ['report_5fgenerator_2eh',['report_generator.h',['../report__generator_8h.html',1,'']]],
-  ['roll',['roll',['../structMetadata.html#a9fccceb18ee451e2e980f2945f4440d7',1,'Metadata']]],
-  ['rollrate',['rollRate',['../structMetadata.html#afe34d61de81e915fe742ffb0f9581909',1,'Metadata']]]
+  ['pitch',['pitch',['../structMetadata.html#a04f93c7d7ca95de8d6ec07f740222ac3',1,'Metadata']]],
+  ['pitchrate',['pitchRate',['../structMetadata.html#afe2f2ded1fb219356adf0ca7bce4b8d7',1,'Metadata']]],
+  ['pixel_5ftarget_2eh',['pixel_target.h',['../pixel__target_8h.html',1,'']]],
+  ['pixeltarget',['PixelTarget',['../classPixelTarget.html',1,'']]],
+  ['process_5fframe',['process_frame',['../classTargetIdentifier.html#a0ccbb8e432191f1fb3c4fc3dcf058592',1,'TargetIdentifier']]]
 ];
