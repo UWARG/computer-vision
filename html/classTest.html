@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.9.1"/>
-<title>UWARG Computer Vision: Test&lt; T &gt; Class Template Reference</title>
+<title>UWARG Computer Vision: Test&lt; T, V &gt; Class Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -83,55 +83,54 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pro-methods">Protected Member Functions</a> &#124;
 <a href="classTest-members.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">Test&lt; T &gt; Class Template Reference</div>  </div>
+<div class="title">Test&lt; T, V &gt; Class Template Reference<span class="mlabels"><span class="mlabel">abstract</span></span></div>  </div>
 </div><!--header-->
 <div class="contents">
 <div class="dynheader">
-Collaboration diagram for Test&lt; T &gt;:</div>
+Collaboration diagram for Test&lt; T, V &gt;:</div>
 <div class="dyncontent">
-<div class="center"><img src="classTest__coll__graph.png" border="0" usemap="#Test_3_01T_01_4_coll__map" alt="Collaboration graph"/></div>
-<map name="Test_3_01T_01_4_coll__map" id="Test_3_01T_01_4_coll__map">
+<div class="center"><img src="classTest__coll__graph.png" border="0" usemap="#Test_3_01T_00_01V_01_4_coll__map" alt="Collaboration graph"/></div>
+<map name="Test_3_01T_00_01V_01_4_coll__map" id="Test_3_01T_00_01V_01_4_coll__map">
 </map>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:afb9b84affeee628af9239b70803c031f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTest.html#afb9b84affeee628af9239b70803c031f">Test</a> (double(*func)(T), std::string desc)</td></tr>
-<tr class="separator:afb9b84affeee628af9239b70803c031f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad673208507a10b52396c640763139264"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTest.html#ad673208507a10b52396c640763139264">do_test</a> (T arg, std::string desc, double expected, int iter=1)</td></tr>
-<tr class="separator:ad673208507a10b52396c640763139264"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3d6fdaa6a4a08504da8d1c7821f757e5"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTest.html#a3d6fdaa6a4a08504da8d1c7821f757e5">Test</a> (std::string desc)</td></tr>
+<tr class="separator:a3d6fdaa6a4a08504da8d1c7821f757e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1c915c67bed22482cdb1ba956a2a654f"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTest.html#a1c915c67bed22482cdb1ba956a2a654f">do_test</a> (T arg, std::string desc, V expected, int iter=10)</td></tr>
+<tr class="separator:a1c915c67bed22482cdb1ba956a2a654f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
+Protected Member Functions</h2></td></tr>
+<tr class="memitem:aa21714095f20ffccb166cd13155e7049"><td class="memItemLeft" align="right" valign="top">V&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTest.html#aa21714095f20ffccb166cd13155e7049">test</a> (T arg)=0</td></tr>
+<tr class="separator:aa21714095f20ffccb166cd13155e7049"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a73ea316bc540d05b3e34e885d78bfaa2"><td class="memItemLeft" align="right" valign="top">virtual double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTest.html#a73ea316bc540d05b3e34e885d78bfaa2">deviation</a> (V results[], V expected, int n)=0</td></tr>
+<tr class="separator:a73ea316bc540d05b3e34e885d78bfaa2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a77ccfc1da1137b5dd8134355b043583c"><td class="memItemLeft" align="right" valign="top">virtual V&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTest.html#a77ccfc1da1137b5dd8134355b043583c">mean</a> (V results[], int n)=0</td></tr>
+<tr class="separator:a77ccfc1da1137b5dd8134355b043583c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="afb9b84affeee628af9239b70803c031f"></a>
+<a class="anchor" id="a3d6fdaa6a4a08504da8d1c7821f757e5"></a>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class T &gt; </div>
+template&lt;class T , class V &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classTest.html">Test</a>&lt; T &gt;::<a class="el" href="classTest.html">Test</a> </td>
+          <td class="memname"><a class="el" href="classTest.html">Test</a>&lt; T, V &gt;::<a class="el" href="classTest.html">Test</a> </td>
           <td>(</td>
-          <td class="paramtype">double(*)(T)&#160;</td>
-          <td class="paramname"><em>func</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
           <td class="paramtype">std::string&#160;</td>
-          <td class="paramname"><em>desc</em>&#160;</td>
-        </tr>
-        <tr>
+          <td class="paramname"><em>desc</em></td><td>)</td>
           <td></td>
-          <td>)</td>
-          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">func</td><td>the function that this test object will be testing the function should accept an independant variable for testing </td></tr>
     <tr><td class="paramname">desc</td><td>description of the function being tested for the log </td></tr>
   </table>
   </dd>
@@ -140,14 +139,65 @@ template&lt;class T &gt; </div>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="ad673208507a10b52396c640763139264"></a>
+<a class="anchor" id="a73ea316bc540d05b3e34e885d78bfaa2"></a>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class T &gt; </div>
+template&lt;class T , class V &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">double <a class="el" href="classTest.html">Test</a>&lt; T &gt;::do_test </td>
+          <td class="memname">virtual double <a class="el" href="classTest.html">Test</a>&lt; T, V &gt;::deviation </td>
+          <td>(</td>
+          <td class="paramtype">V&#160;</td>
+          <td class="paramname"><em>results</em>[], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">V&#160;</td>
+          <td class="paramname"><em>expected</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>n</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Deviation function for V </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">results</td><td>the results of running the test function to be used to calculate the deviation </td></tr>
+    <tr><td class="paramname">expected</td><td>the expected value of the results </td></tr>
+    <tr><td class="paramname">n</td><td>the number of results </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the deviation of the results as a double </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a1c915c67bed22482cdb1ba956a2a654f"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T , class V &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">double <a class="el" href="classTest.html">Test</a>&lt; T, V &gt;::do_test </td>
           <td>(</td>
           <td class="paramtype">T&#160;</td>
           <td class="paramname"><em>arg</em>, </td>
@@ -161,14 +211,14 @@ template&lt;class T &gt; </div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">double&#160;</td>
+          <td class="paramtype">V&#160;</td>
           <td class="paramname"><em>expected</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>iter</em> = <code>1</code>&#160;</td>
+          <td class="paramname"><em>iter</em> = <code>10</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -177,7 +227,7 @@ template&lt;class T &gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Runs a test of the given function and logs the results to a file The results are normalized to 100 where 100 is the expected value deviation will then be scaled accordingly</p>
+<p>Runs the test function and logs the results to a file</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">arg</td><td>argument to be passed to the function being tested should be the independant variable of the test </td></tr>
@@ -188,6 +238,77 @@ template&lt;class T &gt; </div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the deviation of the results from the expected value </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a77ccfc1da1137b5dd8134355b043583c"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T , class V &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual V <a class="el" href="classTest.html">Test</a>&lt; T, V &gt;::mean </td>
+          <td>(</td>
+          <td class="paramtype">V&#160;</td>
+          <td class="paramname"><em>results</em>[], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>n</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Mean function for V </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">results</td><td>the results of running the test function to be averaged </td></tr>
+    <tr><td class="paramname">n</td><td>the number of results </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the average of the results </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="aa21714095f20ffccb166cd13155e7049"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T , class V &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">V <a class="el" href="classTest.html">Test</a>&lt; T, V &gt;::test </td>
+          <td>(</td>
+          <td class="paramtype">T&#160;</td>
+          <td class="paramname"><em>arg</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>The test function </p>
 
 </div>
 </div>
