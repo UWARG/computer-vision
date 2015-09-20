@@ -131,20 +131,24 @@ int main( int argc, char** argv )
 }
 
 int handle_args(int argc, char ** argv){
-    po::options_description description("Usage: warg-cv [OPTION]");
+    try {
+        po::options_description description("Usage: warg-cv [OPTION]");
 
-    description.add_options()
-        ("help,h", "Display this help message")
-        ("version,v", "Display the version number")
-        ("images,i", po::value<string>(), "Directory containing image files to be processed")
-        ("video,v", po::value<int>(), "Video device to capture images from");
+        description.add_options()
+            ("help,h", "Display this help message")
+            ("images,i", po::value<string>(), "Directory containing image files to be processed")
+            ("device,d", po::value<int>(), "Video device to capture images from");
     
-    po::variables_map vm;
-    po::store(po::parse_command_line(argc, argv, description), vm);
-    po::notify(vm);  
+        po::variables_map vm;
+        po::store(po::parse_command_line(argc, argv, description), vm);
+        po::notify(vm);  
 
-    if (vm.count("help")) {
-       cout << description << "\n";
+        if (vm.count("help")) {
+            cout << description << "\n";
+            return 1;
+        }
+    } catch(std::exception &e) {
+        cout << e.what() << endl;
         return 1;
     }
 
