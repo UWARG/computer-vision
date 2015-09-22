@@ -34,7 +34,7 @@ class Test {
         /**
          *  The test function 
          */
-        V test(T arg) = 0;
+        virtual V test(T arg) = 0;
 
         /**
          *  Deviation function for V

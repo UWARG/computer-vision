@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.0)
 
-project(warg-cv) 
+project(warg-cv CXX) 
 
 set(MODULES core csvcreator targetanalysis targetid volumecalc reportgen imgimport gmapsmatcher)
 
@@ -13,9 +13,10 @@ message(status " Boost Libraries: ${Boost_LIBRARIES}")
 message(status " OpenCV Include: ${OpenCV_INCLUDE_DIRS}")
 message(status " OpenCV Libraries: ${OpenCV_LIBS}")
 
-
 set(Boost_USE_MULTITHREADED      ON)
 set(Boost_USE_STATIC_RUNTIME    OFF)
+
+enable_testing()
 
 # Include Modules
 
