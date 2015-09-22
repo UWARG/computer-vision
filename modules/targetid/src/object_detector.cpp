@@ -14,7 +14,7 @@ ObjectDetector::ObjectDetector(Filter * filter, ContourCreator * contourCreator)
 void ObjectDetector::process_frame(Frame * f){
     Mat & src = f->get_img();
     Mat * filtered = filter->filter(src);
-    vector<vector<Point> > contours = ccreator->get_contours(*filtered);
+    vector<vector<Point> > contours = *(ccreator->get_contours(*filtered));
     delete filtered;
     for(vector<Point> contour : contours){
         string type;
