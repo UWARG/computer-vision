@@ -6,3 +6,4 @@ cmake_install.cmake
 *.a
 CTestTestfile.cmake
 warg-cv
+build
