@@ -13,21 +13,25 @@ Test<T, V>::Test(string desc):desc(desc) { }
 template <class T, class V>
 double Test<T, V>::do_test(T arg, string, V expected, int iter) {
     V results[iter];
-    double variance, deviation;
     for(int i = 0; i < iter; i++){
         results[i] = test(arg);
     }
 
-    V result_mean = mean(results, iter);
-    double result_deviation = deviation(results, expected, iter);
-
-    ofstream os("results.log");
+    V resultMean = mean(results, iter);
+    double resultDeviation = deviation(results, expected, iter);
+    static const string fileName = "results.csv"
+    ifstream file(fileName);
+    bool fileExists = !file;
+    file.close();
+    ofstream os(fileName);
+    if(!fileExists) {
+        os << "date, function, test, expected, mean, deviation" << endl;
+    }
     std::time_t time = std::time(NULL);
-    os << asctime(std::localtime(&time)) << " -- " 
-        << "Testing " << this->desc << " on " << desc << "; expected: " << expected << "; mean: " << mean << "; deviation: " << deviation << std::endl;
+    os << asctime(std::localtime(&time)) << ", " 
+        << this->desc << ", " << desc << ", " << expected << ", " << mean << ", " << deviation << endl;
     os.flush();
     os.close();
 
     return deviation;
 }
-        
