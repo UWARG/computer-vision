@@ -11,7 +11,7 @@ template <class T, class V>
 Test<T, V>::Test(string desc):desc(desc) { }
 
 template <class T, class V>
-double Test<T, V>::do_test(T arg, string, V expected, int iter) {
+double Test<T, V>::do_test(T arg, string desc, V expected, int iter) {
     V results[iter];
     for(int i = 0; i < iter; i++){
         results[i] = test(arg);
@@ -19,7 +19,7 @@ double Test<T, V>::do_test(T arg, string, V expected, int iter) {
 
     V resultMean = mean(results, iter);
     double resultDeviation = deviation(results, expected, iter);
-    static const string fileName = "results.csv"
+    static const string fileName = "results.csv";
     ifstream file(fileName);
     bool fileExists = !file;
     file.close();
