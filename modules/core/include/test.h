@@ -2,13 +2,16 @@
 #define TEST_H_INCLUDED
 
 #include <string>
+#include <fstream>
+#include <ctime>
+#include <iostream>
+#include "frame.h"
 
 /**
  * @file test.h
  *
  * Abstract class to facilitate testing by handling analyzing results and logging
  */
-
 template <class T, class V>
 class Test {
     public:
@@ -16,7 +19,7 @@ class Test {
         /**
          *  @param desc description of the function being tested for the log
          */
-        Test(std::string desc);
+        Test(std::string desc): desc(desc) { }
 
         /**
          *  Runs the test function and logs the results to a file
@@ -29,7 +32,30 @@ class Test {
          *      results will be averaged and deviation included with the result
          *  @return the deviation of the results from the expected value
          */
-        double do_test(T arg, std::string desc, V expected, int iter = 10);
+        double do_test(T arg, std::string desc, V expected, int iter = 10) {
+            V results[iter];
+            for(int i = 0; i < iter; i++){
+                results[i] = test(arg);
+            }
+
+            V resultMean = mean(results, iter);
+            double resultDeviation = deviation(results, expected, iter);
+            static const std::string fileName = "results.csv";
+            std::ifstream file(fileName.c_str());
+            bool fileExists = !file;
+            file.close();
+            std::ofstream os(fileName.c_str());
+            if(!fileExists) {
+                os << "date, function, test, expected, mean, deviation" << std::endl;
+            }
+            std::time_t time = std::time(NULL);
+            os << asctime(std::localtime(&time)) << ", "
+                << this->desc << ", " << desc << ", " << expected << ", " << resultMean << ", " << resultDeviation << std::endl;
+            os.flush();
+            os.close();
+
+            return resultDeviation;
+        }
     protected:
         /**
          *  The test function 

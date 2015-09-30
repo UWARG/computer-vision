@@ -8,15 +8,16 @@
 #include "k_means_filter.h"
 #include "test.h"
 #include "frame.h"
+#include <vector>
 
 using namespace cv;
 using namespace std;
 using namespace boost;
 namespace logging = boost::log;
 
-class TargetTest : public Test<Frame &, vector<Point> * >  {
+class TargetTest : public Test<Frame &, vector<Point> * > {
     public:
-        TargetTest(string s): Test<Frame &, vector<Point> * >(s) { }
+        TargetTest(string s): Test(s) { }
 
     protected:
         vector<Point> * test(Frame & arg) {

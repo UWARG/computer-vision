@@ -8,5 +8,5 @@ if(Boost_FOUND AND OpenCV_FOUND)
     install(TARGETS targetid_test_contour DESTINATION bin)
 
     # Tests
-    add_test("Simple target" targetid_test_contour "imgs/IMG_1644.jpg" "Simple target" 798 264 806 225 844 235 837 273)
+    add_test("simple_target" targetid_test_contour "imgs/IMG_1644.jpg" "Simple target" 798 264 806 225 844 235 837 273)
 endif()
