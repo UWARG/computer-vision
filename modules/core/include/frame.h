@@ -1,4 +1,5 @@
 /* 
+    This file is part of WARG's computer-vision
     Copyright (c) 2015, Waterloo Aerial Robotics Group (WARG)
     All rights reserved.
 
@@ -9,7 +10,7 @@
     2. Redistributions in binary form must reproduce the above copyright
        notice, this list of conditions and the following disclaimer in the
        documentation and/or other materials provided with the distribution.
-    3. Usage of this code must be explicitly referenced to WARG and this code 
+    3. Usage of this code MUST be explicitly referenced to WARG and this code 
        cannot be used in any competition against WARG.
     4. Neither the name of the WARG nor the names of its contributors may be used 
        to endorse or promote products derived from this software without specific
