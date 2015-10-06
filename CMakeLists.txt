@@ -20,7 +20,6 @@ enable_testing()
 
 # Include Modules
 
-
 foreach(p ${MODULES})
     add_subdirectory("modules/${p}")
 endforeach()
