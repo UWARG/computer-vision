@@ -29,7 +29,7 @@
 
 #include "json/json.h"
 #include <iostream>
-#include <ifstream>
+#include <fstream>
 using namespace std;
 
 /*
@@ -64,6 +64,7 @@ using namespace std;
 * }
 */
 
+/*
 class targetLoader{
       targetLoader(string f){
              file = f;     
@@ -120,3 +121,4 @@ Json::Value* targetLoader:readJSON(string jsonMessage){
         return parsedFromString;
      }
 }
+*/

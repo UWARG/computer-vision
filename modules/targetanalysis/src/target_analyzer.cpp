@@ -34,6 +34,10 @@ Area, Centroid, Perimeter, Colour, Error, contour, edge magnitude
 Evaluate each to classify as each target and apply percentage to 
 3) 
 */
+
+#include "frame.h"
+#include "pixel_target.h"
+
 void analyze_targets_in_frame(Frame * f, PixelTarget t){
      
 }     
