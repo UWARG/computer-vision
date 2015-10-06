@@ -1,7 +1,7 @@
-/* 
+/*
     Copyright (c) 2015, Waterloo Aerial Robotics Group (WARG)
     All rights reserved.
-    
+
     Redistribution and use in source and binary forms, with or without
     modification, are permitted provided that the following conditions are met:
     1. Redistributions of source code must retain the above copyright
@@ -18,7 +18,7 @@
     THIS SOFTWARE IS PROVIDED BY WARG ''AS IS'' AND ANY
     EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
     WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
-    DISCLAIMED. IN NO EVENT SHALL <COPYRIGHT HOLDER> BE LIABLE FOR ANY
+    DISCLAIMED. IN NO EVENT SHALL WARG BE LIABLE FOR ANY
     DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
     (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
     LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
@@ -49,11 +49,10 @@ using namespace cv;
 namespace logging = boost::log;
 namespace po = boost::program_options;
 
-Frame * next_image();
+Frame* next_image();
 int handle_args(int argc, char** argv);
-queue<Frame *> in_buffer;
-queue<Target *> out_buffer;
-
+queue<Frame*> in_buffer;
+queue<Target*> out_buffer;
 
 boost::asio::io_service ioService;
 boost::thread_group threadpool;
@@ -66,38 +65,33 @@ bool hasMoreFrames = true;
 ImageImport importer("telemetry.csv");
 TargetIdentifier identifier;
 
-void worker(Frame *f)
-{
+void worker(Frame* f) {
     workers++;
-	assert(!f->get_img().empty());
+    assert(!f->get_img().empty());
     identifier.process_frame(f);
 
-	workers--;
+    workers--;
 }
 
-void read_images()
-{
-    Frame *currentFrame;
-    while(hasMoreFrames)
-    {
-		Frame * f = importer.next_frame();
-        if(f){
+void read_images() {
+    Frame* currentFrame;
+    while (hasMoreFrames) {
+        Frame* f = importer.next_frame();
+        if (f) {
             in_buffer.push(f);
-        } else {
-            hasMoreFrames = false;       
+        }
+        else {
+            hasMoreFrames = false;
             ioService.stop();
         }
         boost::this_thread::sleep(boost::posix_time::milliseconds(30));
     }
 }
 
-void assign_workers()
-{
-	Frame * current;
-    while(hasMoreFrames || in_buffer.size() > 0)
-    {
-        if(in_buffer.size() > 0)
-        {
+void assign_workers() {
+    Frame* current;
+    while (hasMoreFrames || in_buffer.size() > 0) {
+        if (in_buffer.size() > 0) {
             current = in_buffer.front();
             // spawn worker to process image;
             BOOST_LOG_TRIVIAL(info) << "Working...";
@@ -109,13 +103,10 @@ void assign_workers()
     }
 }
 
-void output()
-{
+void output() {
     filebuf fb;
-    while(hasMoreFrames || out_buffer.size() > 0)
-    {
-        if(out_buffer.size() > 0)
-        {
+    while (hasMoreFrames || out_buffer.size() > 0) {
+        if (out_buffer.size() > 0) {
             fb.open("out.txt", ios::app);
             ostream out(&fb);
 
@@ -128,19 +119,14 @@ void output()
     }
 }
 
-void init()
-{
-    logging::core::get()->set_filter
-    (
-        logging::trivial::severity >= logging::trivial::info
-    );
+void init() { 
+    logging::core::get()->set_filter(logging::trivial::severity >= logging::trivial::info); 
 }
 
-
-int main( int argc, char** argv )
-{
+int main(int argc, char** argv) {
     init();
-    if(handle_args(argc, argv) == 1) return 0;
+    if (handle_args(argc, argv) == 1)
+        return 0;
 
     int processors = boost::thread::hardware_concurrency();
 
@@ -148,39 +134,35 @@ int main( int argc, char** argv )
     ioService.post(boost::bind(assign_workers));
     ioService.post(boost::bind(output));
 
-	boost::asio::io_service::work work(ioService);
-    for(int i = 0; i < processors; i++)
-    {
-        threadpool.create_thread(
-            boost::bind(&boost::asio::io_service::run, &ioService)
-        );
+    boost::asio::io_service::work work(ioService);
+    for (int i = 0; i < processors; i++) {
+        threadpool.create_thread(boost::bind(&boost::asio::io_service::run, &ioService));
     }
     threadpool.join_all();
     return 0;
 }
 
-int handle_args(int argc, char ** argv){
+int handle_args(int argc, char** argv) {
     try {
         po::options_description description("Usage: warg-cv [OPTION]");
 
-        description.add_options()
-            ("help,h", "Display this help message")
+        description.add_options()("help,h", "Display this help message")
             ("images,i", po::value<string>(), "Directory containing image files to be processed")
             ("device,d", po::value<int>(), "Video device to capture images from");
-    
+
         po::variables_map vm;
         po::store(po::parse_command_line(argc, argv, description), vm);
-        po::notify(vm);  
+        po::notify(vm);
 
         if (vm.count("help")) {
             cout << description << endl;
             return 1;
         }
-    } catch(std::exception &e) {
+    }
+    catch (std::exception& e) {
         cout << e.what() << endl;
         return 1;
     }
 
-    return 0; 
+    return 0;
 }
-
