@@ -1,9 +1,2 @@
 # Put files to ignore here
-CMakeFiles
-CMakeCache.txt
-Makefile
-cmake_install.cmake
-*.a
-CTestTestfile.cmake
-warg-cv
 build
