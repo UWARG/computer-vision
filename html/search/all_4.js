@@ -3,6 +3,7 @@ var searchData=
   ['get_5farea',['get_area',['../classPixelTarget.html#a27ebb602d1fd3b7326b930781c6cf9c9',1,'PixelTarget::get_area()'],['../classTarget.html#a95b2936214ef22f9a576055b2a1edb3d',1,'Target::get_area()']]],
   ['get_5fcentroid',['get_centroid',['../classPixelTarget.html#adbac42d62eb0e5acfbb851f3dc76ff60',1,'PixelTarget::get_centroid()'],['../classTarget.html#af0130105fd3bc8b15a33dc7817ab7e9c',1,'Target::get_centroid()']]],
   ['get_5fcolour',['get_colour',['../classPixelTarget.html#ad02c9965f78c215ffdd3ebd62a2e4161',1,'PixelTarget::get_colour()'],['../classTarget.html#aedc167eecb2b8295d16bf38a3fd6b6a0',1,'Target::get_colour()']]],
+  ['get_5fcontours',['get_contours',['../classCannyContourCreator.html#a852a5970913c9760efbdc334320863a6',1,'CannyContourCreator']]],
   ['get_5ferror',['get_error',['../classPixelTarget.html#a394a569d3174a1374902416a15f3d7fb',1,'PixelTarget::get_error()'],['../classTarget.html#afe0a6457a9da8d8612d399073e1187c0',1,'Target::get_error()']]],
   ['get_5ferror_5fangle',['get_error_angle',['../classPixelTarget.html#ab919198610075e2bb33c11af1a28278d',1,'PixelTarget::get_error_angle()'],['../classTarget.html#a1e3867f3e67797ca7c03984e30c260de',1,'Target::get_error_angle()']]],
   ['get_5fid',['get_id',['../classFrame.html#af65f00928295d18429434fd4c1df07c6',1,'Frame']]],

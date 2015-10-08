@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['pixeltarget',['PixelTarget',['../classPixelTarget.html',1,'']]]
+  ['objectdetector',['ObjectDetector',['../classObjectDetector.html',1,'']]]
 ];

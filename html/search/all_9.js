@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['next_5fframe',['next_frame',['../classImageImport.html#a2990ed2eb1d4c29bb2f4aaf491950a67',1,'ImageImport']]]
+  ['mean',['mean',['../classTest.html#a77ccfc1da1137b5dd8134355b043583c',1,'Test::mean()'],['../classTargetTest.html#a2be6ed9cafb0c8eb3c0a4ff6569be18a',1,'TargetTest::mean()']]],
+  ['metadata',['Metadata',['../structMetadata.html',1,'']]],
+  ['metadata_2eh',['metadata.h',['../metadata_8h.html',1,'']]]
 ];

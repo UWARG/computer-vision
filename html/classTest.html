@@ -62,6 +62,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
       <li><a href="classes.html"><span>Class&#160;Index</span></a></li>
+      <li><a href="inherits.html"><span>Class&#160;Hierarchy</span></a></li>
       <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
   </div>
@@ -104,8 +105,8 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
-<tr class="memitem:aa21714095f20ffccb166cd13155e7049"><td class="memItemLeft" align="right" valign="top">V&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTest.html#aa21714095f20ffccb166cd13155e7049">test</a> (T arg)=0</td></tr>
-<tr class="separator:aa21714095f20ffccb166cd13155e7049"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa250d11111edc0c2ce64b40da83d23dc"><td class="memItemLeft" align="right" valign="top">virtual V&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTest.html#aa250d11111edc0c2ce64b40da83d23dc">test</a> (T arg)=0</td></tr>
+<tr class="separator:aa250d11111edc0c2ce64b40da83d23dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a73ea316bc540d05b3e34e885d78bfaa2"><td class="memItemLeft" align="right" valign="top">virtual double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTest.html#a73ea316bc540d05b3e34e885d78bfaa2">deviation</a> (V results[], V expected, int n)=0</td></tr>
 <tr class="separator:a73ea316bc540d05b3e34e885d78bfaa2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a77ccfc1da1137b5dd8134355b043583c"><td class="memItemLeft" align="right" valign="top">virtual V&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTest.html#a77ccfc1da1137b5dd8134355b043583c">mean</a> (V results[], int n)=0</td></tr>
@@ -116,7 +117,10 @@ Protected Member Functions</h2></td></tr>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class T , class V &gt; </div>
+template&lt;class T, class V&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="classTest.html">Test</a>&lt; T, V &gt;::<a class="el" href="classTest.html">Test</a> </td>
@@ -126,6 +130,11 @@ template&lt;class T , class V &gt; </div>
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -141,7 +150,7 @@ template&lt;class T , class V &gt; </div>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class T , class V &gt; </div>
+template&lt;class T, class V&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -186,13 +195,18 @@ template&lt;class T , class V &gt; </div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the deviation of the results as a double </dd></dl>
 
+<p>Implemented in <a class="el" href="classTargetTest.html#a6f7ed0cbe8c6dabe1e3fcc1bf2d55e0d">TargetTest</a>.</p>
+
 </div>
 </div>
 <a class="anchor" id="a1c915c67bed22482cdb1ba956a2a654f"></a>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class T , class V &gt; </div>
+template&lt;class T, class V&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">double <a class="el" href="classTest.html">Test</a>&lt; T, V &gt;::do_test </td>
@@ -224,6 +238,11 @@ template&lt;class T , class V &gt; </div>
           <td></td><td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 <p>Runs the test function and logs the results to a file</p>
 <dl class="params"><dt>Parameters</dt><dd>
@@ -243,7 +262,7 @@ template&lt;class T , class V &gt; </div>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class T , class V &gt; </div>
+template&lt;class T, class V&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -281,19 +300,21 @@ template&lt;class T , class V &gt; </div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the average of the results </dd></dl>
 
+<p>Implemented in <a class="el" href="classTargetTest.html#a2be6ed9cafb0c8eb3c0a4ff6569be18a">TargetTest</a>.</p>
+
 </div>
 </div>
-<a class="anchor" id="aa21714095f20ffccb166cd13155e7049"></a>
+<a class="anchor" id="aa250d11111edc0c2ce64b40da83d23dc"></a>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class T , class V &gt; </div>
+template&lt;class T, class V&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">V <a class="el" href="classTest.html">Test</a>&lt; T, V &gt;::test </td>
+          <td class="memname">virtual V <a class="el" href="classTest.html">Test</a>&lt; T, V &gt;::test </td>
           <td>(</td>
           <td class="paramtype">T&#160;</td>
           <td class="paramname"><em>arg</em></td><td>)</td>
@@ -308,11 +329,12 @@ template&lt;class T , class V &gt; </div>
 </div><div class="memdoc">
 <p>The test function </p>
 
+<p>Implemented in <a class="el" href="classTargetTest.html#a4f86bc55683130889dd6bb5c09e4df95">TargetTest</a>.</p>
+
 </div>
 </div>
-<hr/>The documentation for this class was generated from the following files:<ul>
+<hr/>The documentation for this class was generated from the following file:<ul>
 <li>modules/core/include/<a class="el" href="test_8h_source.html">test.h</a></li>
-<li>modules/core/src/test.cpp</li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
