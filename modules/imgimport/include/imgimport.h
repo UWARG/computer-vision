@@ -32,11 +32,21 @@
 #ifndef IMAGE_IMPORT_H_INCLUDED
 #define IMAGE_IMPORT_H_INCLUDED
 
+
+#include "frame.h"
+#include <opencv2/highgui/highgui.hpp>
+#include <string>
+#include <vector>
+
 /** 
- * @file imgimport.h
+ * @class ImageImport
  *
  * @brief Module for matching frames with telemetry information that 
  *        corresponds to them
+ *
+ * Reads Photographs and Video frames and creates a corresponding Frame object, adding 
+ *  metadata information from a telemetry file
+ * Handles image and video files as well as live video devices
  *
  * @section Notes   
  *
@@ -48,24 +58,25 @@
  *
  */
 
-#include "frame.h"
-#include <string>
-
 class ImageImport {
     public:
         /**
          * @brief Creates a ImageImport for the telemetry file at the given path
          *
+
+         *
          * @param path Path of the telemetry file
+         * @param photoPath directory containing image and video files to import is required but does not need to contain photos
+         * @param videoDeviceNums indices of the video devices from which to read video frames
          */
-        ImageImport(std::string path);
+        ImageImport(std::string telemetry_path, std::string filePath, vector<int> videoDeviceNums);
 
         ~ImageImport();
 
         /**
-         * @brief Fills in the given frame's metadata structure
+         * @brief Retrieves the next frame to be analyzed
          *
-         * @param f Frame to be analysed
+         * @return Frame to be analyzed
          */
         Frame * next_frame();
 };

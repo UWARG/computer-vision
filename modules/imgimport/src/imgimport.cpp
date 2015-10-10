@@ -31,7 +31,7 @@
 
 #include "imgimport.h"
 
-ImageImport::ImageImport(std::string path){
+ImageImport::ImageImport(std::string telemetry_path, std::string filePath, vector<int> videoDeviceNums);
 
 }
 
