@@ -49,7 +49,7 @@ vector<vector<Point> > * CannyContourCreator::get_contours(cv::Mat & src) {
 
     BOOST_LOG_TRIVIAL(info) << "Detecting Contours";
     /// Find contours
-    findContours( result, *contours, hierarchy, CV_RETR_EXTERNAL, CV_CHAIN_APPROX_SIMPLE, Point(0, 0) );
+    findContours( result, *contours, hierarchy, RETR_EXTERNAL, CHAIN_APPROX_SIMPLE, Point(0, 0) );
     BOOST_LOG_TRIVIAL(info) << "Found " << contours->size() << " Contours";
     return contours;
 }
