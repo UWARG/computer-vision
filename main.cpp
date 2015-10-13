@@ -64,7 +64,7 @@ int workers = 0;
 bool hasMoreFrames = true;
 
 // Processing module classes
-ImageImport importer("telemetry.csv");
+ImageImport importer("telemetry.csv", "", vector<int>());
 TargetIdentifier identifier;
 
 void worker(Frame* f) {

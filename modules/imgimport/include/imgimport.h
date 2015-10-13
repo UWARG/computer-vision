@@ -69,7 +69,7 @@ class ImageImport {
          * @param photoPath directory containing image and video files to import is required but does not need to contain photos
          * @param videoDeviceNums indices of the video devices from which to read video frames
          */
-        ImageImport(std::string telemetry_path, std::string filePath, vector<int> videoDeviceNums);
+        ImageImport(std::string telemetry_path, std::string filePath, std::vector<int> videoDeviceNums);
 
         ~ImageImport();
 
