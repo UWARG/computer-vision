@@ -76,7 +76,7 @@ int main(int argc, char ** argv) {
         return 1;
     }
     String description = argv[1];
-    Mat input = imread(argv[2], CV_LOAD_IMAGE_COLOR);
+    Mat input = imread(argv[2], cv::IMREAD_COLOR);
     vector<Point> * contour = new vector<Point>();
     for(int i = 3; i + 1 < argc; i++){
         stringstream ss;
