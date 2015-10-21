@@ -55,7 +55,7 @@ cv::Mat * KMeansFilter::filter(const Mat & src) {
     Mat labels;
     int attempts = 1;
     Mat centers;
-    kmeans(samples, clusterCount, labels, TermCriteria(CV_TERMCRIT_ITER, 1, 1), attempts, KMEANS_PP_CENTERS, centers );
+    kmeans(samples, clusterCount, labels, TermCriteria(TermCriteria::MAX_ITER, 1, 1), attempts, KMEANS_PP_CENTERS, centers );
 
     BOOST_LOG_TRIVIAL(info) << "Generating new image...";
     Mat * new_image = new Mat( src.size(), src.type() );
