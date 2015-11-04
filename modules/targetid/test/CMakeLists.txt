@@ -5,8 +5,9 @@ if(Boost_FOUND AND OpenCV_FOUND)
     add_executable(targetid_test_contour test.cpp)
     target_link_libraries(targetid_test_contour ${OpenCV_LIBS} ${Boost_LIBRARIES} Core TargetIdentification)
 
-    install(TARGETS targetid_test_contour DESTINATION bin)
-
     # Tests
-    add_test("simple_target" targetid_test_contour "imgs/IMG_1644.jpg" "Simple target" 798 264 806 225 844 235 837 273)
+    add_test(
+        NAME "simple_target"
+        COMMAND targetid_test_contour "Simple target" "${CMAKE_CURRENT_LIST_DIR}/imgs/IMG_1644.JPG" 798 264 806 225 844 235 837 273
+    )
 endif()

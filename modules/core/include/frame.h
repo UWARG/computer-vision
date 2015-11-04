@@ -48,7 +48,7 @@ class PixelTarget;
 
 class Frame{
 public:
-    Frame(cv::Mat img, std::string id, Metadata m);
+    Frame(cv::Mat * img, std::string id, Metadata m);
     
     /**
      * @brief 
@@ -89,7 +89,7 @@ private:
     /**
      * @brief image associated with the Frame 
      */
-    cv::Mat img;
+    cv::Mat * img;
 
     /**
      * @brief Timestamp for the frame

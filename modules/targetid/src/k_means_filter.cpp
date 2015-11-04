@@ -37,18 +37,18 @@ using namespace cv;
 
 cv::Mat * KMeansFilter::filter(const Mat & src) {
     int ratio = 3;
-    int kernel_size = 3;
+    int kernelSize = 3;
     int reductionFactor = 2; //beyond 2 seems to decrease effectiveness of the diff'd image
     BOOST_LOG_TRIVIAL(info) << "Calculating kmeans...";
 
     Mat tmp;
-    resize(src, tmp, Size( src.cols/reductionFactor, src.rows/reductionFactor ));
+    resize(src, tmp, Size(src.cols/reductionFactor, src.rows/reductionFactor));
 
     /// Analyze colour clusters in image
     Mat samples(tmp.rows * tmp.cols, 3, CV_32F);
-    for( int y = 0; y < tmp.rows; y++ )
+    for(int y = 0; y < tmp.rows; y++)
         for( int x = 0; x < tmp.cols; x++ )
-            for( int z = 0; z < 3; z++)
+            for(int z = 0; z < 3; z++)
                 samples.at<float>(y + x*tmp.rows, z) = tmp.at<Vec3b>(y,x)[z];
 
     int clusterCount = 10;
@@ -59,18 +59,19 @@ cv::Mat * KMeansFilter::filter(const Mat & src) {
 
     BOOST_LOG_TRIVIAL(info) << "Generating new image...";
     Mat * new_image = new Mat( src.size(), src.type() );
-    for( int y = 0; y < src.rows; y++ ) {
-        for( int x = 0; x < src.cols; x++ ) {
-            int cluster_idx = labels.at<int>((y/reductionFactor) + (x/reductionFactor)*(src.rows/reductionFactor),0);
-            new_image->at<Vec3b>(y,x)[0] = abs(src.at<Vec3b>(y,x)[0] - centers.at<float>(cluster_idx, 0));
-            new_image->at<Vec3b>(y,x)[1] = abs(src.at<Vec3b>(y,x)[1] - centers.at<float>(cluster_idx, 1));
-            new_image->at<Vec3b>(y,x)[2] = abs(src.at<Vec3b>(y,x)[2] - centers.at<float>(cluster_idx, 2));
+    for(int y = 0; y < src.rows; y++) {
+        for(int x = 0; x < src.cols; x++) {
+            int clusterIdx = labels.at<int>((x/reductionFactor) + (y/reductionFactor)*(src.rows/reductionFactor),0);
+            new_image->at<Vec3b>(y,x)[0] = abs(src.at<Vec3b>(y,x)[0] - centers.at<float>(clusterIdx, 0));
+            new_image->at<Vec3b>(y,x)[1] = abs(src.at<Vec3b>(y,x)[1] - centers.at<float>(clusterIdx, 1));
+            new_image->at<Vec3b>(y,x)[2] = abs(src.at<Vec3b>(y,x)[2] - centers.at<float>(clusterIdx, 2));
         }
     }
+    BOOST_LOG_TRIVIAL(info) << "Reducing Noise...";
     erode(*new_image, *new_image, 5);
     dilate(*new_image, *new_image, 5);
 
     /// Reduce noise with a kernel
-    blur(*new_image, *new_image, Size(kernel_size,kernel_size));
+    blur(*new_image, *new_image, Size(kernelSize,kernelSize));
     return new_image;
 }

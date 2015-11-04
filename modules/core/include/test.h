@@ -73,7 +73,7 @@ class Test {
             std::ifstream file(fileName.c_str());
             bool fileExists = !file;
             file.close();
-            std::ofstream os(fileName.c_str());
+            std::ofstream os(fileName.c_str(), std::ios::app);
             if(!fileExists) {
                 os << "date, function, test, expected, mean, deviation" << std::endl;
             }
