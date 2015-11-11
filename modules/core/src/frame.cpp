@@ -31,7 +31,7 @@
 
 #include "frame.h"
 
-Frame::Frame(cv::Mat img, std::string id, Metadata m){
+Frame::Frame(cv::Mat * img, std::string id, Metadata m): img(img), id(id), data(m){
 
 }
     
@@ -40,7 +40,7 @@ std::string Frame::get_id(){
 }
 
 cv::Mat & Frame::get_img(){
-    return img;
+    return *img;
 }
 
 void Frame::add_target(PixelTarget * t){
