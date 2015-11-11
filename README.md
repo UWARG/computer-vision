@@ -33,6 +33,12 @@ When we have actually implemented stuff the following will probably apply
 3. Use CMake to setup the project from the CMake list
 4. Compile
 
+####Goal:
+To fill this chart with the right values:
+[Judges Evaluation Sheet](https://drive.google.com/open?id=0B8ozhZojJMQbWTBWaXBiXzBQcFk)
+
+This includes latitudes, longitudes, centroids, areas, volumes, and QR codes.
+
 ### Licensing
 Copyright (c) 2015, Waterloo Aerial Robotics Group (WARG)
 
