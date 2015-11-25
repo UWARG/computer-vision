@@ -1,7 +1,0 @@
-<map id="modules/targetid/include/target_identifier.h" name="modules/targetid/include/target_identifier.h">
-<area shape="rect" id="node3" href="$frame_8h.html" title="Container class for storing photos or frames of video to be processed and analyzed. " alt="" coords="235,177,301,205"/>
-<area shape="rect" id="node11" href="$object__detector_8h_source.html" title="object_detector.h" alt="" coords="92,99,215,127"/>
-<area shape="rect" id="node7" href="$metadata_8h.html" title="Structure for storing plane status information from the time that an image was taken. " alt="" coords="224,254,312,282"/>
-<area shape="rect" id="node14" href="$filter_8h_source.html" title="filter.h" alt="" coords="5,177,61,205"/>
-<area shape="rect" id="node17" href="$contour__creator_8h_source.html" title="contour_creator.h" alt="" coords="85,177,211,205"/>
-</map>

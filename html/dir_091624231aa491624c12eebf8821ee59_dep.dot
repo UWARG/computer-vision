@@ -1,0 +1,9 @@
+digraph "modules/reportgen/src" {
+  compound=true
+  node [ fontsize="10", fontname="Helvetica"];
+  edge [ labelfontsize="10", labelfontname="Helvetica"];
+  subgraph clusterdir_9d8ea000dc8d80aa5895bd91f2f89346 {
+    graph [ bgcolor="#ddddee", pencolor="black", label="reportgen" fontname="Helvetica", fontsize="10", URL="dir_9d8ea000dc8d80aa5895bd91f2f89346.html"]
+  dir_091624231aa491624c12eebf8821ee59 [shape=box, label="src", style="filled", fillcolor="#eeeeff", pencolor="black", URL="dir_091624231aa491624c12eebf8821ee59.html"];
+  }
+}

@@ -1,0 +1,11 @@
+digraph "modules/reportgen/include" {
+  compound=true
+  node [ fontsize="10", fontname="Helvetica"];
+  edge [ labelfontsize="10", labelfontname="Helvetica"];
+  subgraph clusterdir_9d8ea000dc8d80aa5895bd91f2f89346 {
+    graph [ bgcolor="#ddddee", pencolor="black", label="reportgen" fontname="Helvetica", fontsize="10", URL="dir_9d8ea000dc8d80aa5895bd91f2f89346.html"]
+  dir_26c9ee1e9d88178d77dc8f45fe66d7f8 [shape=box, label="include", style="filled", fillcolor="#eeeeff", pencolor="black", URL="dir_26c9ee1e9d88178d77dc8f45fe66d7f8.html"];
+  }
+  dir_af9662fc3bbb718d08ee7fbee3548177 [shape=box label="core" fillcolor="white" style="filled" color="red" URL="dir_af9662fc3bbb718d08ee7fbee3548177.html"];
+  dir_26c9ee1e9d88178d77dc8f45fe66d7f8->dir_af9662fc3bbb718d08ee7fbee3548177 [headlabel="1", labeldistance=1.5 headhref="dir_000018_000005.html"];
+}

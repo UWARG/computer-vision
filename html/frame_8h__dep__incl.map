@@ -1,8 +1,0 @@
-<map id="modules/core/include/frame.h" name="modules/core/include/frame.h">
-<area shape="rect" id="node3" href="$test_8h.html" title="modules/core/include\l/test.h" alt="" coords="5,99,152,143"/>
-<area shape="rect" id="node5" href="$imgimport_8h.html" title="Module for matching frames with telemetry information that corresponds to them. " alt="" coords="176,99,357,143"/>
-<area shape="rect" id="node7" href="$target__analyzer_8h.html" title="Module for analyzing individual PixelTargets and combining them into a set of unique Targets..." alt="" coords="381,99,555,143"/>
-<area shape="rect" id="node9" href="$object__detector_8h_source.html" title="modules/targetid/include\l/object_detector.h" alt="" coords="579,99,744,143"/>
-<area shape="rect" id="node11" href="$target__identifier_8h.html" title="Module for identifying targets in Frames. " alt="" coords="639,193,804,237"/>
-<area shape="rect" id="node14" href="$volume__calc_8h.html" title="Module for calculating the volume of a target. " alt="" coords="819,99,976,143"/>
-</map>

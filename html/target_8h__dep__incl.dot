@@ -1,0 +1,12 @@
+digraph "modules/core/include/target.h"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  Node1 [label="modules/core/include\l/target.h",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="modules/csvcreator\l/include/csv.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$csv_8h.html",tooltip="Module for creating formatting csv files to store target data. "];
+  Node1 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="modules/reportgen/include\l/report_generator.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$report__generator_8h.html",tooltip="Module for generating a document containing result data and extrapolated information. "];
+  Node1 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="modules/volumecalc\l/include/volume_calc.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$volume__calc_8h.html",tooltip="Module for calculating the volume of a target. "];
+}

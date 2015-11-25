@@ -1,0 +1,6 @@
+digraph "Metadata"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  Node1 [label="{Metadata\n|+ time\l+ timeError\l+ lat\l+ lon\l+ latError\l+ lonError\l+ pitch\l+ roll\l+ pitchRate\l+ rollRate\l+ yawRate\l+ altitude\l+ heading\l+ altError\l+ headingError\l|}",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+}

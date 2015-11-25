@@ -1,0 +1,16 @@
+digraph "modules/volumecalc" {
+  compound=true
+  node [ fontsize="10", fontname="Helvetica"];
+  edge [ labelfontsize="10", labelfontname="Helvetica"];
+  subgraph clusterdir_a4c27d7396bb81b7e98c2451eac692b0 {
+    graph [ bgcolor="#ddddee", pencolor="black", label="modules" fontname="Helvetica", fontsize="10", URL="dir_a4c27d7396bb81b7e98c2451eac692b0.html"]
+  subgraph clusterdir_0c5bf1f690e6d55834c7ff54852b56dc {
+    graph [ bgcolor="#eeeeff", pencolor="black", label="" URL="dir_0c5bf1f690e6d55834c7ff54852b56dc.html"];
+    dir_0c5bf1f690e6d55834c7ff54852b56dc [shape=plaintext label="volumecalc"];
+    dir_82ad55c0c8256417f79bb96f3d30abaf [shape=box label="include" color="black" fillcolor="white" style="filled" URL="dir_82ad55c0c8256417f79bb96f3d30abaf.html"];
+    dir_6b8ee094c9e8137a3d014b6da002aab5 [shape=box label="src" color="black" fillcolor="white" style="filled" URL="dir_6b8ee094c9e8137a3d014b6da002aab5.html"];
+  }
+  }
+  dir_af9662fc3bbb718d08ee7fbee3548177 [shape=box label="core" fillcolor="white" style="filled" color="red" URL="dir_af9662fc3bbb718d08ee7fbee3548177.html"];
+  dir_82ad55c0c8256417f79bb96f3d30abaf->dir_af9662fc3bbb718d08ee7fbee3548177 [headlabel="2", labeldistance=1.5 headhref="dir_000028_000005.html"];
+}
