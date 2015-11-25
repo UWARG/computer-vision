@@ -1,6 +1,0 @@
-digraph "PixelTarget"
-{
-  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
-  node [fontname="Helvetica",fontsize="10",shape=record];
-  Node1 [label="{PixelTarget\n||+ PixelTarget()\l+ get_type()\l+ get_centroid()\l+ get_area()\l+ get_perimeter()\l+ get_colour()\l+ get_error()\l+ get_error_angle()\l+ get_image()\l}",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
-}
