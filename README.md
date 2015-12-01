@@ -25,7 +25,7 @@ When we have actually implemented stuff the following will probably apply
 **Dependencies**: 
     [OpenCV 3.0](http://opencv.org/downloads.html)
     [Boost 1.58](http://www.boost.org/users/download/)
-    [JsonCpp](https://github.com/open-source-parsers/jsoncpp)
+    [DeckLink](http://www.blackmagicdesign.com/support/sdks)
 
 ####Installation Instructions:
 1. Clone the Project
