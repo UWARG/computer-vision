@@ -1,9 +1,9 @@
-/* 
+/*
     This file is part of WARG's computer-vision
 
     Copyright (c) 2015, Waterloo Aerial Robotics Group (WARG)
     All rights reserved.
- 
+
     Redistribution and use in source and binary forms, with or without
     modification, are permitted provided that the following conditions are met:
     1. Redistributions of source code must retain the above copyright
@@ -65,7 +65,7 @@ class TargetTest : public Test<Frame &, vector<Point> * > {
             }
             return result;
         }
-        
+
         double deviation(vector<Point> * results[], vector<Point> * expected, int n) {
             double variance = 0;
             for(int i = 0; i < n; i++) {
@@ -139,6 +139,6 @@ int main(int argc, char ** argv) {
     BOOST_LOG_TRIVIAL(info) << "Read Contour: " << contour; // TODO: figure out why defining operator<< doesn't affect boost logs
     Frame f(&input, "blah", Metadata());
     TargetTest test("Target Identification using KMeans + Canny");
-    double result = test.do_test(f, description, contour);
+    double result = test.do_test(f, description, contour, 10);
     return !(result < 10 && result > -10); // arbitrary bounds for success of test (false indicates success)
 }
