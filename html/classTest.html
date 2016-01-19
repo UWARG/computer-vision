@@ -89,6 +89,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">Test&lt; T, V &gt; Class Template Reference<span class="mlabels"><span class="mlabel">abstract</span></span></div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p><code>#include &lt;<a class="el" href="test_8h_source.html">test.h</a>&gt;</code></p>
 <div class="dynheader">
 Collaboration diagram for Test&lt; T, V &gt;:</div>
 <div class="dyncontent">
@@ -99,8 +101,8 @@ Collaboration diagram for Test&lt; T, V &gt;:</div>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a3d6fdaa6a4a08504da8d1c7821f757e5"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTest.html#a3d6fdaa6a4a08504da8d1c7821f757e5">Test</a> (std::string desc)</td></tr>
 <tr class="separator:a3d6fdaa6a4a08504da8d1c7821f757e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1c915c67bed22482cdb1ba956a2a654f"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTest.html#a1c915c67bed22482cdb1ba956a2a654f">do_test</a> (T arg, std::string desc, V expected, int iter=10)</td></tr>
-<tr class="separator:a1c915c67bed22482cdb1ba956a2a654f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2fe1be7f6a6394c1e457b8889d828356"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTest.html#a2fe1be7f6a6394c1e457b8889d828356">do_test</a> (T arg, std::string desc, V expected, int iter)</td></tr>
+<tr class="separator:a2fe1be7f6a6394c1e457b8889d828356"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
@@ -111,7 +113,13 @@ Protected Member Functions</h2></td></tr>
 <tr class="memitem:a77ccfc1da1137b5dd8134355b043583c"><td class="memItemLeft" align="right" valign="top">virtual V&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTest.html#a77ccfc1da1137b5dd8134355b043583c">mean</a> (V results[], int n)=0</td></tr>
 <tr class="separator:a77ccfc1da1137b5dd8134355b043583c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><h3>template&lt;class T, class V&gt;<br/>
+class Test&lt; T, V &gt;</h3>
+
+<p>Complex test class that can be subclassed to wrap a test function that takes arbitrary input and produces arbitrary output</p>
+<p>Testing is invoked by invoking to_test, which runs the test function and records the results </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a3d6fdaa6a4a08504da8d1c7821f757e5"></a>
 <div class="memitem">
 <div class="memproto">
@@ -195,11 +203,11 @@ template&lt;class T, class V&gt; </div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the deviation of the results as a double </dd></dl>
 
-<p>Implemented in <a class="el" href="classTargetTest.html#a6f7ed0cbe8c6dabe1e3fcc1bf2d55e0d">TargetTest</a>.</p>
+<p>Implemented in <a class="el" href="classSimpleTest.html#a66a2341111ddc67649b337f8df434ba7">SimpleTest&lt; T &gt;</a>, and <a class="el" href="classTargetTest.html#a6f7ed0cbe8c6dabe1e3fcc1bf2d55e0d">TargetTest</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a1c915c67bed22482cdb1ba956a2a654f"></a>
+<a class="anchor" id="a2fe1be7f6a6394c1e457b8889d828356"></a>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
@@ -230,7 +238,7 @@ template&lt;class T, class V&gt; </div>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>iter</em> = <code>10</code>&#160;</td>
+          <td class="paramname"><em>iter</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -301,7 +309,7 @@ template&lt;class T, class V&gt; </div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the average of the results </dd></dl>
 
-<p>Implemented in <a class="el" href="classTargetTest.html#a2be6ed9cafb0c8eb3c0a4ff6569be18a">TargetTest</a>.</p>
+<p>Implemented in <a class="el" href="classSimpleTest.html#aba34b49c911d5ab069cade02d4189415">SimpleTest&lt; T &gt;</a>, and <a class="el" href="classTargetTest.html#a2be6ed9cafb0c8eb3c0a4ff6569be18a">TargetTest</a>.</p>
 
 </div>
 </div>
