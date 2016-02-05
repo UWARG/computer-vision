@@ -1,0 +1,49 @@
+#include <opencv2/highgui/highgui.hpp>
+#include <opencv2/core/core.hpp>
+#include <iostream>
+#include "../../core/include/frame.h"
+#include "../include/imgimport.h"
+#include <vector>
+#include <string>
+#include "csvreading.cpp"
+#include <dirent.h>
+
+using namespace cv;
+using namespace std;
+
+ImageImport::ImageImport(std::string telemetry_path, std::string filePath, std::vector<int> videoDeviceNums) {
+	string filename;
+	Mat img;
+	DIR* dr=opendir(filePath.c_str());
+	struct dirent* drnt;
+	filename=drnt->d_name;
+	count=0;
+	Metadatalinkedlist* mdls=readcsv(telemetry_path.c_str());
+	while(drnt=readdir(dr))
+	{
+		img=imread(filename,-1);
+		Frame* newframe=new Frame(&img,filename,mdls->a);
+		vec.push_back(*newframe);
+		filename=drnt->d_name;
+		mdls=mdls->next;
+		count++;
+	}
+	processed=0;
+}
+
+ImageImport::~ImageImport(){
+	
+}
+
+Frame * ImageImport::next_frame(){
+	if(processed==count)
+	{
+		cout<<"no more input images"<<endl;
+		return NULL;
+	}
+	else
+	{
+		processed++;
+		return &vec.at(processed-1);
+	}
+}

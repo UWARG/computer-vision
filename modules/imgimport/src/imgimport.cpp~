@@ -60,6 +60,7 @@ ImageImport::ImageImport(std::string telemetry_path, std::string filePath, std::
 		if(drnt==NULL)
 			break;
 		filename=drnt->d_name;
+		cout<<filename<<endl;
 		img=imread(filename,-1);
 		Frame* newframe=new Frame(&img,filename,mdls->a);
 		vec.push_back(*newframe);
