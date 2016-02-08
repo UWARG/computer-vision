@@ -6,7 +6,7 @@ set(MODULES core csvcreator targetanalysis targetid volumecalc reportgen imgimpo
 
 # Dependencies
 find_package(OpenCV REQUIRED)
-find_package(Boost REQUIRED filesystem log thread system program_options)
+find_package(Boost REQUIRED filesystem log thread system program_options unit_test_framework)
 
 message(status " Boost Include: ${Boost_INCLUDE_DIR}")
 message(status " Boost Libraries: ${Boost_LIBRARIES}")
