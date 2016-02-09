@@ -13,8 +13,11 @@ message(status " Boost Libraries: ${Boost_LIBRARIES}")
 message(status " OpenCV Include: ${OpenCV_INCLUDE_DIRS}")
 message(status " OpenCV Libraries: ${OpenCV_LIBS}")
 
+set(CMAKE_CXX_STANDARD 11)
 set(Boost_USE_MULTITHREADED      ON)
 set(Boost_USE_STATIC_RUNTIME    OFF)
+
+set(TESTDATA_DIR ${CMAKE_CURRENT_LIST_DIR}/testdata)
 
 enable_testing()
 
