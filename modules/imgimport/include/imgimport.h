@@ -33,10 +33,11 @@
 #define IMAGE_IMPORT_H_INCLUDED
 
 
-#include "../../core/include/frame.h"
+#include "frame.h"
 #include <opencv2/highgui/highgui.hpp>
 #include <string>
 #include <vector>
+#include "csvreading.h"
 
 using namespace std;
 
@@ -82,9 +83,11 @@ class ImageImport {
          */
         Frame * next_frame();
     private:
-	vector<Frame> vec;
-	int processed;
-	int count;
+	DIR* dr;
+	Metadatalinkedlist* mdls;
+	struct dirent* drnt;
+	vector<int> videoDeviceNums;
+	Frame* frame_buffer;
 };
 
 #endif // IMAGE_IMPORT_H_INCLUDED

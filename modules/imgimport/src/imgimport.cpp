@@ -32,56 +32,43 @@
 #include <opencv2/highgui/highgui.hpp>
 #include <opencv2/core/core.hpp>
 #include <iostream>
-#include "../../core/include/frame.h"
-#include "../../core/src/frame.cpp"
-#include "../include/imgimport.h"
+#include "frame.h"
+#include "frame.cpp"
+#include "imgimport.h"
 #include <vector>
 #include <string>
-#include "csvreading.cpp"
 #include <dirent.h>
 
 using namespace cv;
 using namespace std;
 
 ImageImport::ImageImport(std::string telemetry_path, std::string filePath, std::vector<int> videoDeviceNums) {
-	string filename;
-	Mat img;
-	DIR* dr=opendir(filePath.c_str());
-	struct dirent* drnt;
-	count=0;
-	Metadatalinkedlist* mdls=readcsv(telemetry_path.c_str());
-	while(mdls!=0)
-	{
-		drnt=readdir(dr);
-		while(strcmp(drnt->d_name,"..")==0||strcmp(drnt->d_name,".")==0)
-		{
-			drnt=readdir(dr);
-		}
-		if(drnt==NULL)
-			break;
-		filename=drnt->d_name;
-		img=imread(filename,-1);
-		Frame* newframe=new Frame(&img,filename,mdls->a);
-		vec.push_back(*newframe);
-		mdls=mdls->next;
-		count++;
-	}
-	processed=0;
+    this->videoDeviceNums=videoDeviceNums;
+    mdls=readcsv(telemetry_path.c_str());
+    dr=opendir(filePath.c_str());
 }
 
 ImageImport::~ImageImport(){
-	cout<<"image import ends."<<endl;
+    cout<<"image import ends."<<endl;
 }
 
 Frame * ImageImport::next_frame(){
-	if(processed==count)
-	{
-		cout<<"no more input images"<<endl;
-		return NULL;
-	}
-	else
-	{
-		processed++;
-		return &vec.at(processed-1);
-	}
+    drnt=readdir(dr);
+    if(drnt==NULL){
+        cout<<"no more images"<<endl;
+        return NULL;
+    }
+    while(strcmp(drnt->d_name,"..")==0||strcmp(drnt->d_name,".")==0){
+        drnt=readdir(dr);
+	if(drnt==NULL){
+            cout<<"no more images"<<endl;
+            return NULL;
+        }
+    }
+    Mat img;
+    img=imread(drnt->d_name,-1);
+    Frame newframe(&img,drnt->d_name,mdls->a);
+    frame_buffer=&newframe;
+    mdls=mdls->next;
+    return frame_buffer;
 }
