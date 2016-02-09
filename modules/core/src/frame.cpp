@@ -29,7 +29,7 @@
     SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-#include "frame.h"
+#include "../include/frame.h"
 
 Frame::Frame(cv::Mat * img, std::string id, Metadata m): img(img), id(id), data(m){
 
