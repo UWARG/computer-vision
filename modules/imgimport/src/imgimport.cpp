@@ -32,12 +32,12 @@
 #include <opencv2/highgui/highgui.hpp>
 #include <opencv2/core/core.hpp>
 #include <iostream>
-#include "frame.h"
-#include "frame.cpp"
-#include "imgimport.h"
+#include "../../core/include/frame.h"
+#include "../include/imgimport.h"
 #include <vector>
 #include <string>
 #include <dirent.h>
+#include <boost/log/trivial.hpp>
 
 using namespace cv;
 using namespace std;
@@ -49,19 +49,19 @@ ImageImport::ImageImport(std::string telemetry_path, std::string filePath, std::
 }
 
 ImageImport::~ImageImport(){
-    cout<<"image import ends."<<endl;
+    BOOST_LOG_TRIVIAL(trace)<<"image import ends."<<endl;
 }
 
 Frame * ImageImport::next_frame(){
     drnt=readdir(dr);
     if(drnt==NULL){
-        cout<<"no more images"<<endl;
+        BOOST_LOG_TRIVIAL(trace)<<"no more images"<<endl;
         return NULL;
     }
     while(strcmp(drnt->d_name,"..")==0||strcmp(drnt->d_name,".")==0){
         drnt=readdir(dr);
 	if(drnt==NULL){
-            cout<<"no more images"<<endl;
+            BOOST_LOG_TRIVIAL(trace)<<"no more images"<<endl;
             return NULL;
         }
     }

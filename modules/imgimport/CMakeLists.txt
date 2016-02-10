@@ -1,4 +1,2 @@
-include_directories(include ../core/include)
-include_directories(include ../core/src)
-include_directories(include ./include)
+include_directories(include ../core/include ../core/src)
 add_library(ImageImport src/imgimport.cpp)
