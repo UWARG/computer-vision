@@ -60,7 +60,7 @@ Frame * ImageImport::next_frame(){
     }
     while(strcmp(drnt->d_name,"..")==0||strcmp(drnt->d_name,".")==0){
         drnt=readdir(dr);
-	if(drnt==NULL){
+        if(drnt==NULL){
             BOOST_LOG_TRIVIAL(trace)<<"no more images"<<endl;
             return NULL;
         }
