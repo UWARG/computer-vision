@@ -32,8 +32,9 @@
 #include <opencv2/highgui/highgui.hpp>
 #include <opencv2/core/core.hpp>
 #include <iostream>
-#include "../../core/include/frame.h"
-#include "../include/imgimport.h"
+#include "frame.h"
+#include "imgimport.h"
+#include "frame.cpp"
 #include <vector>
 #include <string>
 #include <dirent.h>

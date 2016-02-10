@@ -1,6 +1,6 @@
 #include <fstream>
 #include <string>
-#include "../../core/include/metadata.h"
+#include "metadata.h"
 #include <vector>
 #include <iostream>
 using namespace std;

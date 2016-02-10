@@ -33,7 +33,7 @@
 #define IMAGE_IMPORT_H_INCLUDED
 
 
-#include "../../core/include/frame.h"
+#include "frame.h"
 #include <opencv2/highgui/highgui.hpp>
 #include <string>
 #include <vector>
