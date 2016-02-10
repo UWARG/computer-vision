@@ -34,7 +34,6 @@
 #include <iostream>
 #include "frame.h"
 #include "imgimport.h"
-#include "frame.cpp"
 #include <vector>
 #include <string>
 #include <dirent.h>
