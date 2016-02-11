@@ -39,7 +39,7 @@
 #include <vector>
 #include "csvreading.h"
 
-using namespace std;
+using namespace std::vector;
 
 /** 
  * @class ImageImport

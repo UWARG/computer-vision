@@ -4,16 +4,20 @@
 #include "metadatalinkedlist.h"
 #include <vector>
 #include <iostream>
-#include "metadata.h";
+#include "metadata.h"
+#include <boost/log/trivial.hpp>
 using namespace std;
 
 Metadatalinkedlist* readcsv(const char* filename){
     Metadatalinkedlist* result=new Metadatalinkedlist;
-    Metadatalinkedlist* poi=new Metadatalinkedlist;
-    poi=result;
-    poi->next=0;
+    result=0;
     string headrow;
     ifstream finput(filename);
+    if(!finput.is_open())
+    {
+        BOOST_LOG_TRIVIAL(fatal)<<"error: failed to open the csv file"<<endl;
+        return NULL;
+    }
     getline(finput,headrow);
     int i=0,j=0;
     int len=headrow.length();
@@ -156,12 +160,17 @@ Metadatalinkedlist* readcsv(const char* filename){
             cerr<<"header error"<<endl;
             return NULL;
         }
-        if(f==1)
-        {
+        if(f==1){
             i++;
             temp->next=0;
-            poi->next=temp;
-            poi=temp;
+            if(result=0)
+                result=temp;
+            else{
+                Metadatalinkedlist* poi=new Metadatalinkedlist;
+                for(poi=result;poi->next!=0;poi=poi->next){
+                    poi->next=temp;
+                }
+            }
             f=0;
         }
     }
