@@ -32,7 +32,6 @@
 #include <opencv2/highgui/highgui.hpp>
 #include <opencv2/core/core.hpp>
 #include <iostream>
-#include "frame.h"
 #include "imgimport.h"
 #include <vector>
 #include <string>
@@ -44,11 +43,13 @@ using namespace std;
 
 ImageImport::ImageImport(std::string telemetry_path, std::string filePath, std::vector<int> videoDeviceNums) {
     this->videoDeviceNums=videoDeviceNums;
-    mdls=readcsv(telemetry_path.c_str());
+    mdvc=readcsv(telemetry_path.c_str());
     dr=opendir(filePath.c_str());
+    tracker=0;
 }
 
 ImageImport::~ImageImport(){
+    closedir(dr);
     BOOST_LOG_TRIVIAL(trace)<<"image import ends."<<endl;
 }
 
@@ -67,8 +68,9 @@ Frame * ImageImport::next_frame(){
     }
     Mat img;
     img=imread(drnt->d_name,-1);
-    Frame newframe(&img,drnt->d_name,mdls->a);
-    frame_buffer=&newframe;
-    mdls=mdls->next;
+    frame_buffer->set_img(&img);
+    frame_buffer->set_id(drnt->d_name);
+    frame_buffer->set_m(mdvc.at(tracker));
+    tracker++;
     return frame_buffer;
 }

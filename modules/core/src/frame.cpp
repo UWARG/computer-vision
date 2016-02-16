@@ -54,3 +54,27 @@ std::vector<Target*>::iterator Frame::get_targets(){
 const Metadata * Frame::get_metadata(){
     return &data;
 }
+
+void Frame::set_img(cv::Mat* img){
+    this->img=img;
+}
+
+void Frame::set_id(std::string id){
+    this->id=id;
+}
+
+void Frame::set_m(Metadata m){
+    data.time=m.time;
+    data.timeError=m.timeError;
+    data.lat=m.lat;
+    data.lon=m.lon;
+    data.latError=m.latError;
+    data.lonError=m.lonError;
+    data.pitch=m.pitch;
+    data.roll=m.roll;
+    data.pitchRate=m.pitchRate;
+    data.rollRate=m.rollRate;
+    data.yawRate=m.yawRate;
+    data.altitude=m.altitude;
+    data.heading=m.heading;
+}

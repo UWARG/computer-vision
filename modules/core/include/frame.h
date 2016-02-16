@@ -84,6 +84,27 @@ public:
      * @return const pointer to internal metadata structure
      */
     const Metadata * get_metadata();
+
+    /** 
+     * @brief input the image
+     *
+     * @param a Mat object containing the image
+     */
+    void set_img(cv::Mat* img);
+
+    /** 
+     * @brief input the id
+     *
+     * @param a string to be the id of the frame
+     */
+    void set_id(std::string id);
+
+    /** 
+     * @brief input the metadata
+     *
+     * @param a Metadata struct
+     */
+    void set_m(Metadata m);
 private:
     
     /**

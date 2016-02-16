@@ -38,8 +38,8 @@
 #include <string>
 #include <vector>
 #include "csvreading.h"
+#include <dirent.h>
 
-using namespace std::vector;
 
 /** 
  * @class ImageImport
@@ -84,9 +84,10 @@ class ImageImport {
         Frame * next_frame();
     private:
 	DIR* dr;
-	Metadatalinkedlist* mdls;
+	std::vector<Metadata> mdvc;
+        int tracker;
 	struct dirent* drnt;
-	vector<int> videoDeviceNums;
+	std::vector<int> videoDeviceNums;
 	Frame* frame_buffer;
 };
 
