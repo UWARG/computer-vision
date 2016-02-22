@@ -29,52 +29,51 @@
     SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 	
-#ifndef IMAGE_IMPORT_H_INCLUDED
-#define IMAGE_IMPORT_H_INCLUDED
+#ifndef PICTURE_IMPORT_H_INCLUDED
+#define PICTURE_IMPORT_H_INCLUDED
 
+
+#include "frame.h"
+#include <opencv2/highgui/highgui.hpp>
 #include <string>
 #include <vector>
+#include "csvreading.h"
+#include <dirent.h>
+#include "imgimport.h"
+
 
 /** 
- * @class ImageImport
+ * @class PictureImport
  *
- * @brief Module for matching frames with telemetry information that 
- *        corresponds to them
+ * @brief A subclass of Imageimport. Specialized to read JPEG files and metadata and generate Frame objects.
  *
- * Reads Photographs and Video frames and creates a corresponding Frame object, adding 
- *  metadata information from a telemetry file
- * Handles image and video files as well as live video devices
- *
- * @section Notes   
- *
- * Ideally this should use both the timestamp in the image's
- * exif metadata and the time that the plane records sending
- * the signal to take a picture plus whatever delay that
- * exists between when the signal is sent to the camera and
- * when the camera takes the photograph.
  *
  */
 
-class ImageImport {
+class PictureImport : public ImageImport {
     public:
         /**
-         * @brief Creates a ImageImport for the telemetry file at the given path
+         *@brief Creates a PictureImport object
          *
-         *
-         * @param path Path of the telemetry file
-         * @param photoPath directory containing image and video files to import is required but does not need to contain photos
-         * @param videoDeviceNums indices of the video devices from which to read video frames
          */
-        ImageImport(std::string telemetry_path, std::string filePath, std::vector<int> videoDeviceNums);
-
-        ~ImageImport();
+        PictureImport::PictureImport(std::string telemetry_path, std::string filePath, std::vector<int> videoDeviceNums)
+                      :ImageImport(telemetry_path,filePath,videoDeviceNums);
+        
+        ~PictureImport();
 
         /**
          * @brief Retrieves the next frame to be analyzed
          *
          * @return Frame to be analyzed
          */
-        Frame * next_frame();
+        NextFrame();
+    private:
+	DIR* dr;
+	std::vector<Metadata> mdvc;
+        int tracker;
+	struct dirent* drnt;
+	std::vector<int> videoDeviceNums;
+	Frame* frame_buffer;
 };
 
-#endif // IMAGE_IMPORT_H_INCLUDED
+#endif // PICTURE_IMPORT_H_INCLUDED

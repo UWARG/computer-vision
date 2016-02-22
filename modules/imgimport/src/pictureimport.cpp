@@ -32,7 +32,7 @@
 #include <opencv2/highgui/highgui.hpp>
 #include <opencv2/core/core.hpp>
 #include <iostream>
-#include "imgimport.h"
+#include "pictureimport.h"
 #include <vector>
 #include <string>
 #include <dirent.h>
@@ -41,19 +41,19 @@
 using namespace cv;
 using namespace std;
 
-ImageImport::ImageImport(std::string telemetry_path, std::string filePath, std::vector<int> videoDeviceNums) {
+PictureImport::PictureImport(std::string telemetry_path, std::string filePath, std::vector<int> videoDeviceNums) {
     this->videoDeviceNums=videoDeviceNums;
     mdvc=readcsv(telemetry_path.c_str());
     dr=opendir(filePath.c_str());
     tracker=0;
 }
 
-ImageImport::~ImageImport(){
+PictureImport::~PictureImport(){
     closedir(dr);
     BOOST_LOG_TRIVIAL(trace)<<"image import ends."<<endl;
 }
 
-Frame * ImageImport::next_frame(){
+Frame * PictureImport::NextFrame(){
     drnt=readdir(dr);
     if(drnt==NULL){
         BOOST_LOG_TRIVIAL(trace)<<"no more images"<<endl;
