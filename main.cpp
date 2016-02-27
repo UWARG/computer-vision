@@ -64,7 +64,7 @@ int workers = 0;
 bool hasMoreFrames = true;
 
 // Processing module classes
-ImageImport importer("telemetry.csv", "", vector<int>());
+ImageImport * importer = NULL;
 TargetIdentifier identifier;
 
 void worker(Frame* f) {
@@ -78,7 +78,7 @@ void worker(Frame* f) {
 void read_images() {
     Frame* currentFrame;
     while (hasMoreFrames) {
-        Frame* f = importer.next_frame();
+        Frame* f = importer->next_frame();
         if (f) {
             in_buffer.push(f);
         }
