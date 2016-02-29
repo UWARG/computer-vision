@@ -24,6 +24,7 @@ if [[ $CLEAN == true ]]; then
     mkdir build
 fi
 
+mkdir -p build
 cd build
 cmake .. && make
 
