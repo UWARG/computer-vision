@@ -41,7 +41,8 @@
 using namespace cv;
 using namespace std;
 
-PictureImport::PictureImport(std::string telemetry_path, std::string filePath, std::vector<int> videoDeviceNums) {
+PictureImport::PictureImport(std::string telemetry_path, std::string filePath, std::vector<int> videoDeviceNums)
+              :ImageImport(telemetry_path,filePath,videoDeviceNums) {
     this->videoDeviceNums=videoDeviceNums;
     mdvc=readcsv(telemetry_path.c_str());
     dr=opendir(filePath.c_str());

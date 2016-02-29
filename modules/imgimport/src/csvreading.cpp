@@ -2,7 +2,6 @@
 #include <fstream>
 #include <string>
 #include <iostream>
-#include "metadata.h"
 #include <boost/log/trivial.hpp>
 using namespace std;
 

@@ -32,6 +32,9 @@
 #ifndef IMAGE_IMPORT_H_INCLUDED
 #define IMAGE_IMPORT_H_INCLUDED
 
+
+#include "frame.h"
+#include <opencv2/highgui/highgui.hpp>
 #include <string>
 #include <vector>
 
@@ -60,6 +63,7 @@ class ImageImport {
         /**
          * @brief Creates a ImageImport for the telemetry file at the given path
          *
+
          *
          * @param path Path of the telemetry file
          * @param photoPath directory containing image and video files to import is required but does not need to contain photos
