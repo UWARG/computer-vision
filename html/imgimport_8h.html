@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>UWARG Computer Vision: modules/imgimport/include/imgimport.h Source File</title>
+<title>UWARG Computer Vision: modules/imgimport/include/imgimport.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -83,34 +83,38 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 </div><!-- top -->
 <div class="header">
+  <div class="summary">
+<a href="#nested-classes">Classes</a>  </div>
   <div class="headertitle">
-<div class="title">imgimport.h</div>  </div>
+<div class="title">imgimport.h File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="imgimport_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#ifndef IMAGE_IMPORT_H_INCLUDED</span></div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define IMAGE_IMPORT_H_INCLUDED</span></div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="frame_8h.html">frame.h</a>&quot;</span></div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor">#include &lt;vector&gt;</span></div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;</div>
-<div class="line"><a name="l00031"></a><span class="lineno"><a class="line" href="classImageImport.html">   31</a></span>&#160;<span class="keyword">class </span><a class="code" href="classImageImport.html">ImageImport</a> {</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <a class="code" href="classImageImport.html">ImageImport</a>();</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <span class="keyword">virtual</span> ~<a class="code" href="classImageImport.html">ImageImport</a>();</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="keyword">virtual</span> <a class="code" href="classFrame.html">Frame</a> * <a class="code" href="classImageImport.html#acbf182e5ff9baf205a0e1aceadab654d">next_frame</a>() = 0;</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;};</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="preprocessor">#endif // IMAGE_IMPORT_H_INCLUDED</span></div>
-<div class="ttc" id="classImageImport_html"><div class="ttname"><a href="classImageImport.html">ImageImport</a></div><div class="ttdoc">Abstract class for importing frames and corresponding metadata. </div><div class="ttdef"><b>Definition:</b> imgimport.h:31</div></div>
-<div class="ttc" id="classImageImport_html_acbf182e5ff9baf205a0e1aceadab654d"><div class="ttname"><a href="classImageImport.html#acbf182e5ff9baf205a0e1aceadab654d">ImageImport::next_frame</a></div><div class="ttdeci">virtual Frame * next_frame()=0</div><div class="ttdoc">Retrieves the next frame to be analyzed. </div></div>
-<div class="ttc" id="frame_8h_html"><div class="ttname"><a href="frame_8h.html">frame.h</a></div><div class="ttdoc">Container class for storing photos or frames of video to be processed and analyzed. </div></div>
-<div class="ttc" id="classFrame_html"><div class="ttname"><a href="classFrame.html">Frame</a></div><div class="ttdef"><b>Definition:</b> frame.h:49</div></div>
-</div><!-- fragment --></div><!-- contents -->
+<div class="textblock"><code>#include &quot;<a class="el" href="frame_8h_source.html">frame.h</a>&quot;</code><br/>
+<code>#include &lt;string&gt;</code><br/>
+<code>#include &lt;vector&gt;</code><br/>
+</div><div class="textblock"><div class="dynheader">
+Include dependency graph for imgimport.h:</div>
+<div class="dyncontent">
+<div class="center"><img src="imgimport_8h__incl.png" border="0" usemap="#modules_2imgimport_2include_2imgimport_8h" alt=""/></div>
+<map name="modules_2imgimport_2include_2imgimport_8h" id="modules_2imgimport_2include_2imgimport_8h">
+<area shape="rect" id="node2" href="frame_8h.html" title="Container class for storing photos or frames of video to be processed and analyzed. " alt="" coords="201,96,268,123"/><area shape="rect" id="node4" href="metadata_8h.html" title="Structure for storing plane status information from the time that an image was taken. " alt="" coords="185,171,271,197"/></map>
+</div>
+</div>
+<p><a href="imgimport_8h_source.html">Go to the source code of this file.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classImageImport.html">ImageImport</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Abstract class for importing frames and corresponding metadata.  <a href="classImageImport.html#details">More...</a><br/></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><dl class="section author"><dt>Author</dt><dd>WARG</dd></dl>
+<h1><a class="anchor" id="LICENSE"></a>
+LICENSE</h1>
+<p>Copyright (c) 2015-2016, Waterloo Aerial Robotics Group (WARG) All rights reserved.</p>
+<p>This software is licensed under a modified version of the BSD 3 clause license that should have been included with this software in a file called COPYING.txt Otherwise it is available at: <a href="https://raw.githubusercontent.com/UWARG/computer-vision/master/COPYING.txt">https://raw.githubusercontent.com/UWARG/computer-vision/master/COPYING.txt</a> </p>
+</div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by &#160;<a href="http://www.doxygen.org/index.html">

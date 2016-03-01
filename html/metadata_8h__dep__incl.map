@@ -1,6 +1,6 @@
 <map id="modules/core/include/metadata.h" name="modules/core/include/metadata.h">
 <area shape="rect" id="node2" href="$frame_8h.html" title="Container class for storing photos or frames of video to be processed and analyzed. " alt="" coords="410,97,555,138"/>
-<area shape="rect" id="node3" href="$imgimport_8h_source.html" title="modules/imgimport/include\l/imgimport.h" alt="" coords="5,187,181,229"/>
+<area shape="rect" id="node3" href="$imgimport_8h.html" title="modules/imgimport/include\l/imgimport.h" alt="" coords="5,187,181,229"/>
 <area shape="rect" id="node4" href="$target__analyzer_8h.html" title="Module for analyzing individual PixelTargets and combining them into a set of unique Targets..." alt="" coords="207,187,377,229"/>
 <area shape="rect" id="node5" href="$object__detector_8h_source.html" title="modules/targetid/include\l/object_detector.h" alt="" coords="401,187,564,229"/>
 <area shape="rect" id="node6" href="$target__identifier_8h.html" title="Module for identifying targets in Frames. " alt="" coords="460,278,623,319"/>

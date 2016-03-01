@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['imageimport',['ImageImport',['../classImageImport.html',1,'ImageImport'],['../classImageImport.html#aa977e697cbd1fe128586b718ce898698',1,'ImageImport::ImageImport()']]]
+  ['imageimport',['ImageImport',['../classImageImport.html',1,'']]],
+  ['imgimport_2eh',['imgimport.h',['../imgimport_8h.html',1,'']]]
 ];

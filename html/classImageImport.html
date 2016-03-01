@@ -85,11 +85,11 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="classImageImport-members.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">ImageImport Class Reference</div>  </div>
+<div class="title">ImageImport Class Reference<span class="mlabels"><span class="mlabel">abstract</span></span></div>  </div>
 </div><!--header-->
 <div class="contents">
 
-<p>Module for matching frames with telemetry information that corresponds to them.  
+<p>Abstract class for importing frames and corresponding metadata.  
  <a href="classImageImport.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="imgimport_8h_source.html">imgimport.h</a>&gt;</code></p>
@@ -103,74 +103,32 @@ Collaboration diagram for ImageImport:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:aa977e697cbd1fe128586b718ce898698"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classImageImport.html#aa977e697cbd1fe128586b718ce898698">ImageImport</a> (std::string telemetry_path, std::string filePath, std::vector&lt; int &gt; videoDeviceNums)</td></tr>
-<tr class="memdesc:aa977e697cbd1fe128586b718ce898698"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a <a class="el" href="classImageImport.html" title="Module for matching frames with telemetry information that corresponds to them. ">ImageImport</a> for the telemetry file at the given path.  <a href="#aa977e697cbd1fe128586b718ce898698">More...</a><br/></td></tr>
-<tr class="separator:aa977e697cbd1fe128586b718ce898698"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2990ed2eb1d4c29bb2f4aaf491950a67"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classFrame.html">Frame</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classImageImport.html#a2990ed2eb1d4c29bb2f4aaf491950a67">next_frame</a> ()</td></tr>
-<tr class="memdesc:a2990ed2eb1d4c29bb2f4aaf491950a67"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves the next frame to be analyzed.  <a href="#a2990ed2eb1d4c29bb2f4aaf491950a67">More...</a><br/></td></tr>
-<tr class="separator:a2990ed2eb1d4c29bb2f4aaf491950a67"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acbf182e5ff9baf205a0e1aceadab654d"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classFrame.html">Frame</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classImageImport.html#acbf182e5ff9baf205a0e1aceadab654d">next_frame</a> ()=0</td></tr>
+<tr class="memdesc:acbf182e5ff9baf205a0e1aceadab654d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves the next frame to be analyzed.  <a href="#acbf182e5ff9baf205a0e1aceadab654d">More...</a><br/></td></tr>
+<tr class="separator:acbf182e5ff9baf205a0e1aceadab654d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Module for matching frames with telemetry information that corresponds to them. </p>
-<p>Reads Photographs and Video frames and creates a corresponding <a class="el" href="classFrame.html">Frame</a> object, adding metadata information from a telemetry file Handles image and video files as well as live video devices</p>
-<h1><a class="anchor" id="Notes"></a>
-Notes</h1>
-<p>Ideally this should use both the timestamp in the image's exif metadata and the time that the plane records sending the signal to take a picture plus whatever delay that exists between when the signal is sent to the camera and when the camera takes the photograph. </p>
-</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="aa977e697cbd1fe128586b718ce898698"></a>
+<div class="textblock"><p>Abstract class for importing frames and corresponding metadata. </p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="acbf182e5ff9baf205a0e1aceadab654d"></a>
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">ImageImport::ImageImport </td>
-          <td>(</td>
-          <td class="paramtype">std::string&#160;</td>
-          <td class="paramname"><em>telemetry_path</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">std::string&#160;</td>
-          <td class="paramname"><em>filePath</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">std::vector&lt; int &gt;&#160;</td>
-          <td class="paramname"><em>videoDeviceNums</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Creates a <a class="el" href="classImageImport.html" title="Module for matching frames with telemetry information that corresponds to them. ">ImageImport</a> for the telemetry file at the given path. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">path</td><td>Path of the telemetry file </td></tr>
-    <tr><td class="paramname">photoPath</td><td>directory containing image and video files to import is required but does not need to contain photos </td></tr>
-    <tr><td class="paramname">videoDeviceNums</td><td>indices of the video devices from which to read video frames </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="a2990ed2eb1d4c29bb2f4aaf491950a67"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classFrame.html">Frame</a> * ImageImport::next_frame </td>
+          <td class="memname">virtual <a class="el" href="classFrame.html">Frame</a>* ImageImport::next_frame </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 <p>Retrieves the next frame to be analyzed. </p>

@@ -1,5 +1,5 @@
 <map id="modules/core/include/frame.h" name="modules/core/include/frame.h">
-<area shape="rect" id="node2" href="$imgimport_8h_source.html" title="modules/imgimport/include\l/imgimport.h" alt="" coords="5,97,181,138"/>
+<area shape="rect" id="node2" href="$imgimport_8h.html" title="modules/imgimport/include\l/imgimport.h" alt="" coords="5,97,181,138"/>
 <area shape="rect" id="node3" href="$target__analyzer_8h.html" title="Module for analyzing individual PixelTargets and combining them into a set of unique Targets..." alt="" coords="207,97,377,138"/>
 <area shape="rect" id="node4" href="$object__detector_8h_source.html" title="modules/targetid/include\l/object_detector.h" alt="" coords="401,97,564,138"/>
 <area shape="rect" id="node5" href="$target__identifier_8h.html" title="Module for identifying targets in Frames. " alt="" coords="460,187,623,229"/>
