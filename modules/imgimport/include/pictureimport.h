@@ -35,9 +35,9 @@
 #include <opencv2/highgui/highgui.hpp>
 #include <string>
 #include <vector>
-#include "csvreading.h"
+#include "csvreading.cpp"
 #include <dirent.h>
-#include "imgimport.h"
+#include "imgimport.cpp"
 
 
 /** 
@@ -70,7 +70,6 @@ class PictureImport : public ImageImport {
         int tracker;
 	struct dirent* drnt;
 	std::vector<int> videoDeviceNums;
-	Frame* frame_buffer;
 };
 
 #endif // PICTURE_IMPORT_H_INCLUDED

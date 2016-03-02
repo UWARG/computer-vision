@@ -11,9 +11,9 @@
     2. Redistributions in binary form must reproduce the above copyright
        notice, this list of conditions and the following disclaimer in the
        documentation and/or other materials provided with the distribution.
-    3. Usage of this code MUST be explicitly referenced to WARG and this code
+    3. Usage of this code MUST be explicitly referenced to WARG and this code 
        cannot be used in any competition against WARG.
-    4. Neither the name of the WARG nor the names of its contributors may be used
+    4. Neither the name of the WARG nor the names of its contributors may be used 
        to endorse or promote products derived from this software without specific
        prior written permission.
 
@@ -29,48 +29,15 @@
     SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
+#ifndef QR_IDENTIFIER_H_INCLUDED
+#define QR_IDENTIFIER_H_INCLUDED
+
 #include <opencv2/highgui/highgui.hpp>
-#include <opencv2/core/core.hpp>
+#include <opencv2/imgproc/imgproc.hpp>
+#include <boost/lexical_cast.hpp>
+#include <boost/filesystem.hpp>
+#include <zbar.h>
 #include <iostream>
-#include "pictureimport.h"
-#include <vector>
-#include <string>
-#include <dirent.h>
-#include <boost/log/trivial.hpp>
+#include <fstream>
 
-using namespace cv;
-using namespace std;
 
-PictureImport::PictureImport(std::string telemetry_path, std::string filePath, std::vector<int> videoDeviceNums)
-              :ImageImport(telemetry_path,filePath,videoDeviceNums) {
-    this->videoDeviceNums=videoDeviceNums;
-    mdvc=readcsv(telemetry_path.c_str());
-    dr=opendir(filePath.c_str());
-    tracker=0;
-}
-
-PictureImport::~PictureImport(){
-    closedir(dr);
-    BOOST_LOG_TRIVIAL(trace)<<"image import ends."<<endl;
-}
-
-Frame * PictureImport::NextFrame(){
-    drnt=readdir(dr);
-    if(drnt==NULL){
-        BOOST_LOG_TRIVIAL(trace)<<"no more images"<<endl;
-        return NULL;
-    }
-    while(strcmp(drnt->d_name,"..")==0||strcmp(drnt->d_name,".")==0){
-        drnt=readdir(dr);
-        if(drnt==NULL){
-            BOOST_LOG_TRIVIAL(trace)<<"no more images"<<endl;
-            return NULL;
-        }
-    }
-    Mat img;
-    img=imread(drnt->d_name,-1);
-    string id(drnt->d_name);
-    Frame* frame_buffer=new Frame(&img,id,mdvc.at(tracker));
-    tracker++;
-    return frame_buffer;
-}
