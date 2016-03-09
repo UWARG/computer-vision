@@ -36,6 +36,7 @@
 #include <string>
 #include <dirent.h>
 #include <boost/log/trivial.hpp>
+#include <iostream>
 
 using namespace cv;
 using namespace std;
