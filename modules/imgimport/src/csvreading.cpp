@@ -1,9 +1,10 @@
-#include "../include/csvreading.h"
+#include "csvreading.h"
 #include <fstream>
 #include <string>
 #include <iostream>
 #include <boost/log/trivial.hpp>
 using namespace std;
+using namespace boost;
 
 vector<Metadata> readcsv(const char* filename){
     vector<Metadata> result;
@@ -18,12 +19,12 @@ vector<Metadata> readcsv(const char* filename){
     getline(finput,headrow);
     int i=0,j=0;
     int len=headrow.length();
-    string heads[14];
+    string heads[16];
     heads[0]="";
     for(i=0;i<len;i++){
         if(headrow[i]==','){
             j++;
-       	    if(j==14){
+       	    if(j==16){
                 break;
             }
             heads[j]="";
@@ -38,11 +39,11 @@ vector<Metadata> readcsv(const char* filename){
     char comma;
     while(!finput.eof()){
         Metadata input;
-        for(j=0;j<14;){
+        for(j=0;j<16;){
             if(heads[j].compare("time")==0){
                 finput>>input.time;
                 j++;
-                if(j!=14){
+                if(j!=16){
                     finput>>comma;
                 }
                 continue;
@@ -50,7 +51,7 @@ vector<Metadata> readcsv(const char* filename){
             if(heads[j].compare("timeError")==0){
                 finput>>input.timeError;
                 j++;
-                if(j!=14){
+                if(j!=16){
                     finput>>comma;
                 }
                 continue;
@@ -58,7 +59,7 @@ vector<Metadata> readcsv(const char* filename){
             if(heads[j].compare("lat")==0){
                 finput>>input.lat;
                 j++;
-                if(j!=14){
+                if(j!=16){
                     finput>>comma;
                 }
                 continue;
@@ -66,7 +67,7 @@ vector<Metadata> readcsv(const char* filename){
             if(heads[j].compare("lon")==0){
                 finput>>input.lon;
                 j++;
-                if(j!=14){
+                if(j!=16){
                     finput>>comma;
                 }
                 continue;
@@ -74,7 +75,7 @@ vector<Metadata> readcsv(const char* filename){
             if(heads[j].compare("latError")==0){
                 finput>>input.latError;
                 j++;
-                if(j!=14){
+                if(j!=16){
                     finput>>comma;
                 }
                 continue;
@@ -82,7 +83,7 @@ vector<Metadata> readcsv(const char* filename){
             if(heads[j].compare("lonError")==0){
                 finput>>input.lonError;
                 j++;
-                if(j!=14){
+                if(j!=16){
                     finput>>comma;
                 }
                 continue;
@@ -90,7 +91,7 @@ vector<Metadata> readcsv(const char* filename){
             if(heads[j].compare("pitch")==0){
                 finput>>input.pitch;
                 j++;
-                if(j!=14){
+                if(j!=16){
                     finput>>comma;
                 }
                 continue;
@@ -98,7 +99,7 @@ vector<Metadata> readcsv(const char* filename){
             if(heads[j].compare("roll")==0){
                 finput>>input.roll;
                 j++;
-                if(j!=14){
+                if(j!=16){
                     finput>>comma;
                 }
                 continue;
@@ -106,7 +107,7 @@ vector<Metadata> readcsv(const char* filename){
             if(heads[j].compare("pitchRate")==0){
                 finput>>input.pitchRate;
                 j++;
-                if(j!=14){
+                if(j!=16){
                     finput>>comma;
                 }
                 continue;
@@ -114,7 +115,7 @@ vector<Metadata> readcsv(const char* filename){
             if(heads[j].compare("rollRate")==0){
                 finput>>input.rollRate;
                 j++;
-                if(j!=14){
+                if(j!=16){
                     finput>>comma;
                 }
                 continue;
@@ -122,7 +123,7 @@ vector<Metadata> readcsv(const char* filename){
             if(heads[j].compare("yawRate")==0){
                 finput>>input.yawRate;
                 j++;
-                if(j!=14){
+                if(j!=16){
                     finput>>comma;
                 }
                 continue;
@@ -130,7 +131,7 @@ vector<Metadata> readcsv(const char* filename){
             if(heads[j].compare("altitude")==0){
                 finput>>input.altitude;
                 j++;
-                if(j!=14){
+                if(j!=16){
                     finput>>comma;
                 }
                 continue;
@@ -138,7 +139,23 @@ vector<Metadata> readcsv(const char* filename){
             if(heads[j].compare("heading")==0){
                 finput>>input.heading;
                 j++;
-                if(j!=14){
+                if(j!=16){
+                    finput>>comma;
+                }
+                continue;
+            }
+            if(heads[j].compare("altError")==0){
+                finput>>input.heading;
+                j++;
+                if(j!=16){
+                    finput>>comma;
+                }
+                continue;
+            }
+            if(heads[j].compare("headingError")==0){
+                finput>>input.heading;
+                j++;
+                if(j!=16){
                     finput>>comma;
                 }
                 continue;
@@ -149,7 +166,7 @@ vector<Metadata> readcsv(const char* filename){
                     f=1;
                 }
                 j++;
-                if(j!=14){
+                if(j!=16){
                     finput>>comma;
                 }
                 continue;

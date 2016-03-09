@@ -35,9 +35,9 @@
 #include <opencv2/highgui/highgui.hpp>
 #include <string>
 #include <vector>
-#include "csvreading.cpp"
+#include "csvreading.h"
 #include <dirent.h>
-#include "imgimport.cpp"
+#include "imgimport.h"
 
 
 /** 
@@ -65,6 +65,7 @@ class PictureImport : public ImageImport {
          */
         Frame* NextFrame();
     private:
+        std::string filePath;
 	DIR* dr;
 	std::vector<Metadata> mdvc;
         int tracker;

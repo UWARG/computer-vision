@@ -31,7 +31,6 @@
 
 #include <opencv2/highgui/highgui.hpp>
 #include <opencv2/core/core.hpp>
-#include <iostream>
 #include "pictureimport.h"
 #include <vector>
 #include <string>
@@ -40,11 +39,13 @@
 
 using namespace cv;
 using namespace std;
+using namespace boost;
 
 PictureImport::PictureImport(std::string telemetry_path, std::string filePath, std::vector<int> videoDeviceNums)
               :ImageImport(telemetry_path,filePath,videoDeviceNums) {
     this->videoDeviceNums=videoDeviceNums;
     mdvc=readcsv(telemetry_path.c_str());
+    this->filePath=filePath;
     dr=opendir(filePath.c_str());
     tracker=0;
 }
@@ -55,22 +56,19 @@ PictureImport::~PictureImport(){
 }
 
 Frame * PictureImport::NextFrame(){
-    drnt=readdir(dr);
-    if(drnt==NULL){
-        BOOST_LOG_TRIVIAL(trace)<<"no more images"<<endl;
-        return NULL;
-    }
-    while(strcmp(drnt->d_name,"..")==0||strcmp(drnt->d_name,".")==0){
+    Mat* img=new Mat;
+    while(img->empty()){
         drnt=readdir(dr);
         if(drnt==NULL){
-            BOOST_LOG_TRIVIAL(trace)<<"no more images"<<endl;
+          BOOST_LOG_TRIVIAL(trace)<<"no more images"<<endl;
             return NULL;
         }
+        if(strcmp(drnt->d_name,"..")==0||strcmp(drnt->d_name,".")==0)
+            continue;
+        *img=imread(drnt->d_name,CV_LOAD_IMAGE_COLOR);
     }
-    Mat img;
-    img=imread(drnt->d_name,-1);
     string id(drnt->d_name);
-    Frame* frame_buffer=new Frame(&img,id,mdvc.at(tracker));
+    Frame* frame_buffer=new Frame(img,id,mdvc.at(tracker));
     tracker++;
     return frame_buffer;
 }
