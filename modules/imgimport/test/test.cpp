@@ -20,7 +20,7 @@ BOOST_AUTO_TEST_CASE(picture_test){
     DIR* dr=opendir(filePath.c_str());
     struct dirent* drnt;
     while(1){
-        Frame* show=PI.NextFrame();
+        Frame* show=PI.next_frame();
         if(show==NULL){
             break;
         }
@@ -43,7 +43,7 @@ BOOST_AUTO_TEST_CASE(csv_test){
     string filePath=boost::unit_test::framework::master_test_suite().argv[1];
     PictureImport PI(telemetry_path,filePath,n);
     for(int i=0;1;i++){
-        Frame* show=PI.NextFrame();
+        Frame* show=PI.next_frame();
         if(show==NULL){
             break;
         }

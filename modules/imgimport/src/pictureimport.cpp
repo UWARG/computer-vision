@@ -42,7 +42,7 @@ using namespace std;
 using namespace boost;
 
 PictureImport::PictureImport(std::string telemetry_path, std::string filePath, std::vector<int> videoDeviceNums)
-              :ImageImport(telemetry_path,filePath,videoDeviceNums) {
+              :ImageImport() {
     this->videoDeviceNums=videoDeviceNums;
     mdvc=readcsv(telemetry_path.c_str());
     this->filePath=filePath;
@@ -55,7 +55,7 @@ PictureImport::~PictureImport(){
     BOOST_LOG_TRIVIAL(trace)<<"image import ends."<<endl;
 }
 
-Frame * PictureImport::NextFrame(){
+Frame * PictureImport::next_frame(){
     Mat* img=new Mat;
     while(img->empty()){
         drnt=readdir(dr);

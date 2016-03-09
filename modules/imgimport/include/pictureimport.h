@@ -63,7 +63,7 @@ class PictureImport : public ImageImport {
          *
          * @return Frame to be analyzed
          */
-        Frame* NextFrame();
+        Frame* next_frame();
     private:
         std::string filePath;
 	DIR* dr;
