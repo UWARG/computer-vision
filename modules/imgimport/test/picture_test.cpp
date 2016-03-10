@@ -5,6 +5,7 @@
 #include <boost/test/unit_test.hpp>
 #include <boost/log/trivial.hpp>
 #include <iostream>
+#include <fstream>
 #include <opencv2/core/core.hpp>
 #include <opencv2/highgui/highgui.hpp>
 using namespace std;
@@ -16,6 +17,14 @@ BOOST_AUTO_TEST_CASE(picture_test){
     n.push_back(3);
     string telemetry_path=boost::unit_test::framework::master_test_suite().argv[2];
     string filePath=boost::unit_test::framework::master_test_suite().argv[1];
+    ofstream fout(telemetry_path);
+    fout<<"time,timeError,lat,lon,latError,lonError,pitch,roll,pitchRate,rollRate,yawRate,altitude,heading,altError,headingError,photonum"<<endl;
+    for(int i=0;i<2;i++)
+    {
+        for(int j=0;j<15;j++)
+            fout<<j<<",";
+        fout<<i<<endl;
+    }
     PictureImport PI(telemetry_path,filePath,n);
     DIR* dr=opendir(filePath.c_str());
     struct dirent* drnt;

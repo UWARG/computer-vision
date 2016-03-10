@@ -5,6 +5,7 @@
 #include <boost/test/unit_test.hpp>
 #include <boost/log/trivial.hpp>
 #include <iostream>
+#include <fstream>
 #include <opencv2/core/core.hpp>
 #include <opencv2/highgui/highgui.hpp>
 using namespace std;
@@ -16,26 +17,34 @@ BOOST_AUTO_TEST_CASE(csv_test){
     n.push_back(3);
     string telemetry_path=boost::unit_test::framework::master_test_suite().argv[2];
     string filePath=boost::unit_test::framework::master_test_suite().argv[1];
+    ofstream fout(telemetry_path);
+    fout<<"time,timeError,lat,lon,latError,lonError,pitch,roll,pitchRate,rollRate,yawRate,altitude,heading,altError,headingError,photonum"<<endl;
+    for(int i=0;i<2;i++)
+    {
+        for(int j=0;j<15;j++)
+            fout<<j<<",";
+        fout<<i<<endl;
+    }
     PictureImport PI(telemetry_path,filePath,n);
     for(int i=0;;i++){
         Frame* show=PI.next_frame();
         if(show==NULL){
             break;
         }
-        BOOST_CHECK(show->get_metadata()->time==readcsv(telemetry_path.c_str()).at(i).time);
-        BOOST_CHECK(show->get_metadata()->timeError==readcsv(telemetry_path.c_str()).at(i).timeError);
-        BOOST_CHECK(show->get_metadata()->lat==readcsv(telemetry_path.c_str()).at(i).lat);
-        BOOST_CHECK(show->get_metadata()->lon==readcsv(telemetry_path.c_str()).at(i).lon);
-        BOOST_CHECK(show->get_metadata()->latError==readcsv(telemetry_path.c_str()).at(i).latError);
-        BOOST_CHECK(show->get_metadata()->lonError==readcsv(telemetry_path.c_str()).at(i).lonError);
-        BOOST_CHECK(show->get_metadata()->pitch==readcsv(telemetry_path.c_str()).at(i).pitch);
-        BOOST_CHECK(show->get_metadata()->roll==readcsv(telemetry_path.c_str()).at(i).roll);
-        BOOST_CHECK(show->get_metadata()->pitchRate==readcsv(telemetry_path.c_str()).at(i).pitchRate);
-        BOOST_CHECK(show->get_metadata()->rollRate==readcsv(telemetry_path.c_str()).at(i).rollRate);
-        BOOST_CHECK(show->get_metadata()->yawRate==readcsv(telemetry_path.c_str()).at(i).yawRate);
-        BOOST_CHECK(show->get_metadata()->altitude==readcsv(telemetry_path.c_str()).at(i).altitude);
-        BOOST_CHECK(show->get_metadata()->heading==readcsv(telemetry_path.c_str()).at(i).heading);
-        BOOST_CHECK(show->get_metadata()->altError==readcsv(telemetry_path.c_str()).at(i).altError);
-        BOOST_CHECK(show->get_metadata()->headingError==readcsv(telemetry_path.c_str()).at(i).headingError);
+        BOOST_CHECK(show->get_metadata()->time==0);
+        BOOST_CHECK(show->get_metadata()->timeError==1);
+        BOOST_CHECK(show->get_metadata()->lat==2);
+        BOOST_CHECK(show->get_metadata()->lon==3);
+        BOOST_CHECK(show->get_metadata()->latError==4);
+        BOOST_CHECK(show->get_metadata()->lonError==5);
+        BOOST_CHECK(show->get_metadata()->pitch==6);
+        BOOST_CHECK(show->get_metadata()->roll==7);
+        BOOST_CHECK(show->get_metadata()->pitchRate==8);
+        BOOST_CHECK(show->get_metadata()->rollRate==9);
+        BOOST_CHECK(show->get_metadata()->yawRate==10);
+        BOOST_CHECK(show->get_metadata()->altitude==11);
+        BOOST_CHECK(show->get_metadata()->heading==12);
+        BOOST_CHECK(show->get_metadata()->altError==13);
+        BOOST_CHECK(show->get_metadata()->headingError==14);
     }
 }
