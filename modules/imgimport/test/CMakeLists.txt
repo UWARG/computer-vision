@@ -8,6 +8,6 @@ if(Boost_FOUND AND OpenCV_FOUND)
     target_link_libraries(csv_test ${OpenCV_LIBS} ${Boost_LIBRARIES} Core ImageImport)
 
     # Tests
-    add_test("picture_test" picture_test ${TESTDATA_DIR} ${TESTDATA_DIR}/pictureimport_test_csv.csv --log_format=XML --log_sink=TEST-boost.xml --log_level=all --report_level=no)
-    add_test("csv_test" csv_test ${TESTDATA_DIR} ${TESTDATA_DIR}/pictureimport_test_csv.csv --log_format=XML --log_sink=TEST-boost.xml --log_level=all --report_level=no)
+    add_test("picture_test" picture_test ${TESTDATA_DIR} ${TESTDATA_DIR}/pictureimport_test_csv.csv --log_format=XML --log_sink=PICTURE_TEST-boost.xml --log_level=all --report_level=no)
+    add_test("csv_test" csv_test ${TESTDATA_DIR} ${TESTDATA_DIR}/pictureimport_test_csv.csv --log_format=XML --log_sink=CSV_TEST-boost.xml --log_level=all --report_level=no)
 endif()
