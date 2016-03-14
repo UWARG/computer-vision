@@ -48,6 +48,7 @@ PictureImport::PictureImport(std::string telemetry_path, std::string filePath, s
     mdvc=readcsv(telemetry_path.c_str());
     this->filePath=filePath;
     dr=opendir(filePath.c_str());
+    struct dirent* drnt;
     tracker=0;
 }
 
@@ -58,15 +59,18 @@ PictureImport::~PictureImport(){
 
 Frame * PictureImport::next_frame(){
     Mat* img=new Mat;
+    struct dirent* drnt;
     while(img->empty()){
-        drnt=readdir(dr);
+	drnt=readdir(dr);
         if(drnt==NULL){
-          BOOST_LOG_TRIVIAL(trace)<<"no more images"<<endl;
+            BOOST_LOG_TRIVIAL(trace)<<"no more images"<<endl;
             return NULL;
         }
-        if(strcmp(drnt->d_name,"..")==0||strcmp(drnt->d_name,".")==0)
+        if(strcmp(drnt->d_name,"..")==0||strcmp(drnt->d_name,".")==0){
             continue;
-        *img=imread(drnt->d_name,CV_LOAD_IMAGE_COLOR);
+        }
+        string true_path=filePath+'/'+drnt->d_name;
+        *img=imread(true_path,CV_LOAD_IMAGE_COLOR);
     }
     string id(drnt->d_name);
     Frame* frame_buffer=new Frame(img,id,mdvc.at(tracker));

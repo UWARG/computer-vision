@@ -21,8 +21,9 @@ BOOST_AUTO_TEST_CASE(csv_test){
     fout<<"time,timeError,lat,lon,latError,lonError,pitch,roll,pitchRate,rollRate,yawRate,altitude,heading,altError,headingError,photonum"<<endl;
     for(int i=0;i<2;i++)
     {
-        for(int j=0;j<15;j++)
+        for(int j=0;j<15;j++){
             fout<<j<<",";
+        }
         fout<<i<<endl;
     }
     PictureImport PI(telemetry_path,filePath,n);

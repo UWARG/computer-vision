@@ -5,7 +5,7 @@
 #include <vector>
 
 /**
-* @brief this is for reading telemetry logs from the plane and store them into a linked list. prints a fatal log "error: failed to open the cdv file" on failure.
+* @brief this is for reading telemetry logs from the plane and store them into a vector. prints a fatal log "error: failed to open the csv file" on failure.
 *
 *
 * @param filename the relative path and name of the file

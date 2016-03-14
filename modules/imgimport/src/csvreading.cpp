@@ -42,6 +42,9 @@ vector<Metadata> readcsv(const char* filename){
         for(j=0;j<16;){
             if(heads[j].compare("time")==0){
                 finput>>input.time;
+                if(finput.eof()){
+                    break;
+                }
                 j++;
                 if(j!=16){
                     finput>>comma;
@@ -145,7 +148,7 @@ vector<Metadata> readcsv(const char* filename){
                 continue;
             }
             if(heads[j].compare("altError")==0){
-                finput>>input.heading;
+                finput>>input.altError;
                 j++;
                 if(j!=16){
                     finput>>comma;
@@ -153,7 +156,7 @@ vector<Metadata> readcsv(const char* filename){
                 continue;
             }
             if(heads[j].compare("headingError")==0){
-                finput>>input.heading;
+                finput>>input.headingError;
                 j++;
                 if(j!=16){
                     finput>>comma;
@@ -166,9 +169,6 @@ vector<Metadata> readcsv(const char* filename){
                     f=1;
                 }
                 j++;
-                if(j!=16){
-                    finput>>comma;
-                }
                 continue;
             }
             cerr<<"header error"<<endl;
@@ -177,6 +177,7 @@ vector<Metadata> readcsv(const char* filename){
         if(f==1){
             result.push_back(input);
             i++;
+            f=0;
         }
     }
     finput.close();

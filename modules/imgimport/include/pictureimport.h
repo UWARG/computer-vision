@@ -69,7 +69,6 @@ class PictureImport : public ImageImport {
 	DIR* dr;
 	std::vector<Metadata> mdvc;
         int tracker;
-	struct dirent* drnt;
 	std::vector<int> videoDeviceNums;
 };
 

@@ -8,6 +8,7 @@
 #include <fstream>
 #include <opencv2/core/core.hpp>
 #include <opencv2/highgui/highgui.hpp>
+#include <opencv2/imgproc/imgproc.hpp>
 using namespace std;
 using namespace cv;
 using namespace boost;
@@ -21,8 +22,9 @@ BOOST_AUTO_TEST_CASE(picture_test){
     fout<<"time,timeError,lat,lon,latError,lonError,pitch,roll,pitchRate,rollRate,yawRate,altitude,heading,altError,headingError,photonum"<<endl;
     for(int i=0;i<2;i++)
     {
-        for(int j=0;j<15;j++)
+        for(int j=0;j<15;j++){
             fout<<j<<",";
+        }
         fout<<i<<endl;
     }
     PictureImport PI(telemetry_path,filePath,n);
@@ -34,13 +36,17 @@ BOOST_AUTO_TEST_CASE(picture_test){
             break;
         }
         Mat picture_stored=show->get_img();
-        drnt=readdir(dr);
         Mat original_picture;
-        while(original_picture.empty())
-            original_picture=imread(drnt->d_name,CV_LOAD_IMAGE_COLOR);
+        while(original_picture.empty()){
+            drnt=readdir(dr);
+            string true_path=filePath+'/'+drnt->d_name;
+            original_picture=imread(true_path,CV_LOAD_IMAGE_COLOR);
+        }
         Mat diff;
         compare(picture_stored,original_picture,diff,cv::CMP_NE);
-        int nz=countNonZero(diff);
+        Mat grey;
+        cvtColor(diff,grey,CV_BGR2GRAY);
+        int nz=countNonZero(grey);
         BOOST_CHECK(nz==0);
     }
 }
