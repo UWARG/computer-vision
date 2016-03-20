@@ -30,12 +30,13 @@
 */
 
 #include "qr_identifier.h"
+#include <opencv2/imgproc/imgproc.hpp>
+
 using namespace cv;
 using namespace std;
-using namespace boost;
 using namespace zbar;
 
-string qr_identifier(Mat img){
+unique_ptr<string> qr_identifier(Mat & img){
     ImageScanner scanner;
     scanner.set_config(ZBAR_NONE, ZBAR_CFG_ENABLE, 1);
     Mat grey;
@@ -47,7 +48,8 @@ string qr_identifier(Mat img){
     int n = scanner.scan(image);
     Image::SymbolIterator symbol = image.symbol_begin();
     if(symbol != image.symbol_end()){
-	string data=symbol->get_data();
-	return data;
+        unique_ptr<string> data(new string(symbol->get_data()));
+        return data;
     }
+    return nullptr;
 }

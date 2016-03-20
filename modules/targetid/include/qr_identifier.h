@@ -32,15 +32,20 @@
 #ifndef QR_IDENTIFIER_H_INCLUDED
 #define QR_IDENTIFIER_H_INCLUDED
 
+#include <string>
+#include <memory>
 #include <opencv2/core/core.hpp>
-#include <opencv2/highgui/highgui.hpp>
-#include <opencv2/imgproc/imgproc.hpp>
-#include <boost/lexical_cast.hpp>
-#include <boost/filesystem.hpp>
-#include <iostream>
-#include <fstream>
 #include <zbar.h>
 
-std::string qr_identifier(cv::Mat img);
+/**
+ *  @brief Reads QR Code in Given Mat
+ *    Is intended for use with a cropped image and assumes that there will be at most
+ *    one QR code in any image.
+ *
+ *  @param img Mat to be analyzed
+ *  @return nullptr if the image does not contain a QR code,
+ *      otherwise returns a pointer to the string value of the code
+ */
+std::unique_ptr<std::string> qr_identifier(cv::Mat & img);
 
 #endif // QR_IDENTIFIER_H_INCLUDED
