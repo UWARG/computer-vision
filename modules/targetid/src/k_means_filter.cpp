@@ -78,10 +78,10 @@ cv::Mat * KMeansFilter::filter(const Mat & src) {
 	    int clusterIdx = labels.at<int>(index, 0);
 	    /*if (index >= tmp.rows * tmp.cols) */BOOST_LOG_TRIVIAL(error) << "Index "  << index << " Cluster Index " << clusterIdx;
 
-	    new_image->at<Vec3b>(x, y)[0] = abs(src.at<Vec3b>(x, y)[0] - centers.at<float>(clusterIdx, 0));
-	    new_image->at<Vec3b>(x, y)[1] = abs(src.at<Vec3b>(x, y)[1] - centers.at<float>(clusterIdx, 1));
-	    new_image->at<Vec3b>(x, y)[2] = abs(src.at<Vec3b>(x, y)[2] - centers.at<float>(clusterIdx, 2));
-        }
+	    new_image->at<Vec3b>(y, x)[0] = abs(src.at<Vec3b>(y, x)[0] - centers.at<float>(clusterIdx, 0));
+	    new_image->at<Vec3b>(y, x)[1] = abs(src.at<Vec3b>(y, x)[1] - centers.at<float>(clusterIdx, 1));
+	    new_image->at<Vec3b>(y, x)[2] = abs(src.at<Vec3b>(y, x)[2] - centers.at<float>(clusterIdx, 2));
+	}
     }
     BOOST_LOG_TRIVIAL(info) << "Reducing Noise...";
     int noiseReduction = (*this->parameters)["noiseReduction"];
