@@ -72,11 +72,9 @@ cv::Mat * KMeansFilter::filter(const Mat & src) {
     Mat * new_image = new Mat( src.size(), src.type() );
     BOOST_LOG_TRIVIAL(info) << "new " << new_image->cols << "x" << new_image->rows << " Labels " << labels.rows << " " << labels.cols;
     for(int y = 0; y < src.rows; y++) {
-        for(int x = 0; x < src.cols; x++) {
-	   // BOOST_LOG_TRIVIAL(info) << " index " << x << " "  << (x/reductionFactor + (tmp.rows/reductionFactor)*tmp.cols);
+	for(int x = 0; x < src.cols; x++) {
 	    int index = x/reductionFactor + (y/reductionFactor) * tmp.cols;
 	    int clusterIdx = labels.at<int>(index, 0);
-	    /*if (index >= tmp.rows * tmp.cols) */BOOST_LOG_TRIVIAL(error) << "Index "  << index << " Cluster Index " << clusterIdx;
 
 	    new_image->at<Vec3b>(y, x)[0] = abs(src.at<Vec3b>(y, x)[0] - centers.at<float>(clusterIdx, 0));
 	    new_image->at<Vec3b>(y, x)[1] = abs(src.at<Vec3b>(y, x)[1] - centers.at<float>(clusterIdx, 1));
