@@ -12,6 +12,6 @@ if(Boost_FOUND AND OpenCV_FOUND)
     install(TARGETS targetid_test_interactive DESTINATION bin)
 
     # Tests
-    add_test("SimpleTarget" targetid_test_contour ${TESTDATA_DIR}/IMG_1644.JPG --log_format=XML --log_sink=TEST-boost.xml --log_level=all --report_level=no)
+    add_test("SimpleTarget" targetid_test_contour ${TESTDATA_DIR}/photos/IMG_1644.jpg --log_format=XML --log_sink=TEST-boost.xml --log_level=all --report_level=no)
     add_test("qr_test" qr_test ${TESTDATA_DIR} --log_format=XML --log_sink=TEST-QR.xml --log_level=all --report_level=no)
 endif()
