@@ -32,44 +32,61 @@
 #include "k_means_filter.h"
 #include <boost/log/trivial.hpp>
 #include <opencv2/imgproc/imgproc.hpp>
+#include <algorithm>
 
 using namespace cv;
 
+KMeansFilter::KMeansFilter() {
+    (*this->parameters)["reductionFactor"] = 2; //beyond 2 seems to decrease effectiveness of the diff'd image; beyong 1 causes segfaults
+    (*this->parameters)["clusters"] = 4;
+    (*this->parameters)["attempts"] = 1;
+    (*this->parameters)["noiseReduction"] = 5;
+}
+
 cv::Mat * KMeansFilter::filter(const Mat & src) {
-    int ratio = 3;
     int kernelSize = 3;
-    int reductionFactor = 2; //beyond 2 seems to decrease effectiveness of the diff'd image
+    int reductionFactor = (*this->parameters)["reductionFactor"];
     BOOST_LOG_TRIVIAL(info) << "Calculating kmeans...";
+    BOOST_LOG_TRIVIAL(info) << "reductionFactor = " << (*parameters)["reductionFactor"];
+    BOOST_LOG_TRIVIAL(info) << "clusters = " << (*parameters)["clusters"];
+    BOOST_LOG_TRIVIAL(info) << "attempts = " << (*parameters)["attempts"];
+    BOOST_LOG_TRIVIAL(info) << "noiseReduction = " << (*parameters)["noiseReduction"];
 
     Mat tmp;
     resize(src, tmp, Size(src.cols/reductionFactor, src.rows/reductionFactor));
 
-    /// Analyze colour clusters in image
+    // Analyze colour clusters in image
     Mat samples(tmp.rows * tmp.cols, 3, CV_32F);
-    for(int y = 0; y < tmp.rows; y++)
-        for( int x = 0; x < tmp.cols; x++ )
-            for(int z = 0; z < 3; z++)
-                samples.at<float>(y + x*tmp.rows, z) = tmp.at<Vec3b>(y,x)[z];
+    for(int i = 0; i < tmp.rows * tmp.cols; i++)
+	for(int z = 0; z < 3; z++)
+	    samples.at<float>(i, z) = tmp.at<Vec3b>(i)[z];
 
-    int clusterCount = 10;
+    int clusterCount = (*this->parameters)["clusters"];
     Mat labels;
-    int attempts = 1;
+    int attempts = (*this->parameters)["attempts"];
     Mat centers;
     kmeans(samples, clusterCount, labels, TermCriteria(TermCriteria::MAX_ITER, 1, 1), attempts, KMEANS_PP_CENTERS, centers );
 
     BOOST_LOG_TRIVIAL(info) << "Generating new image...";
+    BOOST_LOG_TRIVIAL(info) << "Src " << src.cols << "x" << src.rows << " tmp " << tmp.cols << "x" << tmp.rows;
     Mat * new_image = new Mat( src.size(), src.type() );
+    BOOST_LOG_TRIVIAL(info) << "new " << new_image->cols << "x" << new_image->rows << " Labels " << labels.rows << " " << labels.cols;
     for(int y = 0; y < src.rows; y++) {
         for(int x = 0; x < src.cols; x++) {
-            int clusterIdx = labels.at<int>((x/reductionFactor) + (y/reductionFactor)*(src.rows/reductionFactor),0);
-            new_image->at<Vec3b>(y,x)[0] = abs(src.at<Vec3b>(y,x)[0] - centers.at<float>(clusterIdx, 0));
-            new_image->at<Vec3b>(y,x)[1] = abs(src.at<Vec3b>(y,x)[1] - centers.at<float>(clusterIdx, 1));
-            new_image->at<Vec3b>(y,x)[2] = abs(src.at<Vec3b>(y,x)[2] - centers.at<float>(clusterIdx, 2));
+	   // BOOST_LOG_TRIVIAL(info) << " index " << x << " "  << (x/reductionFactor + (tmp.rows/reductionFactor)*tmp.cols);
+	    int index = x/reductionFactor + (y/reductionFactor) * tmp.cols;
+	    int clusterIdx = labels.at<int>(index, 0);
+	    /*if (index >= tmp.rows * tmp.cols) */BOOST_LOG_TRIVIAL(error) << "Index "  << index << " Cluster Index " << clusterIdx;
+
+	    new_image->at<Vec3b>(x, y)[0] = abs(src.at<Vec3b>(x, y)[0] - centers.at<float>(clusterIdx, 0));
+	    new_image->at<Vec3b>(x, y)[1] = abs(src.at<Vec3b>(x, y)[1] - centers.at<float>(clusterIdx, 1));
+	    new_image->at<Vec3b>(x, y)[2] = abs(src.at<Vec3b>(x, y)[2] - centers.at<float>(clusterIdx, 2));
         }
     }
     BOOST_LOG_TRIVIAL(info) << "Reducing Noise...";
-    erode(*new_image, *new_image, 5);
-    dilate(*new_image, *new_image, 5);
+    int noiseReduction = (*this->parameters)["noiseReduction"];
+    erode(*new_image, *new_image, noiseReduction);
+    dilate(*new_image, *new_image, noiseReduction);
 
     /// Reduce noise with a kernel
     blur(*new_image, *new_image, Size(kernelSize,kernelSize));
