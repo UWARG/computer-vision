@@ -19,3 +19,7 @@ ImageImport::ImageImport() {
 ImageImport::~ImageImport() {
 
 }
+<<<<<<< HEAD
+
+=======
+>>>>>>> c70f850e6bc461a27e795abc44dae57f2fb289cf
