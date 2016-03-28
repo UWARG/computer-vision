@@ -1,2 +1,6 @@
 include_directories(include ../core/include)
-add_library(ImageImport src/imgimport.cpp)
+ADD_DEFINITIONS("-DBOOST_LOG_DYN_LINK")
+add_library(ImageImport src/pictureimport.cpp src/imgimport.cpp src/csvreading.cpp)
+target_link_libraries(ImageImport ${OpenCV_LIBS} ${Boost_LIBRARIES} Core)
+target_compile_features(ImageImport PRIVATE cxx_range_for)
+add_subdirectory("test")

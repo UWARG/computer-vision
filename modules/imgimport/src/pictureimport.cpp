@@ -29,29 +29,51 @@
     SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-#include "frame.h"
+#include <opencv2/highgui/highgui.hpp>
+#include <opencv2/core/core.hpp>
+#include "pictureimport.h"
+#include <vector>
+#include <string>
+#include <dirent.h>
+#include <boost/log/trivial.hpp>
+#include <iostream>
 
-Frame::Frame(cv::Mat * img, std::string id, Metadata m): img(img), id(id), data(m){
+using namespace cv;
+using namespace std;
+using namespace boost;
 
-}
-    
-std::string Frame::get_id(){
-    return id;
-}
-
-cv::Mat & Frame::get_img(){
-    return *img;
-}
-
-void Frame::add_target(PixelTarget * t){
-
-}
-
-std::vector<Target*>::iterator Frame::get_targets(){
-    return targets.begin();
-}
-
-const Metadata * Frame::get_metadata(){
-    return &data;
+PictureImport::PictureImport(std::string telemetry_path, std::string filePath, std::vector<int> videoDeviceNums)
+              :ImageImport() {
+    this->videoDeviceNums=videoDeviceNums;
+    mdvc=readcsv(telemetry_path.c_str());
+    this->filePath=filePath;
+    dr=opendir(filePath.c_str());
+    struct dirent* drnt;
+    tracker=0;
 }
 
+PictureImport::~PictureImport(){
+    closedir(dr);
+    BOOST_LOG_TRIVIAL(trace)<<"image import ends."<<endl;
+}
+
+Frame * PictureImport::next_frame(){
+    Mat* img=new Mat;
+    struct dirent* drnt;
+    while(img->empty()){
+	drnt=readdir(dr);
+        if(drnt==NULL){
+            BOOST_LOG_TRIVIAL(trace)<<"no more images"<<endl;
+            return NULL;
+        }
+        if(strcmp(drnt->d_name,"..")==0||strcmp(drnt->d_name,".")==0){
+            continue;
+        }
+        string true_path=filePath+'/'+drnt->d_name;
+        *img=imread(true_path,CV_LOAD_IMAGE_COLOR);
+    }
+    string id(drnt->d_name);
+    Frame* frame_buffer=new Frame(img,id,mdvc.at(tracker));
+    tracker++;
+    return frame_buffer;
+}
