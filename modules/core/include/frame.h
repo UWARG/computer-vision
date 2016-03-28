@@ -84,6 +84,7 @@ public:
      * @return const pointer to internal metadata structure
      */
     const Metadata * get_metadata();
+
 private:
     
     /**
