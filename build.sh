@@ -16,7 +16,7 @@
 # https://raw.githubusercontent.com/UWARG/computer-vision/master/COPYING.txt
 #
 
-while getopts "c,t,h,d:" opt; do
+while getopts "c,t,h,i,d:" opt; do
     case $opt in
         d)
             WORKSPACE_DIR=$OPTARG
@@ -27,6 +27,9 @@ while getopts "c,t,h,d:" opt; do
         t)
             TEST=true
         ;;
+	i)
+	    INSTALL=true
+	;;
         h|\?)
             printf "%s\n" "Usage: $0 [OPTIONS]" \
                 "Script to build the WARG computer-vision project"\
@@ -55,6 +58,12 @@ mkdir -p $WORKSPACE_DIR/build
 cd $WORKSPACE_DIR/build
 cmake .. && make
 
-if [[ !$? && $TEST ]] ; then
+RESULT=$?
+
+if [[ !$RESULT && $TEST ]] ; then
     make test
+fi
+
+if [[ !$RESULT && $INSTALL ]] ; then
+    sudo make install
 fi

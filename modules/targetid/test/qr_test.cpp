@@ -17,7 +17,7 @@ BOOST_AUTO_TEST_CASE(qr_test){
     BOOST_LOG_TRIVIAL(info) << "Reading files in dir: " << root_path;
 
     /// Negative Test
-    Mat img = imread(root_path + "/IMG_1644.JPG",CV_LOAD_IMAGE_COLOR);
+    Mat img = imread(root_path + "/photos/IMG_1644.jpg",CV_LOAD_IMAGE_COLOR);
     BOOST_REQUIRE(!img.empty());
     result = qr_identifier(img);
     BOOST_CHECK(result == nullptr);
