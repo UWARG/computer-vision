@@ -1,6 +1,4 @@
 var searchData=
 [
-  ['target',['Target',['../classTarget.html',1,'']]],
-  ['targetanalyzer',['TargetAnalyzer',['../classTargetAnalyzer.html',1,'']]],
-  ['targetidentifier',['TargetIdentifier',['../classTargetIdentifier.html',1,'']]]
+  ['recursive_5fdirectory_5frange',['recursive_directory_range',['../structrecursive__directory__range.html',1,'']]]
 ];
