@@ -63,7 +63,7 @@ ostream & operator<<(ostream & out, vector<vector<Point_<int> > > & contour) {
 }
 
 BOOST_AUTO_TEST_CASE(KMeansAndCanny) {
-    vector<Point> * expected = new vector<Point>({Point(798, 264), Point(806, 225), Point(844, 235), Point(837, 273)});
+    vector<Point> * expected = new vector<Point>({Point(1445, 480), Point(1458, 405), Point(1535, 423), Point(1518, 496)});
     if (boost::unit_test::framework::master_test_suite().argc < 2) {
         BOOST_ERROR("Invalid number of arguments");
     }
