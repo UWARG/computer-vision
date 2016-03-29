@@ -11,6 +11,8 @@
  */
 #include <boost/log/trivial.hpp>
 #include <boost/filesystem.hpp>
+#include <boost/lexical_cast.hpp>
+#include <boost/timer.hpp>
 #include <opencv2/highgui/highgui.hpp>
 #include <opencv2/imgproc.hpp>
 #include <vector>
@@ -33,22 +35,28 @@ vector<pair<Filter *, string>> filters;
 CannyContourCreator ccreator;
 vector<string> fileNames;
 int fileIndex = 0;
+double frameTime;
 
 void refresh_image() {
+    timer t;
     filtered = *filters[filter].first->filter(input);
     vector<vector<Point> > * contours= ccreator.get_contours(filtered);
+    frameTime = t.elapsed();
 
     /// Draw contours
     drawing = input.clone();
     for( int i = 0; i< contours->size(); i++ ) {
-	drawContours( drawing, *contours, i, color, 2, 8);
+        drawContours( drawing, *contours, i, color, 2, 8);
     }
-    Size size(900,600);
+    Size size(960,640);
     resize(drawing, dst, size);
     resize(filtered, filtered_dest, size);
 
     imshow("Contours", dst);
     imshow("Filter", filtered_dest);
+    try {
+        displayOverlay("Contours", "Render Time: " + lexical_cast<string>((int)(frameTime * 1000)) + " ms", 0);
+    } catch (...) { } // Catch exception thrown if OpenCV is not built with QT
 }
 
 void on_filter_change( int, void* ){
@@ -78,7 +86,7 @@ struct recursive_directory_range
 
 int main(int argc, char ** argv) {
     if (argc < 2) {
-	BOOST_LOG_TRIVIAL(error) << "Invalid number of arguments";
+        BOOST_LOG_TRIVIAL(error) << "Invalid number of arguments";
     }
     filters.push_back(pair<Filter *, string>(new KMeansFilter(), "KMeans1"));
     filters.push_back(pair<Filter *, string>(new KMeansFilter(), "KMeans2")); // must have at least two filters
@@ -86,18 +94,18 @@ int main(int argc, char ** argv) {
     path p(argv[1]);
     BOOST_LOG_TRIVIAL(info) << "Opening Directory " << p.string();
     if (!is_directory(p)) {
-	exit(1);
+        exit(1);
     }
 
 	for (auto it : recursive_directory_range(p)) {
-	if(is_regular_file(it.path())) fileNames.push_back(it.path().string());
-	BOOST_LOG_TRIVIAL(info) << "Reading Image " << it.path().string();
+        if(is_regular_file(it.path())) fileNames.push_back(it.path().string());
+        BOOST_LOG_TRIVIAL(info) << "Reading Image " << it.path().string();
     }
     sort(fileNames.begin(), fileNames.end());
     on_file_change(0, 0);
 
-    namedWindow("Contours", CV_WINDOW_AUTOSIZE );
-    namedWindow("Filter", CV_WINDOW_AUTOSIZE );
+    namedWindow("Contours", CV_WINDOW_NORMAL );
+    namedWindow("Filter", CV_WINDOW_NORMAL );
     createTrackbar( "Filter", "Filter", &filter, filters.size() - 1, on_filter_change );
     createTrackbar( "Reduction Factor", "Filter", &reductionFactor, 10, on_filter_change );
     createTrackbar( "Cluster Count", "Filter", &clusters, 20, on_filter_change );
@@ -106,7 +114,7 @@ int main(int argc, char ** argv) {
     createTrackbar( "Image", "Contours", &fileIndex, fileNames.size(), on_file_change );
 
     while (true) {
-	refresh_image();
-	waitKey(0);
+        refresh_image();
+        waitKey(0);
     }
 }
