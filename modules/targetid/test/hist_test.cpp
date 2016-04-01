@@ -38,11 +38,9 @@ BOOST_AUTO_TEST_CASE(hist_test){
     for(src=in->next_frame();src!=NULL;src=in->next_frame()){
         const Mat buffer=src->get_img();
         show=test_filter.filter(buffer);
-        if(show!=NULL){
-            namedWindow("display",WINDOW_NORMAL);
-            resizeWindow("display", 1000, 1000);
-            imshow("display",*show);
-            waitKey(0);
-        }
+        namedWindow("display",WINDOW_NORMAL);
+        resizeWindow("display", 1000, 1000);
+        imshow("display",*show);
+        waitKey(0);
     }
 }

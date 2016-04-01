@@ -64,27 +64,20 @@ Mat* hist_filter::filter(const Mat & src){
     count++;
     int tmp;
     int minimal=300;
-    bool f=false;
     target_range* pack=new target_range;
     for( int i = 0; i < histSize; i++ ){
         tmp=cvRound(b_hist->at<float>(i)-avg_b[i]);
         if(tmp>minimal){
-            f=true;
             pack->input_b(i);
         }
         tmp=cvRound(g_hist->at<float>(i)-avg_g[i]);
         if(tmp>minimal){
-            f=true;
             pack->input_g(i);
         }
         tmp=cvRound(r_hist->at<float>(i)-avg_r[i]);
         if(tmp>minimal){
-            f=true;
             pack->input_r(i);
         }
-    }
-    if(!f){
-        return NULL;
     }
     Mat* result=new Mat(src);
     for(int y=0;y<result->rows;y++){
