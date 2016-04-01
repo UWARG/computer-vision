@@ -39,6 +39,7 @@
 #include <iostream>
 #include <stdio.h>
 #include <vector>
+#include "filter.h"
 
 class target_range{
     public:
@@ -52,12 +53,13 @@ class target_range{
         std::vector<int> red;
 };
 
-struct bgr_hists{
-    cv::Mat b_hist;
-    cv::Mat g_hist;
-    cv::Mat r_hist;
+class hist_filter : public Filter{
+    public:
+        hist_filter();
+        ~hist_filter();
+        cv::Mat * filter(const cv::Mat & src);
+    private:
+        int count=0;
+        double avg_b[256],avg_g[256],avg_r[256];
 };
-
-std::vector<cv::Mat> histogram_recreator(PictureImport* input);
-
 #endif // HISTOGRAM_H_INCLUDED

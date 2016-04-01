@@ -1,21 +1,30 @@
 cmake_minimum_required(VERSION 3.0)
 
-project(warg-cv CXX) 
+project(warg-cv CXX C)
 
 set(MODULES core csvcreator targetanalysis targetid volumecalc reportgen imgimport gmapsmatcher)
 
 # Dependencies
 find_package(OpenCV REQUIRED)
 find_package(Boost REQUIRED filesystem log thread system program_options unit_test_framework)
+find_package(Threads)
 
 message(status " Boost Include: ${Boost_INCLUDE_DIR}")
 message(status " Boost Libraries: ${Boost_LIBRARIES}")
 message(status " OpenCV Include: ${OpenCV_INCLUDE_DIRS}")
 message(status " OpenCV Libraries: ${OpenCV_LIBS}")
 
+if(NOT Threads_FOUND)
+    message(warning " Threads library not found. Proceed with caution")
+endif()
+
 set(CMAKE_CXX_STANDARD 11)
 set(Boost_USE_MULTITHREADED      ON)
 set(Boost_USE_STATIC_RUNTIME    OFF)
+
+# Boost seems to require pthread on some systems
+# TODO: Find out what is causing this requirement
+set(Boost_LIBRARIES ${Boost_LIBRARIES} ${CMAKE_THREAD_LIBS_INIT})
 
 set(TESTDATA_DIR ${CMAKE_CURRENT_LIST_DIR}/testdata)
 

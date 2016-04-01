@@ -33,10 +33,18 @@
 #define FILTER_H_INCLUDED
 
 #include <opencv2/core/core.hpp>
+#include <map>
+#include <string>
 
 class Filter {
     public:
+	Filter();
+	virtual ~Filter();
         virtual cv::Mat * filter(const cv::Mat & src) = 0;
+	void setParameter(std::string param, int value);
+
+    protected:
+	std::map<std::string, int> * parameters;
 };
 
 #endif // FILTER_H_INCLUDED
