@@ -58,6 +58,10 @@ PictureImport::~PictureImport(){
 }
 
 Frame * PictureImport::next_frame(){
+    if (mdvc.size() <= tracker) {
+        return NULL;
+    }
+
     Mat* img=new Mat;
     struct dirent* drnt;
     while(img->empty()){
