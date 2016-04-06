@@ -25,8 +25,8 @@ BOOST_AUTO_TEST_CASE(hist_test){
         }
         fout<<i<<endl;
     }
-    PictureImport* input=new PictureImport(telemetry_path,filePath,n);
     hist_filter test_filter;
+    PictureImport* input=new PictureImport(telemetry_path,filePath,n);
     Frame* src;
     for(src=input->next_frame();src!=NULL;src=input->next_frame()){
         const Mat buffer=src->get_img();
@@ -38,8 +38,11 @@ BOOST_AUTO_TEST_CASE(hist_test){
     for(src=in->next_frame();src!=NULL;src=in->next_frame()){
         const Mat buffer=src->get_img();
         show=test_filter.filter(buffer);
+        namedWindow("original",WINDOW_NORMAL);
+        resizeWindow("original", 900, 900);
+        imshow("original",buffer);
         namedWindow("display",WINDOW_NORMAL);
-        resizeWindow("display", 1000, 1000);
+        resizeWindow("display", 900, 900);
         imshow("display",*show);
         waitKey(0);
     }

@@ -40,17 +40,14 @@
 #include <stdio.h>
 #include <vector>
 #include "filter.h"
+#include <cmath>
 
 class target_range{
     public:
-        void input_b(int a);
-        void input_g(int a);
-        void input_r(int a);
+        void input_hue(int a);
         bool belong(cv::Vec3b c);
     private:
-        std::vector<int> blue;
-        std::vector<int> green;
-        std::vector<int> red;
+        std::vector<int> hue;
 };
 
 class hist_filter : public Filter{
@@ -60,6 +57,7 @@ class hist_filter : public Filter{
         cv::Mat * filter(const cv::Mat & src);
     private:
         int count=0;
-        double avg_b[256],avg_g[256],avg_r[256];
+        double avg_hue[18],hue_multi[18],avg_sat[16],sat_multi[16];
+        int avg_brightness=0;
 };
 #endif // HISTOGRAM_H_INCLUDED
