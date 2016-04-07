@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['imageimport',['ImageImport',['../classImageImport.html',1,'']]],
-  ['imgimport_2eh',['imgimport.h',['../imgimport_8h.html',1,'']]]
+  ['heading',['heading',['../structMetadata.html#ac8c309330e45c088b143b04da906d026',1,'Metadata']]],
+  ['headingerror',['headingError',['../structMetadata.html#a959f7a50eb655be7c71c08aa4bc3f4a2',1,'Metadata']]]
 ];

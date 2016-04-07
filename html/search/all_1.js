@@ -1,7 +1,6 @@
 var searchData=
 [
-  ['cannycontourcreator',['CannyContourCreator',['../classCannyContourCreator.html',1,'']]],
-  ['contourcreator',['ContourCreator',['../classContourCreator.html',1,'']]],
-  ['create_5fcsv',['create_csv',['../csv_8h.html#a6f5e1c25b2a68b24e33d72ef66d1bde6',1,'csv.h']]],
-  ['csv_2eh',['csv.h',['../csv_8h.html',1,'']]]
+  ['benchmark_2ecpp',['benchmark.cpp',['../benchmark_8cpp.html',1,'']]],
+  ['benchmark_2eh',['benchmark.h',['../benchmark_8h.html',1,'']]],
+  ['benchmark_5ffunction',['benchmark_function',['../benchmark_8h.html#a3b2a38c1d87efec4cb539ede20351947',1,'benchmark.h']]]
 ];
