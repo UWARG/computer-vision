@@ -57,39 +57,39 @@ Mat* hist_filter::filter(const Mat & src){
     split(*hsv_img,bgr_planes);
     float hue_range[]={0,180};
     const float* hueRange={hue_range};
-    float sat_range[]={0,256};
-    const float* satRange={sat_range};
+//    float sat_range[]={0,256};
+//    const float* satRange={sat_range};
     bool uniform = true; bool accumulate = false;
     Mat hue_hist;
-    Mat sat_hist;
+//    Mat sat_hist;
     calcHist( &bgr_planes[0], 1, 0, Mat(), hue_hist, 1, &hueSize, &hueRange, uniform, accumulate );
-    calcHist( &bgr_planes[1], 1, 0, Mat(), sat_hist, 1, &satSize, &satRange, uniform, accumulate );
+//    calcHist( &bgr_planes[1], 1, 0, Mat(), sat_hist, 1, &satSize, &satRange, uniform, accumulate );
     for( int i = 0; i < hueSize; i++ ){
         avg_hue[i]=(avg_hue[i]*count+cvRound(hue_hist.at<float>(i)))/(count+1);
     }
-    for( int i = 0; i < satSize; i++ ){
+/*    for( int i = 0; i < satSize; i++ ){
         avg_sat[i]=(avg_sat[i]*count+cvRound(sat_hist.at<float>(i)))/(count+1);
-    }
+    }*/
     count++;
     int tmp;
     for( int i = 0; i < hueSize; i++ ){
         tmp=cvRound(hue_hist.at<float>(i)-avg_hue[i]);
         if(tmp<0) tmp=0;
-        hue_multi[i]=pow(tmp/hue_hist.at<float>(i),5);
+        hue_multi[i]=pow(tmp/hue_hist.at<float>(i),2);
     }
-    for( int i = 0; i < satSize; i++ ){
+/*    for( int i = 0; i < satSize; i++ ){
         tmp=cvRound(sat_hist.at<float>(i)-avg_sat[i]);
         if(tmp<0) tmp=0;
-        sat_multi[i]=pow(tmp/sat_hist.at<float>(i),7);
-    }
+        sat_multi[i]=pow(tmp/sat_hist.at<float>(i),3);
+    }*/
     Mat* result=new Mat;
     cvtColor(*hsv_img,*result,CV_HSV2BGR);
     for(int y=0;y<hsv_img->rows;y++){
         for(int x=0;x<hsv_img->cols;x++){
             Vec3b colour = hsv_img->at<Vec3b>(Point(x, y));
-            result->at<Vec3b>(Point(x, y)).val[0]=10*result->at<Vec3b>(Point(x, y)).val[0]*hue_multi[colour.val[0]/10]*sat_multi[colour.val[1]/16];
-            result->at<Vec3b>(Point(x, y)).val[1]=10*result->at<Vec3b>(Point(x, y)).val[1]*hue_multi[colour.val[0]/10]*sat_multi[colour.val[1]/16];
-            result->at<Vec3b>(Point(x, y)).val[2]=10*result->at<Vec3b>(Point(x, y)).val[2]*hue_multi[colour.val[0]/10]*sat_multi[colour.val[1]/16];
+            result->at<Vec3b>(Point(x, y)).val[0]=result->at<Vec3b>(Point(x, y)).val[0]*hue_multi[colour.val[0]/10]*colour.val[1]/256;
+            result->at<Vec3b>(Point(x, y)).val[1]=result->at<Vec3b>(Point(x, y)).val[1]*hue_multi[colour.val[0]/10]*colour.val[1]/256;
+            result->at<Vec3b>(Point(x, y)).val[2]=result->at<Vec3b>(Point(x, y)).val[2]*hue_multi[colour.val[0]/10]*colour.val[1]/256;
         }
     }
     return result;

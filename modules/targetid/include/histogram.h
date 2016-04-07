@@ -57,7 +57,8 @@ class hist_filter : public Filter{
         cv::Mat * filter(const cv::Mat & src);
     private:
         int count=0;
-        double avg_hue[18],hue_multi[18],avg_sat[16],sat_multi[16];
+        double avg_hue[18],hue_multi[18];
+//        double avg_sat[16],sat_multi[16];
         int avg_brightness=0;
 };
 #endif // HISTOGRAM_H_INCLUDED

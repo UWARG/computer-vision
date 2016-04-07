@@ -7,6 +7,12 @@
 #include <fstream>
 #include <opencv2/core/core.hpp>
 #include <opencv2/highgui/highgui.hpp>
+#include "target_identifier.h"
+#include "canny_contour_creator.h"
+#include "k_means_filter.h"
+#include "frame.h"
+#include "benchmark.h"
+#include "contour_comparison.h"
 using namespace std;
 using namespace cv;
 using namespace boost;
@@ -38,12 +44,20 @@ BOOST_AUTO_TEST_CASE(hist_test){
     for(src=in->next_frame();src!=NULL;src=in->next_frame()){
         const Mat buffer=src->get_img();
         show=test_filter.filter(buffer);
-        namedWindow("original",WINDOW_NORMAL);
+        KMeansFilter filter;
+        CannyContourCreator ccreator;
+        Mat * filtered = filter.filter(buffer);
+        vector<vector<Point> > * results = ccreator.get_contours(*filtered);
+        vector<vector<Point> > * expected = ccreator.get_contours(*show);
+        double diff = compare_contours(*results, *expected);
+        BOOST_CHECK(diff > 0.01);
+        BOOST_TEST_MESSAGE("RESULT: " << diff);
+/*        namedWindow("original",WINDOW_NORMAL);
         resizeWindow("original", 900, 900);
         imshow("original",buffer);
         namedWindow("display",WINDOW_NORMAL);
         resizeWindow("display", 900, 900);
         imshow("display",*show);
-        waitKey(0);
+        waitKey(0);*/
     }
 }
