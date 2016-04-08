@@ -1,4 +1,4 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$classFilter.html" title="Filter" alt="" coords="5,5,56,32"/>
+<area shape="rect" id="node1" href="$classFilter.html" title="Abstract class providing an interface to modify images before edge detection is applied. " alt="" coords="5,5,56,32"/>
 <area shape="rect" id="node2" href="$classKMeansFilter.html" title="KMeansFilter" alt="" coords="104,5,203,32"/>
 </map>

@@ -89,6 +89,11 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">Filter Class Reference<span class="mlabels"><span class="mlabel">abstract</span></span></div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Abstract class providing an interface to modify images before edge detection is applied.  
+ <a href="classFilter.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="filter_8h_source.html">filter.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for Filter:</div>
 <div class="dyncontent">
@@ -106,11 +111,11 @@ Collaboration diagram for Filter:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a4081e3b720f1fac0e7138cc6be61c954"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4081e3b720f1fac0e7138cc6be61c954"></a>
-virtual cv::Mat *&#160;</td><td class="memItemRight" valign="bottom"><b>filter</b> (const cv::Mat &amp;src)=0</td></tr>
+<tr class="memitem:a4081e3b720f1fac0e7138cc6be61c954"><td class="memItemLeft" align="right" valign="top">virtual cv::Mat *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFilter.html#a4081e3b720f1fac0e7138cc6be61c954">filter</a> (const cv::Mat &amp;src)=0</td></tr>
+<tr class="memdesc:a4081e3b720f1fac0e7138cc6be61c954"><td class="mdescLeft">&#160;</td><td class="mdescRight">run the filter on a given image  <a href="#a4081e3b720f1fac0e7138cc6be61c954">More...</a><br/></td></tr>
 <tr class="separator:a4081e3b720f1fac0e7138cc6be61c954"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9522b924de32bc778827bcf59bb0bd73"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9522b924de32bc778827bcf59bb0bd73"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setParameter</b> (std::string param, int value)</td></tr>
+<tr class="memitem:a9522b924de32bc778827bcf59bb0bd73"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFilter.html#a9522b924de32bc778827bcf59bb0bd73">setParameter</a> (std::string param, int value)</td></tr>
+<tr class="memdesc:a9522b924de32bc778827bcf59bb0bd73"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets parameter in internal map.  <a href="#a9522b924de32bc778827bcf59bb0bd73">More...</a><br/></td></tr>
 <tr class="separator:a9522b924de32bc778827bcf59bb0bd73"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
@@ -119,6 +124,69 @@ Protected Attributes</h2></td></tr>
 std::map&lt; std::string, int &gt; *&#160;</td><td class="memItemRight" valign="bottom"><b>parameters</b></td></tr>
 <tr class="separator:a396e498304386ea1a9dfd898bff77f01"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Abstract class providing an interface to modify images before edge detection is applied. </p>
+<p>Any particular <a class="el" href="classFilter.html" title="Abstract class providing an interface to modify images before edge detection is applied. ">Filter</a> will be run only once on each image, allowing incremental data to be gathered by a <a class="el" href="classFilter.html" title="Abstract class providing an interface to modify images before edge detection is applied. ">Filter</a>. </p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a4081e3b720f1fac0e7138cc6be61c954"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual cv::Mat* Filter::filter </td>
+          <td>(</td>
+          <td class="paramtype">const cv::Mat &amp;&#160;</td>
+          <td class="paramname"><em>src</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>run the filter on a given image </p>
+<p>Filters should be implemented to enhance potential targets in the image so that they can be more easily picked up by an edge detector and supress other features of the image The filter should not make decisions on what constitutes a target. Any unusual object in the frame should be considered a target for the purposes of the filter</p>
+<dl class="section return"><dt>Returns</dt><dd>A pointer to a new filtered image </dd></dl>
+
+<p>Implemented in <a class="el" href="classKMeansFilter.html#a1e91a9c1b5cb11f55c12b8a7a03def1f">KMeansFilter</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a9522b924de32bc778827bcf59bb0bd73"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Filter::setParameter </td>
+          <td>(</td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>param</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>value</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets parameter in internal map. </p>
+<p>These parameters are used for doing on the fly adjustments to a filter during testing. There is no guarantee that a given filter will use any given parameter. </p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>modules/targetid/include/<a class="el" href="filter_8h_source.html">filter.h</a></li>
 <li>modules/targetid/src/filter.cpp</li>
