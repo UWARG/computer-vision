@@ -67,8 +67,7 @@ class PictureImport : public ImageImport {
     private:
         std::string filePath;
 	DIR* dr;
-	std::vector<Metadata> mdvc;
-        int tracker;
+	metadata_input mdin;
 	std::vector<int> videoDeviceNums;
 };
 

@@ -16,7 +16,8 @@ using namespace boost;
 BOOST_AUTO_TEST_CASE(csv_test){
     vector<int> n;
     n.push_back(3);
-    string telemetry_path="test_csv.csv";
+    string telemetry_path=boost::unit_test::framework::master_test_suite().argv[2];
+    telemetry_path+="/test_csv.csv";
     string filePath=boost::unit_test::framework::master_test_suite().argv[1];
 
     int count = 0;
@@ -35,7 +36,7 @@ BOOST_AUTO_TEST_CASE(csv_test){
 
     ofstream fout(telemetry_path);
     fout<<"time,timeError,lat,lon,latError,lonError,pitch,roll,pitchRate,rollRate,yawRate,altitude,heading,altError,headingError,photonum"<<endl;
-    for(int i=0;i<count;i++) {
+    for(int i=0;i<=count;i++) {
         for(int j=0;j<15;j++){
             fout<<j<<",";
         }

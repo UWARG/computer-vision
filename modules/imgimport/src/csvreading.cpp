@@ -1,27 +1,28 @@
 #include "csvreading.h"
 #include <fstream>
-#include <string>
 #include <iostream>
 #include <boost/log/trivial.hpp>
 using namespace std;
 using namespace boost;
 
-vector<Metadata> readcsv(const char* filename){
-    vector<Metadata> result;
-    vector<Metadata> errorResult;
+metadata_input::metadata_input(){
+}
+
+metadata_input::metadata_input(string filename){
+    this->filename=filename;
     string headrow;
     ifstream finput(filename);
     if(!finput.is_open())
     {
         BOOST_LOG_TRIVIAL(fatal)<<"error: failed to open the csv file"<<endl;
-        return errorResult;
+        return;
     }
     getline(finput,headrow);
-    int i=0,j=0;
+    finput.close();
     int len=headrow.length();
-    string heads[16];
     heads[0]="";
-    for(i=0;i<len;i++){
+    int j=0;
+    for(int i=0;i<len;i++){
         if(headrow[i]==','){
             j++;
        	    if(j==16){
@@ -33,13 +34,57 @@ vector<Metadata> readcsv(const char* filename){
             heads[j]+=headrow[i];
         }
     }
-    i=0;
+}
+
+metadata_input::~metadata_input(){
+}
+
+void metadata_input::input_file(string filename){
+    this->filename=filename;
+    string headrow;
+    ifstream finput(filename);
+    if(!finput.is_open())
+    {
+        BOOST_LOG_TRIVIAL(fatal)<<"error: failed to open the csv file"<<endl;
+        return;
+    }
+    getline(finput,headrow);
+    finput.close();
+    int len=headrow.length();
+    heads[0]="";
+    int j=0;
+    for(int i=0;i<len;i++){
+        if(headrow[i]==','){
+            j++;
+       	    if(j==16){
+                break;
+            }
+            heads[j]="";
+        }
+        else{
+            heads[j]+=headrow[i];
+        }
+    }
+}
+
+
+void metadata_input::read_metadata(){
+    ifstream finput(filename);
+    if(!finput.is_open())
+    {
+        BOOST_LOG_TRIVIAL(fatal)<<"error: failed to open the csv file"<<endl;
+        return;
+    }
+    string row;
+    for(int i=0;i<mark;i++){
+        getline(finput,row);
+    }
     int temnum;
     bool f=0;
     char comma;
     while(!finput.eof()){
         Metadata input;
-        for(j=0;j<16;){
+        for(int j=0;j<16;){
             if(heads[j].compare("time")==0){
                 finput>>input.time;
                 if(finput.eof()){
@@ -165,21 +210,44 @@ vector<Metadata> readcsv(const char* filename){
             }
             if(heads[j].compare("photonum")==0){
                 finput>>temnum;
-                if(temnum>=i){
+                if(temnum>photonum){
                     f=1;
                 }
                 j++;
                 continue;
             }
             cerr<<"header error"<<endl;
-            return errorResult;
+            return;
         }
+        mark++;
         if(f==1){
-            result.push_back(input);
-            i++;
+            log.push_back(input);
+            photonum++;
             f=0;
         }
     }
     finput.close();
-    return result;
+}
+
+Metadata metadata_input::get_metadata(double timestamp){
+    read_metadata();
+    for(int i=0;i<log.size();i++){
+        if(log.at(i).time==timestamp){
+            return log.at(i);
+        }
+    }
+    BOOST_LOG_TRIVIAL(fatal)<<"error: cannot find metadata at given timestamp"<<endl;
+    Metadata errorresult;
+    return errorresult;
+}
+
+Metadata metadata_input::next_metadata(){
+    read_metadata();
+    output_photonum++;
+    if(output_photonum>photonum){
+        BOOST_LOG_TRIVIAL(fatal)<<"error: no more metadata for now"<<endl;
+        Metadata errorresult;
+        return errorresult;
+    }
+    return log.at(output_photonum-1);
 }
