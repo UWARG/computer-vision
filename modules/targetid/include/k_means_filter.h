@@ -36,6 +36,7 @@
 
 class KMeansFilter : public Filter {
     public:
+	KMeansFilter();
         cv::Mat * filter(const cv::Mat & src);
 };
 

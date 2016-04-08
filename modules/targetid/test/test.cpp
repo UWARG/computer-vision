@@ -41,6 +41,8 @@
 #include "canny_contour_creator.h"
 #include "k_means_filter.h"
 #include "frame.h"
+#include "benchmark.h"
+#include "contour_comparison.h"
 
 using namespace cv;
 using namespace std;
@@ -63,7 +65,7 @@ ostream & operator<<(ostream & out, vector<vector<Point_<int> > > & contour) {
 }
 
 BOOST_AUTO_TEST_CASE(KMeansAndCanny) {
-    vector<Point> * expected = new vector<Point>({Point(798, 264), Point(806, 225), Point(844, 235), Point(837, 273)});
+    vector<vector<Point> > * expected = new vector<vector<Point> >({vector<Point>({Point(1445, 480), Point(1458, 405), Point(1535, 423), Point(1518, 496), Point(1445, 480)})});
     if (boost::unit_test::framework::master_test_suite().argc < 2) {
         BOOST_ERROR("Invalid number of arguments");
     }
@@ -73,10 +75,10 @@ BOOST_AUTO_TEST_CASE(KMeansAndCanny) {
     CannyContourCreator ccreator;
     Mat * filtered = filter.filter(f.get_img());
     vector<vector<Point> > * results = ccreator.get_contours(*filtered);
-    BOOST_CHECK(true); // TODO: This test should be done by converting contours to binary mats and comparing overlap
-    stringstream resultstr, expectedstr;
-    resultstr << *results;
-    expectedstr << *expected;
-    BOOST_TEST_MESSAGE("RESULT: " << resultstr.str());
-    BOOST_TEST_MESSAGE("EXPECTED: " << expectedstr.str());
+
+    double diff = compare_contours(*results, *expected);
+    BOOST_CHECK(diff > 0.01); // ensures that at least something is detected
+    BOOST_TEST_MESSAGE("RESULT: " << diff);
+
+    benchmark_function("k_means", [&]() { filter.filter(f.get_img()); }, 10);
 }

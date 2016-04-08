@@ -165,7 +165,7 @@ vector<Metadata> readcsv(const char* filename){
             }
             if(heads[j].compare("photonum")==0){
                 finput>>temnum;
-                if(temnum>i){
+                if(temnum>=i){
                     f=1;
                 }
                 j++;

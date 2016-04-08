@@ -19,4 +19,3 @@ ImageImport::ImageImport() {
 ImageImport::~ImageImport() {
 
 }
-
