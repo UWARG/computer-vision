@@ -42,18 +42,10 @@
 #include "filter.h"
 #include <cmath>
 
-class target_range{
+class HistFilter : public Filter{
     public:
-        void input_hue(int a);
-        bool belong(cv::Vec3b c);
-    private:
-        std::vector<int> hue;
-};
-
-class hist_filter : public Filter{
-    public:
-        hist_filter();
-        ~hist_filter();
+        HistFilter();
+        ~HistFilter();
         cv::Mat * filter(const cv::Mat & src);
     private:
         int count=0;

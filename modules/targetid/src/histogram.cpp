@@ -2,27 +2,14 @@
 using namespace std;
 using namespace cv;
 
-void target_range::input_hue(int a){
-    hue.push_back(a);
-}
-
-bool target_range::belong(Vec3b c){
-    for(int i=0;i<hue.size();i++){
-        if(hue.at(i)==c.val[0]){
-            return true;
-        }
-    }
-    return false;
-}
-
-hist_filter::hist_filter()
+HistFilter::HistFilter()
             :Filter(){
 }
 
-hist_filter::~hist_filter(){
+HistFilter::~HistFilter(){
 }
 
-Mat* hist_filter::filter(const Mat & src){
+Mat* HistFilter::filter(const Mat & src){
     Mat bgr_img=src.clone();
     int brightness;
     for(int y=0;y<bgr_img.rows;y++){
@@ -57,19 +44,12 @@ Mat* hist_filter::filter(const Mat & src){
     split(*hsv_img,bgr_planes);
     float hue_range[]={0,180};
     const float* hueRange={hue_range};
-//    float sat_range[]={0,256};
-//    const float* satRange={sat_range};
     bool uniform = true; bool accumulate = false;
     Mat hue_hist;
-//    Mat sat_hist;
     calcHist( &bgr_planes[0], 1, 0, Mat(), hue_hist, 1, &hueSize, &hueRange, uniform, accumulate );
-//    calcHist( &bgr_planes[1], 1, 0, Mat(), sat_hist, 1, &satSize, &satRange, uniform, accumulate );
     for( int i = 0; i < hueSize; i++ ){
         avg_hue[i]=(avg_hue[i]*count+cvRound(hue_hist.at<float>(i)))/(count+1);
     }
-/*    for( int i = 0; i < satSize; i++ ){
-        avg_sat[i]=(avg_sat[i]*count+cvRound(sat_hist.at<float>(i)))/(count+1);
-    }*/
     count++;
     int tmp;
     for( int i = 0; i < hueSize; i++ ){
@@ -77,11 +57,6 @@ Mat* hist_filter::filter(const Mat & src){
         if(tmp<0) tmp=0;
         hue_multi[i]=pow(tmp/hue_hist.at<float>(i),2);
     }
-/*    for( int i = 0; i < satSize; i++ ){
-        tmp=cvRound(sat_hist.at<float>(i)-avg_sat[i]);
-        if(tmp<0) tmp=0;
-        sat_multi[i]=pow(tmp/sat_hist.at<float>(i),3);
-    }*/
     Mat* result=new Mat;
     cvtColor(*hsv_img,*result,CV_HSV2BGR);
     for(int y=0;y<hsv_img->rows;y++){

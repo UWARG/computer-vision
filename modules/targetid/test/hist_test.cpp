@@ -20,7 +20,7 @@ using namespace boost;
 
 BOOST_AUTO_TEST_CASE(hist_test){
     string filePath=boost::unit_test::framework::master_test_suite().argv[1];
-    hist_filter test_filter;
+    HistFilter test_filter;
     DIR* dr;
     dr=opendir(filePath.c_str());
     struct dirent* drnt;
