@@ -36,7 +36,7 @@ BOOST_AUTO_TEST_CASE(picture_test){
     BOOST_REQUIRE(count > 0);
 
     ofstream fout(telemetry_path);
-    fout<<"time,timeError,lat,lon,latError,lonError,pitch,roll,pitchRate,rollRate,yawRate,altitude,heading,altError,headingError,photonum"<<endl;
+    fout<<"time,timeError,lat,lon,latError,lonError,pitch,roll,pitchRate,rollRate,yawRate,altitude,heading,altError,headingError,cameraStatus"<<endl;
     for(int i=0;i<=count;i++)
     {
         for(int j=0;j<15;j++){
@@ -44,7 +44,8 @@ BOOST_AUTO_TEST_CASE(picture_test){
         }
         fout<<i<<endl;
     }
-    PictureImport PI(telemetry_path,filePath,n);
+    MetadataInput* mdin=new MetadataInput(telemetry_path);
+    PictureImport PI(filePath,n,mdin);
     DIR* dr=opendir(filePath.c_str());
     struct dirent* drnt;
     vector<Frame *> frames;
@@ -73,5 +74,6 @@ BOOST_AUTO_TEST_CASE(picture_test){
         int nz=countNonZero(grey);
         BOOST_CHECK(nz==0);
     }
+    delete mdin;
 }
 

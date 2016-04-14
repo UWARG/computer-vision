@@ -35,14 +35,15 @@ BOOST_AUTO_TEST_CASE(csv_test){
     BOOST_REQUIRE(count > 0);
 
     ofstream fout(telemetry_path);
-    fout<<"time,timeError,lat,lon,latError,lonError,pitch,roll,pitchRate,rollRate,yawRate,altitude,heading,altError,headingError,photonum"<<endl;
+    fout<<"time,timeError,lat,lon,latError,lonError,pitch,roll,pitchRate,rollRate,yawRate,altitude,heading,altError,headingError,cameraStatus"<<endl;
     for(int i=0;i<=count;i++) {
         for(int j=0;j<15;j++){
             fout<<j<<",";
         }
         fout<<i<<endl;
     }
-    PictureImport PI(telemetry_path,filePath,n);
+    MetadataInput* mdin=new MetadataInput(telemetry_path);
+    PictureImport PI(filePath,n,mdin);
 
     vector<Frame *> frames;
     while(1){
@@ -72,4 +73,5 @@ BOOST_AUTO_TEST_CASE(csv_test){
         BOOST_CHECK(show->get_metadata()->altError==13);
         BOOST_CHECK(show->get_metadata()->headingError==14);
     }
+    delete mdin;
 }

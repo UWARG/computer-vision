@@ -42,13 +42,12 @@ using namespace cv;
 using namespace std;
 using namespace boost;
 
-PictureImport::PictureImport(std::string telemetry_path, std::string filePath, std::vector<int> videoDeviceNums)
+PictureImport::PictureImport(std::string filePath, std::vector<int> videoDeviceNums, MetadataInput* mdin)
               :ImageImport() {
     this->videoDeviceNums=videoDeviceNums;
-    mdin.input_file(telemetry_path);
+    this->mdin=mdin;
     this->filePath=filePath;
     dr=opendir(filePath.c_str());
-    struct dirent* drnt;
 }
 
 PictureImport::~PictureImport(){
@@ -72,6 +71,6 @@ Frame * PictureImport::next_frame(){
         *img=imread(true_path,CV_LOAD_IMAGE_COLOR);
     }
     string id(drnt->d_name);
-    Frame* frame_buffer=new Frame(img,id,mdin.next_metadata());
+    Frame* frame_buffer=new Frame(img,id,mdin->next_metadata());
     return frame_buffer;
 }

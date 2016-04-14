@@ -13,26 +13,22 @@
 * @return return the vector on success and return an empty vector on failure
 */
 
-class metadata_input{
+class MetadataInput{
     public:
-        metadata_input();
+        MetadataInput(std::string filename);
 
-        metadata_input(std::string filename);
+        ~MetadataInput();
 
-        ~metadata_input();
+        void push_back(Metadata newEntry);
 
-        void input_file(std::string filename);
-
-        void read_metadata();
+        Metadata bisearcher(double timestamp,int begin,int end);
 
         Metadata get_metadata(double timestamp);
 
         Metadata next_metadata();
     private:
-        std::string filename;
-        int mark=1;
-        int photonum=0;
-        int output_photonum=0;
+        int cameraStatus=0;
+        int output_cameraStatus=0;
         std::string heads[16];
         std::vector<Metadata> log;
 };
