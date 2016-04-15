@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['metadata',['Metadata',['../structMetadata.html',1,'']]]
+  ['kmeansfilter',['KMeansFilter',['../classKMeansFilter.html',1,'']]]
 ];

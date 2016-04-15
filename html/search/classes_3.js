@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['imageimport',['ImageImport',['../classImageImport.html',1,'']]]
+  ['gmapsmatcher',['GMapsMatcher',['../classGMapsMatcher.html',1,'']]]
 ];

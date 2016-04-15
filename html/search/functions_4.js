@@ -15,5 +15,7 @@ var searchData=
   ['get_5fprocessed',['get_processed',['../classGMapsMatcher.html#aa72997a5f507e102758d39da607d7567',1,'GMapsMatcher::get_processed()'],['../classTargetAnalyzer.html#a4808850fa9fe529d16b5a2d9ebf1c102',1,'TargetAnalyzer::get_processed()']]],
   ['get_5ftargets',['get_targets',['../classFrame.html#a2bb5c2caf4640c6ff8ee6d6d312d21da',1,'Frame']]],
   ['get_5ftype',['get_type',['../classPixelTarget.html#a978b97f02c3b306de3e0fd3c81981124',1,'PixelTarget::get_type()'],['../classTarget.html#a0098961545716ffa1f6e55f11d1dddc7',1,'Target::get_type()']]],
-  ['get_5fvolume',['get_volume',['../classVolumeCalc.html#add2fe15af3424bf6d7088d41f06fa45a',1,'VolumeCalc']]]
+  ['get_5fvolume',['get_volume',['../classVolumeCalc.html#add2fe15af3424bf6d7088d41f06fa45a',1,'VolumeCalc']]],
+  ['getjson',['getJSON',['../classTargetLoader.html#ac6393e6cdddb6d0a40b185a09a99bc33',1,'TargetLoader']]],
+  ['grabframe',['grabFrame',['../classVideoImport.html#a44192d695fef3c0ed1dac618b3c8646b',1,'VideoImport']]]
 ];

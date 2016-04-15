@@ -93,23 +93,24 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor"></span></div>
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;</div>
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="frame_8h.html">frame.h</a>&quot;</span></div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor">#include &lt;vector&gt;</span></div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;</div>
-<div class="line"><a name="l00031"></a><span class="lineno"><a class="line" href="classImageImport.html">   31</a></span>&#160;<span class="keyword">class </span><a class="code" href="classImageImport.html">ImageImport</a> {</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <a class="code" href="classImageImport.html">ImageImport</a>();</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <span class="keyword">virtual</span> ~<a class="code" href="classImageImport.html">ImageImport</a>();</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="keyword">virtual</span> <a class="code" href="classFrame.html">Frame</a> * <a class="code" href="classImageImport.html#acbf182e5ff9baf205a0e1aceadab654d">next_frame</a>() = 0;</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;};</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="preprocessor">#endif // IMAGE_IMPORT_H_INCLUDED</span></div>
-<div class="ttc" id="classImageImport_html"><div class="ttname"><a href="classImageImport.html">ImageImport</a></div><div class="ttdoc">Abstract class for importing frames and corresponding metadata. </div><div class="ttdef"><b>Definition:</b> imgimport.h:31</div></div>
-<div class="ttc" id="classImageImport_html_acbf182e5ff9baf205a0e1aceadab654d"><div class="ttname"><a href="classImageImport.html#acbf182e5ff9baf205a0e1aceadab654d">ImageImport::next_frame</a></div><div class="ttdeci">virtual Frame * next_frame()=0</div><div class="ttdoc">Retrieves the next frame to be analyzed. </div></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#include &lt;opencv2/highgui/highgui.hpp&gt;</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;</div>
+<div class="line"><a name="l00032"></a><span class="lineno"><a class="line" href="classImageImport.html">   32</a></span>&#160;<span class="keyword">class </span><a class="code" href="classImageImport.html">ImageImport</a> {</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        <a class="code" href="classImageImport.html#aafca889e0e2f820786016725b523e955">ImageImport</a>(); </div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        <span class="keyword">virtual</span> ~<a class="code" href="classImageImport.html">ImageImport</a>();</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        <span class="keyword">virtual</span> <a class="code" href="classFrame.html">Frame</a> * <a class="code" href="classImageImport.html#a13c7fa6183547a14b4bb6f228b7192e8">next_frame</a>() = 0;</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;};</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="preprocessor">#endif // IMAGE_IMPORT_H_INCLUDED</span></div>
+<div class="ttc" id="classImageImport_html"><div class="ttname"><a href="classImageImport.html">ImageImport</a></div><div class="ttdoc">Abstract class for importing frames and corresponding metadata. </div><div class="ttdef"><b>Definition:</b> imgimport.h:32</div></div>
 <div class="ttc" id="frame_8h_html"><div class="ttname"><a href="frame_8h.html">frame.h</a></div><div class="ttdoc">Container class for storing photos or frames of video to be processed and analyzed. </div></div>
 <div class="ttc" id="classFrame_html"><div class="ttname"><a href="classFrame.html">Frame</a></div><div class="ttdef"><b>Definition:</b> frame.h:49</div></div>
+<div class="ttc" id="classImageImport_html_aafca889e0e2f820786016725b523e955"><div class="ttname"><a href="classImageImport.html#aafca889e0e2f820786016725b523e955">ImageImport::ImageImport</a></div><div class="ttdeci">ImageImport()</div><div class="ttdoc">Creates a ImageImport for the telemetry file at the given path. </div><div class="ttdef"><b>Definition:</b> imgimport.cpp:20</div></div>
+<div class="ttc" id="classImageImport_html_a13c7fa6183547a14b4bb6f228b7192e8"><div class="ttname"><a href="classImageImport.html#a13c7fa6183547a14b4bb6f228b7192e8">ImageImport::next_frame</a></div><div class="ttdeci">virtual Frame * next_frame()=0</div><div class="ttdoc">Retrieves the next frame to be analyzed. </div><div class="ttdef"><b>Definition:</b> imgimport.cpp:31</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

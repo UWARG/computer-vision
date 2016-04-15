@@ -1,3 +1,4 @@
 <map id="ImageImport" name="ImageImport">
-<area shape="rect" id="node2" href="$classPictureImport.html" title="A subclass of Imageimport. Specialized to read JPEG files and metadata and generate Frame objects..." alt="" coords="5,160,133,267"/>
+<area shape="rect" id="node2" href="$classPictureImport.html" title="A subclass of Imageimport. Specialized to read JPEG files and metadata and generate Frame objects..." alt="" coords="5,183,133,289"/>
+<area shape="rect" id="node3" href="$classVideoImport.html" title="{VideoImport\n||+ VideoImport()\l+ ~VideoImport()\l+ startCapture()\l+ stopCapture()\l+ grabFrame()\l+ next_frame()\l}" alt="" coords="157,161,277,311"/>
 </map>

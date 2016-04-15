@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['pictureimport',['PictureImport',['../classPictureImport.html',1,'']]],
-  ['pixeltarget',['PixelTarget',['../classPixelTarget.html',1,'']]]
+  ['objectdetector',['ObjectDetector',['../classObjectDetector.html',1,'']]]
 ];

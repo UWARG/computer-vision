@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['pictureimport',['PictureImport',['../classPictureImport.html#a4a0894b88d2caaf326614cd092d6d1a8',1,'PictureImport']]],
-  ['process_5fframe',['process_frame',['../classTargetIdentifier.html#a0ccbb8e432191f1fb3c4fc3dcf058592',1,'TargetIdentifier']]]
+  ['next_5fframe',['next_frame',['../classImageImport.html#a13c7fa6183547a14b4bb6f228b7192e8',1,'ImageImport::next_frame()'],['../classPictureImport.html#a540c467a453d7488c078278bcac05699',1,'PictureImport::next_frame()'],['../classVideoImport.html#ae24708ca761ce34d967c3c907ba6c0a7',1,'VideoImport::next_frame()']]]
 ];
