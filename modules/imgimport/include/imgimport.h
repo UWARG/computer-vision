@@ -18,6 +18,7 @@
 
 
 #include "frame.h"
+#include <opencv2/highgui/highgui.hpp>
 #include <string>
 #include <vector>
 
@@ -29,20 +30,23 @@
  */
 
 class ImageImport {
-public:
-    /**
-     * @brief
-     */
-    ImageImport();
+    public:
+        /**
+         * @brief Creates a ImageImport for the telemetry file at the given path
+         *
+         * @param path Path of the telemetry file
+         * @param photoPath directory containing image and video files to import is required but does not need to contain photos
+         * @param videoDeviceNums indices of the video devices from which to read video frames
+         */
+        ImageImport(); 
+        virtual ~ImageImport();
 
-    virtual ~ImageImport();
-
-    /**
-     * @brief Retrieves the next frame to be analyzed
-     *
-     * @return Frame to be analyzed
-     */
-    virtual Frame * next_frame() = 0;
+        /**
+         * @brief Retrieves the next frame to be analyzed
+         *
+         * @return Frame to be analyzed
+         */
+        virtual Frame * next_frame() = 0;
 };
 
 #endif // IMAGE_IMPORT_H_INCLUDED

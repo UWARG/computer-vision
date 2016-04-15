@@ -1,0 +1,27 @@
+{
+	"parameters": {
+		"yes": {
+			"mean": {
+				"enabled": "true",
+				"value": 1,
+				"confidence": 1
+			},
+			"mode": {
+				"enabled": "true",
+				"value": 1,
+				"confidence": 2
+			},
+			"std": {
+				"enabled": "true",
+				"value": 1,
+				"confidence": 3
+			},
+			"distribution": {
+				"enabled": "true",
+				"value": 1,
+				"confidence": 4
+			}
+		}
+
+	}
+}

@@ -1,2 +1,4 @@
-# Put files to ignore here
+# Put files to ignore here 
 build
+*~
+.idea
