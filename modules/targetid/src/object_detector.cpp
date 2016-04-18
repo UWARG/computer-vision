@@ -30,7 +30,7 @@
 */
 
 #include "object_detector.h"
-#include "pixel_target.h"
+#include "pixel_object.h"
 #include <vector>
 #include "frame.h"
 
@@ -55,11 +55,12 @@ void ObjectDetector::process_frame(Frame * f){
         Scalar colour;
         Point2d error;
         double errorAngle;
+        Mat crop;
 
         // get info from contours/image
 
-        PixelTarget * p = new PixelTarget(type, centroid, area, perimeter, colour, error, errorAngle);
-        f->add_target(p);
+        PixelObject * p = new PixelObject(crop, contour, centroid, area, perimeter, colour, error, errorAngle);
+        f->add_object(p);
     }
 }
 

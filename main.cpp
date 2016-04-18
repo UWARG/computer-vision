@@ -44,6 +44,7 @@
 #include "frame.h"
 #include "target_identifier.h"
 #include "imgimport.h"
+#include "target.h"
 
 using namespace std;
 using namespace boost;
