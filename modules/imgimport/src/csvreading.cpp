@@ -17,45 +17,39 @@ MetadataInput::MetadataInput(string filename){
     getline(finput,headrow);
     int len=headrow.length();
     heads[0]="";
-    int j=0;
+    int k=0;
     for(int i=0;i<len;i++){
         if(headrow[i]==','){
-            j++;
-       	    if(j==16){
+            k++;
+       	    if(k==80){
                 break;
             }
-            heads[j]="";
+            heads[k]="";
         }
         else{
-            heads[j]+=headrow[i];
+            if(headrow[i]!=13){
+                heads[k]+=headrow[i];
+            }
         }
     }
     int temnum;
     bool f=0;
     char comma;
     while(!finput.eof()){
-        Metadata input;
-        for(int j=0;j<16;){
+        DataRead input;
+        for(int j=0;j<80;){
+            if(heads[j].compare("sys_time")==0){
+                finput>>input.sys_time;
+                j++;
+                if(j!=80){
+                    finput>>comma;
+                }
+                continue;
+            }
             if(heads[j].compare("time")==0){
                 finput>>input.time;
                 j++;
-                if(j!=16){
-                    finput>>comma;
-                }
-                continue;
-            }
-            if(heads[j].compare("timeError")==0){
-                finput>>input.timeError;
-                j++;
-                if(j!=16){
-                    finput>>comma;
-                }
-                continue;
-            }
-            if(heads[j].compare("lat")==0){
-                finput>>input.lat;
-                j++;
-                if(j!=16){
+                if(j!=80){
                     finput>>comma;
                 }
                 continue;
@@ -63,23 +57,15 @@ MetadataInput::MetadataInput(string filename){
             if(heads[j].compare("lon")==0){
                 finput>>input.lon;
                 j++;
-                if(j!=16){
+                if(j!=80){
                     finput>>comma;
                 }
                 continue;
             }
-            if(heads[j].compare("latError")==0){
-                finput>>input.latError;
+            if(heads[j].compare("lat")==0){
+                finput>>input.lat;
                 j++;
-                if(j!=16){
-                    finput>>comma;
-                }
-                continue;
-            }
-            if(heads[j].compare("lonError")==0){
-                finput>>input.lonError;
-                j++;
-                if(j!=16){
+                if(j!=80){
                     finput>>comma;
                 }
                 continue;
@@ -87,7 +73,55 @@ MetadataInput::MetadataInput(string filename){
             if(heads[j].compare("pitch")==0){
                 finput>>input.pitch;
                 j++;
-                if(j!=16){
+                if(j!=80){
+                    finput>>comma;
+                }
+                continue;
+            }
+            if(heads[j].compare("pitch_rate")==0){
+                finput>>input.pitch_rate;
+                j++;
+                if(j!=80){
+                    finput>>comma;
+                }
+                continue;
+            }
+            if(heads[j].compare("pitch_setpoint")==0){
+                finput>>input.pitch_setpoint;
+                j++;
+                if(j!=80){
+                    finput>>comma;
+                }
+                continue;
+            }
+            if(heads[j].compare("pitch_rate_setpoint")==0){
+                finput>>input.pitch_rate_setpoint;
+                j++;
+                if(j!=80){
+                    finput>>comma;
+                }
+                continue;
+            }
+            if(heads[j].compare("pitch_kd")==0){
+                finput>>input.pitch_kd;
+                j++;
+                if(j!=80){
+                    finput>>comma;
+                }
+                continue;
+            }
+            if(heads[j].compare("pitch_kp")==0){
+                finput>>input.pitch_kp;
+                j++;
+                if(j!=80){
+                    finput>>comma;
+                }
+                continue;
+            }
+            if(heads[j].compare("pitch_ki")==0){
+                finput>>input.pitch_ki;
+                j++;
+                if(j!=80){
                     finput>>comma;
                 }
                 continue;
@@ -95,39 +129,111 @@ MetadataInput::MetadataInput(string filename){
             if(heads[j].compare("roll")==0){
                 finput>>input.roll;
                 j++;
-                if(j!=16){
+                if(j!=80){
                     finput>>comma;
                 }
                 continue;
             }
-            if(heads[j].compare("pitchRate")==0){
-                finput>>input.pitchRate;
+            if(heads[j].compare("roll_rate")==0){
+                finput>>input.roll_rate;
                 j++;
-                if(j!=16){
+                if(j!=80){
                     finput>>comma;
                 }
                 continue;
             }
-            if(heads[j].compare("rollRate")==0){
-                finput>>input.rollRate;
+            if(heads[j].compare("roll_setpoint")==0){
+                finput>>input.roll_setpoint;
                 j++;
-                if(j!=16){
+                if(j!=80){
                     finput>>comma;
                 }
                 continue;
             }
-            if(heads[j].compare("yawRate")==0){
-                finput>>input.yawRate;
+            if(heads[j].compare("roll_rate_setpoint")==0){
+                finput>>input.roll_rate_setpoint;
                 j++;
-                if(j!=16){
+                if(j!=80){
                     finput>>comma;
                 }
                 continue;
             }
-            if(heads[j].compare("altitude")==0){
-                finput>>input.altitude;
+            if(heads[j].compare("roll_kd")==0){
+                finput>>input.roll_kd;
                 j++;
-                if(j!=16){
+                if(j!=80){
+                    finput>>comma;
+                }
+                continue;
+            }
+            if(heads[j].compare("roll_kp")==0){
+                finput>>input.roll_kp;
+                j++;
+                if(j!=80){
+                    finput>>comma;
+                }
+                continue;
+            }
+            if(heads[j].compare("roll_ki")==0){
+                finput>>input.roll_ki;
+                j++;
+                if(j!=80){
+                    finput>>comma;
+                }
+                continue;
+            }
+            if(heads[j].compare("yaw")==0){
+                finput>>input.yaw;
+                j++;
+                if(j!=80){
+                    finput>>comma;
+                }
+                continue;
+            }
+            if(heads[j].compare("yaw_rate")==0){
+                finput>>input.yaw_rate;
+                j++;
+                if(j!=80){
+                    finput>>comma;
+                }
+                continue;
+            }
+            if(heads[j].compare("yaw_rate_setpoint")==0){
+                finput>>input.yaw_rate_setpoint;
+                j++;
+                if(j!=80){
+                    finput>>comma;
+                }
+                continue;
+            }
+            if(heads[j].compare("yaw_kd")==0){
+                finput>>input.yaw_kd;
+                j++;
+                if(j!=80){
+                    finput>>comma;
+                }
+                continue;
+            }
+            if(heads[j].compare("yaw_kp")==0){
+                finput>>input.yaw_kp;
+                j++;
+                if(j!=80){
+                    finput>>comma;
+                }
+                continue;
+            }
+            if(heads[j].compare("yaw_ki")==0){
+                finput>>input.yaw_ki;
+                j++;
+                if(j!=80){
+                    finput>>comma;
+                }
+                continue;
+            }
+            if(heads[j].compare("airspeed")==0){
+                finput>>input.airspeed;
+                j++;
+                if(j!=80){
                     finput>>comma;
                 }
                 continue;
@@ -135,61 +241,535 @@ MetadataInput::MetadataInput(string filename){
             if(heads[j].compare("heading")==0){
                 finput>>input.heading;
                 j++;
-                if(j!=16){
+                if(j!=80){
                     finput>>comma;
                 }
                 continue;
             }
-            if(heads[j].compare("altError")==0){
-                finput>>input.altError;
+            if(heads[j].compare("heading_setpoint")==0){
+                finput>>input.heading_setpoint;
                 j++;
-                if(j!=16){
+                if(j!=80){
                     finput>>comma;
                 }
                 continue;
             }
-            if(heads[j].compare("headingError")==0){
-                finput>>input.headingError;
+            if(heads[j].compare("heading_kd")==0){
+                finput>>input.heading_kd;
                 j++;
-                if(j!=16){
+                if(j!=80){
                     finput>>comma;
                 }
                 continue;
             }
-            if(heads[j].compare("cameraStatus")==0){
-                finput>>temnum;
-                if(temnum>cameraStatus){
-                    f=1;
-                }
+            if(heads[j].compare("heading_kp")==0){
+                finput>>input.heading_kp;
                 j++;
+                if(j!=80){
+                    finput>>comma;
+                }
+                continue;
+            }
+            if(heads[j].compare("heading_ki")==0){
+                finput>>input.heading_ki;
+                j++;
+                if(j!=80){
+                    finput>>comma;
+                }
+                continue;
+            }
+            if(heads[j].compare("altitude")==0){
+                finput>>input.altitude;
+                j++;
+                if(j!=80){
+                    finput>>comma;
+                }
+                continue;
+            }
+            if(heads[j].compare("altitude_setpoint")==0){
+                finput>>input.altitude_setpoint;
+                j++;
+                if(j!=80){
+                    finput>>comma;
+                }
+                continue;
+            }
+            if(heads[j].compare("altitude_kd")==0){
+                finput>>input.altitude_kd;
+                j++;
+                if(j!=80){
+                    finput>>comma;
+                }
+                continue;
+            }
+            if(heads[j].compare("altitude_kp")==0){
+                finput>>input.altitude_kp;
+                j++;
+                if(j!=80){
+                    finput>>comma;
+                }
+                continue;
+            }
+            if(heads[j].compare("altitude_ki")==0){
+                finput>>input.altitude_ki;
+                j++;
+                if(j!=80){
+                    finput>>comma;
+                }
+                continue;
+            }
+            if(heads[j].compare("flap_setpoint")==0){
+                finput>>input.flap_setpoint;
+                j++;
+                if(j!=80){
+                    finput>>comma;
+                }
+                continue;
+            }
+            if(heads[j].compare("flap_kd")==0){
+                finput>>input.flap_kd;
+                j++;
+                if(j!=80){
+                    finput>>comma;
+                }
+                continue;
+            }
+            if(heads[j].compare("flap_kp")==0){
+                finput>>input.flap_kp;
+                j++;
+                if(j!=80){
+                    finput>>comma;
+                }
+                continue;
+            }
+            if(heads[j].compare("flap_ki")==0){
+                finput>>input.flap_ki;
+                j++;
+                if(j!=80){
+                    finput>>comma;
+                }
+                continue;
+            }
+            if(heads[j].compare("ground_speed")==0){
+                finput>>input.ground_speed;
+                j++;
+                if(j!=80){
+                    finput>>comma;
+                }
+                continue;
+            }
+            if(heads[j].compare("throttle_setpoint")==0){
+                finput>>input.throttle_setpoint;
+                j++;
+                if(j!=80){
+                    finput>>comma;
+                }
+                continue;
+            }
+            if(heads[j].compare("throttle_kd")==0){
+                finput>>input.throttle_kd;
+                j++;
+                if(j!=80){
+                    finput>>comma;
+                }
+                continue;
+            }
+            if(heads[j].compare("throttle_kp")==0){
+                finput>>input.throttle_kp;
+                j++;
+                if(j!=80){
+                    finput>>comma;
+                }
+                continue;
+            }
+            if(heads[j].compare("throttle_ki")==0){
+                finput>>input.throttle_ki;
+                j++;
+                if(j!=80){
+                    finput>>comma;
+                }
+                continue;
+            }
+            if(heads[j].compare("wireless_connection")==0){
+                finput>>input.wireless_connection;
+                j++;
+                if(j!=80){
+                    finput>>comma;
+                }
+                continue;
+            }
+            if(heads[j].compare("last_command_sent0")==0){
+                finput>>input.last_command_sent0;
+                j++;
+                if(j!=80){
+                    finput>>comma;
+                }
+                continue;
+            }
+            if(heads[j].compare("last_command_sent1")==0){
+                finput>>input.last_command_sent1;
+                j++;
+                if(j!=80){
+                    finput>>comma;
+                }
+                continue;
+            }
+            if(heads[j].compare("last_command_sent2")==0){
+                finput>>input.last_command_sent2;
+                j++;
+                if(j!=80){
+                    finput>>comma;
+                }
+                continue;
+            }
+            if(heads[j].compare("last_command_sent3")==0){
+                finput>>input.last_command_sent3;
+                j++;
+                if(j!=80){
+                    finput>>comma;
+                }
+                continue;
+            }
+            if(heads[j].compare("camera_status")==0){
+                finput>>input.camera_status;
+                j++;
+                if(j!=80){
+                    finput>>comma;
+                }
+                continue;
+            }
+            if(heads[j].compare("waypointindex")==0){
+                finput>>input.waypointindex;
+                j++;
+                if(j!=80){
+                    finput>>comma;
+                }
+                continue;
+            }
+            if(heads[j].compare("path_gain")==0){
+                finput>>input.path_gain;
+                j++;
+                if(j!=80){
+                    finput>>comma;
+                }
+                continue;
+            }
+            if(heads[j].compare("orbit_gain")==0){
+                finput>>input.orbit_gain;
+                j++;
+                if(j!=80){
+                    finput>>comma;
+                }
+                continue;
+            }
+            if(heads[j].compare("battery_level1")==0){
+                finput>>input.battery_level1;
+                j++;
+                if(j!=80){
+                    finput>>comma;
+                }
+                continue;
+            }
+            if(heads[j].compare("battery_level2")==0){
+                finput>>input.battery_level2;
+                j++;
+                if(j!=80){
+                    finput>>comma;
+                }
+                continue;
+            }
+            if(heads[j].compare("ch1in")==0){
+                finput>>input.ch1in;
+                j++;
+                if(j!=80){
+                    finput>>comma;
+                }
+                continue;
+            }
+            if(heads[j].compare("ch2in")==0){
+                finput>>input.ch2in;
+                j++;
+                if(j!=80){
+                    finput>>comma;
+                }
+                continue;
+            }
+            if(heads[j].compare("ch3in")==0){
+                finput>>input.ch3in;
+                j++;
+                if(j!=80){
+                    finput>>comma;
+                }
+                continue;
+            }
+            if(heads[j].compare("ch4in")==0){
+                finput>>input.ch4in;
+                j++;
+                if(j!=80){
+                    finput>>comma;
+                }
+                continue;
+            }
+            if(heads[j].compare("ch5in")==0){
+                finput>>input.ch5in;
+                j++;
+                if(j!=80){
+                    finput>>comma;
+                }
+                continue;
+            }
+            if(heads[j].compare("ch6in")==0){
+                finput>>input.ch6in;
+                j++;
+                if(j!=80){
+                    finput>>comma;
+                }
+                continue;
+            }
+            if(heads[j].compare("ch7in")==0){
+                finput>>input.ch7in;
+                j++;
+                if(j!=80){
+                    finput>>comma;
+                }
+                continue;
+            }
+            if(heads[j].compare("ch8in")==0){
+                finput>>input.ch8in;
+                j++;
+                if(j!=80){
+                    finput>>comma;
+                }
+                continue;
+            }
+            if(heads[j].compare("ch1out")==0){
+                finput>>input.ch1out;
+                j++;
+                if(j!=80){
+                    finput>>comma;
+                }
+                continue;
+            }
+            if(heads[j].compare("ch2out")==0){
+                finput>>input.ch2out;
+                j++;
+                if(j!=80){
+                    finput>>comma;
+                }
+                continue;
+            }
+            if(heads[j].compare("ch3out")==0){
+                finput>>input.ch3out;
+                j++;
+                if(j!=80){
+                    finput>>comma;
+                }
+                continue;
+            }
+            if(heads[j].compare("ch4out")==0){
+                finput>>input.ch4out;
+                j++;
+                if(j!=80){
+                    finput>>comma;
+                }
+                continue;
+            }
+            if(heads[j].compare("ch5out")==0){
+                finput>>input.ch5out;
+                j++;
+                if(j!=80){
+                    finput>>comma;
+                }
+                continue;
+            }
+            if(heads[j].compare("ch6out")==0){
+                finput>>input.ch6out;
+                j++;
+                if(j!=80){
+                    finput>>comma;
+                }
+                continue;
+            }
+            if(heads[j].compare("ch7out")==0){
+                finput>>input.ch7out;
+                j++;
+                if(j!=80){
+                    finput>>comma;
+                }
+                continue;
+            }
+            if(heads[j].compare("ch8out")==0){
+                finput>>input.ch8out;
+                j++;
+                if(j!=80){
+                    finput>>comma;
+                }
+                continue;
+            }
+            if(heads[j].compare("autopilot_active")==0){
+                finput>>input.autopilot_active;
+                j++;
+                if(j!=80){
+                    finput>>comma;
+                }
+                continue;
+            }
+            if(heads[j].compare("gps_status")==0){
+                finput>>input.gps_status;
+                j++;
+                if(j!=80){
+                    finput>>comma;
+                }
+                continue;
+            }
+            if(heads[j].compare("path_checksum")==0){
+                finput>>input.path_checksum;
+                j++;
+                if(j!=80){
+                    finput>>comma;
+                }
+                continue;
+            }
+            if(heads[j].compare("waypoint_count")==0){
+                finput>>input.waypoint_count;
+                j++;
+                if(j!=80){
+                    finput>>comma;
+                }
+                continue;
+            }
+            if(heads[j].compare("waypoint_index")==0){
+                finput>>input.waypoint_index;
+                j++;
+                if(j!=80){
+                    finput>>comma;
+                }
+                continue;
+            }
+            if(heads[j].compare("path_following")==0){
+                finput>>input.path_following;
+                j++;
+                if(j!=80){
+                    finput>>comma;
+                }
+                continue;
+            }
+            if(heads[j].compare("autonomousLevel")==0){
+                finput>>input.autonomousLevel;
+                j++;
+                if(j!=80){
+                    finput>>comma;
+                }
+                continue;
+            }
+            if(heads[j].compare("startup_error_codes")==0){
+                finput>>input.startup_error_codes;
+                j++;
+                if(j!=80){
+                    finput>>comma;
+                }
+                continue;
+            }
+            if(heads[j].compare("startupSettings")==0){
+                finput>>input.startupSettings;
+                j++;
+                if(j!=80){
+                    finput>>comma;
+                }
+                continue;
+            }
+            if(heads[j].compare("RSSI")==0){
+                finput>>input.RSSI;
+                j++;
+                if(j!=80){
+                    finput>>comma;
+                }
                 continue;
             }
             cerr<<"header error"<<endl;
             return;
         }
         log.push_back(input);
-        if(f==1){
-            cameraStatus++;
-            f=0;
-        }
     }
     finput.close();
+    for(int j=0;j<log.size();j++){
+        Metadata reader;
+        reader.time=log.at(j).sys_time;
+        reader.lat=log.at(j).lat;
+        reader.lon=log.at(j).lon;
+        reader.pitch=log.at(j).pitch;
+        reader.roll=log.at(j).roll;
+        reader.altitude=log.at(j).altitude;
+        reader.heading=log.at(j).heading;
+        bool end=(j==log.size()-1);
+        if(j==0){
+            reader.timeError=0;
+            reader.altError=0;
+            reader.headingError=0;
+        }
+        else{
+            reader.timeError=(log.at(j).ground_speed-log.at(j-1).ground_speed)*(log.at(j).sys_time-log.at(j-1).sys_time);
+            reader.altError=(log.at(j).pitch-log.at(j-1).pitch)*(log.at(j).sys_time-log.at(j-1).sys_time);
+            reader.headingError=log.at(j).heading-log.at(j-1).heading;
+        }
+        if(j==0||end==1){
+            reader.pitchRate=0;
+            reader.rollRate=0;
+            reader.yawRate=0;
+        }
+        else{
+            reader.pitchRate=(double)(log.at(j+1).pitch-log.at(j-1).pitch)/(double)(log.at(j+1).sys_time-log.at(j-1).sys_time);
+            reader.rollRate=(double)(log.at(j+1).roll-log.at(j-1).roll)/(double)(log.at(j+1).sys_time-log.at(j-1).sys_time);
+            reader.yawRate=(double)(log.at(j+1).heading-log.at(j-1).heading)/(double)(log.at(j+1).sys_time-log.at(j-1).sys_time);
+        }
+        reader.latError=reader.timeError*(cos(reader.heading+reader.headingError)-cos(reader.heading-reader.headingError));
+        reader.latError=reader.timeError*(sin(reader.heading+reader.headingError)-sin(reader.heading-reader.headingError));
+        md.push_back(reader);
+    }
 }
 
 MetadataInput::~MetadataInput(){
 }
 
-void MetadataInput::push_back(Metadata newEntry){
+void MetadataInput::push_back(DataRead newEntry){
     log.push_back(newEntry);
+    Metadata reader;
+    int j=log.size()-1;
+    reader.time=log.at(j).sys_time;
+    reader.lat=log.at(j).lat;
+    reader.lon=log.at(j).lon;
+    reader.pitch=log.at(j).pitch;
+    reader.roll=log.at(j).roll;
+    reader.altitude=log.at(j).altitude;
+    reader.heading=log.at(j).heading;
+    if(j==0){
+        reader.timeError=0;
+        reader.altError=0;
+        reader.headingError=0;
+    }
+    else{
+        reader.timeError=(log.at(j).ground_speed-log.at(j-1).ground_speed)*(log.at(j).sys_time-log.at(j-1).sys_time);
+        reader.altError=(log.at(j).pitch-log.at(j-1).pitch)*(log.at(j).sys_time-log.at(j-1).sys_time);
+        reader.headingError=log.at(j).heading-log.at(j-1).heading;
+    }
+    reader.pitchRate=0;
+    reader.rollRate=0;
+    reader.yawRate=0;
+    md.at(j-1).pitchRate=(double)(log.at(j).pitch-log.at(j-2).pitch)/(double)(log.at(j).sys_time-log.at(j-2).sys_time);
+    md.at(j-1).rollRate=(double)(log.at(j).roll-log.at(j-2).roll)/(double)(log.at(j).sys_time-log.at(j-2).sys_time);
+    md.at(j-1).yawRate=(double)(log.at(j).heading-log.at(j-2).heading)/(double)(log.at(j).sys_time-log.at(j-2).sys_time);
+    reader.latError=reader.timeError*(cos(reader.heading+reader.headingError)-cos(reader.heading-reader.headingError));
+    reader.latError=reader.timeError*(sin(reader.heading+reader.headingError)-sin(reader.heading-reader.headingError));
+    md.push_back(reader);
 }
 
 Metadata MetadataInput::bisearcher(double timestamp,int begin,int end){
     if(end-begin<=1){
         if(abs(timestamp-log.at(begin).time)<abs(timestamp-log.at(end).time)){
-            return log.at(begin);
+            return md.at(begin);
         }
         else{
-            return log.at(end);
+            return md.at(end);
         }
     }
     if(timestamp<log.at((begin+end)/2).time){
@@ -211,5 +791,5 @@ Metadata MetadataInput::next_metadata(){
         Metadata errorresult;
         return errorresult;
     }
-    return log.at(output_cameraStatus-1);
+    return md.at(output_cameraStatus-1);
 }
