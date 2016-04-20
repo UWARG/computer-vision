@@ -44,12 +44,16 @@
 #include "frame.h"
 #include "target_identifier.h"
 #include "imgimport.h"
+#include "vidimport.h"
+#include "pictureimport.h"
 
 using namespace std;
 using namespace boost;
 using namespace cv;
 namespace logging = boost::log;
 namespace po = boost::program_options;
+
+const int BUFFER_SIZE = 20;
 
 Frame* next_image();
 int handle_args(int argc, char** argv);
@@ -78,13 +82,15 @@ void worker(Frame* f) {
 void read_images() {
     Frame* currentFrame;
     while (hasMoreFrames) {
-        Frame* f = importer->next_frame();
-        if (f) {
-            in_buffer.push(f);
-        }
-        else {
-            hasMoreFrames = false;
-            ioService.stop();
+        if (in_buffer.size() < BUFFER_SIZE) {
+            Frame* f = importer->next_frame();
+            if (f) {
+                in_buffer.push(f);
+            }
+            else {
+                hasMoreFrames = false;
+                ioService.stop();
+            }
         }
         boost::this_thread::sleep(boost::posix_time::milliseconds(30));
     }
@@ -127,8 +133,9 @@ void init() {
 
 int main(int argc, char** argv) {
     init();
-    if (handle_args(argc, argv) == 1)
-        return 0;
+    int retArg;
+    if (retArg = handle_args(argc, argv) != 0)
+        return retArg;
 
     int processors = boost::thread::hardware_concurrency();
 
@@ -150,7 +157,11 @@ int handle_args(int argc, char** argv) {
 
         description.add_options()("help,h", "Display this help message")
             ("images,i", po::value<string>(), "Directory containing image files to be processed")
-            ("device,d", po::value<int>(), "Video device to capture images from");
+            ("video,v", po::value<int>(), "Video device to capture images from")
+#ifdef HAS_DECKLINK
+            ("decklink,d", "Use this option to capture video from a connected Decklink card")
+#endif // HAS_DECKLINK
+            ("telemetry,t", po::value<string>(), "Path of the telemetry log for the given image source");
 
         po::variables_map vm;
         po::store(po::parse_command_line(argc, argv, description), vm);
@@ -159,6 +170,25 @@ int handle_args(int argc, char** argv) {
         if (vm.count("help")) {
             cout << description << endl;
             return 1;
+        }
+        if (vm.count("video") + vm.count("decklink") + vm.count("images")) {
+            cout << "Invalid options: You can only specify one image source at a time" << endl;
+            return 1;
+        }
+        if (!vm.count("telemetry")) {
+            cout << "Invalid options; You must specify a telemetry file" << endl;
+        }
+        string telemetry = vm["telemetry"].as<string>();
+
+#ifdef HAS_DECKLINK
+        if (vm.count("decklink")) {
+            importer = new VideoImport();
+        }
+#endif // HAS_DECKLINK
+
+        if (vm.count("images")) {
+            string path = vm["images"].as<string>();
+            importer = new PictureImport(telemetry, path);
         }
     }
     catch (std::exception& e) {
