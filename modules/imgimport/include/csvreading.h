@@ -96,7 +96,6 @@ class MetadataInput{
 
         Metadata next_metadata();
     private:
-        int cameraStatus=0;
         int output_cameraStatus=0;
         std::string heads[80];
         std::vector<DataRead> log;
