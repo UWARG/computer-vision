@@ -36,6 +36,7 @@ MetadataInput::MetadataInput(string filename){
     bool f=0;
     char comma;
     vector<vector<string>> readin;
+    getline(finput,headrow);
     while(!finput.eof()){
         getline(finput,headrow);
         if(finput.eof())
