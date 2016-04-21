@@ -57,6 +57,14 @@ void ObjectDetector::process_frame(Frame * f){
         double errorAngle;
 
         // get info from contours/image
+        Moments mu = moments(contour, false);
+        centroid = Point2d( mu.m10/mu.m00 , mu.m01/mu.m00 );
+        perimeter = arcLength(contour, true);
+        area = contourArea(contour);
+        // TODO: Calculate location error
+        Mat mask = Mat::zeros(f->size(), CV_8UC1);
+        drawContours(mask, vector({contour}), 0, Scalar(255), CV_FILLED);
+        colour = mean(*f, mask);
 
         PixelTarget * p = new PixelTarget(type, centroid, area, perimeter, colour, error, errorAngle);
         f->add_target(p);
