@@ -89,7 +89,6 @@ void read_images() {
             }
             else {
                 hasMoreFrames = false;
-                ioService.stop();
             }
         }
         boost::this_thread::sleep(boost::posix_time::milliseconds(30));
@@ -113,7 +112,7 @@ void assign_workers() {
 
 void output() {
     filebuf fb;
-    while (hasMoreFrames || out_buffer.size() > 0) {
+    while (hasMoreFrames || out_buffer.size() > 0 || workers > 0) {
         if (out_buffer.size() > 0) {
             fb.open("out.txt", ios::app);
             ostream out(&fb);
@@ -125,6 +124,7 @@ void output() {
         }
         boost::this_thread::sleep(boost::posix_time::milliseconds(30));
     }
+    ioService.stop();
 }
 
 void init() { 
@@ -167,16 +167,21 @@ int handle_args(int argc, char** argv) {
         po::store(po::parse_command_line(argc, argv, description), vm);
         po::notify(vm);
 
-        if (vm.count("help")) {
+        if (vm.count("help") || vm.size() == 0) {
             cout << description << endl;
             return 1;
         }
-        if (vm.count("video") + vm.count("decklink") + vm.count("images")) {
+        int devices = vm.count("video") + vm.count("decklink") + vm.count("images");
+        if (devices > 1) {
             cout << "Invalid options: You can only specify one image source at a time" << endl;
+            return 1;
+        } else if(devices == 0) {
+            cout << "Error: You must specify an image source!" << endl;
             return 1;
         }
         if (!vm.count("telemetry")) {
             cout << "Invalid options; You must specify a telemetry file" << endl;
+            return 1;
         }
         string telemetry = vm["telemetry"].as<string>();
 

@@ -29,6 +29,7 @@
     SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
+#include <opencv2/imgproc.hpp>
 #include "object_detector.h"
 #include "pixel_target.h"
 #include <vector>
@@ -62,9 +63,9 @@ void ObjectDetector::process_frame(Frame * f){
         perimeter = arcLength(contour, true);
         area = contourArea(contour);
         // TODO: Calculate location error
-        Mat mask = Mat::zeros(f->size(), CV_8UC1);
-        drawContours(mask, vector({contour}), 0, Scalar(255), CV_FILLED);
-        colour = mean(*f, mask);
+        Mat mask = Mat::zeros(f->get_img().size(), CV_8UC1);
+        drawContours(mask, vector<vector<Point> >({contour}), 0, Scalar(255), CV_FILLED);
+        colour = mean(f->get_img(), mask);
 
         PixelTarget * p = new PixelTarget(type, centroid, area, perimeter, colour, error, errorAngle);
         f->add_target(p);

@@ -30,13 +30,19 @@
 */
 
 #include "target_identifier.h"
+#include "k_means_filter.h"
+#include "canny_contour_creator.h"
 
 TargetIdentifier::TargetIdentifier(){
-    //detector = new ObjectDetector();
+    filter = new KMeansFilter();
+    cCreator = new CannyContourCreator();
+    detector = new ObjectDetector(filter, cCreator);
 }
 
 TargetIdentifier::~TargetIdentifier(){
     delete detector;
+    delete filter;
+    delete cCreator;
 }
 
 void TargetIdentifier::process_frame(Frame * f){

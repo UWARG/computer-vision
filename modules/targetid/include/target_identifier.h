@@ -50,19 +50,22 @@
 #include "object_detector.h"
 
 class TargetIdentifier{
+public:
+    TargetIdentifier();
+
+    ~TargetIdentifier();
+
+
+    /**
+     * @brieif Processes frame and identifies targets
+     *
+     * @param f Frame to be processed
+     */
+    void process_frame(Frame * f);
+private:
     ObjectDetector * detector;
-    public:
-        TargetIdentifier();
-
-        ~TargetIdentifier();
-
-
-        /**
-         * @brieif Processes frame and identifies targets
-         *
-         * @param f Frame to be processed
-         */
-        void process_frame(Frame * f);
+    Filter * filter;
+    ContourCreator * cCreator;
 };
 
 
