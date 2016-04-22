@@ -72,6 +72,7 @@ if(Boost_FOUND AND OpenCV_FOUND)
 
     add_executable(warg-cv main.cpp)
     target_link_libraries(warg-cv ${Boost_LIBRARIES} Core ReportGenerator CSVCreator TargetAnalysis TargetIdentification VolumeCalculation ImageImport GoogleMapsMatcher)
+    install(TARGETS warg-cv DESTINATION bin)
 
 endif()
 
