@@ -38,8 +38,8 @@ Evaluate each to classify as each target and apply percentage to
 */
 
 #include "frame.h"
-#include "pixel_target.h"
+#include "pixel_object.h"
 
-void analyze_targets_in_frame(Frame * f, PixelTarget t){
-     
-}     
+void analyze_targets_in_frame(Frame * f, PixelObject t){
+
+}
