@@ -70,7 +70,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Friends</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -88,6 +88,11 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">Target Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Container class for storing information about identified targets in real-world measurements Adding PixelTargets consolidates their information into the <a class="el" href="classTarget.html" title="Container class for storing information about identified targets in real-world measurements Adding Pi...">Target</a>.  
+ <a href="classTarget.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="target_8h_source.html">target.h</a>&gt;</code></p>
 <div class="dynheader">
 Collaboration diagram for Target:</div>
 <div class="dyncontent">
@@ -102,7 +107,7 @@ Public Member Functions</h2></td></tr>
 &#160;</td><td class="memItemRight" valign="bottom"><b>Target</b> (std::string type)</td></tr>
 <tr class="separator:a8de861072c6fcd17d180e2dac7aa1c12"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6349615c6cf5c878464457478bdbc3c7"><td class="memItemLeft" align="right" valign="top">cv::Mat&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTarget.html#a6349615c6cf5c878464457478bdbc3c7">get_image</a> ()</td></tr>
-<tr class="memdesc:a6349615c6cf5c878464457478bdbc3c7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Getter for <a class="el" href="classTarget.html">Target</a> image.  <a href="#a6349615c6cf5c878464457478bdbc3c7">More...</a><br/></td></tr>
+<tr class="memdesc:a6349615c6cf5c878464457478bdbc3c7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Getter for <a class="el" href="classTarget.html" title="Container class for storing information about identified targets in real-world measurements Adding Pi...">Target</a> image.  <a href="#a6349615c6cf5c878464457478bdbc3c7">More...</a><br/></td></tr>
 <tr class="separator:a6349615c6cf5c878464457478bdbc3c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0098961545716ffa1f6e55f11d1dddc7"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTarget.html#a0098961545716ffa1f6e55f11d1dddc7">get_type</a> ()</td></tr>
 <tr class="memdesc:a0098961545716ffa1f6e55f11d1dddc7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Getter for type field.  <a href="#a0098961545716ffa1f6e55f11d1dddc7">More...</a><br/></td></tr>
@@ -125,32 +130,34 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a1e3867f3e67797ca7c03984e30c260de"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTarget.html#a1e3867f3e67797ca7c03984e30c260de">get_error_angle</a> ()</td></tr>
 <tr class="memdesc:a1e3867f3e67797ca7c03984e30c260de"><td class="mdescLeft">&#160;</td><td class="mdescRight">Getter for error angle.  <a href="#a1e3867f3e67797ca7c03984e30c260de">More...</a><br/></td></tr>
 <tr class="separator:a1e3867f3e67797ca7c03984e30c260de"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1dd57d0a27f9ca516f1b722419cace36"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTarget.html#a1dd57d0a27f9ca516f1b722419cace36">add_pixel_target</a> (<a class="el" href="classPixelTarget.html">PixelTarget</a> *t)</td></tr>
-<tr class="memdesc:a1dd57d0a27f9ca516f1b722419cace36"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds given <a class="el" href="classPixelTarget.html">PixelTarget</a> to <a class="el" href="classTarget.html">Target</a>'s storage and recalculate target information.  <a href="#a1dd57d0a27f9ca516f1b722419cace36">More...</a><br/></td></tr>
-<tr class="separator:a1dd57d0a27f9ca516f1b722419cace36"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9f69308feffebf5ff6f641aacfde2507"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPixelTarget.html">PixelTarget</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTarget.html#a9f69308feffebf5ff6f641aacfde2507">get_pixel_targets</a> ()</td></tr>
-<tr class="memdesc:a9f69308feffebf5ff6f641aacfde2507"><td class="mdescLeft">&#160;</td><td class="mdescRight">Getter for pixel Targets.  <a href="#a9f69308feffebf5ff6f641aacfde2507">More...</a><br/></td></tr>
-<tr class="separator:a9f69308feffebf5ff6f641aacfde2507"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6676d80aa6e1a2228fabf1292abd496f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTarget.html#a6676d80aa6e1a2228fabf1292abd496f">add_object</a> (<a class="el" href="classObject.html">Object</a> *t)</td></tr>
+<tr class="memdesc:a6676d80aa6e1a2228fabf1292abd496f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds given PixelTarget to <a class="el" href="classTarget.html" title="Container class for storing information about identified targets in real-world measurements Adding Pi...">Target</a>'s storage and recalculate target information.  <a href="#a6676d80aa6e1a2228fabf1292abd496f">More...</a><br/></td></tr>
+<tr class="separator:a6676d80aa6e1a2228fabf1292abd496f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a751228a957adcf280392219ce7cb23db"><td class="memItemLeft" align="right" valign="top">const std::vector&lt; <a class="el" href="classObject.html">Object</a> * &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTarget.html#a751228a957adcf280392219ce7cb23db">get_objects</a> ()</td></tr>
+<tr class="memdesc:a751228a957adcf280392219ce7cb23db"><td class="mdescLeft">&#160;</td><td class="mdescRight">Getter for pixel Targets.  <a href="#a751228a957adcf280392219ce7cb23db">More...</a><br/></td></tr>
+<tr class="separator:a751228a957adcf280392219ce7cb23db"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="a1dd57d0a27f9ca516f1b722419cace36"></a>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Container class for storing information about identified targets in real-world measurements Adding PixelTargets consolidates their information into the <a class="el" href="classTarget.html" title="Container class for storing information about identified targets in real-world measurements Adding Pi...">Target</a>. </p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a6676d80aa6e1a2228fabf1292abd496f"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void Target::add_pixel_target </td>
+          <td class="memname">void Target::add_object </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classPixelTarget.html">PixelTarget</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="classObject.html">Object</a> *&#160;</td>
           <td class="paramname"><em>t</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Adds given <a class="el" href="classPixelTarget.html">PixelTarget</a> to <a class="el" href="classTarget.html">Target</a>'s storage and recalculate target information. </p>
+<p>Adds given PixelTarget to <a class="el" href="classTarget.html" title="Container class for storing information about identified targets in real-world measurements Adding Pi...">Target</a>'s storage and recalculate target information. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">t</td><td><a class="el" href="classPixelTarget.html">PixelTarget</a> to be added </td></tr>
+    <tr><td class="paramname">t</td><td>PixelTarget to be added </td></tr>
   </table>
   </dd>
 </dl>
@@ -171,7 +178,7 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Getter for area. </p>
-<dl class="section return"><dt>Returns</dt><dd>Area of the <a class="el" href="classTarget.html">Target</a> in square metres </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Area of the <a class="el" href="classTarget.html" title="Container class for storing information about identified targets in real-world measurements Adding Pi...">Target</a> in square metres </dd></dl>
 
 </div>
 </div>
@@ -189,7 +196,7 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Getter for centroid. </p>
-<dl class="section return"><dt>Returns</dt><dd>GPS co-ordinates of the <a class="el" href="classTarget.html">Target</a> </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>GPS co-ordinates of the <a class="el" href="classTarget.html" title="Container class for storing information about identified targets in real-world measurements Adding Pi...">Target</a> </dd></dl>
 
 </div>
 </div>
@@ -207,7 +214,7 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Getter for colour. </p>
-<dl class="section return"><dt>Returns</dt><dd>Average colour of the interiour of the <a class="el" href="classTarget.html">Target</a> </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Average colour of the interiour of the <a class="el" href="classTarget.html" title="Container class for storing information about identified targets in real-world measurements Adding Pi...">Target</a> </dd></dl>
 
 </div>
 </div>
@@ -225,7 +232,7 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Getter for error. </p>
-<dl class="section return"><dt>Returns</dt><dd>2D error magnitude of the <a class="el" href="classTarget.html">Target</a>'s location in metres </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>2D error magnitude of the <a class="el" href="classTarget.html" title="Container class for storing information about identified targets in real-world measurements Adding Pi...">Target</a>'s location in metres </dd></dl>
 
 </div>
 </div>
@@ -260,8 +267,26 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Getter for <a class="el" href="classTarget.html">Target</a> image. </p>
-<dl class="section return"><dt>Returns</dt><dd>The best image of the <a class="el" href="classTarget.html">Target</a> from one of the PixelTargets </dd></dl>
+<p>Getter for <a class="el" href="classTarget.html" title="Container class for storing information about identified targets in real-world measurements Adding Pi...">Target</a> image. </p>
+<dl class="section return"><dt>Returns</dt><dd>The best image of the <a class="el" href="classTarget.html" title="Container class for storing information about identified targets in real-world measurements Adding Pi...">Target</a> from one of the PixelTargets </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a751228a957adcf280392219ce7cb23db"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const std::vector&lt;<a class="el" href="classObject.html">Object</a> *&gt;&amp; Target::get_objects </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Getter for pixel Targets. </p>
+<dl class="section return"><dt>Returns</dt><dd>Array containing all of the PixelTargets that were used to create this instance of <a class="el" href="classTarget.html" title="Container class for storing information about identified targets in real-world measurements Adding Pi...">Target</a> </dd></dl>
 
 </div>
 </div>
@@ -279,25 +304,7 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Getter for perimeter. </p>
-<dl class="section return"><dt>Returns</dt><dd>Perimeter of the <a class="el" href="classTarget.html">Target</a> in metres </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="a9f69308feffebf5ff6f641aacfde2507"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classPixelTarget.html">PixelTarget</a>* Target::get_pixel_targets </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Getter for pixel Targets. </p>
-<dl class="section return"><dt>Returns</dt><dd>Array containing all of the PixelTargets that were used to create this instance of <a class="el" href="classTarget.html">Target</a> </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Perimeter of the <a class="el" href="classTarget.html" title="Container class for storing information about identified targets in real-world measurements Adding Pi...">Target</a> in metres </dd></dl>
 
 </div>
 </div>
@@ -315,7 +322,7 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Getter for type field. </p>
-<dl class="section return"><dt>Returns</dt><dd>Type std::string associated with the <a class="el" href="classTarget.html">Target</a> </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Type std::string associated with the <a class="el" href="classTarget.html" title="Container class for storing information about identified targets in real-world measurements Adding Pi...">Target</a> </dd></dl>
 
 </div>
 </div>

@@ -71,7 +71,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Friends</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -128,39 +128,43 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <map name="Metadata" id="Metadata">
 <area shape="rect" id="node1" href="structMetadata.html" title="Metadata" alt="" coords="6,5,82,32"/></map>
 </td></tr>
-<tr><td><img src="inherit_graph_10.png" border="0" alt="" usemap="#ObjectDetector"/>
+<tr><td><img src="inherit_graph_10.png" border="0" alt="" usemap="#Object"/>
+<map name="Object" id="Object">
+<area shape="rect" id="node1" href="classObject.html" title="Container class for storing information about identified targets in real&#45;world measurements Adding Pi..." alt="" coords="6,5,66,32"/></map>
+</td></tr>
+<tr><td><img src="inherit_graph_11.png" border="0" alt="" usemap="#ObjectDetector"/>
 <map name="ObjectDetector" id="ObjectDetector">
 <area shape="rect" id="node1" href="classObjectDetector.html" title="ObjectDetector" alt="" coords="6,5,117,32"/></map>
 </td></tr>
-<tr><td><img src="inherit_graph_11.png" border="0" alt="" usemap="#PixelTarget"/>
-<map name="PixelTarget" id="PixelTarget">
-<area shape="rect" id="node1" href="classPixelTarget.html" title="PixelTarget" alt="" coords="5,5,93,32"/></map>
+<tr><td><img src="inherit_graph_12.png" border="0" alt="" usemap="#PixelObject"/>
+<map name="PixelObject" id="PixelObject">
+<area shape="rect" id="node1" href="classPixelObject.html" title="Container class for storing information about interesting objects in photos or video frames using pix..." alt="" coords="6,5,95,32"/></map>
 </td></tr>
-<tr><td><img src="inherit_graph_12.png" border="0" alt="" usemap="#recursive__directory__range"/>
+<tr><td><img src="inherit_graph_13.png" border="0" alt="" usemap="#recursive__directory__range"/>
 <map name="recursive__directory__range" id="recursive__directory__range">
 <area shape="rect" id="node1" href="structrecursive__directory__range.html" title="recursive_directory\l_range" alt="" coords="6,5,138,46"/></map>
 </td></tr>
-<tr><td><img src="inherit_graph_13.png" border="0" alt="" usemap="#Target"/>
+<tr><td><img src="inherit_graph_14.png" border="0" alt="" usemap="#Target"/>
 <map name="Target" id="Target">
-<area shape="rect" id="node1" href="classTarget.html" title="Target" alt="" coords="5,5,64,32"/></map>
+<area shape="rect" id="node1" href="classTarget.html" title="Container class for storing information about identified targets in real&#45;world measurements Adding Pi..." alt="" coords="5,5,64,32"/></map>
 </td></tr>
-<tr><td><img src="inherit_graph_14.png" border="0" alt="" usemap="#TargetAnalyzer"/>
+<tr><td><img src="inherit_graph_15.png" border="0" alt="" usemap="#TargetAnalyzer"/>
 <map name="TargetAnalyzer" id="TargetAnalyzer">
 <area shape="rect" id="node1" href="classTargetAnalyzer.html" title="TargetAnalyzer" alt="" coords="6,5,117,32"/></map>
 </td></tr>
-<tr><td><img src="inherit_graph_15.png" border="0" alt="" usemap="#TargetIdentifier"/>
+<tr><td><img src="inherit_graph_16.png" border="0" alt="" usemap="#TargetIdentifier"/>
 <map name="TargetIdentifier" id="TargetIdentifier">
 <area shape="rect" id="node1" href="classTargetIdentifier.html" title="TargetIdentifier" alt="" coords="5,5,115,32"/></map>
 </td></tr>
-<tr><td><img src="inherit_graph_16.png" border="0" alt="" usemap="#TargetLoader"/>
+<tr><td><img src="inherit_graph_17.png" border="0" alt="" usemap="#TargetLoader"/>
 <map name="TargetLoader" id="TargetLoader">
 <area shape="rect" id="node1" href="classTargetLoader.html" title="Module for loading JSON files for quick and dynamic tuning of filtering parameters for detection of u..." alt="" coords="5,5,104,32"/></map>
 </td></tr>
-<tr><td><img src="inherit_graph_17.png" border="0" alt="" usemap="#VidImport"/>
+<tr><td><img src="inherit_graph_18.png" border="0" alt="" usemap="#VidImport"/>
 <map name="VidImport" id="VidImport">
 <area shape="rect" id="node1" href="classVidImport.html" title="Module for extracting frames from video devices. Especially, DeckLink Video cards. " alt="" coords="6,5,85,32"/></map>
 </td></tr>
-<tr><td><img src="inherit_graph_18.png" border="0" alt="" usemap="#VolumeCalc"/>
+<tr><td><img src="inherit_graph_19.png" border="0" alt="" usemap="#VolumeCalc"/>
 <map name="VolumeCalc" id="VolumeCalc">
 <area shape="rect" id="node1" href="classVolumeCalc.html" title="VolumeCalc" alt="" coords="5,5,99,32"/></map>
 </td></tr>

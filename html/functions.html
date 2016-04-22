@@ -70,6 +70,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li class="current"><a href="functions.html"><span>All</span></a></li>
       <li><a href="functions_func.html"><span>Functions</span></a></li>
       <li><a href="functions_vars.html"><span>Variables</span></a></li>
+      <li><a href="functions_rela.html"><span>Related&#160;Functions</span></a></li>
     </ul>
   </div>
   <div id="navrow4" class="tabs3">
@@ -95,7 +96,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Friends</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -108,11 +109,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="textblock">Here is a list of all documented class members with links to the class documentation for each member:</div>
 
 <h3><a class="anchor" id="index_a"></a>- a -</h3><ul>
-<li>add_pixel_target()
-: <a class="el" href="classTarget.html#a1dd57d0a27f9ca516f1b722419cace36">Target</a>
-</li>
-<li>add_target()
-: <a class="el" href="classFrame.html#adc3f60d05bf6b3910e6e041b2b38b78f">Frame</a>
+<li>add_object()
+: <a class="el" href="classFrame.html#a380e43f6061388d14130bf1953153467">Frame</a>
+, <a class="el" href="classObject.html#a7d71141f3a4710d61a1e29a9453e8a43">Object</a>
+, <a class="el" href="classTarget.html#a6676d80aa6e1a2228fabf1292abd496f">Target</a>
 </li>
 <li>altError
 : <a class="el" href="structMetadata.html#a24ea8eae101a40a34a111857f51c04df">Metadata</a>
@@ -132,38 +132,53 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 : <a class="el" href="classFilter.html#a4081e3b720f1fac0e7138cc6be61c954">Filter</a>
 , <a class="el" href="classKMeansFilter.html#a1e91a9c1b5cb11f55c12b8a7a03def1f">KMeansFilter</a>
 </li>
+<li>Frame::add_object
+: <a class="el" href="classPixelObject.html#ac638841e33d60ed33c1ba16c35301f27">PixelObject</a>
+</li>
 </ul>
 
 
 <h3><a class="anchor" id="index_g"></a>- g -</h3><ul>
 <li>get_area()
-: <a class="el" href="classPixelTarget.html#a27ebb602d1fd3b7326b930781c6cf9c9">PixelTarget</a>
+: <a class="el" href="classObject.html#aa3084e2e0eef87a6850cb0bd6e2fb713">Object</a>
+, <a class="el" href="classPixelObject.html#a1c7ff751f1e7dbf01cd587725c480360">PixelObject</a>
 , <a class="el" href="classTarget.html#a95b2936214ef22f9a576055b2a1edb3d">Target</a>
 </li>
 <li>get_centroid()
-: <a class="el" href="classPixelTarget.html#adbac42d62eb0e5acfbb851f3dc76ff60">PixelTarget</a>
+: <a class="el" href="classObject.html#a5c6755cda8655c8e58c5a15513b9ccb7">Object</a>
+, <a class="el" href="classPixelObject.html#a00f936553dbccab57134aed62121e57a">PixelObject</a>
 , <a class="el" href="classTarget.html#af0130105fd3bc8b15a33dc7817ab7e9c">Target</a>
 </li>
 <li>get_colour()
-: <a class="el" href="classPixelTarget.html#ad02c9965f78c215ffdd3ebd62a2e4161">PixelTarget</a>
+: <a class="el" href="classObject.html#a1aa5b5c71b1b68f35a6d561053329a23">Object</a>
+, <a class="el" href="classPixelObject.html#a19f7d4097a539dbace5c15fa3c8802df">PixelObject</a>
 , <a class="el" href="classTarget.html#aedc167eecb2b8295d16bf38a3fd6b6a0">Target</a>
+</li>
+<li>get_contour()
+: <a class="el" href="classPixelObject.html#ae95d95db1f39efd516b4e501b7311d08">PixelObject</a>
 </li>
 <li>get_contours()
 : <a class="el" href="classCannyContourCreator.html#a852a5970913c9760efbdc334320863a6">CannyContourCreator</a>
 </li>
+<li>get_cropped_image()
+: <a class="el" href="classPixelObject.html#a4117a9c1202b5bb24448312729f8e538">PixelObject</a>
+</li>
 <li>get_error()
-: <a class="el" href="classPixelTarget.html#a394a569d3174a1374902416a15f3d7fb">PixelTarget</a>
+: <a class="el" href="classObject.html#adfb54fa113635017f5cb320277e1678b">Object</a>
+, <a class="el" href="classPixelObject.html#aa3527f17e49f6de8f1a9b9a4d2952552">PixelObject</a>
 , <a class="el" href="classTarget.html#afe0a6457a9da8d8612d399073e1187c0">Target</a>
 </li>
 <li>get_error_angle()
-: <a class="el" href="classPixelTarget.html#ab919198610075e2bb33c11af1a28278d">PixelTarget</a>
+: <a class="el" href="classObject.html#afe3a047b61eb5cb17d85d01cc0ec478e">Object</a>
+, <a class="el" href="classPixelObject.html#ab539307a29d090ae66289d0da39845d7">PixelObject</a>
 , <a class="el" href="classTarget.html#a1e3867f3e67797ca7c03984e30c260de">Target</a>
 </li>
 <li>get_id()
 : <a class="el" href="classFrame.html#af65f00928295d18429434fd4c1df07c6">Frame</a>
 </li>
 <li>get_image()
-: <a class="el" href="classPixelTarget.html#ab1fe9aad76bc352f1f40003e06aa9c3f">PixelTarget</a>
+: <a class="el" href="classObject.html#a58c65c45a4753ca6c3d4d58959f5f2a5">Object</a>
+, <a class="el" href="classPixelObject.html#a23967de7c944b26c5b6beebf90f4ce8c">PixelObject</a>
 , <a class="el" href="classTarget.html#a6349615c6cf5c878464457478bdbc3c7">Target</a>
 </li>
 <li>get_img()
@@ -172,22 +187,22 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>get_metadata()
 : <a class="el" href="classFrame.html#a3526162794232df016d381ace6a32b5c">Frame</a>
 </li>
-<li>get_perimeter()
-: <a class="el" href="classPixelTarget.html#a212064b03c678324491ac6273d0490d0">PixelTarget</a>
-, <a class="el" href="classTarget.html#aa852c75af3d30d83fd4aec1f0cd0cb0d">Target</a>
+<li>get_objects()
+: <a class="el" href="classFrame.html#ae8242676985e1bf5d07eec51b6aadcbf">Frame</a>
+, <a class="el" href="classObject.html#a75d06df90b399183bedeaf9a4a0720b6">Object</a>
+, <a class="el" href="classTarget.html#a751228a957adcf280392219ce7cb23db">Target</a>
 </li>
-<li>get_pixel_targets()
-: <a class="el" href="classTarget.html#a9f69308feffebf5ff6f641aacfde2507">Target</a>
+<li>get_perimeter()
+: <a class="el" href="classObject.html#ad06861711a41e090cadfe25a230fdd94">Object</a>
+, <a class="el" href="classPixelObject.html#a99a2aa5d4c788b83b24417dc26726721">PixelObject</a>
+, <a class="el" href="classTarget.html#aa852c75af3d30d83fd4aec1f0cd0cb0d">Target</a>
 </li>
 <li>get_processed()
 : <a class="el" href="classGMapsMatcher.html#aa72997a5f507e102758d39da607d7567">GMapsMatcher</a>
 , <a class="el" href="classTargetAnalyzer.html#a4808850fa9fe529d16b5a2d9ebf1c102">TargetAnalyzer</a>
 </li>
-<li>get_targets()
-: <a class="el" href="classFrame.html#a2bb5c2caf4640c6ff8ee6d6d312d21da">Frame</a>
-</li>
 <li>get_type()
-: <a class="el" href="classPixelTarget.html#a978b97f02c3b306de3e0fd3c81981124">PixelTarget</a>
+: <a class="el" href="classObject.html#adf65bdbda4a928345972a9ada260df32">Object</a>
 , <a class="el" href="classTarget.html#a0098961545716ffa1f6e55f11d1dddc7">Target</a>
 </li>
 <li>get_volume()

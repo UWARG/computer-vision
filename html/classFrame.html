@@ -70,7 +70,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Friends</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -105,35 +105,36 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:af65f00928295d18429434fd4c1df07c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1831991b586a2b54bb79fe084f2684aa"><td class="memItemLeft" align="right" valign="top">cv::Mat &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFrame.html#a1831991b586a2b54bb79fe084f2684aa">get_img</a> ()</td></tr>
 <tr class="separator:a1831991b586a2b54bb79fe084f2684aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adc3f60d05bf6b3910e6e041b2b38b78f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFrame.html#adc3f60d05bf6b3910e6e041b2b38b78f">add_target</a> (<a class="el" href="classPixelTarget.html">PixelTarget</a> *t)</td></tr>
-<tr class="memdesc:adc3f60d05bf6b3910e6e041b2b38b78f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds given target to the list of targets.  <a href="#adc3f60d05bf6b3910e6e041b2b38b78f">More...</a><br/></td></tr>
-<tr class="separator:adc3f60d05bf6b3910e6e041b2b38b78f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2bb5c2caf4640c6ff8ee6d6d312d21da"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classTarget.html">Target</a> * &gt;::iterator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFrame.html#a2bb5c2caf4640c6ff8ee6d6d312d21da">get_targets</a> ()</td></tr>
-<tr class="memdesc:a2bb5c2caf4640c6ff8ee6d6d312d21da"><td class="mdescLeft">&#160;</td><td class="mdescRight">getter for targets  <a href="#a2bb5c2caf4640c6ff8ee6d6d312d21da">More...</a><br/></td></tr>
-<tr class="separator:a2bb5c2caf4640c6ff8ee6d6d312d21da"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a380e43f6061388d14130bf1953153467"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFrame.html#a380e43f6061388d14130bf1953153467">add_object</a> (<a class="el" href="classPixelObject.html">PixelObject</a> *o)</td></tr>
+<tr class="memdesc:a380e43f6061388d14130bf1953153467"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds given object to the list of objects in the frame.  <a href="#a380e43f6061388d14130bf1953153467">More...</a><br/></td></tr>
+<tr class="separator:a380e43f6061388d14130bf1953153467"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae8242676985e1bf5d07eec51b6aadcbf"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classPixelObject.html">PixelObject</a> * &gt;<br class="typebreak"/>
+::iterator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFrame.html#ae8242676985e1bf5d07eec51b6aadcbf">get_objects</a> ()</td></tr>
+<tr class="memdesc:ae8242676985e1bf5d07eec51b6aadcbf"><td class="mdescLeft">&#160;</td><td class="mdescRight">getter for targets  <a href="#ae8242676985e1bf5d07eec51b6aadcbf">More...</a><br/></td></tr>
+<tr class="separator:ae8242676985e1bf5d07eec51b6aadcbf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3526162794232df016d381ace6a32b5c"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="structMetadata.html">Metadata</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFrame.html#a3526162794232df016d381ace6a32b5c">get_metadata</a> ()</td></tr>
 <tr class="memdesc:a3526162794232df016d381ace6a32b5c"><td class="mdescLeft">&#160;</td><td class="mdescRight">getter for metadata  <a href="#a3526162794232df016d381ace6a32b5c">More...</a><br/></td></tr>
 <tr class="separator:a3526162794232df016d381ace6a32b5c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="adc3f60d05bf6b3910e6e041b2b38b78f"></a>
+<a class="anchor" id="a380e43f6061388d14130bf1953153467"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void Frame::add_target </td>
+          <td class="memname">void Frame::add_object </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classPixelTarget.html">PixelTarget</a> *&#160;</td>
-          <td class="paramname"><em>t</em></td><td>)</td>
+          <td class="paramtype"><a class="el" href="classPixelObject.html">PixelObject</a> *&#160;</td>
+          <td class="paramname"><em>o</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Adds given target to the list of targets. </p>
+<p>Adds given object to the list of objects in the frame. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">t</td><td>target identified as being in the frame </td></tr>
+    <tr><td class="paramname">o</td><td>object identified as being in the frame </td></tr>
   </table>
   </dd>
 </dl>
@@ -190,12 +191,12 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a2bb5c2caf4640c6ff8ee6d6d312d21da"></a>
+<a class="anchor" id="ae8242676985e1bf5d07eec51b6aadcbf"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::vector&lt; <a class="el" href="classTarget.html">Target</a> * &gt;::iterator Frame::get_targets </td>
+          <td class="memname">std::vector&lt; <a class="el" href="classPixelObject.html">PixelObject</a> * &gt;::iterator Frame::get_objects </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>

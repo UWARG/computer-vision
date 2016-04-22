@@ -70,7 +70,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Friends</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -99,7 +99,7 @@ Collaboration diagram for TargetAnalyzer:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a06186d0cf1adecce827f6123f2eb45f0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classTarget.html">Target</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTargetAnalyzer.html#a06186d0cf1adecce827f6123f2eb45f0">analyze_targets_in_frame</a> (<a class="el" href="classPixelTarget.html">PixelTarget</a> *p, <a class="el" href="classFrame.html">Frame</a> *f)</td></tr>
+<tr class="memitem:a06186d0cf1adecce827f6123f2eb45f0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classTarget.html">Target</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTargetAnalyzer.html#a06186d0cf1adecce827f6123f2eb45f0">analyze_targets_in_frame</a> (PixelTarget *p, <a class="el" href="classFrame.html">Frame</a> *f)</td></tr>
 <tr class="memdesc:a06186d0cf1adecce827f6123f2eb45f0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Analyzes a pixeltarget and returns a pointer to the unique target it belongs to.  <a href="#a06186d0cf1adecce827f6123f2eb45f0">More...</a><br/></td></tr>
 <tr class="separator:a06186d0cf1adecce827f6123f2eb45f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4808850fa9fe529d16b5a2d9ebf1c102"><td class="memItemLeft" align="right" valign="top">vector&lt; <a class="el" href="classTarget.html">Target</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTargetAnalyzer.html#a4808850fa9fe529d16b5a2d9ebf1c102">get_processed</a> ()</td></tr>
@@ -120,7 +120,7 @@ static const <a class="el" href="classTargetAnalyzer.html">TargetAnalyzer</a> *&
         <tr>
           <td class="memname"><a class="el" href="classTarget.html">Target</a>* TargetAnalyzer::analyze_targets_in_frame </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classPixelTarget.html">PixelTarget</a> *&#160;</td>
+          <td class="paramtype">PixelTarget *&#160;</td>
           <td class="paramname"><em>p</em>, </td>
         </tr>
         <tr>
@@ -140,12 +140,12 @@ static const <a class="el" href="classTargetAnalyzer.html">TargetAnalyzer</a> *&
 <p>Analyzes a pixeltarget and returns a pointer to the unique target it belongs to. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">p</td><td><a class="el" href="classPixelTarget.html">PixelTarget</a> to be analyzed </td></tr>
-    <tr><td class="paramname">f</td><td><a class="el" href="classFrame.html">Frame</a> that the <a class="el" href="classPixelTarget.html">PixelTarget</a> belongs to </td></tr>
+    <tr><td class="paramname">p</td><td>PixelTarget to be analyzed </td></tr>
+    <tr><td class="paramname">f</td><td><a class="el" href="classFrame.html">Frame</a> that the PixelTarget belongs to </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>pointer to the <a class="el" href="classTarget.html">Target</a> that the <a class="el" href="classPixelTarget.html">PixelTarget</a> belongs to </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>pointer to the <a class="el" href="classTarget.html" title="Container class for storing information about identified targets in real-world measurements Adding Pi...">Target</a> that the PixelTarget belongs to </dd></dl>
 
 </div>
 </div>
