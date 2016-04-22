@@ -31,7 +31,7 @@
 
 #include <opencv2/imgproc.hpp>
 #include "object_detector.h"
-#include "pixel_target.h"
+#include "pixel_object.h"
 #include <vector>
 #include "frame.h"
 
@@ -56,6 +56,7 @@ void ObjectDetector::process_frame(Frame * f){
         Scalar colour;
         Point2d error;
         double errorAngle;
+        Mat crop;
 
         // get info from contours/image
         Moments mu = moments(contour, false);
@@ -67,8 +68,8 @@ void ObjectDetector::process_frame(Frame * f){
         drawContours(mask, vector<vector<Point> >({contour}), 0, Scalar(255), CV_FILLED);
         colour = mean(f->get_img(), mask);
 
-        PixelTarget * p = new PixelTarget(type, centroid, area, perimeter, colour, error, errorAngle);
-        f->add_target(p);
+        PixelObject * p = new PixelObject(crop, contour, centroid, area, perimeter, colour, error, errorAngle);
+        f->add_object(p);
     }
 }
 

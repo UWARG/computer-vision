@@ -43,8 +43,7 @@
 #include "metadata.h"
 #include <vector>
 
-class Target;
-class PixelTarget;
+class PixelObject;
 
 class Frame{
 public:
@@ -65,18 +64,18 @@ public:
     cv::Mat & get_img(); 
 
     /**
-     * @brief Adds given target to the list of targets 
+     * @brief Adds given object to the list of objects in the frame
      *
-     * @param t target identified as being in the frame
+     * @param o object identified as being in the frame
      */
-    void add_target(PixelTarget * t);
+    void add_object(PixelObject * o);
 
     /**
      * @brief getter for targets
      *
      * @return iterator pointing at the first target in the target list
      */
-    std::vector<Target*>::iterator get_targets();
+    std::vector<PixelObject *>::iterator get_objects();
 
     /** 
      * @brief getter for metadata
@@ -105,7 +104,7 @@ private:
     /**
      * @brief Targets that appear in the frame
      */
-    std::vector<Target *> targets;
+    std::vector<PixelObject *> objects;
 };
 
 

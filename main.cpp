@@ -46,6 +46,7 @@
 #include "imgimport.h"
 #include "vidimport.h"
 #include "pictureimport.h"
+#include "target.h"
 
 using namespace std;
 using namespace boost;
@@ -127,8 +128,8 @@ void output() {
     ioService.stop();
 }
 
-void init() { 
-    logging::core::get()->set_filter(logging::trivial::severity >= logging::trivial::info); 
+void init() {
+    logging::core::get()->set_filter(logging::trivial::severity >= logging::trivial::info);
 }
 
 int main(int argc, char** argv) {
