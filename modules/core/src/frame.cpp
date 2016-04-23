@@ -49,8 +49,8 @@ void Frame::add_object(PixelObject * o){
     o->image = this;
 }
 
-std::vector<PixelObject *>::iterator Frame::get_objects(){
-    return objects.begin();
+std::vector<PixelObject *> & Frame::get_objects(){
+    return objects;
 }
 
 const Metadata * Frame::get_metadata(){
