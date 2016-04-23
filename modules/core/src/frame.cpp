@@ -29,6 +29,7 @@
     SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
+#include <opencv2/highgui.hpp>
 #include "frame.h"
 #include "pixel_object.h"
 
@@ -57,3 +58,7 @@ const Metadata * Frame::get_metadata(){
     return &data;
 }
 
+void Frame::save(std::string dir) {
+    //TODO: Store metadata in file's exif tags
+    imwrite(dir + "/" + id, *img);
+}

@@ -60,6 +60,7 @@ Frame* next_image();
 int handle_args(int argc, char** argv);
 queue<Frame*> in_buffer;
 queue<Target*> out_buffer;
+queue<Frame*> intermediate_buffer;
 
 boost::asio::io_service ioService;
 boost::thread_group threadpool;
@@ -67,6 +68,8 @@ boost::thread_group threadpool;
 vector<string> file_names;
 int workers = 0;
 bool hasMoreFrames = true;
+string outputDir = "./";
+bool intermediate = false;
 
 // Processing module classes
 ImageImport * importer = NULL;
@@ -76,6 +79,9 @@ void worker(Frame* f) {
     workers++;
     assert(!f->get_img().empty());
     identifier.process_frame(f);
+    if (intermediate && f->get_objects().size() > 0) {
+        intermediate_buffer.push(f);
+    }
 
     workers--;
 }
@@ -113,7 +119,7 @@ void assign_workers() {
 
 void output() {
     filebuf fb;
-    while (hasMoreFrames || out_buffer.size() > 0 || workers > 0) {
+    while (hasMoreFrames || out_buffer.size() > 0 || intermediate_buffer.size() > 0 || workers > 0) {
         if (out_buffer.size() > 0) {
             fb.open("out.txt", ios::app);
             ostream out(&fb);
@@ -122,6 +128,11 @@ void output() {
             // Output
             out_buffer.pop();
             fb.close();
+        }
+        if (intermediate_buffer.size() > 0) {
+            Frame * f = intermediate_buffer.front();
+            f->save(outputDir);
+            intermediate_buffer.pop();
         }
         boost::this_thread::sleep(boost::posix_time::milliseconds(30));
     }
@@ -162,7 +173,9 @@ int handle_args(int argc, char** argv) {
 #ifdef HAS_DECKLINK
             ("decklink,d", "Use this option to capture video from a connected Decklink card")
 #endif // HAS_DECKLINK
-            ("telemetry,t", po::value<string>(), "Path of the telemetry log for the given image source");
+            ("telemetry,t", po::value<string>(), "Path of the telemetry log for the given image source")
+            ("output,o", po::value<string>(), "Directory to store output files; default is current directory")
+            ("intermediate", "When this is enabled, program will output intermediary frames that contain objects of interest");
 
         po::variables_map vm;
         po::store(po::parse_command_line(argc, argv, description), vm);
@@ -195,6 +208,14 @@ int handle_args(int argc, char** argv) {
         if (vm.count("images")) {
             string path = vm["images"].as<string>();
             importer = new PictureImport(telemetry, path);
+        }
+
+        if (vm.count("output")) {
+            outputDir = vm["output"].as<string>();
+        }
+
+        if (vm.count("intermediate")) {
+            intermediate = true;
         }
     }
     catch (std::exception& e) {

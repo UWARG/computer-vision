@@ -84,6 +84,12 @@ public:
      */
     const Metadata * get_metadata();
 
+    /**
+     * @brief Stores the frame as an image file
+     * @param dir Directory to store the file
+     */
+    void save(std::string dir);
+
 private:
     
     /**
