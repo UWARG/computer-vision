@@ -30,6 +30,9 @@
 */
 
 #include <opencv2/highgui.hpp>
+#include <exiv2/exiv2.hpp>
+#include <boost/lexical_cast.hpp>
+#include <sstream>
 #include "frame.h"
 #include "pixel_object.h"
 
@@ -59,6 +62,13 @@ const Metadata * Frame::get_metadata(){
 }
 
 void Frame::save(std::string dir) {
-    //TODO: Store metadata in file's exif tags
-    imwrite(dir + "/" + id, *img);
+    std::string path = dir + "/" + id;
+    imwrite(path, *img);
+    Exiv2::Image::AutoPtr image = Exiv2::ImageFactory::open(path);
+    image->readMetadata();
+    Exiv2::ExifData &exifData = image->exifData();
+    std::stringstream ss;
+    ss << data.lat << " " << data.lon << " " << data.altitude << " " << data.heading << " " << data.time;
+    exifData["Exif.Photo.UserComment"] = ss.str();
+    image->writeMetadata();
 }
