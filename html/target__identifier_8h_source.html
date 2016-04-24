@@ -125,22 +125,27 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="preprocessor">#include &quot;object_detector.h&quot;</span></div>
 <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;</div>
 <div class="line"><a name="l00052"></a><span class="lineno"><a class="line" href="classTargetIdentifier.html">   52</a></span>&#160;<span class="keyword">class </span><a class="code" href="classTargetIdentifier.html">TargetIdentifier</a>{</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <a class="code" href="classObjectDetector.html">ObjectDetector</a> * detector;</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        <a class="code" href="classTargetIdentifier.html">TargetIdentifier</a>();</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        ~<a class="code" href="classTargetIdentifier.html">TargetIdentifier</a>();</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <a class="code" href="classTargetIdentifier.html">TargetIdentifier</a>();</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    ~<a class="code" href="classTargetIdentifier.html">TargetIdentifier</a>();</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;</div>
 <div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classTargetIdentifier.html#a0ccbb8e432191f1fb3c4fc3dcf058592">process_frame</a>(<a class="code" href="classFrame.html">Frame</a> * f);</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;};</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<span class="preprocessor">#endif // TARGET_IDENTIFIER_H_INCLUDED</span></div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classTargetIdentifier.html#a0ccbb8e432191f1fb3c4fc3dcf058592">process_frame</a>(<a class="code" href="classFrame.html">Frame</a> * f);</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    <a class="code" href="classObjectDetector.html">ObjectDetector</a> * detector;</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <a class="code" href="classFilter.html">Filter</a> * filter;</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    <a class="code" href="classContourCreator.html">ContourCreator</a> * cCreator;</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;};</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="preprocessor">#endif // TARGET_IDENTIFIER_H_INCLUDED</span></div>
 <div class="ttc" id="classTargetIdentifier_html"><div class="ttname"><a href="classTargetIdentifier.html">TargetIdentifier</a></div><div class="ttdef"><b>Definition:</b> target_identifier.h:52</div></div>
+<div class="ttc" id="classContourCreator_html"><div class="ttname"><a href="classContourCreator.html">ContourCreator</a></div><div class="ttdef"><b>Definition:</b> contour_creator.h:37</div></div>
+<div class="ttc" id="classFilter_html"><div class="ttname"><a href="classFilter.html">Filter</a></div><div class="ttdoc">Abstract class providing an interface to modify images before edge detection is applied. </div><div class="ttdef"><b>Definition:</b> filter.h:31</div></div>
 <div class="ttc" id="classObjectDetector_html"><div class="ttname"><a href="classObjectDetector.html">ObjectDetector</a></div><div class="ttdef"><b>Definition:</b> object_detector.h:39</div></div>
 <div class="ttc" id="frame_8h_html"><div class="ttname"><a href="frame_8h.html">frame.h</a></div><div class="ttdoc">Container class for storing photos or frames of video to be processed and analyzed. </div></div>
-<div class="ttc" id="classTargetIdentifier_html_a0ccbb8e432191f1fb3c4fc3dcf058592"><div class="ttname"><a href="classTargetIdentifier.html#a0ccbb8e432191f1fb3c4fc3dcf058592">TargetIdentifier::process_frame</a></div><div class="ttdeci">void process_frame(Frame *f)</div><div class="ttdef"><b>Definition:</b> target_identifier.cpp:42</div></div>
+<div class="ttc" id="classTargetIdentifier_html_a0ccbb8e432191f1fb3c4fc3dcf058592"><div class="ttname"><a href="classTargetIdentifier.html#a0ccbb8e432191f1fb3c4fc3dcf058592">TargetIdentifier::process_frame</a></div><div class="ttdeci">void process_frame(Frame *f)</div><div class="ttdef"><b>Definition:</b> target_identifier.cpp:48</div></div>
 <div class="ttc" id="classFrame_html"><div class="ttname"><a href="classFrame.html">Frame</a></div><div class="ttdef"><b>Definition:</b> frame.h:48</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->

@@ -131,8 +131,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;</div>
 <div class="line"><a name="l00051"></a><span class="lineno"><a class="line" href="classPictureImport.html">   51</a></span>&#160;<span class="keyword">class </span><a class="code" href="classPictureImport.html">PictureImport</a> : <span class="keyword">public</span> <a class="code" href="classImageImport.html">ImageImport</a> {</div>
 <div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        <a class="code" href="classPictureImport.html#a4a0894b88d2caaf326614cd092d6d1a8">PictureImport</a>(std::string telemetry_path, std::string filePath, std::vector&lt;int&gt; videoDeviceNums);</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        </div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        <a class="code" href="classPictureImport.html#ae83ea4608f0a974ca9ef72ecfcceee98">PictureImport</a>(std::string telemetry_path, std::string filePath);</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;</div>
 <div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        ~<a class="code" href="classPictureImport.html">PictureImport</a>();</div>
 <div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;</div>
 <div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        <a class="code" href="classFrame.html">Frame</a>* <a class="code" href="classPictureImport.html#a540c467a453d7488c078278bcac05699">next_frame</a>();</div>
@@ -141,13 +141,12 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    DIR* dr;</div>
 <div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    std::vector&lt;Metadata&gt; mdvc;</div>
 <div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;        <span class="keywordtype">int</span> tracker;</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    std::vector&lt;int&gt; videoDeviceNums;</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;};</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<span class="preprocessor">#endif // PICTURE_IMPORT_H_INCLUDED</span></div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;};</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="preprocessor">#endif // PICTURE_IMPORT_H_INCLUDED</span></div>
 <div class="ttc" id="classImageImport_html"><div class="ttname"><a href="classImageImport.html">ImageImport</a></div><div class="ttdoc">Abstract class for importing frames and corresponding metadata. </div><div class="ttdef"><b>Definition:</b> imgimport.h:32</div></div>
-<div class="ttc" id="classPictureImport_html_a540c467a453d7488c078278bcac05699"><div class="ttname"><a href="classPictureImport.html#a540c467a453d7488c078278bcac05699">PictureImport::next_frame</a></div><div class="ttdeci">Frame * next_frame()</div><div class="ttdoc">Retrieves the next frame to be analyzed. </div><div class="ttdef"><b>Definition:</b> pictureimport.cpp:60</div></div>
-<div class="ttc" id="classPictureImport_html_a4a0894b88d2caaf326614cd092d6d1a8"><div class="ttname"><a href="classPictureImport.html#a4a0894b88d2caaf326614cd092d6d1a8">PictureImport::PictureImport</a></div><div class="ttdeci">PictureImport(std::string telemetry_path, std::string filePath, std::vector&lt; int &gt; videoDeviceNums)</div><div class="ttdoc">Creates a PictureImport object. </div><div class="ttdef"><b>Definition:</b> pictureimport.cpp:45</div></div>
+<div class="ttc" id="classPictureImport_html_a540c467a453d7488c078278bcac05699"><div class="ttname"><a href="classPictureImport.html#a540c467a453d7488c078278bcac05699">PictureImport::next_frame</a></div><div class="ttdeci">Frame * next_frame()</div><div class="ttdoc">Retrieves the next frame to be analyzed. </div><div class="ttdef"><b>Definition:</b> pictureimport.cpp:59</div></div>
+<div class="ttc" id="classPictureImport_html_ae83ea4608f0a974ca9ef72ecfcceee98"><div class="ttname"><a href="classPictureImport.html#ae83ea4608f0a974ca9ef72ecfcceee98">PictureImport::PictureImport</a></div><div class="ttdeci">PictureImport(std::string telemetry_path, std::string filePath)</div><div class="ttdoc">Creates a PictureImport object. </div><div class="ttdef"><b>Definition:</b> pictureimport.cpp:45</div></div>
 <div class="ttc" id="classFrame_html"><div class="ttname"><a href="classFrame.html">Frame</a></div><div class="ttdef"><b>Definition:</b> frame.h:48</div></div>
 <div class="ttc" id="imgimport_8h_html"><div class="ttname"><a href="imgimport_8h.html">imgimport.h</a></div></div>
 <div class="ttc" id="classPictureImport_html"><div class="ttname"><a href="classPictureImport.html">PictureImport</a></div><div class="ttdoc">A subclass of Imageimport. Specialized to read JPEG files and metadata and generate Frame objects...</div><div class="ttdef"><b>Definition:</b> pictureimport.h:51</div></div>
