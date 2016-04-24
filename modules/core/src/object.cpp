@@ -1,4 +1,4 @@
-/* 
+/*
     This file is part of WARG's computer-vision
 
     Copyright (c) 2015, Waterloo Aerial Robotics Group (WARG)

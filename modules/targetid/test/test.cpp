@@ -43,6 +43,8 @@
 #include "frame.h"
 #include "benchmark.h"
 #include "contour_comparison.h"
+#include "object_detector.h"
+#include "pixel_object.h"
 
 using namespace cv;
 using namespace std;
@@ -71,14 +73,28 @@ BOOST_AUTO_TEST_CASE(KMeansAndCanny) {
     }
     Mat input = imread(boost::unit_test::framework::master_test_suite().argv[1], cv::IMREAD_COLOR);
     Frame f(&input, "Test Image", Metadata());
-    KMeansFilter filter;
-    CannyContourCreator ccreator;
-    Mat * filtered = filter.filter(f.get_img());
-    vector<vector<Point> > * results = ccreator.get_contours(*filtered);
+    KMeansFilter * filter = new KMeansFilter();
+    CannyContourCreator * ccreator = new CannyContourCreator();
+    ObjectDetector detector(filter, ccreator);
 
-    double diff = compare_contours(*results, *expected);
+    detector.process_frame(&f);
+    vector<vector<Point> > results;
+    for (PixelObject * o : f.get_objects()) {
+        results.push_back(o->get_contour());
+        BOOST_TEST_MESSAGE("Found object of size " << o->get_area());
+        BOOST_TEST_MESSAGE("Perimeter: " << o->get_perimeter());
+        BOOST_TEST_MESSAGE("Colour: " << o->get_colour());
+    }
+
+    double diff = compare_contours(results, *expected);
     BOOST_CHECK(diff > 0.01); // ensures that at least something is detected
     BOOST_TEST_MESSAGE("RESULT: " << diff);
 
-    benchmark_function("k_means", [&]() { filter.filter(f.get_img()); }, 10);
+    benchmark_function("k_means", [&]() { filter->filter(f.get_img()); }, 10);
+    Mat * filtered = filter->filter(f.get_img());
+    benchmark_function("Canny", [&]() { ccreator->get_contours(*filtered); }, 10);
+    delete filtered;
+    delete filter;
+    delete ccreator;
+    delete expected;
 }

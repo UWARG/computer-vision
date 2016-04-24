@@ -54,8 +54,8 @@ class PictureImport : public ImageImport {
          *@brief Creates a PictureImport object
          *
          */
-        PictureImport(std::string telemetry_path, std::string filePath, std::vector<int> videoDeviceNums);
-        
+        PictureImport(std::string telemetry_path, std::string filePath);
+
         ~PictureImport();
 
         /**
@@ -69,7 +69,6 @@ class PictureImport : public ImageImport {
 	DIR* dr;
 	std::vector<Metadata> mdvc;
         int tracker;
-	std::vector<int> videoDeviceNums;
 };
 
 #endif // PICTURE_IMPORT_H_INCLUDED

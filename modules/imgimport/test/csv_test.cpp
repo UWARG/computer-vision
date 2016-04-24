@@ -14,8 +14,6 @@ using namespace cv;
 using namespace boost;
 
 BOOST_AUTO_TEST_CASE(csv_test){
-    vector<int> n;
-    n.push_back(3);
     string telemetry_path="test_csv.csv";
     string filePath=boost::unit_test::framework::master_test_suite().argv[1];
 
@@ -41,7 +39,7 @@ BOOST_AUTO_TEST_CASE(csv_test){
         }
         fout<<i<<endl;
     }
-    PictureImport PI(telemetry_path,filePath,n);
+    PictureImport PI(telemetry_path,filePath);
 
     vector<Frame *> frames;
     while(1){

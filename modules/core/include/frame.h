@@ -75,7 +75,7 @@ public:
      *
      * @return iterator pointing at the first target in the target list
      */
-    std::vector<PixelObject *>::iterator get_objects();
+    std::vector<PixelObject *> & get_objects();
 
     /** 
      * @brief getter for metadata
