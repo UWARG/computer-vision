@@ -47,6 +47,9 @@ vector<vector<Point> > * CannyContourCreator::get_contours(cv::Mat & src) {
     /// Canny detector
     Canny( src, result, lowThreshold, lowThreshold*ratio, kernelSize );
 
+    Mat structuringElement = getStructuringElement(MORPH_ELLIPSE, Size(40, 40));
+    morphologyEx(result, result, cv::MORPH_CLOSE, structuringElement);
+
     BOOST_LOG_TRIVIAL(info) << "Detecting Contours";
     /// Find contours
     findContours( result, *contours, hierarchy, RETR_EXTERNAL, CHAIN_APPROX_SIMPLE, Point(0, 0) );

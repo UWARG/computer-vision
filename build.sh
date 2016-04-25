@@ -60,10 +60,12 @@ cmake .. && make
 
 RESULT=$?
 
-if [[ !$RESULT && $TEST ]] ; then
+if [ $RESULT -eq 0 ] && [ $TEST ] ; then
     make test
 fi
 
-if [[ !$RESULT && $INSTALL ]] ; then
+if [ $RESULT -eq 0 ] && [ $INSTALL ] ; then
     sudo make install
 fi
+
+exit $RESULT

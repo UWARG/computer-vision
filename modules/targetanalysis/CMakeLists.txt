@@ -1,8 +1,6 @@
-find_path(Jsoncpp_INCLUDE_DIR
-  NAMES json/features.h
-  PATH_SUFFIXES jsoncpp
-  PATHS ${Jsoncpp_PKGCONF_INCLUDE_DIRS}
-)
-
-include_directories(include ../core/include ${Jsoncpp_INCLUDE_DIR})
-add_library(TargetAnalysis ${Jsoncpp_LIBRARY} src/area_analyzer.cpp src/target_analyzer.cpp src/target_loader.cpp)
+include_directories(include ../core/include)
+ADD_DEFINITIONS("-DBOOST_LOG_DYN_LINK")
+add_library(TargetAnalysis src/area_analyzer.cpp src/target_analyzer.cpp src/target_loader.cpp)
+target_link_libraries(TargetAnalysis ${Boost_LIBRARIES} Core)
+target_compile_features(TargetAnalysis PRIVATE)
+add_subdirectory("test")

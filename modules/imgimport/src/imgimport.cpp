@@ -11,11 +11,24 @@
  */
 
 #include "imgimport.h"
+#include <vector>
+
+#ifdef HAS_DECKLINK
+#include <DeckLinkAPI.h>
+#endif
 
 ImageImport::ImageImport() {
 
 }
 
+
 ImageImport::~ImageImport() {
 
+}
+
+//Decklink --- extract video frames from the 
+
+Frame * ImageImport::next_frame()
+{
+    return NULL;
 }

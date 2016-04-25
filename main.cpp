@@ -44,12 +44,17 @@
 #include "frame.h"
 #include "target_identifier.h"
 #include "imgimport.h"
+#include "vidimport.h"
+#include "pictureimport.h"
+#include "target.h"
 
 using namespace std;
 using namespace boost;
 using namespace cv;
 namespace logging = boost::log;
 namespace po = boost::program_options;
+
+const int BUFFER_SIZE = 20;
 
 Frame* next_image();
 int handle_args(int argc, char** argv);
@@ -78,13 +83,14 @@ void worker(Frame* f) {
 void read_images() {
     Frame* currentFrame;
     while (hasMoreFrames) {
-        Frame* f = importer->next_frame();
-        if (f) {
-            in_buffer.push(f);
-        }
-        else {
-            hasMoreFrames = false;
-            ioService.stop();
+        if (in_buffer.size() < BUFFER_SIZE) {
+            Frame* f = importer->next_frame();
+            if (f) {
+                in_buffer.push(f);
+            }
+            else {
+                hasMoreFrames = false;
+            }
         }
         boost::this_thread::sleep(boost::posix_time::milliseconds(30));
     }
@@ -107,7 +113,7 @@ void assign_workers() {
 
 void output() {
     filebuf fb;
-    while (hasMoreFrames || out_buffer.size() > 0) {
+    while (hasMoreFrames || out_buffer.size() > 0 || workers > 0) {
         if (out_buffer.size() > 0) {
             fb.open("out.txt", ios::app);
             ostream out(&fb);
@@ -119,16 +125,18 @@ void output() {
         }
         boost::this_thread::sleep(boost::posix_time::milliseconds(30));
     }
+    ioService.stop();
 }
 
-void init() { 
-    logging::core::get()->set_filter(logging::trivial::severity >= logging::trivial::info); 
+void init() {
+    logging::core::get()->set_filter(logging::trivial::severity >= logging::trivial::info);
 }
 
 int main(int argc, char** argv) {
     init();
-    if (handle_args(argc, argv) == 1)
-        return 0;
+    int retArg;
+    if (retArg = handle_args(argc, argv) != 0)
+        return retArg;
 
     int processors = boost::thread::hardware_concurrency();
 
@@ -150,15 +158,43 @@ int handle_args(int argc, char** argv) {
 
         description.add_options()("help,h", "Display this help message")
             ("images,i", po::value<string>(), "Directory containing image files to be processed")
-            ("device,d", po::value<int>(), "Video device to capture images from");
+            ("video,v", po::value<int>(), "Video device to capture images from")
+#ifdef HAS_DECKLINK
+            ("decklink,d", "Use this option to capture video from a connected Decklink card")
+#endif // HAS_DECKLINK
+            ("telemetry,t", po::value<string>(), "Path of the telemetry log for the given image source");
 
         po::variables_map vm;
         po::store(po::parse_command_line(argc, argv, description), vm);
         po::notify(vm);
 
-        if (vm.count("help")) {
+        if (vm.count("help") || vm.size() == 0) {
             cout << description << endl;
             return 1;
+        }
+        int devices = vm.count("video") + vm.count("decklink") + vm.count("images");
+        if (devices > 1) {
+            cout << "Invalid options: You can only specify one image source at a time" << endl;
+            return 1;
+        } else if(devices == 0) {
+            cout << "Error: You must specify an image source!" << endl;
+            return 1;
+        }
+        if (!vm.count("telemetry")) {
+            cout << "Invalid options; You must specify a telemetry file" << endl;
+            return 1;
+        }
+        string telemetry = vm["telemetry"].as<string>();
+
+#ifdef HAS_DECKLINK
+        if (vm.count("decklink")) {
+            importer = new VideoImport();
+        }
+#endif // HAS_DECKLINK
+
+        if (vm.count("images")) {
+            string path = vm["images"].as<string>();
+            importer = new PictureImport(telemetry, path);
         }
     }
     catch (std::exception& e) {

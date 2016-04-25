@@ -30,6 +30,7 @@
 */
 
 #include "frame.h"
+#include "pixel_object.h"
 
 Frame::Frame(cv::Mat * img, std::string id, Metadata m): img(img), id(id), data(m){
 
@@ -43,12 +44,13 @@ cv::Mat & Frame::get_img(){
     return *img;
 }
 
-void Frame::add_target(PixelTarget * t){
-
+void Frame::add_object(PixelObject * o){
+    this->objects.push_back(o);
+    o->image = this;
 }
 
-std::vector<Target*>::iterator Frame::get_targets(){
-    return targets.begin();
+std::vector<PixelObject *> & Frame::get_objects(){
+    return objects;
 }
 
 const Metadata * Frame::get_metadata(){

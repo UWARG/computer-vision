@@ -29,50 +29,30 @@
     SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-#include <opencv2/imgproc.hpp>
-#include "object_detector.h"
-#include "pixel_object.h"
-#include <vector>
-#include "frame.h"
+#define BOOST_TEST_DYN_LINK
+#define BOOST_TEST_MODULE ImageImport
+
+#include <boost/test/unit_test.hpp>
+#include <boost/log/core.hpp>
+#include <boost/log/trivial.hpp>
+#include <boost/log/expressions.hpp>
+#include "vidimport.h"
 
 using namespace std;
-using namespace cv;
+using namespace boost;
 
-ObjectDetector::ObjectDetector(Filter * filter, ContourCreator * contourCreator){
-    this->filter = filter;
-    this->ccreator = contourCreator;
-}
+namespace logging = boost::log;
 
-void ObjectDetector::process_frame(Frame * f){
-    Mat & src = f->get_img();
-    Mat * filtered = filter->filter(src);
-    vector<vector<Point> > contours = *(ccreator->get_contours(*filtered));
-    delete filtered;
-    for(vector<Point> contour : contours){
-        string type;
-        Point2d centroid;
-        double area;
-        double perimeter;
-        Scalar colour;
-        Point2d error;
-        double errorAngle;
-        Mat crop;
-
-        // get info from contours/image
-        Moments mu = moments(contour, false);
-        centroid = Point2d( mu.m10/mu.m00 , mu.m01/mu.m00 );
-        perimeter = arcLength(contour, true);
-        area = contourArea(contour);
-        // TODO: Calculate location error
-        Mat mask = Mat::zeros(f->get_img().size(), CV_8UC1);
-        drawContours(mask, vector<vector<Point> >({contour}), 0, Scalar(255), CV_FILLED);
-        colour = mean(f->get_img(), mask);
-
-        PixelObject * p = new PixelObject(crop, contour, centroid, area, perimeter, colour, error, errorAngle);
-        f->add_object(p);
+BOOST_AUTO_TEST_CASE(DecklinkVideoSource){
+    if(boost::unit_test::framework::master_test_suite().argc <= 1) {
+        BOOST_ERROR("Invalid number of arguments");
     }
-}
-
-ObjectDetector::~ObjectDetector(){
-
+    
+    VideoImport* v = new VideoImport();
+    cv::Mat img;
+    v->grabFrame(&img);
+    
+    BOOST_CHECK(img.rows > 0);   
+    delete v;
+   
 }

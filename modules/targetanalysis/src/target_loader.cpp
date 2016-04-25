@@ -29,98 +29,117 @@
     SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-#include "json/json.h"
+#include <boost/log/core.hpp>
+#include <boost/log/trivial.hpp>
+#include <boost/property_tree/ptree.hpp>
+#include <boost/property_tree/json_parser.hpp>
+#include <boost/foreach.hpp>
+#include <exception>
 #include <iostream>
 #include <fstream>
+#include <string>
+#include "target_loader.h"
 using namespace std;
+using namespace boost;
 
+namespace logging = boost::log;
 /*
 * JSON Structure
 * -One file per target type
 * {
-*      "parameters": {
-                     <parameter/category>: {
-                              "mean":{
-                                      "enabled":<True/False>    ->Use this only as an override, the target_analyzer will have jurisdiction over 
-                                      "value":<value>           ->Treated as a double. Don't put strings here (also remember to right the error checking code for this).
-                                      "confidence":<value>      -> Integer value ranging from 0 to 100
-                              }
-                              "mode":{
-                                      "enabled":<True/False>    ->Use this only as an override, the target_analyzer will have jurisdiction over 
-                                      "value":<value>
-                                      "confidence":<value>      -> Integer value ranging from 0 to 100
-                              }
-                              "std":{
-                                      "enabled":<True/False>
-                                      "value":<value>
-                                      "confidence":<value>      -> Integer value ranging from 0 to 100
-                              }
-                              "distribution":{                  ->Examples like gaussian/binomial/etc
-                                      "enabled":<True/False>
-                                      "value":<value>           
-                                      "confidence":<value>      -> Integer value ranging from 0 to 100
-                              }
-                           }
-                     
-       } 
+     "parameters": { 
+        <parameter/category>: {
+           "mean":{
+              "enabled":<True/False>    ->Use this only as an override, the target_analyzer will have jurisdiction over 
+              "value":<value>           ->Treated as a double. Don't put strings here (also remember to right the error checking code for this).
+              "confidence":<value>      -> Integer value ranging from 0 to 100
+           }
+           "mode":{
+              "enabled":<True/False>    ->Use this only as an override, the target_analyzer will have jurisdiction over 
+              "value":<value>
+              "confidence":<value>      -> Integer value ranging from 0 to 100
+           }
+           "std":{
+              "enabled":<True/False>
+              "value":<value>
+              "confidence":<value>      -> Integer value ranging from 0 to 100
+           }
+           "distribution":{                  ->Examples like gaussian/binomial/etc
+              "enabled":<True/False>
+              "value":<value>           
+              "confidence":<value>      -> Integer value ranging from 0 to 100
+           }
+        }
+     } 
 * }
 */
 
+
 /*
-class targetLoader{
-      targetLoader(string f){
-             file = f;     
-      }
-      public:
-             TargetParameters getParameters();
-             class TargetParameters{
-                   public:
-                          string* parametersTypes;
-                          Parameter* parameters;
-                          unsigned int parameterCount;
-                          class Parameter{
-                                public:
-                                       bool enabled;
-                                       double value;
-                                       unsigned int confidence;
-                          }
-             }
-      private:
-              string file;
-              readFile(string fileLocation);
-              
-}
-
-
-
-
 TargetParameters targetLoader:getParameters(){
        return 0;
 }
-
-char* targetLoader:readFile(string fileLocation){
-     ifstream jFile;
-     char* memblock;
-     
-     jFile.open(fileLocation, ios::binary | ios::ate);
-     if (file.is_open())
-     {
-        size = file.tellg();
-        memblock = new char[size];
-        file.seek(0, ios::beg);
-        file.read(memblock,size);
-        file.close();
-     }
-     return memblock;                   
-}
-
-Json::Value* targetLoader:readJSON(string jsonMessage){
-     Json::Value* parsedFromString = new Json::Value();
-     Json::Reader reader;
-     
-     reader.parse(jsonMessage, parsedFromString);
-     if (parsingSuccessful){
-        return parsedFromString;
-     }
-}
 */
+TargetLoader::TargetLoader(const char* file){
+   if (readFile(file)){
+      std::string data = std::string(rawData);
+      readJSON(data,&jsonParameters);
+   }
+}
+
+bool TargetLoader::readFile(const char* fileLocation){
+   ifstream jFile(fileLocation, ifstream::in | ios::ate);
+  
+   if (jFile.is_open()) {
+      int size;
+      size = jFile.tellg();
+      rawData = new char[size];
+      jFile.seekg(0, ios::beg);
+      jFile.read(rawData,size);     
+      jFile.close();
+      BOOST_LOG_TRIVIAL(info) << "File opened: " << fileLocation;
+      BOOST_LOG_TRIVIAL(info) << "Size: " << size;
+   }
+   else{
+      BOOST_LOG_TRIVIAL(warning) << "Could not open file: " << fileLocation << "\n";
+      return 0;
+   }
+   return 1;                   
+}
+
+bool TargetLoader::readJSON(string jsonMessage, property_tree::ptree* result){
+   try{
+      using property_tree::read_json;
+      stringstream ss(jsonMessage);
+      read_json(ss, *result);
+   }
+   catch(std::exception const& e){
+      // Report to the user the failure and their locations in the document.
+      BOOST_LOG_TRIVIAL(warning) << "Failed to parse configuration\n";
+      return -1;
+   }
+   return 0;
+}
+
+property_tree::ptree* TargetLoader::getJSON(void){
+   return &jsonParameters;
+}
+
+void TargetLoader::print()
+{
+   using boost::property_tree::ptree;
+   ptree::const_iterator end = jsonParameters.end();
+   for (ptree::const_iterator it = jsonParameters.begin(); it != end; ++it) {
+      std::cout << it->first << ": " << it->second.get_value<std::string>() << std::endl;
+      recursivePrint(it->second);
+   }
+}
+
+void TargetLoader::recursivePrint(property_tree::ptree const& pt){
+   using boost::property_tree::ptree;
+   ptree::const_iterator end = pt.end();
+   for (ptree::const_iterator it = pt.begin(); it != end; ++it) {
+      std::cout << it->first << ": " << it->second.get_value<std::string>() << std::endl;
+      recursivePrint(it->second);
+   }
+}
