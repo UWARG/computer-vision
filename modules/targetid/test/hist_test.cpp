@@ -131,8 +131,18 @@ BOOST_AUTO_TEST_CASE(hist_test){
         show=test_filter.filter(buffer);
         CannyContourCreator ccreator;
         vector<vector<Point> > * results = ccreator.get_contours(*show);
-        double diff = compare_contours(*results, expected);
-        BOOST_CHECK(diff > 0.01);
-        BOOST_TEST_MESSAGE("RESULT: " << diff);
+        if(results->size()==0){
+            BOOST_CHECK(expected.size()==0);
+            BOOST_TEST_MESSAGE("No Target Found");
+        }
+        else{
+            double diff = compare_contours(*results, expected);
+            BOOST_CHECK(diff > 0.01);
+            BOOST_TEST_MESSAGE("RESULT: " << diff);
+            namedWindow("display",CV_WINDOW_NORMAL);
+            resizeWindow("display",1000,1000);
+            imshow("display",*show);
+            waitKey(0);
+        }
     }
 }
