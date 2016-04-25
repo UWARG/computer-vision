@@ -21,7 +21,7 @@ Mat* HistFilter::filter(const Mat & src){
         }
     }
     brightness/=(bgr_img.rows*bgr_img.cols*3);
-    avg_brightness=(avg_brightness*count+brightness)/(count+1);
+    if(!imgs.count(src.data)) avg_brightness=(avg_brightness*imgs.size()+brightness)/(imgs.size()+1);
     for(int y=0;y<bgr_img.rows;y++){
         for(int x=0;x<bgr_img.cols;x++){
             bgr_img.at<Vec3b>(Point(x, y)).val[0]=bgr_img.at<Vec3b>(Point(x, y)).val[0]+avg_brightness-brightness;
@@ -47,10 +47,12 @@ Mat* HistFilter::filter(const Mat & src){
     bool uniform = true; bool accumulate = false;
     Mat hue_hist;
     calcHist( &bgr_planes[0], 1, 0, Mat(), hue_hist, 1, &hueSize, &hueRange, uniform, accumulate );
-    for( int i = 0; i < hueSize; i++ ){
-        avg_hue[i]=(avg_hue[i]*count+cvRound(hue_hist.at<float>(i)))/(count+1);
+    if (!imgs.count(src.data)) {
+        for( int i = 0; i < hueSize; i++ ){
+            avg_hue[i]=(avg_hue[i]*imgs.size()+cvRound(hue_hist.at<float>(i)))/(imgs.size()+1);
+        }
+        imgs.insert(src.data);
     }
-    count++;
     int tmp;
     for( int i = 0; i < hueSize; i++ ){
         tmp=cvRound(hue_hist.at<float>(i)-avg_hue[i]);

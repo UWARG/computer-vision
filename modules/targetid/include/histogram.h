@@ -41,6 +41,7 @@
 #include <vector>
 #include "filter.h"
 #include <cmath>
+#include <unordered_set>
 
 class HistFilter : public Filter{
     public:
@@ -48,8 +49,8 @@ class HistFilter : public Filter{
         ~HistFilter();
         cv::Mat * filter(const cv::Mat & src);
     private:
-        int count=0;
         double avg_hue[18],hue_multi[18];
         int avg_brightness=0;
+        std::unordered_set<uchar *> imgs;
 };
 #endif // HISTOGRAM_H_INCLUDED
