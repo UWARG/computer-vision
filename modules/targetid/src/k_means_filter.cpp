@@ -36,6 +36,7 @@
 
 using namespace cv;
 
+    typedef cv::Point3_<uint8_t> Pixel;
 KMeansFilter::KMeansFilter() {
     (*this->parameters)["reductionFactor"] = 2; //beyond 2 seems to decrease effectiveness of the diff'd image; beyong 1 causes segfaults
     (*this->parameters)["clusters"] = 4;
@@ -56,10 +57,8 @@ cv::Mat * KMeansFilter::filter(const Mat & src) {
     resize(src, tmp, Size(src.cols/reductionFactor, src.rows/reductionFactor));
 
     // Analyze colour clusters in image
-    Mat samples(tmp.rows * tmp.cols, 3, CV_32F);
-    for(int i = 0; i < tmp.rows * tmp.cols; i++)
-	for(int z = 0; z < 3; z++)
-	    samples.at<float>(i, z) = tmp.at<Vec3b>(i)[z];
+    Mat samples = tmp.reshape(1, tmp.rows * tmp.cols);
+    samples.convertTo(samples, CV_32F);
 
     int clusterCount = (*this->parameters)["clusters"];
     Mat labels;
@@ -72,16 +71,17 @@ cv::Mat * KMeansFilter::filter(const Mat & src) {
     Mat * new_image = new Mat( src.size(), src.type() );
     BOOST_LOG_TRIVIAL(debug) << "new " << new_image->cols << "x" << new_image->rows << " Labels " << labels.rows << " " << labels.cols;
 
-    for(int y = 0; y < src.rows; y++) {
-	for(int x = 0; x < src.cols; x++) {
-	    int index = x/reductionFactor + (y/reductionFactor) * tmp.cols;
-	    int clusterIdx = labels.at<int>(index, 0);
+    new_image->forEach<Pixel>([&](Pixel &p, const int * position) -> void {
+            int index = position[1]/reductionFactor + (position[0]/reductionFactor) * tmp.cols;
+            int clusterIdx = labels.at<int>(index, 0);
 
-	    new_image->at<Vec3b>(y, x)[0] = abs(src.at<Vec3b>(y, x)[0] - centers.at<float>(clusterIdx, 0));
-	    new_image->at<Vec3b>(y, x)[1] = abs(src.at<Vec3b>(y, x)[1] - centers.at<float>(clusterIdx, 1));
-	    new_image->at<Vec3b>(y, x)[2] = abs(src.at<Vec3b>(y, x)[2] - centers.at<float>(clusterIdx, 2));
-	}
-    }
+            p.x = abs(src.at<Vec3b>(position[0], position[1])[0] - centers.at<float>(clusterIdx, 0));
+            p.y = abs(src.at<Vec3b>(position[0], position[1])[1] - centers.at<float>(clusterIdx, 1));
+            p.z = abs(src.at<Vec3b>(position[0], position[1])[2] - centers.at<float>(clusterIdx, 2));
+
+        }
+    );
+
     BOOST_LOG_TRIVIAL(trace) << "Reducing Noise...";
     int noiseReduction = (*this->parameters)["noiseReduction"];
     erode(*new_image, *new_image, noiseReduction);
