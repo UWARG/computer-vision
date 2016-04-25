@@ -29,6 +29,10 @@
     SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
+#include <opencv2/highgui.hpp>
+#include <exiv2/exiv2.hpp>
+#include <boost/lexical_cast.hpp>
+#include <sstream>
 #include "frame.h"
 #include "pixel_object.h"
 
@@ -57,3 +61,14 @@ const Metadata * Frame::get_metadata(){
     return &data;
 }
 
+void Frame::save(std::string dir) {
+    std::string path = dir + "/" + id;
+    imwrite(path, *img);
+    Exiv2::Image::AutoPtr image = Exiv2::ImageFactory::open(path);
+    image->readMetadata();
+    Exiv2::ExifData &exifData = image->exifData();
+    std::stringstream ss;
+    ss << data.lat << " " << data.lon << " " << data.altitude << " " << data.heading << " " << data.time;
+    exifData["Exif.Photo.UserComment"] = ss.str();
+    image->writeMetadata();
+}
