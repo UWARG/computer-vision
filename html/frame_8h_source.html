@@ -140,28 +140,31 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;</div>
 <div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    <span class="keyword">const</span> <a class="code" href="structMetadata.html">Metadata</a> * <a class="code" href="classFrame.html#a3526162794232df016d381ace6a32b5c">get_metadata</a>();</div>
 <div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    </div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    cv::Mat * img;</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    std::string id;</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;    <a class="code" href="structMetadata.html">Metadata</a> data;</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;</div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;    std::vector&lt;PixelObject *&gt; objects;</div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;};</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classFrame.html#a1711e8c0dd6a4d24f208ff657bedf689">save</a>(std::string dir);</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    </div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    cv::Mat * img;</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;    std::string id;</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;    <a class="code" href="structMetadata.html">Metadata</a> data;</div>
 <div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;</div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;</div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;<span class="preprocessor">#endif // FRAME_H_INCLUDED</span></div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;    std::vector&lt;PixelObject *&gt; objects;</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;};</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;<span class="preprocessor">#endif // FRAME_H_INCLUDED</span></div>
+<div class="ttc" id="classFrame_html_a1711e8c0dd6a4d24f208ff657bedf689"><div class="ttname"><a href="classFrame.html#a1711e8c0dd6a4d24f208ff657bedf689">Frame::save</a></div><div class="ttdeci">void save(std::string dir)</div><div class="ttdoc">Stores the frame as an image file. </div><div class="ttdef"><b>Definition:</b> frame.cpp:64</div></div>
 <div class="ttc" id="structMetadata_html"><div class="ttname"><a href="structMetadata.html">Metadata</a></div><div class="ttdef"><b>Definition:</b> metadata.h:43</div></div>
-<div class="ttc" id="classFrame_html_ae1d317e86d59762878743a2e6d0b183b"><div class="ttname"><a href="classFrame.html#ae1d317e86d59762878743a2e6d0b183b">Frame::get_objects</a></div><div class="ttdeci">std::vector&lt; PixelObject * &gt; &amp; get_objects()</div><div class="ttdoc">getter for targets </div><div class="ttdef"><b>Definition:</b> frame.cpp:52</div></div>
-<div class="ttc" id="classFrame_html_af65f00928295d18429434fd4c1df07c6"><div class="ttname"><a href="classFrame.html#af65f00928295d18429434fd4c1df07c6">Frame::get_id</a></div><div class="ttdeci">std::string get_id()</div><div class="ttdef"><b>Definition:</b> frame.cpp:39</div></div>
+<div class="ttc" id="classFrame_html_ae1d317e86d59762878743a2e6d0b183b"><div class="ttname"><a href="classFrame.html#ae1d317e86d59762878743a2e6d0b183b">Frame::get_objects</a></div><div class="ttdeci">std::vector&lt; PixelObject * &gt; &amp; get_objects()</div><div class="ttdoc">getter for targets </div><div class="ttdef"><b>Definition:</b> frame.cpp:56</div></div>
+<div class="ttc" id="classFrame_html_af65f00928295d18429434fd4c1df07c6"><div class="ttname"><a href="classFrame.html#af65f00928295d18429434fd4c1df07c6">Frame::get_id</a></div><div class="ttdeci">std::string get_id()</div><div class="ttdef"><b>Definition:</b> frame.cpp:43</div></div>
 <div class="ttc" id="metadata_8h_html"><div class="ttname"><a href="metadata_8h.html">metadata.h</a></div><div class="ttdoc">Structure for storing plane status information from the time that an image was taken. </div></div>
-<div class="ttc" id="classFrame_html_a380e43f6061388d14130bf1953153467"><div class="ttname"><a href="classFrame.html#a380e43f6061388d14130bf1953153467">Frame::add_object</a></div><div class="ttdeci">void add_object(PixelObject *o)</div><div class="ttdoc">Adds given object to the list of objects in the frame. </div><div class="ttdef"><b>Definition:</b> frame.cpp:47</div></div>
-<div class="ttc" id="classFrame_html_a1831991b586a2b54bb79fe084f2684aa"><div class="ttname"><a href="classFrame.html#a1831991b586a2b54bb79fe084f2684aa">Frame::get_img</a></div><div class="ttdeci">cv::Mat &amp; get_img()</div><div class="ttdef"><b>Definition:</b> frame.cpp:43</div></div>
+<div class="ttc" id="classFrame_html_a380e43f6061388d14130bf1953153467"><div class="ttname"><a href="classFrame.html#a380e43f6061388d14130bf1953153467">Frame::add_object</a></div><div class="ttdeci">void add_object(PixelObject *o)</div><div class="ttdoc">Adds given object to the list of objects in the frame. </div><div class="ttdef"><b>Definition:</b> frame.cpp:51</div></div>
+<div class="ttc" id="classFrame_html_a1831991b586a2b54bb79fe084f2684aa"><div class="ttname"><a href="classFrame.html#a1831991b586a2b54bb79fe084f2684aa">Frame::get_img</a></div><div class="ttdeci">cv::Mat &amp; get_img()</div><div class="ttdef"><b>Definition:</b> frame.cpp:47</div></div>
 <div class="ttc" id="classPixelObject_html"><div class="ttname"><a href="classPixelObject.html">PixelObject</a></div><div class="ttdoc">Container class for storing information about interesting objects in photos or video frames using pix...</div><div class="ttdef"><b>Definition:</b> pixel_object.h:31</div></div>
 <div class="ttc" id="classFrame_html"><div class="ttname"><a href="classFrame.html">Frame</a></div><div class="ttdef"><b>Definition:</b> frame.h:48</div></div>
-<div class="ttc" id="classFrame_html_a3526162794232df016d381ace6a32b5c"><div class="ttname"><a href="classFrame.html#a3526162794232df016d381ace6a32b5c">Frame::get_metadata</a></div><div class="ttdeci">const Metadata * get_metadata()</div><div class="ttdoc">getter for metadata </div><div class="ttdef"><b>Definition:</b> frame.cpp:56</div></div>
+<div class="ttc" id="classFrame_html_a3526162794232df016d381ace6a32b5c"><div class="ttname"><a href="classFrame.html#a3526162794232df016d381ace6a32b5c">Frame::get_metadata</a></div><div class="ttdeci">const Metadata * get_metadata()</div><div class="ttdoc">getter for metadata </div><div class="ttdef"><b>Definition:</b> frame.cpp:60</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
