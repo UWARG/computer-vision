@@ -30,6 +30,7 @@
 */
 
 #include <opencv2/imgproc.hpp>
+#include <boost/log/trivial.hpp>
 #include "object_detector.h"
 #include "pixel_object.h"
 #include <vector>
@@ -47,6 +48,7 @@ void ObjectDetector::process_frame(Frame * f){
     Mat & src = f->get_img();
     Mat * filtered = filter->filter(src);
     vector<vector<Point> > contours = *(ccreator->get_contours(*filtered));
+    BOOST_LOG_TRIVIAL(info) << "Found " << contours.size() << " Contours in frame " << f->get_id();
     delete filtered;
     for(vector<Point> contour : contours){
         string type;

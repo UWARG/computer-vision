@@ -46,11 +46,11 @@ KMeansFilter::KMeansFilter() {
 cv::Mat * KMeansFilter::filter(const Mat & src) {
     int kernelSize = 3;
     int reductionFactor = (*this->parameters)["reductionFactor"];
-    BOOST_LOG_TRIVIAL(info) << "Calculating kmeans...";
-    BOOST_LOG_TRIVIAL(info) << "reductionFactor = " << (*parameters)["reductionFactor"];
-    BOOST_LOG_TRIVIAL(info) << "clusters = " << (*parameters)["clusters"];
-    BOOST_LOG_TRIVIAL(info) << "attempts = " << (*parameters)["attempts"];
-    BOOST_LOG_TRIVIAL(info) << "noiseReduction = " << (*parameters)["noiseReduction"];
+    BOOST_LOG_TRIVIAL(trace) << "Calculating kmeans...";
+    BOOST_LOG_TRIVIAL(debug) << "reductionFactor = " << (*parameters)["reductionFactor"];
+    BOOST_LOG_TRIVIAL(debug) << "clusters = " << (*parameters)["clusters"];
+    BOOST_LOG_TRIVIAL(debug) << "attempts = " << (*parameters)["attempts"];
+    BOOST_LOG_TRIVIAL(debug) << "noiseReduction = " << (*parameters)["noiseReduction"];
 
     Mat tmp;
     resize(src, tmp, Size(src.cols/reductionFactor, src.rows/reductionFactor));
@@ -67,10 +67,11 @@ cv::Mat * KMeansFilter::filter(const Mat & src) {
     Mat centers;
     kmeans(samples, clusterCount, labels, TermCriteria(TermCriteria::MAX_ITER, 1, 1), attempts, KMEANS_PP_CENTERS, centers );
 
-    BOOST_LOG_TRIVIAL(info) << "Generating new image...";
-    BOOST_LOG_TRIVIAL(info) << "Src " << src.cols << "x" << src.rows << " tmp " << tmp.cols << "x" << tmp.rows;
+    BOOST_LOG_TRIVIAL(trace) << "Generating new image...";
+    BOOST_LOG_TRIVIAL(debug) << "Src " << src.cols << "x" << src.rows << " tmp " << tmp.cols << "x" << tmp.rows;
     Mat * new_image = new Mat( src.size(), src.type() );
-    BOOST_LOG_TRIVIAL(info) << "new " << new_image->cols << "x" << new_image->rows << " Labels " << labels.rows << " " << labels.cols;
+    BOOST_LOG_TRIVIAL(debug) << "new " << new_image->cols << "x" << new_image->rows << " Labels " << labels.rows << " " << labels.cols;
+
     for(int y = 0; y < src.rows; y++) {
 	for(int x = 0; x < src.cols; x++) {
 	    int index = x/reductionFactor + (y/reductionFactor) * tmp.cols;
@@ -81,7 +82,7 @@ cv::Mat * KMeansFilter::filter(const Mat & src) {
 	    new_image->at<Vec3b>(y, x)[2] = abs(src.at<Vec3b>(y, x)[2] - centers.at<float>(clusterIdx, 2));
 	}
     }
-    BOOST_LOG_TRIVIAL(info) << "Reducing Noise...";
+    BOOST_LOG_TRIVIAL(trace) << "Reducing Noise...";
     int noiseReduction = (*this->parameters)["noiseReduction"];
     erode(*new_image, *new_image, noiseReduction);
     dilate(*new_image, *new_image, noiseReduction);

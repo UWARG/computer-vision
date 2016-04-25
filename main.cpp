@@ -108,7 +108,7 @@ void assign_workers() {
         if (in_buffer.size() > 0) {
             current = in_buffer.front();
             // spawn worker to process image;
-            BOOST_LOG_TRIVIAL(info) << "Working...";
+            BOOST_LOG_TRIVIAL(trace) << "Spawning worker...";
             ioService.post(boost::bind(worker, current));
             in_buffer.pop();
         }
@@ -140,7 +140,11 @@ void output() {
 }
 
 void init() {
+#ifdef RELEASE
     logging::core::get()->set_filter(logging::trivial::severity >= logging::trivial::info);
+#else
+    logging::core::get()->set_filter(logging::trivial::severity >= logging::trivial::debug);
+#endif
 }
 
 int main(int argc, char** argv) {
