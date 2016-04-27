@@ -73,7 +73,7 @@ void MetadataInput::push_back(string newEntry) {
             }
         }
     }
-    if (abs(stod(buffer[timeIndex])) < 1) return; // ignore missing entries
+    if (buffer.size() < heads.size() || abs(stod(buffer[timeIndex])) < 1) return; // ignore missing entries
     for (int i = 0; i < heads.size(); i++) {
         data[heads[i]].push_back(buffer[i]);
     }

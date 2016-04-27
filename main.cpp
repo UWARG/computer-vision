@@ -66,6 +66,10 @@ bool hasMoreFrames = true;
 // Processing module classes
 ImageImport * importer = NULL;
 TargetIdentifier identifier;
+MetadataInput * logReader = NULL;
+
+double aveFrameTime = 1000;
+int frameCount = 0;
 
 void worker(Frame* f) {
     workers++;
@@ -121,8 +125,8 @@ void output() {
     }
 }
 
-void init() { 
-    logging::core::get()->set_filter(logging::trivial::severity >= logging::trivial::info); 
+void init() {
+    logging::core::get()->set_filter(logging::trivial::severity >= logging::trivial::info);
 }
 
 int main(int argc, char** argv) {
@@ -141,6 +145,8 @@ int main(int argc, char** argv) {
         threadpool.create_thread(boost::bind(&boost::asio::io_service::run, &ioService));
     }
     threadpool.join_all();
+    delete logReader;
+    delete importer;
     return 0;
 }
 
@@ -160,6 +166,43 @@ int handle_args(int argc, char** argv) {
             cout << description << endl;
             return 1;
         }
+<<<<<<< HEAD
+=======
+        int devices = vm.count("video") + vm.count("decklink") + vm.count("images");
+        if (devices > 1) {
+            cout << "Invalid options: You can only specify one image source at a time" << endl;
+            return 1;
+        } else if(devices == 0) {
+            cout << "Error: You must specify an image source!" << endl;
+            return 1;
+        }
+        if (!vm.count("telemetry")) {
+            cout << "Invalid options; You must specify a telemetry file" << endl;
+            return 1;
+        }
+        string telemetry = vm["telemetry"].as<string>();
+
+#ifdef HAS_DECKLINK
+        if (vm.count("decklink")) {
+            importer = new VideoImport();
+        }
+#endif // HAS_DECKLINK
+
+        if (vm.count("images")) {
+            string path = vm["images"].as<string>();
+            BOOST_LOG_TRIVIAL(debug) << "Reading Telemetry Log file at path " << path;
+            logReader = new MetadataInput(telemetry);
+            importer = new PictureImport(path, logReader);
+        }
+
+        if (vm.count("output")) {
+            outputDir = vm["output"].as<string>();
+        }
+
+        if (vm.count("intermediate")) {
+            intermediate = true;
+        }
+>>>>>>> 11b8bad... fixes for MetadataInput merge
     }
     catch (std::exception& e) {
         cout << e.what() << endl;
