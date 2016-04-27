@@ -1,5 +1,5 @@
-#ifndef CSV_READING_H_INCLUDED
-#define CSV_READING_H_INCLUDED
+#ifndef METADATA_INPUT_H_INCLUDED
+#define METADATA_INPUT_H_INCLUDED
 
 #include "metadata.h"
 #include <vector>
@@ -48,4 +48,4 @@ class MetadataInput{
         std::unordered_map<std::string, std::vector<std::string> > data;
 };
 
-#endif // CSV_READING_H_INCLUDED
+#endif // METADATA_INPUT_H_INCLUDED

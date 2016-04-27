@@ -46,6 +46,7 @@
 #include "imgimport.h"
 #include "vidimport.h"
 #include "pictureimport.h"
+#include "metadata_input.h"
 #include "target.h"
 
 using namespace std;
