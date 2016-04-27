@@ -50,7 +50,7 @@
 #include <boost/log/expressions.hpp>
 #include <boost/property_tree/ptree.hpp>
 
-#include "vidimport.h"
+#include "decklink_import.h"
 
 using namespace boost;
 
@@ -61,18 +61,18 @@ IDeckLink* deckLink;
 
 Frame* img;
 
-VideoImport::VideoImport() : ImageImport(){
+DecklinkImport::DecklinkImport() : ImageImport(){
     initVideoSource();
     startCapture();
     img = (Frame*) malloc(sizeof(Frame));
 }
 
-VideoImport::~VideoImport(){
+DecklinkImport::~DecklinkImport(){
     stopCapture();
     free(img);
 }
 
-int VideoImport::initVideoSource()
+int DecklinkImport::initVideoSource()
 {
     ComPtr<IDeckLinkIterator> deckLinkIterator = CreateDeckLinkIteratorInstance();
     if (! deckLinkIterator) {
@@ -95,7 +95,7 @@ int VideoImport::initVideoSource()
 
 }
 
-int VideoImport::startCapture(){
+int DeckLinkImport::startCapture(){
     BOOST_FOREACH(DeckLinkCapture& capture, captures)
     {
         if (! capture.start()){
@@ -111,7 +111,7 @@ int VideoImport::startCapture(){
     return 0;
 }
 
-int VideoImport::stopCapture(){
+int DecklinkImport::stopCapture(){
     BOOST_FOREACH(DeckLinkCapture& capture, captures)
     {
         capture.stop();
@@ -119,7 +119,7 @@ int VideoImport::stopCapture(){
     return 0;
 }
 
-int VideoImport::grabFrame(cv::Mat* frame){
+int DecklinkImport::grabFrame(cv::Mat* frame){
     BOOST_FOREACH(DeckLinkCapture& capture, captures)
     {
         capture.grab();
@@ -130,7 +130,7 @@ int VideoImport::grabFrame(cv::Mat* frame){
     return 0;
 }
 
-Frame* VideoImport::next_frame(){
+Frame* DecklinkImport::next_frame(){
     cv::Mat oFrame;
     grabFrame(&oFrame);
     //Insert string id and metadata once a ID generator has been coded and the metadata generator has been coded.

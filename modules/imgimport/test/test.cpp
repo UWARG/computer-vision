@@ -36,7 +36,7 @@
 #include <boost/log/core.hpp>
 #include <boost/log/trivial.hpp>
 #include <boost/log/expressions.hpp>
-#include "vidimport.h"
+#include "decklink_import.h"
 
 using namespace std;
 using namespace boost;

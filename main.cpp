@@ -44,7 +44,7 @@
 #include "frame.h"
 #include "target_identifier.h"
 #include "imgimport.h"
-#include "vidimport.h"
+#include "decklink_import.h"
 #include "pictureimport.h"
 #include "metadata_input.h"
 #include "target.h"
