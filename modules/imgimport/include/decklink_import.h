@@ -28,9 +28,9 @@
     (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
     SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
-	
-#ifndef VIDEO_IMPORT_H_INCLUDED
-#define VIDEO_IMPORT_H_INCLUDED
+
+#ifndef DECKLINK_IMPORT_H_INCLUDED
+#define DECKLINK_IMPORT_H_INCLUDED
 
 
 #include "frame.h"
@@ -39,10 +39,10 @@
 #include <vector>
 #include "imgimport.h"
 
-/** 
- * @class VidImport
+/**
+ * @class DecklinkImport
  *
- * @brief Module for extracting frames from video devices. Especially, DeckLink Video cards.
+ * @brief Module for extracting frames from Decklink Video cards.
  *
  * Reads Video frames and processes them into a OpenCV friendly format. 
  * The results are later used in the ImageImport class. 
@@ -56,14 +56,14 @@
  *
  */
 
-class VideoImport : public ImageImport {
+class DecklinkImport : public ImageImport {
     public:
         /**
-         * Creates a VideoImport object
+         * Creates a DecklinkImport object
          */
-        VideoImport();
+        DecklinkImport();
 
-        virtual ~VideoImport();
+        virtual ~DecklinkImport();
 
         /**
          * Begins capture. Creates a video stream which a frame may be grabbed from.
@@ -95,12 +95,12 @@ class VideoImport : public ImageImport {
         virtual Frame* next_frame();
     private:
         /**
-         * Function called when the VideoImport object is initialized. The module looks for 
-         * the decklink drivers, decklink device and prepares the hardware for capture. 
+         * Function called when the DecklinkImport object is initialized. The module looks for
+         * the decklink drivers, decklink device and prepares the hardware for capture.
          *
          * @return Status depicting whether or not the initialization process was successful.
          */
         int initVideoSource();
 };
 
-#endif // VIDEO_IMPORT_H_INCLUDED
+#endif // DECKLINK_IMPORT_H_INCLUDED
