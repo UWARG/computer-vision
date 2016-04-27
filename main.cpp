@@ -76,6 +76,8 @@ int processors;
 // Processing module classes
 ImageImport * importer = NULL;
 TargetIdentifier identifier;
+MetadataInput * logReader = NULL;
+
 double aveFrameTime = 1000;
 int frameCount = 0;
 
@@ -172,6 +174,8 @@ int main(int argc, char** argv) {
         threadpool.create_thread(boost::bind(&boost::asio::io_service::run, &ioService));
     }
     threadpool.join_all();
+    delete logReader;
+    delete importer;
     return 0;
 }
 
@@ -219,7 +223,9 @@ int handle_args(int argc, char** argv) {
 
         if (vm.count("images")) {
             string path = vm["images"].as<string>();
-            importer = new PictureImport(telemetry, path);
+            BOOST_LOG_TRIVIAL(debug) << "Reading Telemetry Log file at path " << path;
+            logReader = new MetadataInput(telemetry);
+            importer = new PictureImport(path, logReader);
         }
 
         if (vm.count("output")) {

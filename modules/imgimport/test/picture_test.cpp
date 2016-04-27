@@ -17,8 +17,6 @@ using namespace cv;
 using namespace boost;
 
 BOOST_AUTO_TEST_CASE(picture_test){
-    vector<int> n;
-    n.push_back(3);
     string telemetry_path=boost::unit_test::framework::master_test_suite().argv[2];
     telemetry_path+="/test_csv.csv";
     string filePath=boost::unit_test::framework::master_test_suite().argv[1];
@@ -38,7 +36,7 @@ BOOST_AUTO_TEST_CASE(picture_test){
     BOOST_REQUIRE(count > 0);
 
     MetadataInput* mdin=new MetadataInput(telemetry_path);
-    PictureImport PI(filePath,n,mdin);
+    PictureImport PI(filePath, mdin);
     DIR* dr=opendir(filePath.c_str());
     struct dirent* drnt;
     vector<Frame *> frames;

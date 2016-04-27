@@ -68,6 +68,7 @@ void Frame::save(std::string dir) {
     image->readMetadata();
     Exiv2::ExifData &exifData = image->exifData();
     std::stringstream ss;
+    // TODO: lat/lon need to be stored with higher precision
     ss << data.lat << " " << data.lon << " " << data.altitude << " " << data.heading << " " << data.time;
     exifData["Exif.Photo.UserComment"] = ss.str();
     image->writeMetadata();
