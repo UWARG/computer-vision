@@ -10,12 +10,17 @@
 #include <opencv2/core/core.hpp>
 #include <opencv2/highgui/highgui.hpp>
 #include <opencv2/imgproc/imgproc.hpp>
+#include "benchmark.h"
+
 using namespace std;
 using namespace cv;
 using namespace boost;
 
 BOOST_AUTO_TEST_CASE(picture_test){
-    string telemetry_path="test_csv.csv";
+    vector<int> n;
+    n.push_back(3);
+    string telemetry_path=boost::unit_test::framework::master_test_suite().argv[2];
+    telemetry_path+="/test_csv.csv";
     string filePath=boost::unit_test::framework::master_test_suite().argv[1];
 
     int count = 0;
@@ -32,16 +37,8 @@ BOOST_AUTO_TEST_CASE(picture_test){
 
     BOOST_REQUIRE(count > 0);
 
-    ofstream fout(telemetry_path);
-    fout<<"time,timeError,lat,lon,latError,lonError,pitch,roll,pitchRate,rollRate,yawRate,altitude,heading,altError,headingError,photonum"<<endl;
-    for(int i=0;i<count;i++)
-    {
-        for(int j=0;j<15;j++){
-            fout<<j<<",";
-        }
-        fout<<i<<endl;
-    }
-    PictureImport PI(telemetry_path,filePath);
+    MetadataInput* mdin=new MetadataInput(telemetry_path);
+    PictureImport PI(filePath,n,mdin);
     DIR* dr=opendir(filePath.c_str());
     struct dirent* drnt;
     vector<Frame *> frames;
@@ -52,6 +49,16 @@ BOOST_AUTO_TEST_CASE(picture_test){
         }
         frames.push_back(show);
     }
+
+    Metadata m = mdin->get_metadata(221000.5);
+    BOOST_CHECK(abs(m.time - 221000.59375) < 0.00001);
+    BOOST_CHECK(abs(m.lat - 49.907920000110124) < 0.00001);
+    BOOST_CHECK(abs(m.lon - -98.2732866668043) < 0.00001);
+    BOOST_CHECK(abs(m.heading - 318) < 0.00001);
+    BOOST_CHECK(abs(m.altitude - 103.313) < 0.01);
+    BOOST_TEST_MESSAGE("Altitude " << m.altitude);
+
+    benchmark_function("Metadata Lookup", [&]() { m = mdin->get_metadata((rand() % 6514) + 215410); }, 1000);
 
     BOOST_REQUIRE(frames.size() == count);
 
@@ -70,5 +77,6 @@ BOOST_AUTO_TEST_CASE(picture_test){
         int nz=countNonZero(grey);
         BOOST_CHECK(nz==0);
     }
+    delete mdin;
 }
 
