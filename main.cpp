@@ -47,6 +47,7 @@
 #include "imgimport.h"
 #include "decklink_import.h"
 #include "pictureimport.h"
+#include "metadata_input.h"
 #include "target.h"
 
 using namespace std;

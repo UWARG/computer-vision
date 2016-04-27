@@ -11,6 +11,7 @@
 #include <opencv2/highgui/highgui.hpp>
 #include <opencv2/imgproc/imgproc.hpp>
 #include "benchmark.h"
+#include "metadata_input.h"
 
 using namespace std;
 using namespace cv;
