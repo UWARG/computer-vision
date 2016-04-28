@@ -54,6 +54,7 @@
 #include "metadata_reader.h"
 #include "target.h"
 #include "camera.h"
+#include "video_import.h"
 
 using namespace std;
 using namespace boost;
@@ -384,7 +385,8 @@ int handle_args(int argc, char** argv) {
             ("addr,a", po::value<string>(), "Address to connect to to recieve telemetry log")
             ("port,p", po::value<string>(), "Port to connect to to recieve telemetry log")
             ("output,o", po::value<string>(), "Directory to store output files; default is current directory")
-            ("intermediate", "When this is enabled, program will output intermediary frames that contain objects of interest");
+            ("intermediate", "When this is enabled, program will output intermediary frames that contain objects of interest")
+            ("videofile,f", po::value<string>(), "Path to video file to read frames from");
 
         po::variables_map vm;
         po::store(po::parse_command_line(argc, argv, description), vm);
@@ -422,6 +424,13 @@ int handle_args(int argc, char** argv) {
             importer.add_source(new PictureImport(path, logReader, goProFisheye), 0);
             newState.hasImageSource = true;
             cout << "Adding picture source..." << endl;
+        }
+
+        if (vm.count("videofile")) {
+            string path = vm["videofile"].as<string>();
+            importer.add_source(new VideoImport(path, logReader, goProRect), 100);
+            newState.hasImageSource = true;
+            cout << "Adding video source..." << endl;
         }
 
         if (vm.count("output")) {
