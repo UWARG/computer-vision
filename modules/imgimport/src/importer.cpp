@@ -70,6 +70,11 @@ public:
     void set_delay(long msdelay) {
         this->msdelay = msdelay;
     }
+
+    friend ostream &operator<<(ostream &output, const Source &S) {
+        output << "Importer : " << S.importer->to_string() << " delay : " << S.msdelay << " running: " << S.running;
+        return output;
+    }
 private:
     ImageImport *importer;
     priority_queue<Frame*> &cache;
@@ -126,4 +131,12 @@ void Importer::set_buffer_size(int bufferSize) {
 
 int Importer::get_buffer_size() {
     return this->bufferSize;
+}
+
+std::string Importer::source_descriptions() {
+    stringstream ss;
+    for (int i = 0; i < sources.size(); i++) {
+        ss << i << ": " << *(sources[i]) << std::endl;
+    }
+    return ss.str();
 }

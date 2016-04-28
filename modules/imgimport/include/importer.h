@@ -88,6 +88,11 @@ public:
      * @returns current buffer size
      */
     int get_buffer_size();
+
+    /**
+     * @brief Returns string containing human readable descriptions of the current input sources
+     */
+    std::string source_descriptions();
 private:
     boost::asio::io_service ioService;
     std::vector<Source *> sources;

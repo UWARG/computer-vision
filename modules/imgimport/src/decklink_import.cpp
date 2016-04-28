@@ -154,4 +154,8 @@ Frame* DeckLinkImport::next_frame(){
     Frame* img = new Frame(&oFrame, boost::lexical_cast<string>(time) + ".jpg", m, camera);
     return img;
 }
+
+std::string DeckLinkImport::to_string() {
+    return "DecklinkImport";
+}
 #endif

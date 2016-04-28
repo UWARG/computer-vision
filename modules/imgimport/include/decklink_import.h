@@ -93,6 +93,11 @@ class DeckLinkImport : public ImageImport {
          * @return A frame from the video for further usage in further computations and analysis.
          */
         virtual Frame* next_frame();
+
+        /**
+         * @brief String representation of the Importer
+         */
+        virtual std::string to_string();
     private:
         /**
          * Function called when the DeckLinkImport object is initialized. The module looks for

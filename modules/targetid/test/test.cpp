@@ -71,9 +71,9 @@ BOOST_AUTO_TEST_CASE(KMeansAndCanny) {
     if (boost::unit_test::framework::master_test_suite().argc < 2) {
         BOOST_ERROR("Invalid number of arguments");
     }
-    Mat input = imread(boost::unit_test::framework::master_test_suite().argv[1], cv::IMREAD_COLOR);
+    Mat * input = new Mat(imread(boost::unit_test::framework::master_test_suite().argv[1], cv::IMREAD_COLOR));
     Camera camera = Camera::TestCamera();
-    Frame f(&input, "Test Image", Metadata(), camera);
+    Frame f(input, "Test Image", Metadata(), camera);
     KMeansFilter * filter = new KMeansFilter();
     CannyContourCreator * ccreator = new CannyContourCreator();
     ObjectDetector detector(filter, ccreator);
