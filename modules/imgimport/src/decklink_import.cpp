@@ -133,7 +133,6 @@ int DecklinkImport::grabFrame(cv::Mat* frame){
 Frame* DecklinkImport::next_frame(){
     cv::Mat oFrame;
     grabFrame(&oFrame);
-    //Insert string id and metadata once a ID generator has been coded and the metadata generator has been coded.
     const posix_time::ptime now = posix_time::microsec_clock::local_time();
 
     const posix_time::time_duration td = now.time_of_day();
