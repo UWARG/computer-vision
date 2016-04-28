@@ -144,7 +144,12 @@ Frame* DecklinkImport::next_frame(){
     const long milliseconds = td.total_milliseconds() -
                               ((hours * 3600 + minutes * 60 + seconds) * 1000);
     double time = hours * 10000 + minutes * 100 + seconds + ((double)milliseconds)/1000;
-    Metadata m = reader == NULL ? Metadata() : reader->get_metadata(time);
+    Metadata m;
+    try {
+        m = reader == NULL ? Metadata() : reader->get_metadata(time);
+    } catch (std::exception & e) {
+        BOOST_LOG_TRIVIAL(error) << "Error reading metadata: " << e.what();
+    }
     Frame* img = new Frame(&oFrame, boost::lexical_cast<string>(time) + ".jpg", m);
     return img;
 }

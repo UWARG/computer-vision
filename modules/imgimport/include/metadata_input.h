@@ -20,6 +20,7 @@
 #include <vector>
 #include <string>
 #include <unordered_map>
+#include <boost/asio.hpp>
 
 /**
  * @Class MetadataInput
@@ -32,11 +33,19 @@ public:
     /*
      * @brief constructor for MetadataInput which reads log from a file
      *
-     * Logs fatal error message if file cannot be read
+     * Throws a runtime error if the file cannot be read
      *
      * @param filename Path of the file to be read
      */
     MetadataInput(std::string filename);
+
+    /**
+     * @brief Constructor for MetadataInput for reading log over the network
+     *
+     * @param addr IP address to connect to which the log will be sent from
+     * @param port port to connect to
+     */
+    MetadataInput(std::string addr, std::string port);
 
     ~MetadataInput();
 
@@ -99,6 +108,15 @@ private:
      */
     void set_head_row(std::string headRow);
 
+    /**
+     *  @brief Reads the telemetry log over the network
+     *
+     *  Connecs to the address and port stored in addr and port fields
+     *  Reads reply and stores it in the log
+     *  Blocks forever and should only be used inside another thread
+     */
+    void read_log();
+
     int cameraStatus=0;
 
     int size;
@@ -119,6 +137,10 @@ private:
      *  increasing order from the first entry received
      */
     std::unordered_map<std::string, std::vector<std::string> > data;
+
+    boost::asio::io_service ioService;
+    std::string addr, port;
+    std::string buffer;
 };
 
 #endif // METADATA_INPUT_H_INCLUDED

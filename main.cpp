@@ -181,6 +181,8 @@ int handle_args(int argc, char** argv) {
             ("decklink,d", "Use this option to capture video from a connected Decklink card")
 #endif // HAS_DECKLINK
             ("telemetry,t", po::value<string>(), "Path of the telemetry log for the given image source")
+            ("addr,a", po::value<string>(), "Address to connect to to recieve telemetry log")
+            ("port,p", po::value<string>(), "Port to connect to to recieve telemetry log")
             ("output,o", po::value<string>(), "Directory to store output files; default is current directory")
             ("intermediate", "When this is enabled, program will output intermediary frames that contain objects of interest");
 
@@ -201,11 +203,16 @@ int handle_args(int argc, char** argv) {
             cout << "Error: You must specify an image source!" << endl;
             return 1;
         }
-        if (!vm.count("telemetry")) {
-            cout << "Invalid options; You must specify a telemetry file" << endl;
+        if (!vm.count("telemetry") && !(vm.count("addr") && vm.count("port"))) {
+            cout << "Invalid options; You must specify a telemetry file, or port and address" << endl;
             return 1;
         }
-        string telemetry = vm["telemetry"].as<string>();
+
+        if (vm.count("telemetry")) {
+            logReader = new MetadataInput(vm["telemetry"].as<string>());
+        } else if (vm.count("addr") && vm.count("port")) {
+            logReader = new MetadataInput(vm["addr"].as<string>(), vm["port"].as<string>());
+        }
 
 #ifdef HAS_DECKLINK
         if (vm.count("decklink")) {
@@ -215,8 +222,6 @@ int handle_args(int argc, char** argv) {
 
         if (vm.count("images")) {
             string path = vm["images"].as<string>();
-            BOOST_LOG_TRIVIAL(debug) << "Reading Telemetry Log file at path " << path;
-            logReader = new MetadataInput(telemetry);
             importer = new PictureImport(path, logReader);
         }
 
