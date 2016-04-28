@@ -16,11 +16,8 @@
 #ifndef IMAGE_IMPORT_H_INCLUDED
 #define IMAGE_IMPORT_H_INCLUDED
 
-
+#include "metadata_input.h"
 #include "frame.h"
-#include <opencv2/highgui/highgui.hpp>
-#include <string>
-#include <vector>
 
 /**
  * @class ImageImport
@@ -30,23 +27,25 @@
  */
 
 class ImageImport {
-    public:
-        /**
-         * @brief Creates a ImageImport for the telemetry file at the given path
-         *
-         * @param path Path of the telemetry file
-         * @param photoPath directory containing image and video files to import is required but does not need to contain photos
-         * @param videoDeviceNums indices of the video devices from which to read video frames
-         */
-        ImageImport(); 
-        virtual ~ImageImport();
+public:
+    /**
+     * @brief
+     * *
+     * @param reader
+     */
+    ImageImport(MetadataInput * reader);
 
-        /**
-         * @brief Retrieves the next frame to be analyzed
-         *
-         * @return Frame to be analyzed
-         */
-        virtual Frame * next_frame() = 0;
+    virtual ~ImageImport();
+
+    /**
+     * @brief Retrieves the next frame to be analyzed
+     *
+     * @return Frame to be analyzed
+     */
+    virtual Frame * next_frame() = 0;
+
+protected:
+    MetadataInput * reader;
 };
 
 #endif // IMAGE_IMPORT_H_INCLUDED

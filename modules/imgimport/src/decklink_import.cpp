@@ -48,7 +48,7 @@
 #include <boost/log/core.hpp>
 #include <boost/log/trivial.hpp>
 #include <boost/log/expressions.hpp>
-#include <boost/property_tree/ptree.hpp>
+#include <boost/date_time/posix_time/posix_time.hpp>
 
 #include "decklink_import.h"
 
@@ -61,7 +61,7 @@ IDeckLink* deckLink;
 
 Frame* img;
 
-DecklinkImport::DecklinkImport() : ImageImport(){
+DecklinkImport::DecklinkImport(MetadataInput * reader) : ImageImport(reader){
     initVideoSource();
     startCapture();
     img = (Frame*) malloc(sizeof(Frame));
@@ -134,8 +134,18 @@ Frame* DecklinkImport::next_frame(){
     cv::Mat oFrame;
     grabFrame(&oFrame);
     //Insert string id and metadata once a ID generator has been coded and the metadata generator has been coded.
-    Metadata m;
-    Frame* img = new Frame(&oFrame, "ab", Metadata());
+    const posix_time::ptime now = posix_time::microsec_clock::local_time();
+
+    const posix_time::time_duration td = now.time_of_day();
+
+    const long hours        = td.hours();
+    const long minutes      = td.minutes();
+    const long seconds      = td.seconds();
+    const long milliseconds = td.total_milliseconds() -
+                              ((hours * 3600 + minutes * 60 + seconds) * 1000);
+    double time = hours * 10000 + minutes * 100 + seconds + ((double)milliseconds)/1000;
+    Metadata m = reader == NULL ? Metadata() : reader->get_metadata(time);
+    Frame* img = new Frame(&oFrame, boost::lexical_cast<string>(time) + ".jpg", m);
     return img;
 }
 #endif

@@ -209,7 +209,7 @@ int handle_args(int argc, char** argv) {
 
 #ifdef HAS_DECKLINK
         if (vm.count("decklink")) {
-            importer = new VideoImport();
+            importer = new DecklinkImport(logReader = new MetadataInput(telemetry));
         }
 #endif // HAS_DECKLINK
 
