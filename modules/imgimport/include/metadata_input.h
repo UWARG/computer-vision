@@ -5,6 +5,7 @@
 #include <vector>
 #include <string>
 #include <unordered_map>
+#include <boost/asio.hpp>
 
 /**
 * @brief this is for reading telemetry logs from the plane and store them into a vector. prints a fatal log "error: failed to open the csv file" on failure.
@@ -19,6 +20,8 @@ class MetadataInput{
         MetadataInput();
 
         MetadataInput(std::string filename);
+
+        MetadataInput(std::string addr, std::string port);
 
         ~MetadataInput();
 
@@ -35,6 +38,15 @@ class MetadataInput{
 
         void set_head_row(std::string headRow);
 
+        /**
+         *  @brief Reads the telemetry log over the network
+         *
+         *  Connecs to the address and port stored in addr and port fields
+         *  Reads reply and stores it in the log
+         *  Blocks forever and should only be used inside another thread
+         */
+        void read_log();
+
         int cameraStatus=0;
 
         int size;
@@ -46,6 +58,10 @@ class MetadataInput{
 
         std::vector<std::string> heads;
         std::unordered_map<std::string, std::vector<std::string> > data;
+
+        boost::asio::io_service ioService;
+        std::string addr, port;
+        std::string buffer;
 };
 
 #endif // METADATA_INPUT_H_INCLUDED
