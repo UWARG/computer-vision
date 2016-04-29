@@ -1,9 +1,9 @@
-/* 
+/*
     This file is part of WARG's computer-vision
 
     Copyright (c) 2015, Waterloo Aerial Robotics Group (WARG)
     All rights reserved.
- 
+
     Redistribution and use in source and binary forms, with or without
     modification, are permitted provided that the following conditions are met:
     1. Redistributions of source code must retain the above copyright
@@ -51,8 +51,8 @@ BOOST_AUTO_TEST_CASE(DecklinkVideoSource){
     DecklinkImport * v = new DecklinkImport(NULL);
     cv::Mat img;
     v->grabFrame(&img);
-    
-    BOOST_CHECK(img.rows > 0);   
+
+    BOOST_CHECK(img.rows > 0);
     delete v;
-   
+
 }
