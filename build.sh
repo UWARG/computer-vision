@@ -77,11 +77,11 @@ cmake .. -DCMAKE_BUILD_TYPE=$BUILD_TYPE && make -j$THREADS
 
 RESULT=$?
 
-if [ $RESULT -eq 0 ] && [ $TEST ] ; then
+if [[ $RESULT -eq 0 ]] && [[ $TEST == true ]] ; then
     make test
 fi
 
-if [ $RESULT -eq 0 ] && [ $INSTALL ] ; then
+if [[ $RESULT -eq 0 ]] && [[ $INSTALL == true ]] ; then
     sudo make install
 fi
 
