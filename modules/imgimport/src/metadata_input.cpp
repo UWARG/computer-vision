@@ -5,6 +5,7 @@
 #include <cmath>
 #include <boost/asio.hpp>
 #include <boost/bind.hpp>
+#include <boost/thread.hpp>
 
 using namespace std;
 using namespace boost;
@@ -58,7 +59,8 @@ void MetadataInput::read_log() {
         int eol;
         if ((eol = buffer.find_first_of('\n')) != string::npos) {
             string line = buffer.substr(0, eol);
-            buffer = buffer.substr(eol, string::npos);
+            buffer = buffer.substr(eol + 1, string::npos);
+            BOOST_LOG_TRIVIAL(debug) << "reading line " << line;
             if (heads.size() == 0) {
                 set_head_row(line);
             } else {
@@ -70,6 +72,7 @@ void MetadataInput::read_log() {
 
 MetadataInput::MetadataInput(string addr, string port) : addr(addr), port(port), buffer(""), size(0) {
     ioService.post(boost::bind(&MetadataInput::read_log, this));
+    boost::thread t(boost::bind(&boost::asio::io_service::run, &ioService));
 }
 
 void MetadataInput::set_head_row(string headRow) {
@@ -111,7 +114,7 @@ void MetadataInput::push_back(string newEntry) {
             }
         }
     }
-    if (buffer.size() < heads.size() || abs(stod(buffer[timeIndex])) < 1) return; // ignore missing entries
+    if (k < heads.size() || abs(stod(buffer[timeIndex])) < 1) return; // ignore missing entries
     for (int i = 0; i < heads.size(); i++) {
         data[heads[i]].push_back(buffer[i]);
     }
