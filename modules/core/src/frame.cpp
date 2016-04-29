@@ -33,6 +33,7 @@
 #include <exiv2/exiv2.hpp>
 #include <boost/lexical_cast.hpp>
 #include <sstream>
+#include <iomanip>
 #include "frame.h"
 #include "pixel_object.h"
 
@@ -69,7 +70,7 @@ void Frame::save(std::string dir) {
     Exiv2::ExifData &exifData = image->exifData();
     std::stringstream ss;
     // TODO: lat/lon need to be stored with higher precision
-    ss << data.lat << " " << data.lon << " " << data.altitude << " " << data.heading << " " << data.time;
+    ss << std::setprecision(12) << data.lat << " " << data.lon << " " << data.altitude << " " << data.heading << " " << data.time;
     exifData["Exif.Photo.UserComment"] = ss.str();
     image->writeMetadata();
 }
