@@ -14,12 +14,14 @@
  */
 
 #include "pixel_object.h"
+#include <memory>
 
 using namespace cv;
+using namespace std;
 using std::string;
 
-PixelObject::PixelObject(cv::Mat & crop, std::vector<Point> & contour, Point2d centroid, double area, double perimeter, Scalar colour, Point2d error, double errorAngle):
-    crop(crop), contour(contour), centroid(centroid), area(area), perimeter(perimeter), colour(colour), error(error), errorAngle(errorAngle){
+PixelObject::PixelObject(cv::Mat & crop, std::vector<Point> & contour, Point2d centroid, double area, double perimeter, Scalar colour, Point2d error, double errorAngle, unique_ptr<string> qrCode):
+    crop(crop), contour(contour), centroid(centroid), area(area), perimeter(perimeter), colour(colour), error(error), errorAngle(errorAngle), qrCode(qrCode.release()) {
 
 }
 
@@ -57,4 +59,8 @@ Frame * PixelObject::get_image(){
 
 Mat & PixelObject::get_cropped_image(){
     return crop;
+}
+
+weak_ptr<string> PixelObject::get_qr_code() {
+    return weak_ptr<string>(qrCode);
 }
