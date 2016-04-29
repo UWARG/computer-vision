@@ -27,10 +27,11 @@
 #include <opencv2/core/core.hpp>
 #include <vector>
 #include "frame.h"
+#include <memory>
 
 class PixelObject{
 public:
-    PixelObject(cv::Mat & crop, std::vector<cv::Point> & contour, cv::Point2d centroid, double area, double perimeter, cv::Scalar colour, cv::Point2d error, double errorAngle);
+    PixelObject(cv::Mat & crop, std::vector<cv::Point> & contour, cv::Point2d centroid, double area, double perimeter, cv::Scalar colour, cv::Point2d error, double errorAngle, std::unique_ptr<std::string> qrCode);
 
     /**
      * @brief Getter for contour
@@ -94,6 +95,9 @@ public:
      */
     cv::Mat & get_cropped_image();
 
+    std::weak_ptr<std::string> get_qr_code();
+    std::ostream & operator<<(std::ostream & os);
+
     /// add_object sets the PixelObject's frame pointer
     friend void Frame::add_object(PixelObject * o);
 private:
@@ -141,7 +145,13 @@ private:
      * @brief Cropped picture of object
      */
     cv::Mat crop;
+
+    /**
+     *  @brief QR Code value
+     */
+    std::shared_ptr<std::string> qrCode;
 };
 
+std::ostream & operator<<(std::ostream & os, PixelObject & p);
 
 #endif // PIXEL_OBJECT_H_INCLUDED

@@ -35,6 +35,7 @@
 #include "pixel_object.h"
 #include <vector>
 #include "frame.h"
+#include "qr_identifier.h"
 
 using namespace std;
 using namespace cv;
@@ -69,8 +70,11 @@ void ObjectDetector::process_frame(Frame * f){
         Mat mask = Mat::zeros(f->get_img().size(), CV_8UC1);
         drawContours(mask, vector<vector<Point> >({contour}), 0, Scalar(255), CV_FILLED);
         colour = mean(f->get_img(), mask);
+        Rect bounds = boundingRect(contour);
+        crop = f->get_img()(bounds);
+        unique_ptr<string> qr = qr_identifier(crop);
 
-        PixelObject * p = new PixelObject(crop, contour, centroid, area, perimeter, colour, error, errorAngle);
+        PixelObject * p = new PixelObject(crop, contour, centroid, area, perimeter, colour, error, errorAngle, move(qr));
         f->add_object(p);
     }
 }

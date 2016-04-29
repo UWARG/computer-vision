@@ -50,6 +50,7 @@
 #include "metadata_input.h"
 #include "target.h"
 #include "video_import.h"
+#include "pixel_object.h"
 
 using namespace std;
 using namespace boost;
@@ -62,7 +63,7 @@ const int BUFFER_SIZE = 20;
 Frame* next_image();
 int handle_args(int argc, char** argv);
 queue<Frame*> in_buffer;
-queue<Target*> out_buffer;
+queue<PixelObject*> out_buffer;
 queue<Frame*> intermediate_buffer;
 
 boost::asio::io_service ioService;
@@ -134,17 +135,22 @@ void output() {
     filebuf fb;
     while (hasMoreFrames || out_buffer.size() > 0 || intermediate_buffer.size() > 0 || workers > 0) {
         if (out_buffer.size() > 0) {
-            fb.open("out.txt", ios::app);
+            fb.open(outputDir + "/out.txt", ios::app);
             ostream out(&fb);
 
             out << out_buffer.front();
-            // Output
             out_buffer.pop();
             fb.close();
         }
         if (intermediate_buffer.size() > 0) {
             Frame * f = intermediate_buffer.front();
             f->save(outputDir);
+            fb.open(outputDir + "/" + f->get_id() + ".txt", ios::app);
+            ostream out(&fb);
+            for (PixelObject * p : f->get_objects()) {
+                out << *p << endl;
+            }
+            fb.close();
             intermediate_buffer.pop();
         }
         boost::this_thread::sleep(boost::posix_time::milliseconds(30));

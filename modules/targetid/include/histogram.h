@@ -3,7 +3,7 @@
 
     Copyright (c) 2015, Waterloo Aerial Robotics Group (WARG)
     All rights reserved.
- 
+
     Redistribution and use in source and binary forms, with or without
     modification, are permitted provided that the following conditions are met:
     1. Redistributions of source code must retain the above copyright
@@ -11,9 +11,9 @@
     2. Redistributions in binary form must reproduce the above copyright
        notice, this list of conditions and the following disclaimer in the
        documentation and/or other materials provided with the distribution.
-    3. Usage of this code MUST be explicitly referenced to WARG and this code
+    3. Usage of this code MUST be explicitly referenced to WARG and this code 
        cannot be used in any competition against WARG.
-    4. Neither the name of the WARG nor the names of its contributors may be used
+    4. Neither the name of the WARG nor the names of its contributors may be used 
        to endorse or promote products derived from this software without specific
        prior written permission.
 
@@ -29,30 +29,28 @@
     SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-#include "canny_contour_creator.h"
-#include <boost/log/trivial.hpp>
-#include <opencv2/imgproc/imgproc.hpp>
+#ifndef HISTOGRAM_H_INCLUDED
+#define HISTOGRAM_H_INCLUDED
+#include "opencv2/highgui/highgui.hpp"
+#include "opencv2/imgcodecs.hpp"
+#include "opencv2/imgproc/imgproc.hpp"
+#include "frame.h"
+#include "pictureimport.h"
+#include <iostream>
+#include <stdio.h>
+#include <vector>
+#include "filter.h"
+#include <cmath>
+#include <unordered_set>
 
-using std::vector;
-using namespace cv;
-
-const int ratio = 3;
-const int kernelSize = 3;
-
-CannyContourCreator::CannyContourCreator(int lowThreshold) : lowThreshold(lowThreshold) { }
-
-vector<vector<Point> > * CannyContourCreator::get_contours(cv::Mat & src) {
-    Mat result;
-    vector<vector<Point> > * contours = new vector<vector<Point> >() ;
-    vector<Vec4i> hierarchy;
-    /// Canny detector
-    Canny( src, result, lowThreshold, lowThreshold*ratio, kernelSize );
-
-    Mat structuringElement = getStructuringElement(MORPH_ELLIPSE, Size(40, 40));
-    morphologyEx(result, result, cv::MORPH_CLOSE, structuringElement);
-
-    BOOST_LOG_TRIVIAL(trace) << "Detecting Contours";
-    /// Find contours
-    findContours( result, *contours, hierarchy, RETR_EXTERNAL, CHAIN_APPROX_SIMPLE, Point(0, 0) );
-    return contours;
-}
+class HistFilter : public Filter{
+    public:
+        HistFilter();
+        ~HistFilter();
+        cv::Mat * filter(const cv::Mat & src);
+    private:
+        double avg_hue[18],hue_multi[18];
+        int avg_brightness=0;
+        std::unordered_set<uchar *> imgs;
+};
+#endif // HISTOGRAM_H_INCLUDED
