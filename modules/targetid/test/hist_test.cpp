@@ -20,7 +20,10 @@ using namespace boost;
 
 BOOST_AUTO_TEST_CASE(hist_test){
     string filePath=boost::unit_test::framework::master_test_suite().argv[1];
-    HistFilter test_filter;
+    HistFilter histFilter;
+    KMeansFilter kMeans;
+    CannyContourCreator ccreator;
+    CannyContourCreator lowCCreator(30);
     DIR* dr;
     dr=opendir(filePath.c_str());
     struct dirent* drnt;
@@ -43,7 +46,7 @@ BOOST_AUTO_TEST_CASE(hist_test){
             break;
         }
         const Mat buffer=src;
-        test_filter.filter(buffer);
+        histFilter.filter(buffer);
     }
     Mat* show;
     DIR* dir;
@@ -128,18 +131,29 @@ BOOST_AUTO_TEST_CASE(hist_test){
                 expected=expected_contours[i].vertices;
         }
         const Mat buffer=src;
-        show=test_filter.filter(buffer);
-        CannyContourCreator ccreator;
-        vector<vector<Point> > * results = ccreator.get_contours(*show);
-        BOOST_TEST_MESSAGE("Now testing " << drnt->d_name);
-        if(results->size()==0){
-            BOOST_CHECK(expected.size()==0);
+        show = histFilter.filter(buffer);
+        vector<vector<Point> > * results = lowCCreator.get_contours(*show);
+        if (results->size() == 0) {
+            BOOST_CHECK(expected.size() == results->size() == 0);
             BOOST_TEST_MESSAGE("No Target Found");
-        }
-        else{
+        } else {
             double diff = compare_contours(*results, expected);
             BOOST_CHECK(diff > 0.01);
-            BOOST_TEST_MESSAGE("RESULT: " << diff);
+            BOOST_TEST_MESSAGE("RESULT(HistFilter): " << diff);
+        }
+
+        show = kMeans.filter(buffer);
+        results = ccreator.get_contours(*show);
+        if (results->size() == 0) {
+            BOOST_CHECK(expected.size() == results->size() == 0);
+            BOOST_TEST_MESSAGE("No Target Found");
+        } else {
+            double diff = compare_contours(*results, expected);
+            BOOST_CHECK(diff > 0.01);
+            BOOST_TEST_MESSAGE("RESULT(KMeansFilter): " << diff);
         }
     }
+    Mat img = imread(filePath + "/IMG_1913.jpg");
+    benchmark_function("KMeansFilter", [&]() { kMeans.filter(img); }, 10);
+    benchmark_function("HistFilter", [&]() { histFilter.filter(img); }, 10);
 }

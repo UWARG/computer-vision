@@ -36,9 +36,10 @@
 using std::vector;
 using namespace cv;
 
-const int lowThreshold = 60;
 const int ratio = 3;
 const int kernelSize = 3;
+
+CannyContourCreator::CannyContourCreator(int lowThreshold) : lowThreshold(lowThreshold) { }
 
 vector<vector<Point> > * CannyContourCreator::get_contours(cv::Mat & src) {
     Mat result;

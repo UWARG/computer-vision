@@ -35,8 +35,11 @@
 #include "contour_creator.h"
 
 class CannyContourCreator : public ContourCreator {
-    public:
-        virtual std::vector<std::vector<cv::Point> > * get_contours(cv::Mat & src);
+public:
+    CannyContourCreator(int lowThreshold = 60);
+    virtual std::vector<std::vector<cv::Point> > * get_contours(cv::Mat & src);
+private:
+    int lowThreshold;
 };
 
 #endif // CANNY_CONTOUR_CREATOR_INCLUDED

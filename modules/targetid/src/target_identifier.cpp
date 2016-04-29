@@ -31,10 +31,11 @@
 
 #include "target_identifier.h"
 #include "k_means_filter.h"
+#include "histogram.h"
 #include "canny_contour_creator.h"
 
 TargetIdentifier::TargetIdentifier(){
-    filter = new KMeansFilter();
+    filter = new HistFilter();
     cCreator = new CannyContourCreator();
     detector = new ObjectDetector(filter, cCreator);
 }
