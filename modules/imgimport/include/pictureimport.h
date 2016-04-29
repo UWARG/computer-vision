@@ -66,7 +66,6 @@ class PictureImport : public ImageImport {
     private:
         std::string filePath;
 	DIR* dr;
-	MetadataInput* mdin;
 };
 
 #endif // PICTURE_IMPORT_H_INCLUDED

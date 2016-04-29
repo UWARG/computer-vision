@@ -6,7 +6,6 @@ if(Boost_FOUND AND OpenCV_FOUND)
 
     # Tests
     add_test("picture_test" picture_test ${TESTDATA_DIR}/photos ${TESTDATA_DIR} --log_format=XML --log_sink=TEST_PICTURE.xml --log_level=all --report_level=no)
-    add_test("csv_test" csv_test ${TESTDATA_DIR}/photos --log_format=XML --log_sink=TEST_CSV.xml --log_level=all --report_level=no)
 
     if (DeckLinkSDK_FOUND)
         ADD_DEFINITIONS("-DHAS_DECKLINK")

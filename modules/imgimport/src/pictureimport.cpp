@@ -43,8 +43,7 @@ using namespace std;
 using namespace boost;
 
 PictureImport::PictureImport(std::string filePath, MetadataInput* mdin)
-              :ImageImport() {
-    this->mdin=mdin;
+              :ImageImport(mdin) {
     this->filePath=filePath;
     dr=opendir(filePath.c_str());
 }
@@ -70,6 +69,6 @@ Frame * PictureImport::next_frame(){
         *img=imread(true_path,CV_LOAD_IMAGE_COLOR);
     }
     string id(drnt->d_name);
-    Frame* frame_buffer=new Frame(img,id,mdin->next_metadata());
+    Frame* frame_buffer=new Frame(img,id,reader->next_metadata());
     return frame_buffer;
 }
