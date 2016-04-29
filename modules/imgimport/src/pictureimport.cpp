@@ -69,6 +69,11 @@ Frame * PictureImport::next_frame(){
         *img=imread(true_path,CV_LOAD_IMAGE_COLOR);
     }
     string id(drnt->d_name);
-    Frame* frame_buffer=new Frame(img,id,reader->next_metadata());
-    return frame_buffer;
+    Metadata m;
+    try {
+        m = reader->next_metadata();
+    } catch (std::exception & e) {
+        BOOST_LOG_TRIVIAL(error) << "Error while retrieving metadata: " <<  e.what();
+    }
+    return new Frame(img, id, m);
 }
