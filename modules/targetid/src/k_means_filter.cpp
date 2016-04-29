@@ -1,9 +1,9 @@
-/* 
+/*
     This file is part of WARG's computer-vision
 
     Copyright (c) 2015, Waterloo Aerial Robotics Group (WARG)
     All rights reserved.
- 
+
     Redistribution and use in source and binary forms, with or without
     modification, are permitted provided that the following conditions are met:
     1. Redistributions of source code must retain the above copyright
@@ -35,6 +35,7 @@
 #include <algorithm>
 
 using namespace cv;
+typedef cv::Point3_<uint8_t> Pixel;
 
     typedef cv::Point3_<uint8_t> Pixel;
 KMeansFilter::KMeansFilter() {

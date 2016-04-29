@@ -21,6 +21,7 @@
 #include "canny_contour_creator.h"
 #include "k_means_filter.h"
 #include "frame.h"
+#include "histogram.h"
 
 using namespace cv;
 using namespace std;
@@ -88,8 +89,8 @@ int main(int argc, char ** argv) {
     if (argc < 2) {
         BOOST_LOG_TRIVIAL(error) << "Invalid number of arguments";
     }
-    filters.push_back(pair<Filter *, string>(new KMeansFilter(), "KMeans1"));
-    filters.push_back(pair<Filter *, string>(new KMeansFilter(), "KMeans2")); // must have at least two filters
+    filters.push_back(pair<Filter *, string>(new KMeansFilter(), "KMeans"));
+    filters.push_back(pair<Filter *, string>(new HistFilter(), "HistFilter")); // must have at least two filters
 
     path p(argv[1]);
     BOOST_LOG_TRIVIAL(info) << "Opening Directory " << p.string();
@@ -100,6 +101,8 @@ int main(int argc, char ** argv) {
 	for (auto it : recursive_directory_range(p)) {
         if(is_regular_file(it.path())) fileNames.push_back(it.path().string());
         BOOST_LOG_TRIVIAL(info) << "Reading Image " << it.path().string();
+        input = imread(it.path().string(), cv::IMREAD_COLOR);
+        filters[1].first->filter(input); // HistFilter relies on accumulative data
     }
     sort(fileNames.begin(), fileNames.end());
     on_file_change(0, 0);
