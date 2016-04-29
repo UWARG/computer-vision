@@ -96,6 +96,7 @@ public:
     cv::Mat & get_cropped_image();
 
     std::weak_ptr<std::string> get_qr_code();
+    std::ostream & operator<<(std::ostream & os);
 
     /// add_object sets the PixelObject's frame pointer
     friend void Frame::add_object(PixelObject * o);
@@ -151,5 +152,6 @@ private:
     std::shared_ptr<std::string> qrCode;
 };
 
+std::ostream & operator<<(std::ostream & os, PixelObject & p);
 
 #endif // PIXEL_OBJECT_H_INCLUDED

@@ -64,3 +64,14 @@ Mat & PixelObject::get_cropped_image(){
 weak_ptr<string> PixelObject::get_qr_code() {
     return weak_ptr<string>(qrCode);
 }
+
+std::ostream & operator<<(std::ostream & os, PixelObject & p) {
+    os << "Object (in pixels)" << endl;
+    os << "Centroid: " << p.get_centroid().x << " " << p.get_centroid().y << endl;
+    os << "Area: " << p.get_area() << endl;
+    os << "Perimeter: " << p.get_perimeter() << endl;
+    shared_ptr<string> qr_code = p.get_qr_code().lock();
+    if (qr_code)
+        os << "QR Code: " << *qr_code << endl;
+    return os;
+}
