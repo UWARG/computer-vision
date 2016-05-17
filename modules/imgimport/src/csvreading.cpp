@@ -1,185 +1,124 @@
 #include "csvreading.h"
 #include <fstream>
-#include <string>
 #include <iostream>
 #include <boost/log/trivial.hpp>
+#include <cmath>
 using namespace std;
 using namespace boost;
 
-vector<Metadata> readcsv(const char* filename){
-    vector<Metadata> result;
-    vector<Metadata> errorResult;
-    string headrow;
+MetadataInput::MetadataInput() : size(0) {
+
+}
+
+MetadataInput::MetadataInput(string filename) : MetadataInput() {
+    string line;
     ifstream finput(filename);
     if(!finput.is_open())
     {
         BOOST_LOG_TRIVIAL(fatal)<<"error: failed to open the csv file"<<endl;
-        return errorResult;
+        return;
     }
-    getline(finput,headrow);
-    int i=0,j=0;
-    int len=headrow.length();
-    string heads[16];
-    heads[0]="";
-    for(i=0;i<len;i++){
-        if(headrow[i]==','){
-            j++;
-       	    if(j==16){
-                break;
-            }
-            heads[j]="";
-        }
-        else{
-            heads[j]+=headrow[i];
-        }
-    }
-    i=0;
-    int temnum;
-    bool f=0;
+    getline(finput, line);
+    set_head_row(line);
+
+    bool f = false;
     char comma;
     while(!finput.eof()){
-        Metadata input;
-        for(j=0;j<16;){
-            if(heads[j].compare("time")==0){
-                finput>>input.time;
-                if(finput.eof()){
-                    break;
-                }
-                j++;
-                if(j!=16){
-                    finput>>comma;
-                }
-                continue;
+        getline(finput, line);
+        if(finput.eof())
+            break;
+
+        push_back(line);
+    }
+
+    finput.close();
+}
+
+void MetadataInput::set_head_row(string headRow) {
+    int len=headRow.length();
+    heads.push_back("");
+    int k=0;
+    for(int i=0;i<len;i++){
+        if(headRow[i]==','){
+            if (heads[k].compare("time") == 0) {
+                timeIndex = k;
             }
-            if(heads[j].compare("timeError")==0){
-                finput>>input.timeError;
-                j++;
-                if(j!=16){
-                    finput>>comma;
-                }
-                continue;
-            }
-            if(heads[j].compare("lat")==0){
-                finput>>input.lat;
-                j++;
-                if(j!=16){
-                    finput>>comma;
-                }
-                continue;
-            }
-            if(heads[j].compare("lon")==0){
-                finput>>input.lon;
-                j++;
-                if(j!=16){
-                    finput>>comma;
-                }
-                continue;
-            }
-            if(heads[j].compare("latError")==0){
-                finput>>input.latError;
-                j++;
-                if(j!=16){
-                    finput>>comma;
-                }
-                continue;
-            }
-            if(heads[j].compare("lonError")==0){
-                finput>>input.lonError;
-                j++;
-                if(j!=16){
-                    finput>>comma;
-                }
-                continue;
-            }
-            if(heads[j].compare("pitch")==0){
-                finput>>input.pitch;
-                j++;
-                if(j!=16){
-                    finput>>comma;
-                }
-                continue;
-            }
-            if(heads[j].compare("roll")==0){
-                finput>>input.roll;
-                j++;
-                if(j!=16){
-                    finput>>comma;
-                }
-                continue;
-            }
-            if(heads[j].compare("pitchRate")==0){
-                finput>>input.pitchRate;
-                j++;
-                if(j!=16){
-                    finput>>comma;
-                }
-                continue;
-            }
-            if(heads[j].compare("rollRate")==0){
-                finput>>input.rollRate;
-                j++;
-                if(j!=16){
-                    finput>>comma;
-                }
-                continue;
-            }
-            if(heads[j].compare("yawRate")==0){
-                finput>>input.yawRate;
-                j++;
-                if(j!=16){
-                    finput>>comma;
-                }
-                continue;
-            }
-            if(heads[j].compare("altitude")==0){
-                finput>>input.altitude;
-                j++;
-                if(j!=16){
-                    finput>>comma;
-                }
-                continue;
-            }
-            if(heads[j].compare("heading")==0){
-                finput>>input.heading;
-                j++;
-                if(j!=16){
-                    finput>>comma;
-                }
-                continue;
-            }
-            if(heads[j].compare("altError")==0){
-                finput>>input.altError;
-                j++;
-                if(j!=16){
-                    finput>>comma;
-                }
-                continue;
-            }
-            if(heads[j].compare("headingError")==0){
-                finput>>input.headingError;
-                j++;
-                if(j!=16){
-                    finput>>comma;
-                }
-                continue;
-            }
-            if(heads[j].compare("photonum")==0){
-                finput>>temnum;
-                if(temnum>=i){
-                    f=1;
-                }
-                j++;
-                continue;
-            }
-            cerr<<"header error"<<endl;
-            return errorResult;
+            k++;
+            heads.push_back("");
         }
-        if(f==1){
-            result.push_back(input);
-            i++;
-            f=0;
+        else{
+            if(headRow[i]!=13){
+                heads[k]+=headRow[i];
+            }
         }
     }
-    finput.close();
-    return result;
+}
+
+void MetadataInput::push_back(string newEntry) {
+    // TODO: Use a proper string split function
+    int len = newEntry.length();
+    len = newEntry.length();
+    vector<string> buffer(heads.size());
+    int k = 0;
+    for(int i = 0; i < len; i++){
+        if(newEntry[i]==','){
+            k++;
+            if(k == heads.size()){
+                break;
+            }
+        }
+        else{
+            if(newEntry[i] != 13){
+                buffer.at(k) += newEntry[i];
+            }
+        }
+    }
+    if (buffer.size() < heads.size() || abs(stod(buffer[timeIndex])) < 1) return; // ignore missing entries
+    for (int i = 0; i < heads.size(); i++) {
+        data[heads[i]].push_back(buffer[i]);
+    }
+    size++;
+}
+
+MetadataInput::~MetadataInput(){
+}
+
+Metadata MetadataInput::bisearcher(double value,int begin,int end, string field){
+    if (end - begin <= 1) {
+        if (abs(value - stod(data[field].at(begin))) < abs(value - stod(data[field].at(end)))) {
+            return metadata_at_index(begin, field.compare("time") == 0 ? value : stod(data["time"].at(begin)));
+        }
+        else {
+            return metadata_at_index(end, field.compare("time") == 0 ? value : stod(data["time"].at(end)));
+        }
+    }
+    if (value < stod(data[field].at((begin + end)/2))) {
+        return bisearcher(value, begin, (begin + end)/2, field);
+    }
+    else{
+        return bisearcher(value, (begin + end)/2, end, field);
+    }
+}
+
+Metadata MetadataInput::metadata_at_index(int index, double timestamp) {
+    Metadata reader;
+    reader.time = stod(data["time"].at(index));
+    reader.lat = stod(data["lat"].at(index));
+    reader.lon = stod(data["lon"].at(index));
+    reader.pitch = stod(data["pitch"].at(index));
+    reader.roll = stod(data["roll"].at(index));
+    reader.altitude = stod(data["altitude"].at(index));
+    reader.heading = stod(data["heading"].at(index));
+    BOOST_LOG_TRIVIAL(debug) << "Fetching metadata at index " << index << " requested timestamp is " << timestamp << " time found is " << reader.time;
+
+    // TODO: fill in error info
+    return reader;
+}
+
+Metadata MetadataInput::get_metadata(double timestamp){
+    return bisearcher(timestamp, 0, size-1, "time");
+}
+
+Metadata MetadataInput::next_metadata() {
+    return bisearcher(cameraStatus++, 0, size - 1, "cameraStatus");
 }

@@ -1,4 +1,4 @@
-/* 
+/*
     This file is part of WARG's computer-vision
 
     Copyright (c) 2015, Waterloo Aerial Robotics Group (WARG)
@@ -42,13 +42,12 @@ using namespace cv;
 using namespace std;
 using namespace boost;
 
-PictureImport::PictureImport(std::string telemetry_path, std::string filePath)
+PictureImport::PictureImport(std::string filePath, MetadataInput* mdin)
               :ImageImport() {
-    mdvc=readcsv(telemetry_path.c_str());
+    this->videoDeviceNums=videoDeviceNums;
+    this->mdin=mdin;
     this->filePath=filePath;
     dr=opendir(filePath.c_str());
-    struct dirent* drnt;
-    tracker=0;
 }
 
 PictureImport::~PictureImport(){
@@ -57,10 +56,6 @@ PictureImport::~PictureImport(){
 }
 
 Frame * PictureImport::next_frame(){
-    if (mdvc.size() <= tracker) {
-        return NULL;
-    }
-
     Mat* img=new Mat;
     struct dirent* drnt;
     while(img->empty()){
@@ -76,7 +71,6 @@ Frame * PictureImport::next_frame(){
         *img=imread(true_path,CV_LOAD_IMAGE_COLOR);
     }
     string id(drnt->d_name);
-    Frame* frame_buffer=new Frame(img,id,mdvc.at(tracker));
-    tracker++;
+    Frame* frame_buffer=new Frame(img,id,mdin->next_metadata());
     return frame_buffer;
 }
