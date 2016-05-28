@@ -1,3 +1,18 @@
+/**
+ * @file metadata_input.h
+ * @author WARG
+ *
+ * @section LICENSE
+ *
+ * Copyright (c) 2015-2016, Waterloo Aerial Robotics Group (WARG)
+ * All rights reserved.
+ *
+ * This software is licensed under a modified version of the BSD 3 clause license
+ * that should have been included with this software in a file called COPYING.txt
+ * Otherwise it is available at:
+ * https://raw.githubusercontent.com/UWARG/computer-vision/master/COPYING.txt
+ */
+
 #ifndef METADATA_INPUT_H_INCLUDED
 #define METADATA_INPUT_H_INCLUDED
 
@@ -7,45 +22,103 @@
 #include <unordered_map>
 
 /**
-* @brief this is for reading telemetry logs from the plane and store them into a vector. prints a fatal log "error: failed to open the csv file" on failure.
-*
-*
-* @param filename the relative path and name of the file
-* @return return the vector on success and return an empty vector on failure
-*/
-
+ * @Class MetadataInput
+ * @brief A class for reading telemetry logs and searching for log entries
+ */
 class MetadataInput{
-    public:
-        MetadataInput();
+public:
+    MetadataInput();
 
-        MetadataInput(std::string filename);
+    /*
+     * @brief constructor for MetadataInput which reads log from a file
+     *
+     * Logs fatal error message if file cannot be read
+     *
+     * @param filename Path of the file to be read
+     */
+    MetadataInput(std::string filename);
 
-        ~MetadataInput();
+    ~MetadataInput();
 
-        Metadata get_metadata(double timestamp);
+    /**
+     * @brief searches for the closest log entry to the given timestamp
+     *
+     * Probably throws an exception if no entries are in the log
+     *
+     * @param timestamp the time in the format hhmmss.ms
+     * @returns the closest log entry to the given timestamp
+     */
+    Metadata get_metadata(double timestamp);
 
-        Metadata next_metadata();
+    /**
+     * @brief retrieves the next log entry corresponding to a time when the log notes a photograph was triggered
+     *
+     * Specifically returns the next log entry where the value of cameraStatus is one less than the previous entry
+     * If called more times then there are such entries, will continuously return the last such entry
+     *
+     * @return The next log entry when the log notes a photograph was triggered
+     */
+    Metadata next_metadata();
 
-    private:
-        Metadata metadata_at_index(int index, double timestamp);
+private:
 
-        Metadata bisearcher(double value, int begin, int end, std::string field);
+    /**
+     * @brief Creates a Metadata structure for the log entry at the given index
+     *
+     * The passed timestamp will be used for calculating time-based error and is the
+     * time that the Metadata struct will be used for (i.e. time of the photo), not the
+     * time in the log entry.
+     *
+     * @param index Index of the log entry to use
+     * @param timestamp the timestamp used in the original query
+     * @return A metadata structure for the log entry at the given index
+     */
+    Metadata metadata_at_index(int index, double timestamp);
 
-        void push_back(std::string newEntry);
+    /*
+     * @brief helper for running binary search on the log
+     *
+     * @param value value to be queried
+     * @param begin min position in the log to search
+     * @param end max position in the log to search
+     * @param field column of the log to query
+     * @return result of the query
+     */
+    Metadata bisearcher(double value, int begin, int end, std::string field);
 
-        void set_head_row(std::string headRow);
+    /**
+     * @brief Adds a new entry to the log
+     *
+     * @param newEntry csv row representing a telemetry log entry
+     */
+    void push_back(std::string newEntry);
 
-        int cameraStatus=0;
+    /**
+     * @brief Sets the column headers for the log
+     * @param csv row containing column headers
+     */
+    void set_head_row(std::string headRow);
 
-        int size;
+    int cameraStatus=0;
 
-        /**
-         * Index of the time header in the log
-         */
-        int timeIndex;
+    int size;
 
-        std::vector<std::string> heads;
-        std::unordered_map<std::string, std::vector<std::string> > data;
+    /**
+     * Index of the time header in the log
+     */
+    int timeIndex;
+
+    /**
+     * Column Headers for the log
+     */
+    std::vector<std::string> heads;
+
+    /**
+     * Map mapping headers to their columns
+     * e.g. data["time"] gives a vector containing each time cell in the log, in
+     *  increasing order from the first entry received
+     */
+    std::unordered_map<std::string, std::vector<std::string> > data;
 };
 
 #endif // METADATA_INPUT_H_INCLUDED
