@@ -39,6 +39,7 @@
 #include <boost/log/expressions.hpp>
 #include <boost/program_options.hpp>
 #include <queue>
+#include <chrono>
 #include <iostream>
 #include <fstream>
 #include "frame.h"
@@ -71,6 +72,7 @@ int workers = 0;
 bool hasMoreFrames = true;
 string outputDir = "./";
 bool intermediate = false;
+int processors;
 
 // Processing module classes
 ImageImport * importer = NULL;
@@ -81,6 +83,7 @@ double aveFrameTime = 1000;
 int frameCount = 0;
 
 void worker(Frame* f) {
+    auto start = std::chrono::steady_clock::now();
     workers++;
     assert(!f->get_img().empty());
     identifier.process_frame(f);
@@ -89,6 +92,9 @@ void worker(Frame* f) {
     }
 
     workers--;
+    auto end = std::chrono::steady_clock::now();
+    auto diff = end - start;
+    aveFrameTime = (std::chrono::duration <double, std::milli>(diff).count() + aveFrameTime*frameCount)/++frameCount;
 }
 
 void read_images() {
@@ -103,7 +109,7 @@ void read_images() {
                 hasMoreFrames = false;
             }
         }
-        boost::this_thread::sleep(boost::posix_time::milliseconds(30));
+        boost::this_thread::sleep(boost::posix_time::milliseconds(aveFrameTime/processors));
     }
 }
 
@@ -113,7 +119,7 @@ void assign_workers() {
         if (in_buffer.size() > 0) {
             current = in_buffer.front();
             // spawn worker to process image;
-            BOOST_LOG_TRIVIAL(info) << "Working...";
+            BOOST_LOG_TRIVIAL(trace) << "Spawning worker...";
             ioService.post(boost::bind(worker, current));
             in_buffer.pop();
         }
@@ -145,7 +151,11 @@ void output() {
 }
 
 void init() {
+#ifdef RELEASE
     logging::core::get()->set_filter(logging::trivial::severity >= logging::trivial::info);
+#else
+    logging::core::get()->set_filter(logging::trivial::severity >= logging::trivial::debug);
+#endif
 }
 
 int main(int argc, char** argv) {
@@ -154,7 +164,7 @@ int main(int argc, char** argv) {
     if (retArg = handle_args(argc, argv) != 0)
         return retArg;
 
-    int processors = boost::thread::hardware_concurrency();
+    processors = boost::thread::hardware_concurrency();
 
     ioService.post(boost::bind(read_images));
     ioService.post(boost::bind(assign_workers));

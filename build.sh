@@ -16,7 +16,14 @@
 # https://raw.githubusercontent.com/UWARG/computer-vision/master/COPYING.txt
 #
 
-while getopts "c,t,h,i,d:" opt; do
+WORKSPACE_DIR=
+THREADS=1
+CLEAN=false
+TEST=false
+INSTALL=false
+BUILD_TYPE="Debug"
+
+while getopts "c,t,h,i,d:,j:,r" opt; do
     case $opt in
         d)
             WORKSPACE_DIR=$OPTARG
@@ -27,18 +34,27 @@ while getopts "c,t,h,i,d:" opt; do
         t)
             TEST=true
         ;;
-	i)
-	    INSTALL=true
-	;;
+        i)
+            INSTALL=true
+        ;;
+        j)
+            THREADS=$OPTARG
+        ;;
+        r)
+            BUILD_TYPE="Release"
+        ;;
         h|\?)
             printf "%s\n" "Usage: $0 [OPTIONS]" \
                 "Script to build the WARG computer-vision project"\
                 "   Should either be run in the root of computer-vision or with the --dir option"\
                 "   specifying the project root"\
-                "    -c [clean]         - removes previous build files before building" \
+                "    -c                 - removes previous build files before building" \
                 "    -d [directory]     - builds with the given dir as the project root" \
-                "    -h [help]          - outputs this message" \
-                "    -t [test]          - runs tests after building if build is successful"
+                "    -h                 - outputs this message" \
+                "    -t                 - runs tests after building if build is successful"\
+                "    -j [threads]       - builds using the given number of threads"\
+                "                         default is 1 and is recommended for debugging"\
+                "    -r                 - Sets the build type to release"
             exit 1
         ;;
     esac
@@ -56,7 +72,8 @@ fi
 
 mkdir -p $WORKSPACE_DIR/build
 cd $WORKSPACE_DIR/build
-cmake .. && make
+
+cmake .. -DCMAKE_BUILD_TYPE=$BUILD_TYPE && make -j$THREADS
 
 RESULT=$?
 
