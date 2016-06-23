@@ -83,6 +83,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pro-attribs">Protected Attributes</a> &#124;
 <a href="classImageImport-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">ImageImport Class Reference<span class="mlabels"><span class="mlabel">abstract</span></span></div>  </div>
@@ -98,47 +99,58 @@ Inheritance diagram for ImageImport:</div>
 <div class="dyncontent">
 <div class="center"><img src="classImageImport__inherit__graph.png" border="0" usemap="#ImageImport_inherit__map" alt="Inheritance graph"/></div>
 <map name="ImageImport_inherit__map" id="ImageImport_inherit__map">
-<area shape="rect" id="node2" href="classPictureImport.html" title="A subclass of Imageimport. Specialized to read JPEG files and metadata and generate Frame objects..." alt="" coords="5,183,133,289"/><area shape="rect" id="node3" href="classVideoImport.html" title="{VideoImport\n||+ VideoImport()\l+ ~VideoImport()\l+ startCapture()\l+ stopCapture()\l+ grabFrame()\l+ next_frame()\l}" alt="" coords="157,161,277,311"/></map>
+<area shape="rect" id="node2" href="classDecklinkImport.html" title="Module for extracting frames from Decklink Video cards. " alt="" coords="5,161,144,311"/><area shape="rect" id="node3" href="classPictureImport.html" title="Class for reading image files from a directory. " alt="" coords="168,183,296,289"/></map>
 </div>
 <div class="dynheader">
 Collaboration diagram for ImageImport:</div>
 <div class="dyncontent">
 <div class="center"><img src="classImageImport__coll__graph.png" border="0" usemap="#ImageImport_coll__map" alt="Collaboration graph"/></div>
 <map name="ImageImport_coll__map" id="ImageImport_coll__map">
-</map>
+<area shape="rect" id="node2" href="classMetadataInput.html" title="A class for reading telemetry logs and searching for log entries. " alt="" coords="5,6,139,157"/></map>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:aafca889e0e2f820786016725b523e955"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classImageImport.html#aafca889e0e2f820786016725b523e955">ImageImport</a> ()</td></tr>
-<tr class="memdesc:aafca889e0e2f820786016725b523e955"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a <a class="el" href="classImageImport.html" title="Abstract class for importing frames and corresponding metadata. ">ImageImport</a> for the telemetry file at the given path.  <a href="#aafca889e0e2f820786016725b523e955">More...</a><br/></td></tr>
-<tr class="separator:aafca889e0e2f820786016725b523e955"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a13c7fa6183547a14b4bb6f228b7192e8"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classFrame.html">Frame</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classImageImport.html#a13c7fa6183547a14b4bb6f228b7192e8">next_frame</a> ()=0</td></tr>
-<tr class="memdesc:a13c7fa6183547a14b4bb6f228b7192e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves the next frame to be analyzed.  <a href="#a13c7fa6183547a14b4bb6f228b7192e8">More...</a><br/></td></tr>
-<tr class="separator:a13c7fa6183547a14b4bb6f228b7192e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abf8a3d93464a5451cfe63dfac871c7f5"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classImageImport.html#abf8a3d93464a5451cfe63dfac871c7f5">ImageImport</a> (<a class="el" href="classMetadataInput.html">MetadataInput</a> *reader)</td></tr>
+<tr class="memdesc:abf8a3d93464a5451cfe63dfac871c7f5"><td class="mdescLeft">&#160;</td><td class="mdescRight"><ul>
+<li></li>
+</ul>
+ <a href="#abf8a3d93464a5451cfe63dfac871c7f5">More...</a><br/></td></tr>
+<tr class="separator:abf8a3d93464a5451cfe63dfac871c7f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acbf182e5ff9baf205a0e1aceadab654d"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classFrame.html">Frame</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classImageImport.html#acbf182e5ff9baf205a0e1aceadab654d">next_frame</a> ()=0</td></tr>
+<tr class="memdesc:acbf182e5ff9baf205a0e1aceadab654d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves the next frame to be analyzed.  <a href="#acbf182e5ff9baf205a0e1aceadab654d">More...</a><br/></td></tr>
+<tr class="separator:acbf182e5ff9baf205a0e1aceadab654d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
+Protected Attributes</h2></td></tr>
+<tr class="memitem:a86f5c4d28a8ea126e066542c3d723d11"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a86f5c4d28a8ea126e066542c3d723d11"></a>
+<a class="el" href="classMetadataInput.html">MetadataInput</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>reader</b></td></tr>
+<tr class="separator:a86f5c4d28a8ea126e066542c3d723d11"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Abstract class for importing frames and corresponding metadata. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="aafca889e0e2f820786016725b523e955"></a>
+<a class="anchor" id="abf8a3d93464a5451cfe63dfac871c7f5"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">ImageImport::ImageImport </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype"><a class="el" href="classMetadataInput.html">MetadataInput</a> *&#160;</td>
+          <td class="paramname"><em>reader</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Creates a <a class="el" href="classImageImport.html" title="Abstract class for importing frames and corresponding metadata. ">ImageImport</a> for the telemetry file at the given path. </p>
+<p><ul>
+<li></li>
+</ul>
+</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">path</td><td>Path of the telemetry file </td></tr>
-    <tr><td class="paramname">photoPath</td><td>directory containing image and video files to import is required but does not need to contain photos </td></tr>
-    <tr><td class="paramname">videoDeviceNums</td><td>indices of the video devices from which to read video frames </td></tr>
+    <tr><td class="paramname">reader</td><td></td></tr>
   </table>
   </dd>
 </dl>
@@ -146,7 +158,7 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="a13c7fa6183547a14b4bb6f228b7192e8"></a>
+<a class="anchor" id="acbf182e5ff9baf205a0e1aceadab654d"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -154,7 +166,7 @@ Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classFrame.html">Frame</a> * ImageImport::next_frame </td>
+          <td class="memname">virtual <a class="el" href="classFrame.html">Frame</a>* ImageImport::next_frame </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -170,7 +182,7 @@ Public Member Functions</h2></td></tr>
 <p>Retrieves the next frame to be analyzed. </p>
 <dl class="section return"><dt>Returns</dt><dd><a class="el" href="classFrame.html">Frame</a> to be analyzed </dd></dl>
 
-<p>Implemented in <a class="el" href="classVideoImport.html#ae24708ca761ce34d967c3c907ba6c0a7">VideoImport</a>, and <a class="el" href="classPictureImport.html#a540c467a453d7488c078278bcac05699">PictureImport</a>.</p>
+<p>Implemented in <a class="el" href="classDecklinkImport.html#a59935a2b04f7a428404d152405f91081">DecklinkImport</a>, and <a class="el" href="classPictureImport.html#a540c467a453d7488c078278bcac05699">PictureImport</a>.</p>
 
 </div>
 </div>

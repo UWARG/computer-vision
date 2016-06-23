@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>UWARG Computer Vision: modules/imgimport/include/csvreading.h Source File</title>
+<title>UWARG Computer Vision: Member List</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -37,8 +37,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
-      <li><a href="annotated.html"><span>Classes</span></a></li>
-      <li class="current"><a href="files.html"><span>Files</span></a></li>
+      <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
+      <li><a href="files.html"><span>Files</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -59,8 +59,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   </div>
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
-      <li><a href="files.html"><span>File&#160;List</span></a></li>
-      <li><a href="globals.html"><span>File&#160;Members</span></a></li>
+      <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
+      <li><a href="classes.html"><span>Class&#160;Index</span></a></li>
+      <li><a href="inherits.html"><span>Class&#160;Hierarchy</span></a></li>
+      <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
   </div>
 <!-- window showing the filter options -->
@@ -77,27 +79,22 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="dir_36e604d14a5d941af5a41be1237cc4fe.html">modules</a></li><li class="navelem"><a class="el" href="dir_634365a1d32196dea77f05150b57b713.html">imgimport</a></li><li class="navelem"><a class="el" href="dir_b4871996fd069c3a4efb67f90f2beb03.html">include</a></li>  </ul>
-</div>
 </div><!-- top -->
 <div class="header">
   <div class="headertitle">
-<div class="title">csvreading.h</div>  </div>
+<div class="title">MetadataInput Member List</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef CSV_READING_H_INCLUDED</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define CSV_READING_H_INCLUDED</span></div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="metadata_8h.html">metadata.h</a>&quot;</span></div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &lt;vector&gt;</span></div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;std::vector&lt;Metadata&gt; readcsv(<span class="keyword">const</span> <span class="keywordtype">char</span>* filename);</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#endif // CSV_READING_H_INCLUDED</span></div>
-<div class="ttc" id="metadata_8h_html"><div class="ttname"><a href="metadata_8h.html">metadata.h</a></div><div class="ttdoc">Structure for storing plane status information from the time that an image was taken. </div></div>
-</div><!-- fragment --></div><!-- contents -->
+
+<p>This is the complete list of members for <a class="el" href="classMetadataInput.html">MetadataInput</a>, including all inherited members.</p>
+<table class="directory">
+  <tr class="even"><td class="entry"><a class="el" href="classMetadataInput.html#ae58bc177e81a09549d158fe0109da077">get_metadata</a>(double timestamp)</td><td class="entry"><a class="el" href="classMetadataInput.html">MetadataInput</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>MetadataInput</b>() (defined in <a class="el" href="classMetadataInput.html">MetadataInput</a>)</td><td class="entry"><a class="el" href="classMetadataInput.html">MetadataInput</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>MetadataInput</b>(std::string filename) (defined in <a class="el" href="classMetadataInput.html">MetadataInput</a>)</td><td class="entry"><a class="el" href="classMetadataInput.html">MetadataInput</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="classMetadataInput.html#a8f2f69c0d83c86b16c0fe71c5635f5e1">MetadataInput</a>(std::string addr, std::string port)</td><td class="entry"><a class="el" href="classMetadataInput.html">MetadataInput</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classMetadataInput.html#ae60d243a30af35acdb4ebc998a8a5ef5">next_metadata</a>()</td><td class="entry"><a class="el" href="classMetadataInput.html">MetadataInput</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>~MetadataInput</b>() (defined in <a class="el" href="classMetadataInput.html">MetadataInput</a>)</td><td class="entry"><a class="el" href="classMetadataInput.html">MetadataInput</a></td><td class="entry"></td></tr>
+</table></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by &#160;<a href="http://www.doxygen.org/index.html">

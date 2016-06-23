@@ -11,7 +11,7 @@ var searchData=
   ['get_5fid',['get_id',['../classFrame.html#af65f00928295d18429434fd4c1df07c6',1,'Frame']]],
   ['get_5fimage',['get_image',['../classObject.html#a58c65c45a4753ca6c3d4d58959f5f2a5',1,'Object::get_image()'],['../classPixelObject.html#a23967de7c944b26c5b6beebf90f4ce8c',1,'PixelObject::get_image()'],['../classTarget.html#a6349615c6cf5c878464457478bdbc3c7',1,'Target::get_image()']]],
   ['get_5fimg',['get_img',['../classFrame.html#a1831991b586a2b54bb79fe084f2684aa',1,'Frame']]],
-  ['get_5fmetadata',['get_metadata',['../classFrame.html#a3526162794232df016d381ace6a32b5c',1,'Frame']]],
+  ['get_5fmetadata',['get_metadata',['../classFrame.html#a3526162794232df016d381ace6a32b5c',1,'Frame::get_metadata()'],['../classMetadataInput.html#ae58bc177e81a09549d158fe0109da077',1,'MetadataInput::get_metadata()']]],
   ['get_5fobjects',['get_objects',['../classFrame.html#ae1d317e86d59762878743a2e6d0b183b',1,'Frame::get_objects()'],['../classObject.html#a75d06df90b399183bedeaf9a4a0720b6',1,'Object::get_objects()'],['../classTarget.html#a751228a957adcf280392219ce7cb23db',1,'Target::get_objects()']]],
   ['get_5fperimeter',['get_perimeter',['../classObject.html#ad06861711a41e090cadfe25a230fdd94',1,'Object::get_perimeter()'],['../classPixelObject.html#a99a2aa5d4c788b83b24417dc26726721',1,'PixelObject::get_perimeter()'],['../classTarget.html#aa852c75af3d30d83fd4aec1f0cd0cb0d',1,'Target::get_perimeter()']]],
   ['get_5fprocessed',['get_processed',['../classGMapsMatcher.html#aa72997a5f507e102758d39da607d7567',1,'GMapsMatcher::get_processed()'],['../classTargetAnalyzer.html#a4808850fa9fe529d16b5a2d9ebf1c102',1,'TargetAnalyzer::get_processed()']]],
@@ -20,5 +20,5 @@ var searchData=
   ['getjson',['getJSON',['../classTargetLoader.html#ac6393e6cdddb6d0a40b185a09a99bc33',1,'TargetLoader']]],
   ['gmaps_5fmatcher_2eh',['gmaps_matcher.h',['../gmaps__matcher_8h.html',1,'']]],
   ['gmapsmatcher',['GMapsMatcher',['../classGMapsMatcher.html',1,'']]],
-  ['grabframe',['grabFrame',['../classVideoImport.html#a44192d695fef3c0ed1dac618b3c8646b',1,'VideoImport']]]
+  ['grabframe',['grabFrame',['../classDecklinkImport.html#af075ece2124aa9a099f2c5e0ff59b9f2',1,'DecklinkImport']]]
 ];

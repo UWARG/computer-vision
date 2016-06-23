@@ -1,4 +1,4 @@
 <map id="ImageImport" name="ImageImport">
-<area shape="rect" id="node2" href="$classPictureImport.html" title="A subclass of Imageimport. Specialized to read JPEG files and metadata and generate Frame objects..." alt="" coords="5,183,133,289"/>
-<area shape="rect" id="node3" href="$classVideoImport.html" title="{VideoImport\n||+ VideoImport()\l+ ~VideoImport()\l+ startCapture()\l+ stopCapture()\l+ grabFrame()\l+ next_frame()\l}" alt="" coords="157,161,277,311"/>
+<area shape="rect" id="node2" href="$classDecklinkImport.html" title="Module for extracting frames from Decklink Video cards. " alt="" coords="5,161,144,311"/>
+<area shape="rect" id="node3" href="$classPictureImport.html" title="Class for reading image files from a directory. " alt="" coords="168,183,296,289"/>
 </map>

@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>UWARG Computer Vision: modules/imgimport/include/vidimport.h Source File</title>
+<title>UWARG Computer Vision: modules/imgimport/include/decklink_import.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -84,7 +84,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- top -->
 <div class="header">
   <div class="headertitle">
-<div class="title">vidimport.h</div>  </div>
+<div class="title">decklink_import.h</div>  </div>
 </div><!--header-->
 <div class="contents">
 <div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/* </span></div>
@@ -117,9 +117,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="comment">    (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS</span></div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="comment">    SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</span></div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="comment">*/</span></div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    </div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#ifndef VIDEO_IMPORT_H_INCLUDED</span></div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define VIDEO_IMPORT_H_INCLUDED</span></div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#ifndef DECKLINK_IMPORT_H_INCLUDED</span></div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define DECKLINK_IMPORT_H_INCLUDED</span></div>
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="preprocessor"></span></div>
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;</div>
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="frame_8h.html">frame.h</a>&quot;</span></div>
@@ -128,34 +128,35 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="preprocessor">#include &lt;vector&gt;</span></div>
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="imgimport_8h.html">imgimport.h</a>&quot;</span></div>
 <div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;</div>
-<div class="line"><a name="l00059"></a><span class="lineno"><a class="line" href="classVideoImport.html">   59</a></span>&#160;<span class="keyword">class </span><a class="code" href="classVideoImport.html">VideoImport</a> : <span class="keyword">public</span> <a class="code" href="classImageImport.html">ImageImport</a> {</div>
+<div class="line"><a name="l00059"></a><span class="lineno"><a class="line" href="classDecklinkImport.html">   59</a></span>&#160;<span class="keyword">class </span><a class="code" href="classDecklinkImport.html">DecklinkImport</a> : <span class="keyword">public</span> <a class="code" href="classImageImport.html">ImageImport</a> {</div>
 <div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        <a class="code" href="classVideoImport.html#a78218dabdce2c204ea55a95fb39e5d7b">VideoImport</a>();</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        <a class="code" href="classDecklinkImport.html#a134278805fce27f766a216ee1caa043d">DecklinkImport</a>(<a class="code" href="classMetadataInput.html">MetadataInput</a> * reader);</div>
 <div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        <span class="keyword">virtual</span> ~<a class="code" href="classVideoImport.html">VideoImport</a>();</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        <span class="keyword">virtual</span> ~<a class="code" href="classDecklinkImport.html">DecklinkImport</a>();</div>
 <div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        <span class="keywordtype">int</span> <a class="code" href="classVideoImport.html#a6351398f1dfd53cf16e11c052f7760dd">startCapture</a>();</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        <span class="keywordtype">int</span> <a class="code" href="classDecklinkImport.html#a9434cbdcb0a0842224ca3cf262756a0e">startCapture</a>();</div>
 <div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    <span class="keywordtype">int</span> <a class="code" href="classVideoImport.html#aec0a594a1ff0aba3aade15d40aa5bd7a">stopCapture</a>();</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    <span class="keywordtype">int</span> <a class="code" href="classDecklinkImport.html#ac3f2de7645984b2328b896555f67fd39">stopCapture</a>();</div>
 <div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;        <span class="keywordtype">int</span> <a class="code" href="classVideoImport.html#a44192d695fef3c0ed1dac618b3c8646b">grabFrame</a>(cv::Mat* frame);</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;        <span class="keywordtype">int</span> <a class="code" href="classDecklinkImport.html#af075ece2124aa9a099f2c5e0ff59b9f2">grabFrame</a>(cv::Mat* frame);</div>
 <div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;        </div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;        <span class="keyword">virtual</span> <a class="code" href="classFrame.html">Frame</a>* <a class="code" href="classVideoImport.html#ae24708ca761ce34d967c3c907ba6c0a7">next_frame</a>();</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;        <span class="keyword">virtual</span> <a class="code" href="classFrame.html">Frame</a>* <a class="code" href="classDecklinkImport.html#a59935a2b04f7a428404d152405f91081">next_frame</a>();</div>
 <div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    <span class="keyword">private</span>:</div>
 <div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;        <span class="keywordtype">int</span> initVideoSource();</div>
 <div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;};</div>
 <div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;<span class="preprocessor">#endif // VIDEO_IMPORT_H_INCLUDED</span></div>
-<div class="ttc" id="classImageImport_html"><div class="ttname"><a href="classImageImport.html">ImageImport</a></div><div class="ttdoc">Abstract class for importing frames and corresponding metadata. </div><div class="ttdef"><b>Definition:</b> imgimport.h:32</div></div>
-<div class="ttc" id="classVideoImport_html_aec0a594a1ff0aba3aade15d40aa5bd7a"><div class="ttname"><a href="classVideoImport.html#aec0a594a1ff0aba3aade15d40aa5bd7a">VideoImport::stopCapture</a></div><div class="ttdeci">int stopCapture()</div></div>
-<div class="ttc" id="classVideoImport_html_a6351398f1dfd53cf16e11c052f7760dd"><div class="ttname"><a href="classVideoImport.html#a6351398f1dfd53cf16e11c052f7760dd">VideoImport::startCapture</a></div><div class="ttdeci">int startCapture()</div></div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;<span class="preprocessor">#endif // DECKLINK_IMPORT_H_INCLUDED</span></div>
+<div class="ttc" id="classDecklinkImport_html_a9434cbdcb0a0842224ca3cf262756a0e"><div class="ttname"><a href="classDecklinkImport.html#a9434cbdcb0a0842224ca3cf262756a0e">DecklinkImport::startCapture</a></div><div class="ttdeci">int startCapture()</div></div>
+<div class="ttc" id="classImageImport_html"><div class="ttname"><a href="classImageImport.html">ImageImport</a></div><div class="ttdoc">Abstract class for importing frames and corresponding metadata. </div><div class="ttdef"><b>Definition:</b> imgimport.h:29</div></div>
+<div class="ttc" id="classDecklinkImport_html_a59935a2b04f7a428404d152405f91081"><div class="ttname"><a href="classDecklinkImport.html#a59935a2b04f7a428404d152405f91081">DecklinkImport::next_frame</a></div><div class="ttdeci">virtual Frame * next_frame()</div></div>
+<div class="ttc" id="classMetadataInput_html"><div class="ttname"><a href="classMetadataInput.html">MetadataInput</a></div><div class="ttdoc">A class for reading telemetry logs and searching for log entries. </div><div class="ttdef"><b>Definition:</b> metadata_input.h:29</div></div>
 <div class="ttc" id="frame_8h_html"><div class="ttname"><a href="frame_8h.html">frame.h</a></div><div class="ttdoc">Container class for storing photos or frames of video to be processed and analyzed. </div></div>
-<div class="ttc" id="classVideoImport_html_ae24708ca761ce34d967c3c907ba6c0a7"><div class="ttname"><a href="classVideoImport.html#ae24708ca761ce34d967c3c907ba6c0a7">VideoImport::next_frame</a></div><div class="ttdeci">virtual Frame * next_frame()</div></div>
-<div class="ttc" id="classVideoImport_html_a78218dabdce2c204ea55a95fb39e5d7b"><div class="ttname"><a href="classVideoImport.html#a78218dabdce2c204ea55a95fb39e5d7b">VideoImport::VideoImport</a></div><div class="ttdeci">VideoImport()</div></div>
+<div class="ttc" id="classDecklinkImport_html_a134278805fce27f766a216ee1caa043d"><div class="ttname"><a href="classDecklinkImport.html#a134278805fce27f766a216ee1caa043d">DecklinkImport::DecklinkImport</a></div><div class="ttdeci">DecklinkImport(MetadataInput *reader)</div></div>
+<div class="ttc" id="classDecklinkImport_html_ac3f2de7645984b2328b896555f67fd39"><div class="ttname"><a href="classDecklinkImport.html#ac3f2de7645984b2328b896555f67fd39">DecklinkImport::stopCapture</a></div><div class="ttdeci">int stopCapture()</div></div>
 <div class="ttc" id="classFrame_html"><div class="ttname"><a href="classFrame.html">Frame</a></div><div class="ttdef"><b>Definition:</b> frame.h:48</div></div>
 <div class="ttc" id="imgimport_8h_html"><div class="ttname"><a href="imgimport_8h.html">imgimport.h</a></div></div>
-<div class="ttc" id="classVideoImport_html_a44192d695fef3c0ed1dac618b3c8646b"><div class="ttname"><a href="classVideoImport.html#a44192d695fef3c0ed1dac618b3c8646b">VideoImport::grabFrame</a></div><div class="ttdeci">int grabFrame(cv::Mat *frame)</div></div>
-<div class="ttc" id="classVideoImport_html"><div class="ttname"><a href="classVideoImport.html">VideoImport</a></div><div class="ttdef"><b>Definition:</b> vidimport.h:59</div></div>
+<div class="ttc" id="classDecklinkImport_html_af075ece2124aa9a099f2c5e0ff59b9f2"><div class="ttname"><a href="classDecklinkImport.html#af075ece2124aa9a099f2c5e0ff59b9f2">DecklinkImport::grabFrame</a></div><div class="ttdeci">int grabFrame(cv::Mat *frame)</div></div>
+<div class="ttc" id="classDecklinkImport_html"><div class="ttname"><a href="classDecklinkImport.html">DecklinkImport</a></div><div class="ttdoc">Module for extracting frames from Decklink Video cards. </div><div class="ttdef"><b>Definition:</b> decklink_import.h:59</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

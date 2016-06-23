@@ -1,7 +1,5 @@
 var searchData=
 [
-  ['save',['save',['../classFrame.html#a1711e8c0dd6a4d24f208ff657bedf689',1,'Frame']]],
-  ['setparameter',['setParameter',['../classFilter.html#a9522b924de32bc778827bcf59bb0bd73',1,'Filter']]],
-  ['startcapture',['startCapture',['../classVideoImport.html#a6351398f1dfd53cf16e11c052f7760dd',1,'VideoImport']]],
-  ['stopcapture',['stopCapture',['../classVideoImport.html#aec0a594a1ff0aba3aade15d40aa5bd7a',1,'VideoImport']]]
+  ['next_5fframe',['next_frame',['../classDecklinkImport.html#a59935a2b04f7a428404d152405f91081',1,'DecklinkImport::next_frame()'],['../classImageImport.html#acbf182e5ff9baf205a0e1aceadab654d',1,'ImageImport::next_frame()'],['../classPictureImport.html#a540c467a453d7488c078278bcac05699',1,'PictureImport::next_frame()']]],
+  ['next_5fmetadata',['next_metadata',['../classMetadataInput.html#ae60d243a30af35acdb4ebc998a8a5ef5',1,'MetadataInput']]]
 ];
