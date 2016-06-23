@@ -1,4 +1,4 @@
-/* 
+/*
     This file is part of WARG's computer-vision
 
     Copyright (c) 2015, Waterloo Aerial Robotics Group (WARG)
@@ -33,13 +33,14 @@
 #include <exiv2/exiv2.hpp>
 #include <boost/lexical_cast.hpp>
 #include <sstream>
+#include <iomanip>
 #include "frame.h"
 #include "pixel_object.h"
 
 Frame::Frame(cv::Mat * img, std::string id, Metadata m): img(img), id(id), data(m){
 
 }
-    
+
 std::string Frame::get_id(){
     return id;
 }
@@ -68,7 +69,7 @@ void Frame::save(std::string dir) {
     image->readMetadata();
     Exiv2::ExifData &exifData = image->exifData();
     std::stringstream ss;
-    ss << data.lat << " " << data.lon << " " << data.altitude << " " << data.heading << " " << data.time;
+    ss << std::setprecision(12) << data.lat << " " << data.lon << " " << data.altitude << " " << data.heading << " " << data.time;
     exifData["Exif.Photo.UserComment"] = ss.str();
     image->writeMetadata();
 }

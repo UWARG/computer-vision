@@ -1,33 +1,17 @@
-/* 
-    This file is part of WARG's computer-vision
-
-    Copyright (c) 2015, Waterloo Aerial Robotics Group (WARG)
-    All rights reserved.
-
-    Redistribution and use in source and binary forms, with or without
-    modification, are permitted provided that the following conditions are met:
-    1. Redistributions of source code must retain the above copyright
-       notice, this list of conditions and the following disclaimer.
-    2. Redistributions in binary form must reproduce the above copyright
-       notice, this list of conditions and the following disclaimer in the
-       documentation and/or other materials provided with the distribution.
-    3. Usage of this code MUST be explicitly referenced to WARG and this code
-       cannot be used in any competition against WARG.
-    4. Neither the name of the WARG nor the names of its contributors may be used
-       to endorse or promote products derived from this software without specific
-       prior written permission.
-
-    THIS SOFTWARE IS PROVIDED BY WARG ''AS IS'' AND ANY
-    EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
-    WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
-    DISCLAIMED. IN NO EVENT SHALL WARG BE LIABLE FOR ANY
-    DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
-    (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
-    LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
-    ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
-    (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
-    SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-*/
+/**
+ * @file picture_import.h
+ * @author WARG
+ *
+ * @section LICENSE
+ *
+ * Copyright (c) 2015-2016, Waterloo Aerial Robotics Group (WARG)
+ * All rights reserved.
+ *
+ * This software is licensed under a modified version of the BSD 3 clause license
+ * that should have been included with this software in a file called COPYING.txt
+ * Otherwise it is available at:
+ * https://raw.githubusercontent.com/UWARG/computer-vision/master/COPYING.txt
+ */
 
 #include <opencv2/highgui/highgui.hpp>
 #include <opencv2/core/core.hpp>
@@ -42,13 +26,10 @@ using namespace cv;
 using namespace std;
 using namespace boost;
 
-PictureImport::PictureImport(std::string telemetry_path, std::string filePath)
-              :ImageImport() {
-    mdvc=readcsv(telemetry_path.c_str());
+PictureImport::PictureImport(std::string filePath, MetadataInput* mdin)
+              :ImageImport(mdin) {
     this->filePath=filePath;
     dr=opendir(filePath.c_str());
-    struct dirent* drnt;
-    tracker=0;
 }
 
 PictureImport::~PictureImport(){
@@ -57,10 +38,6 @@ PictureImport::~PictureImport(){
 }
 
 Frame * PictureImport::next_frame(){
-    if (mdvc.size() <= tracker) {
-        return NULL;
-    }
-
     Mat* img=new Mat;
     struct dirent* drnt;
     while(img->empty()){
@@ -76,7 +53,11 @@ Frame * PictureImport::next_frame(){
         *img=imread(true_path,CV_LOAD_IMAGE_COLOR);
     }
     string id(drnt->d_name);
-    Frame* frame_buffer=new Frame(img,id,mdvc.at(tracker));
-    tracker++;
-    return frame_buffer;
+    Metadata m;
+    try {
+        m = reader->next_metadata();
+    } catch (std::exception & e) {
+        BOOST_LOG_TRIVIAL(error) << "Error while retrieving metadata: " <<  e.what();
+    }
+    return new Frame(img, id, m);
 }

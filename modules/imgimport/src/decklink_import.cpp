@@ -48,9 +48,9 @@
 #include <boost/log/core.hpp>
 #include <boost/log/trivial.hpp>
 #include <boost/log/expressions.hpp>
-#include <boost/property_tree/ptree.hpp>
+#include <boost/date_time/posix_time/posix_time.hpp>
 
-#include "vidimport.h"
+#include "decklink_import.h"
 
 using namespace boost;
 
@@ -61,18 +61,18 @@ IDeckLink* deckLink;
 
 Frame* img;
 
-VideoImport::VideoImport() : ImageImport(){
+DecklinkImport::DecklinkImport(MetadataInput * reader) : ImageImport(reader){
     initVideoSource();
     startCapture();
     img = (Frame*) malloc(sizeof(Frame));
 }
 
-VideoImport::~VideoImport(){
+DecklinkImport::~DecklinkImport(){
     stopCapture();
     free(img);
 }
 
-int VideoImport::initVideoSource()
+int DecklinkImport::initVideoSource()
 {
     ComPtr<IDeckLinkIterator> deckLinkIterator = CreateDeckLinkIteratorInstance();
     if (! deckLinkIterator) {
@@ -95,7 +95,7 @@ int VideoImport::initVideoSource()
 
 }
 
-int VideoImport::startCapture(){
+int DeckLinkImport::startCapture(){
     BOOST_FOREACH(DeckLinkCapture& capture, captures)
     {
         if (! capture.start()){
@@ -111,7 +111,7 @@ int VideoImport::startCapture(){
     return 0;
 }
 
-int VideoImport::stopCapture(){
+int DecklinkImport::stopCapture(){
     BOOST_FOREACH(DeckLinkCapture& capture, captures)
     {
         capture.stop();
@@ -119,7 +119,7 @@ int VideoImport::stopCapture(){
     return 0;
 }
 
-int VideoImport::grabFrame(cv::Mat* frame){
+int DecklinkImport::grabFrame(cv::Mat* frame){
     BOOST_FOREACH(DeckLinkCapture& capture, captures)
     {
         capture.grab();
@@ -130,12 +130,27 @@ int VideoImport::grabFrame(cv::Mat* frame){
     return 0;
 }
 
-Frame* VideoImport::next_frame(){
+Frame* DecklinkImport::next_frame(){
     cv::Mat oFrame;
     grabFrame(&oFrame);
     //Insert string id and metadata once a ID generator has been coded and the metadata generator has been coded.
+    const posix_time::ptime now = posix_time::microsec_clock::universal_time();
+
+    const posix_time::time_duration td = now.time_of_day();
+
+    const long hours        = td.hours();
+    const long minutes      = td.minutes();
+    const long seconds      = td.seconds();
+    const long milliseconds = td.total_milliseconds() -
+                              ((hours * 3600 + minutes * 60 + seconds) * 1000);
+    double time = hours * 10000 + minutes * 100 + seconds + ((double)milliseconds)/1000;
     Metadata m;
-    Frame* img = new Frame(&oFrame, "ab", Metadata());
+    try {
+        m = reader == NULL ? Metadata() : reader->get_metadata(time);
+    } catch (std::exception & e) {
+        BOOST_LOG_TRIVIAL(error) << "Error reading metadata: " << e.what();
+    }
+    Frame* img = new Frame(&oFrame, boost::lexical_cast<string>(time) + ".jpg", m);
     return img;
 }
 #endif

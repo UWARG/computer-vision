@@ -45,8 +45,9 @@
 #include "frame.h"
 #include "target_identifier.h"
 #include "imgimport.h"
-#include "vidimport.h"
+#include "decklink_import.h"
 #include "pictureimport.h"
+#include "metadata_input.h"
 #include "target.h"
 
 using namespace std;
@@ -76,6 +77,8 @@ int processors;
 // Processing module classes
 ImageImport * importer = NULL;
 TargetIdentifier identifier;
+MetadataInput * logReader = NULL;
+
 double aveFrameTime = 1000;
 int frameCount = 0;
 
@@ -172,6 +175,8 @@ int main(int argc, char** argv) {
         threadpool.create_thread(boost::bind(&boost::asio::io_service::run, &ioService));
     }
     threadpool.join_all();
+    delete logReader;
+    delete importer;
     return 0;
 }
 
@@ -186,6 +191,8 @@ int handle_args(int argc, char** argv) {
             ("decklink,d", "Use this option to capture video from a connected Decklink card")
 #endif // HAS_DECKLINK
             ("telemetry,t", po::value<string>(), "Path of the telemetry log for the given image source")
+            ("addr,a", po::value<string>(), "Address to connect to to recieve telemetry log")
+            ("port,p", po::value<string>(), "Port to connect to to recieve telemetry log")
             ("output,o", po::value<string>(), "Directory to store output files; default is current directory")
             ("intermediate", "When this is enabled, program will output intermediary frames that contain objects of interest");
 
@@ -197,6 +204,7 @@ int handle_args(int argc, char** argv) {
             cout << description << endl;
             return 1;
         }
+
         int devices = vm.count("video") + vm.count("decklink") + vm.count("images");
         if (devices > 1) {
             cout << "Invalid options: You can only specify one image source at a time" << endl;
@@ -205,21 +213,26 @@ int handle_args(int argc, char** argv) {
             cout << "Error: You must specify an image source!" << endl;
             return 1;
         }
-        if (!vm.count("telemetry")) {
-            cout << "Invalid options; You must specify a telemetry file" << endl;
+        if (!vm.count("telemetry") && !(vm.count("addr") && vm.count("port"))) {
+            cout << "Invalid options; You must specify a telemetry file, or port and address" << endl;
             return 1;
         }
-        string telemetry = vm["telemetry"].as<string>();
+
+        if (vm.count("telemetry")) {
+            logReader = new MetadataInput(vm["telemetry"].as<string>());
+        } else if (vm.count("addr") && vm.count("port")) {
+            logReader = new MetadataInput(vm["addr"].as<string>(), vm["port"].as<string>());
+        }
 
 #ifdef HAS_DECKLINK
         if (vm.count("decklink")) {
-            importer = new VideoImport();
+            importer = new DecklinkImport(logReader);
         }
 #endif // HAS_DECKLINK
 
         if (vm.count("images")) {
             string path = vm["images"].as<string>();
-            importer = new PictureImport(telemetry, path);
+            importer = new PictureImport(path, logReader);
         }
 
         if (vm.count("output")) {
