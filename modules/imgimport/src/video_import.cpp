@@ -16,10 +16,13 @@
 #include "video_import.h"
 #include <boost/log/trivial.hpp>
 #include <boost/date_time/posix_time/posix_time.hpp>
+#include <boost/filesystem.hpp>
+#include <ctime>
 
 using namespace cv;
 using namespace std;
 using namespace boost;
+using namespace boost::filesystem;
 
 VideoImport::VideoImport(string videoFile, MetadataInput * reader, Camera &camera) : ImageImport(reader, camera) {
     capture.open(videoFile);
@@ -30,7 +33,7 @@ VideoImport::VideoImport(string videoFile, MetadataInput * reader, Camera &camer
     capture.set(CAP_PROP_CONVERT_RGB, true);
     totalFrames = capture.get(CAP_PROP_FRAME_COUNT);
     fileName = videoFile.find_last_of('/') == string::npos ? videoFile : videoFile.substr(videoFile.find_last_of('/'));
-    // TODO: Read video modified time from filesystem
+    videoStartTime = last_write_time(fileName);
 }
 
 Frame * VideoImport::next_frame() {
@@ -43,20 +46,10 @@ Frame * VideoImport::next_frame() {
     }
 
     double pos = capture.get(CAP_PROP_POS_MSEC);
-    double frameTime = videoStartTime + pos;
+    time_t frameTime = videoStartTime + pos / 1000;
+    tm * utcTime = gmtime(&frameTime);
 
-    // TODO: Use video modified time and video position to find frame time
-
-    const posix_time::ptime now = posix_time::microsec_clock::local_time();
-
-    const posix_time::time_duration td = now.time_of_day();
-
-    const long hours        = td.hours();
-    const long minutes      = td.minutes();
-    const long seconds      = td.seconds();
-    const long milliseconds = td.total_milliseconds() -
-                              ((hours * 3600 + minutes * 60 + seconds) * 1000);
-    double time = hours * 10000 + minutes * 100 + seconds + ((double)milliseconds)/1000;
+    double time = utcTime->tm_hour * 10000 + utcTime->tm_min * 100 + utcTime->tm_sec + ((int)floor(pos) % 1000)/1000;
 
     return new Frame(frame, fileName + boost::lexical_cast<string>(time) + ".jpg", reader->get_metadata(time), camera);
 }

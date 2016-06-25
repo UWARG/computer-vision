@@ -41,7 +41,7 @@ private:
     cv::VideoCapture capture;
     double totalFrames;
     std::string fileName;
-    double videoStartTime;
+    std::time_t videoStartTime;
 };
 
 #endif // VIDEO_IMPORT_H_INCLUDED
