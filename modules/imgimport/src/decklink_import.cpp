@@ -53,6 +53,7 @@
 #include "decklink_import.h"
 
 using namespace boost;
+using std::string;
 
 namespace logging = boost::log;
 
