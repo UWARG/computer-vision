@@ -8,7 +8,7 @@ if (DeckLinkSDK_FOUND)
 endif (DeckLinkSDK_FOUND)
 
 add_library(ImageImport src/imgimport.cpp src/decklink_import.cpp src/pictureimport.cpp src/metadata_input.cpp ${DeckLinkFiles})
-target_link_libraries(ImageImport ${Boost_LIBRARIES} Core)
+target_link_libraries(ImageImport ${Boost_LIBRARIES} Core dl)
 
 add_subdirectory("test")
 
