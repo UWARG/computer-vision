@@ -48,11 +48,11 @@ BOOST_AUTO_TEST_CASE(DecklinkVideoSource){
         BOOST_ERROR("Invalid number of arguments");
     }
 
-    DecklinkImport * v = new DecklinkImport(NULL);
+    DeckLinkImport * v = new DeckLinkImport(NULL);
     cv::Mat img;
     v->grabFrame(&img);
-    
-    BOOST_CHECK(img.rows > 0);   
+
+    BOOST_CHECK(img.rows > 0);
     delete v;
    
 }

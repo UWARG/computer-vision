@@ -38,7 +38,7 @@
 #include <boost/foreach.hpp>
 #include <boost/format.hpp>
 
-//If not using Decklink, omit the rest of the code. Note, if more cameras are added into this suite, this will need to change.
+//If not using DeckLink, omit the rest of the code. Note, if more cameras are added into this suite, this will need to change.
 #ifdef HAS_DECKLINK
 
 #include <DeckLinkAPI.h>
@@ -61,18 +61,18 @@ IDeckLink* deckLink;
 
 Frame* img;
 
-DecklinkImport::DecklinkImport(MetadataInput * reader) : ImageImport(reader){
+DeckLinkImport::DeckLinkImport(MetadataInput * reader) : ImageImport(reader){
     initVideoSource();
     startCapture();
     img = (Frame*) malloc(sizeof(Frame));
 }
 
-DecklinkImport::~DecklinkImport(){
+DeckLinkImport::~DeckLinkImport(){
     stopCapture();
     free(img);
 }
 
-int DecklinkImport::initVideoSource()
+int DeckLinkImport::initVideoSource()
 {
     ComPtr<IDeckLinkIterator> deckLinkIterator = CreateDeckLinkIteratorInstance();
     if (! deckLinkIterator) {
@@ -111,7 +111,7 @@ int DeckLinkImport::startCapture(){
     return 0;
 }
 
-int DecklinkImport::stopCapture(){
+int DeckLinkImport::stopCapture(){
     BOOST_FOREACH(DeckLinkCapture& capture, captures)
     {
         capture.stop();
@@ -119,7 +119,7 @@ int DecklinkImport::stopCapture(){
     return 0;
 }
 
-int DecklinkImport::grabFrame(cv::Mat* frame){
+int DeckLinkImport::grabFrame(cv::Mat* frame){
     BOOST_FOREACH(DeckLinkCapture& capture, captures)
     {
         capture.grab();
@@ -130,7 +130,7 @@ int DecklinkImport::grabFrame(cv::Mat* frame){
     return 0;
 }
 
-Frame* DecklinkImport::next_frame(){
+Frame* DeckLinkImport::next_frame(){
     cv::Mat oFrame;
     grabFrame(&oFrame);
     //Insert string id and metadata once a ID generator has been coded and the metadata generator has been coded.

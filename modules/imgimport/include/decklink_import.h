@@ -40,9 +40,9 @@
 #include "imgimport.h"
 
 /**
- * @class DecklinkImport
+ * @class DeckLinkImport
  *
- * @brief Module for extracting frames from Decklink Video cards.
+ * @brief Module for extracting frames from DeckLink Video cards.
  *
  * Reads Video frames and processes them into a OpenCV friendly format. 
  * The results are later used in the ImageImport class. 
@@ -56,14 +56,14 @@
  *
  */
 
-class DecklinkImport : public ImageImport {
+class DeckLinkImport : public ImageImport {
     public:
         /**
-         * Creates a DecklinkImport object
+         * Creates a DeckLinkImport object
          */
-        DecklinkImport(MetadataInput * reader);
+        DeckLinkImport(MetadataInput * reader);
 
-        virtual ~DecklinkImport();
+        virtual ~DeckLinkImport();
 
         /**
          * Begins capture. Creates a video stream which a frame may be grabbed from.
@@ -95,7 +95,7 @@ class DecklinkImport : public ImageImport {
         virtual Frame* next_frame();
     private:
         /**
-         * Function called when the DecklinkImport object is initialized. The module looks for
+         * Function called when the DeckLinkImport object is initialized. The module looks for
          * the decklink drivers, decklink device and prepares the hardware for capture.
          *
          * @return Status depicting whether or not the initialization process was successful.
