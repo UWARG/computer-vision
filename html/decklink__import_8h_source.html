@@ -128,35 +128,35 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="preprocessor">#include &lt;vector&gt;</span></div>
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="imgimport_8h.html">imgimport.h</a>&quot;</span></div>
 <div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;</div>
-<div class="line"><a name="l00059"></a><span class="lineno"><a class="line" href="classDecklinkImport.html">   59</a></span>&#160;<span class="keyword">class </span><a class="code" href="classDecklinkImport.html">DecklinkImport</a> : <span class="keyword">public</span> <a class="code" href="classImageImport.html">ImageImport</a> {</div>
+<div class="line"><a name="l00059"></a><span class="lineno"><a class="line" href="classDeckLinkImport.html">   59</a></span>&#160;<span class="keyword">class </span><a class="code" href="classDeckLinkImport.html">DeckLinkImport</a> : <span class="keyword">public</span> <a class="code" href="classImageImport.html">ImageImport</a> {</div>
 <div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        <a class="code" href="classDecklinkImport.html#a134278805fce27f766a216ee1caa043d">DecklinkImport</a>(<a class="code" href="classMetadataInput.html">MetadataInput</a> * reader);</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        <a class="code" href="classDeckLinkImport.html#ad74e4214f559a5cebf29719aa89e43a2">DeckLinkImport</a>(<a class="code" href="classMetadataInput.html">MetadataInput</a> * reader);</div>
 <div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        <span class="keyword">virtual</span> ~<a class="code" href="classDecklinkImport.html">DecklinkImport</a>();</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        <span class="keyword">virtual</span> ~<a class="code" href="classDeckLinkImport.html">DeckLinkImport</a>();</div>
 <div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        <span class="keywordtype">int</span> <a class="code" href="classDecklinkImport.html#a9434cbdcb0a0842224ca3cf262756a0e">startCapture</a>();</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        <span class="keywordtype">int</span> <a class="code" href="classDeckLinkImport.html#ae524c90d6c9ad90fe03c0b28b3eff763">startCapture</a>();</div>
 <div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    <span class="keywordtype">int</span> <a class="code" href="classDecklinkImport.html#ac3f2de7645984b2328b896555f67fd39">stopCapture</a>();</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    <span class="keywordtype">int</span> <a class="code" href="classDeckLinkImport.html#a8f10f559e8d247b2893eedd2ff20e3de">stopCapture</a>();</div>
 <div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;        <span class="keywordtype">int</span> <a class="code" href="classDecklinkImport.html#af075ece2124aa9a099f2c5e0ff59b9f2">grabFrame</a>(cv::Mat* frame);</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;        <span class="keywordtype">int</span> <a class="code" href="classDeckLinkImport.html#a9bf0aced6fb2d7570ed19bbeed90732d">grabFrame</a>(cv::Mat* frame);</div>
 <div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;        </div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;        <span class="keyword">virtual</span> <a class="code" href="classFrame.html">Frame</a>* <a class="code" href="classDecklinkImport.html#a59935a2b04f7a428404d152405f91081">next_frame</a>();</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;        <span class="keyword">virtual</span> <a class="code" href="classFrame.html">Frame</a>* <a class="code" href="classDeckLinkImport.html#a614aaa363af837d46346236497c3f324">next_frame</a>();</div>
 <div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    <span class="keyword">private</span>:</div>
 <div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;        <span class="keywordtype">int</span> initVideoSource();</div>
 <div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;};</div>
 <div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;</div>
 <div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;<span class="preprocessor">#endif // DECKLINK_IMPORT_H_INCLUDED</span></div>
-<div class="ttc" id="classDecklinkImport_html_a9434cbdcb0a0842224ca3cf262756a0e"><div class="ttname"><a href="classDecklinkImport.html#a9434cbdcb0a0842224ca3cf262756a0e">DecklinkImport::startCapture</a></div><div class="ttdeci">int startCapture()</div></div>
+<div class="ttc" id="classDeckLinkImport_html_a8f10f559e8d247b2893eedd2ff20e3de"><div class="ttname"><a href="classDeckLinkImport.html#a8f10f559e8d247b2893eedd2ff20e3de">DeckLinkImport::stopCapture</a></div><div class="ttdeci">int stopCapture()</div></div>
 <div class="ttc" id="classImageImport_html"><div class="ttname"><a href="classImageImport.html">ImageImport</a></div><div class="ttdoc">Abstract class for importing frames and corresponding metadata. </div><div class="ttdef"><b>Definition:</b> imgimport.h:29</div></div>
-<div class="ttc" id="classDecklinkImport_html_a59935a2b04f7a428404d152405f91081"><div class="ttname"><a href="classDecklinkImport.html#a59935a2b04f7a428404d152405f91081">DecklinkImport::next_frame</a></div><div class="ttdeci">virtual Frame * next_frame()</div></div>
+<div class="ttc" id="classDeckLinkImport_html"><div class="ttname"><a href="classDeckLinkImport.html">DeckLinkImport</a></div><div class="ttdoc">Module for extracting frames from DeckLink Video cards. </div><div class="ttdef"><b>Definition:</b> decklink_import.h:59</div></div>
 <div class="ttc" id="classMetadataInput_html"><div class="ttname"><a href="classMetadataInput.html">MetadataInput</a></div><div class="ttdoc">A class for reading telemetry logs and searching for log entries. </div><div class="ttdef"><b>Definition:</b> metadata_input.h:29</div></div>
+<div class="ttc" id="classDeckLinkImport_html_a614aaa363af837d46346236497c3f324"><div class="ttname"><a href="classDeckLinkImport.html#a614aaa363af837d46346236497c3f324">DeckLinkImport::next_frame</a></div><div class="ttdeci">virtual Frame * next_frame()</div></div>
+<div class="ttc" id="classDeckLinkImport_html_ad74e4214f559a5cebf29719aa89e43a2"><div class="ttname"><a href="classDeckLinkImport.html#ad74e4214f559a5cebf29719aa89e43a2">DeckLinkImport::DeckLinkImport</a></div><div class="ttdeci">DeckLinkImport(MetadataInput *reader)</div></div>
+<div class="ttc" id="classDeckLinkImport_html_a9bf0aced6fb2d7570ed19bbeed90732d"><div class="ttname"><a href="classDeckLinkImport.html#a9bf0aced6fb2d7570ed19bbeed90732d">DeckLinkImport::grabFrame</a></div><div class="ttdeci">int grabFrame(cv::Mat *frame)</div></div>
 <div class="ttc" id="frame_8h_html"><div class="ttname"><a href="frame_8h.html">frame.h</a></div><div class="ttdoc">Container class for storing photos or frames of video to be processed and analyzed. </div></div>
-<div class="ttc" id="classDecklinkImport_html_a134278805fce27f766a216ee1caa043d"><div class="ttname"><a href="classDecklinkImport.html#a134278805fce27f766a216ee1caa043d">DecklinkImport::DecklinkImport</a></div><div class="ttdeci">DecklinkImport(MetadataInput *reader)</div></div>
-<div class="ttc" id="classDecklinkImport_html_ac3f2de7645984b2328b896555f67fd39"><div class="ttname"><a href="classDecklinkImport.html#ac3f2de7645984b2328b896555f67fd39">DecklinkImport::stopCapture</a></div><div class="ttdeci">int stopCapture()</div></div>
 <div class="ttc" id="classFrame_html"><div class="ttname"><a href="classFrame.html">Frame</a></div><div class="ttdef"><b>Definition:</b> frame.h:48</div></div>
 <div class="ttc" id="imgimport_8h_html"><div class="ttname"><a href="imgimport_8h.html">imgimport.h</a></div></div>
-<div class="ttc" id="classDecklinkImport_html_af075ece2124aa9a099f2c5e0ff59b9f2"><div class="ttname"><a href="classDecklinkImport.html#af075ece2124aa9a099f2c5e0ff59b9f2">DecklinkImport::grabFrame</a></div><div class="ttdeci">int grabFrame(cv::Mat *frame)</div></div>
-<div class="ttc" id="classDecklinkImport_html"><div class="ttname"><a href="classDecklinkImport.html">DecklinkImport</a></div><div class="ttdoc">Module for extracting frames from Decklink Video cards. </div><div class="ttdef"><b>Definition:</b> decklink_import.h:59</div></div>
+<div class="ttc" id="classDeckLinkImport_html_ae524c90d6c9ad90fe03c0b28b3eff763"><div class="ttname"><a href="classDeckLinkImport.html#ae524c90d6c9ad90fe03c0b28b3eff763">DeckLinkImport::startCapture</a></div><div class="ttdeci">int startCapture()</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

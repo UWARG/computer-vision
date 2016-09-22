@@ -1,5 +1,5 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
 <area shape="rect" id="node1" href="$classImageImport.html" title="Abstract class for importing frames and corresponding metadata. " alt="" coords="6,31,101,57"/>
-<area shape="rect" id="node2" href="$classDecklinkImport.html" title="Module for extracting frames from Decklink Video cards. " alt="" coords="150,5,261,32"/>
-<area shape="rect" id="node3" href="$classPictureImport.html" title="Class for reading image files from a directory. " alt="" coords="155,56,255,83"/>
+<area shape="rect" id="node2" href="$classDeckLinkImport.html" title="Module for extracting frames from DeckLink Video cards. " alt="" coords="149,5,264,32"/>
+<area shape="rect" id="node3" href="$classPictureImport.html" title="Class for reading image files from a directory. " alt="" coords="157,56,257,83"/>
 </map>
