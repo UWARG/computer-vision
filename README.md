@@ -18,26 +18,48 @@ CONOPS/Rules:
 * [2016 CONOPS/Rules](https://drive.google.com/open?id=0BySpWXvmBM4JUnhyaGN0NW5OR1k)
 
 ### Building and Installing
-Well... seeing as there isn't actually any source in the repository yet, this isn't actually possible at the moment
-
-When we have actually implemented stuff the following will probably apply
 
 **Build system**: CMake to set up build environment then whatever CMake gives you (depends on platform, make for Linux, etc.)
 
 **Dependencies**: 
     [OpenCV 3.0](http://opencv.org/downloads.html)
     [Boost 1.58](http://www.boost.org/users/download/)
-    [DeckLink](http://www.blackmagicdesign.com/support/sdks)
+    [DeckLink](http://www.blackmagicdesign.com/support/sdks) _(optional)_
+    [ZBar] (http://zbar.sourceforge.net/download.html) 
 
 ####Installation Instructions:
-1. Clone the Project
-2. Install dependencies
+1. Install the dependencies listed above. This will vary based on your system. 
+2. Clone the Project
+
+'git clone https://github.com/UWARG/computer-vision.git'
+
+'cd computer-vision'
 3. Use CMake to setup the project from the CMake list
+
+'mkdir build'
+
+'cd build'
 4. Compile
+
+'cmake ../'
+
+'make'
+
+####Running the Program
+After Compiling, an executable will be present in the build directory. To run it type: 
+
+'./warg-cv'
+
+####Testing the Program
+After compiling, in the build directory run:
+
+'make test' or 'make test ARGS='-V' for verbose output
 
 ####Goal:
 To fill this chart with the right values:
 [Judges Evaluation Sheet](https://drive.google.com/open?id=0B8ozhZojJMQbWTBWaXBiXzBQcFk)
+
+Note: This is an old judging sheet,  however the format between each competition is always very similar. 
 
 This includes latitudes, longitudes, centroids, areas, volumes, and QR codes.
 
