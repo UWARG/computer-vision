@@ -30,24 +30,32 @@ CONOPS/Rules:
 ####Installation Instructions:
 1. Install the dependencies listed above. This will vary based on your system. 
 2. Clone the Project
-*'git clone https://github.com/UWARG/computer-vision.git'
-*'cd computer-vision'
+
+   `git clone https://github.com/UWARG/computer-vision.git`
+
+   `cd computer-vision`
+
 3. Use CMake to setup the project from the CMake list
-*'mkdir build'
-*'cd build'
+
+   `mkdir build`
+
+   `cd build`
+
 4. Compile
-*'cmake ../'
-*'make'
+   
+   `cmake ../`
+   
+   `make`
 
 ####Running the Program
 After Compiling, an executable will be present in the build directory. To run it type: 
 
-'./warg-cv'
+`./warg-cv`
 
 ####Testing the Program
 After compiling, in the build directory run:
 
-'make test' or 'make test ARGS='-V' for verbose output
+`make test` or `make test ARGS='-V` for verbose output
 
 ####Goal:
 To fill this chart with the right values:
