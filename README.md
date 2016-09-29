@@ -16,6 +16,7 @@ Photos to use for testing:
 CONOPS/Rules:
 * [2015 CONOPS/Rules](https://drive.google.com/open?id=0BySpWXvmBM4JajdsemZFb0o2Ukk&authuser=0)
 * [2016 CONOPS/Rules](https://drive.google.com/open?id=0BySpWXvmBM4JUnhyaGN0NW5OR1k)
+* [2017 CONOPS/Rules](https://drive.google.com/file/d/0BySpWXvmBM4JNlFyX18xTUpPOG8/view?usp=sharing)
 
 ### Building and Installing
 
@@ -30,32 +31,21 @@ CONOPS/Rules:
 ####Installation Instructions:
 1. Install the dependencies listed above. This will vary based on your system. 
 2. Clone the Project
-
-   `git clone https://github.com/UWARG/computer-vision.git`
-
-   `cd computer-vision`
-
 3. Use CMake to setup the project from the CMake list
-
-   `mkdir build`
-
-   `cd build`
-
 4. Compile
-   
-   `cmake ../`
-   
-   `make`
+
+For Linux, refer to the detailed instructions here: [Linux Installation](http://docs.uwarg.com/computer-vision/Building-the-project-[Linux]/)
+For Windows or Mac, you will need a Docker installation. Please refer to the instructions here: [Docker Installation](http://docs.uwarg.com/computer-vision/)
 
 ####Running the Program
-After Compiling, an executable will be present in the build directory. To run it type: 
+After compiling, an executable will be present in the build directory. To run it type: 
 
 `./warg-cv`
 
 ####Testing the Program
 After compiling, in the build directory run:
 
-`make test` or `make test ARGS='-V` for verbose output
+`make test` or `make test ARGS='-V'` for verbose output
 
 ####Goal:
 To fill this chart with the right values:
