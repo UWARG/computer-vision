@@ -23,9 +23,9 @@ CONOPS/Rules:
 **Build system**: CMake to set up build environment then whatever CMake gives you (depends on platform, make for Linux, etc.)
 
 **Dependencies**: 
-    [OpenCV 3.0](http://opencv.org/downloads.html)
-    [Boost 1.58](http://www.boost.org/users/download/)
-    [DeckLink](http://www.blackmagicdesign.com/support/sdks) _(optional)_
+    [OpenCV 3.0](http://opencv.org/downloads.html),
+    [Boost 1.58](http://www.boost.org/users/download/),
+    [DeckLink](http://www.blackmagicdesign.com/support/sdks) _(optional)_,
     [ZBar] (http://zbar.sourceforge.net/download.html) 
 
 ####Installation Instructions:
