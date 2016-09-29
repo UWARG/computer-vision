@@ -56,7 +56,7 @@ To fill this chart with the right values:
 This evaluation sheet includes spots to fill with latitudes, longitudes, centroids, areas, volumes, and QR code values.
 
 ### Licensing
-Copyright (c) 2016, Waterloo Aerial Robotics Group (WARG)
+Copyright (c) 2015-2016, Waterloo Aerial Robotics Group (WARG)
 
 All rights reserved.
 
