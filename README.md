@@ -29,13 +29,15 @@ CONOPS/Rules:
     [ZBar] (http://zbar.sourceforge.net/download.html) 
 
 ####Installation Instructions:
-1. Install the dependencies listed above. This will vary based on your system. 
-2. Clone the Project
-3. Use CMake to setup the project from the CMake list
-4. Compile
+If you intend to use Windows or Mac, you will need to run a Docker image. The Docker image is pre-configured with the appropriate libraries. Please refer to the instructions here: [Docker Installation](http://docs.uwarg.com/computer-vision/)
 
-For Linux, refer to the detailed instructions here: [Linux Installation](http://docs.uwarg.com/computer-vision/Building-the-project-[Linux]/)
-For Windows or Mac, you will need a Docker installation. Please refer to the instructions here: [Docker Installation](http://docs.uwarg.com/computer-vision/)
+*For Linux:*
+
+1. Install the dependencies listed above. This may vary based on your system. 
+2. Clone the Project
+3. Run `./build.sh` to build and compile the project.
+
+Refer to the detailed instructions here: [Linux Installation](http://docs.uwarg.com/computer-vision/Building-the-project-[Linux]/)
 
 ####Running the Program
 After compiling, an executable will be present in the build directory. To run it type: 
@@ -51,12 +53,10 @@ After compiling, in the build directory run:
 To fill this chart with the right values:
 [Judges Evaluation Sheet](https://drive.google.com/open?id=0B8ozhZojJMQbWTBWaXBiXzBQcFk)
 
-Note: This is an old judging sheet,  however the format between each competition is always very similar. 
-
-This includes latitudes, longitudes, centroids, areas, volumes, and QR codes.
+This evaluation sheet includes spots to fill with latitudes, longitudes, centroids, areas, volumes, and QR code values.
 
 ### Licensing
-Copyright (c) 2015, Waterloo Aerial Robotics Group (WARG)
+Copyright (c) 2016, Waterloo Aerial Robotics Group (WARG)
 
 All rights reserved.
 
