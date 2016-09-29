@@ -92,24 +92,31 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <ul>
 <li><a href="https://drive.google.com/open?id=0BySpWXvmBM4JajdsemZFb0o2Ukk&amp;authuser=0">2015 CONOPS/Rules</a></li>
 <li><a href="https://drive.google.com/open?id=0BySpWXvmBM4JUnhyaGN0NW5OR1k">2016 CONOPS/Rules</a></li>
+<li><a href="https://drive.google.com/file/d/0BySpWXvmBM4JNlFyX18xTUpPOG8/view?usp=sharing">2017 CONOPS/Rules</a></li>
 </ul>
 <h3>Building and Installing</h3>
-<p>Well... seeing as there isn't actually any source in the repository yet, this isn't actually possible at the moment</p>
-<p>When we have actually implemented stuff the following will probably apply</p>
 <p><b>Build system</b>: CMake to set up build environment then whatever CMake gives you (depends on platform, make for Linux, etc.)</p>
-<p><b>Dependencies</b>: <a href="http://opencv.org/downloads.html">OpenCV 3.0</a> <a href="http://www.boost.org/users/download/">Boost 1.58</a> <a href="http://www.blackmagicdesign.com/support/sdks">DeckLink</a></p>
+<p><b>Dependencies</b>: <a href="http://opencv.org/downloads.html">OpenCV 3.0</a>, <a href="http://www.boost.org/users/download/">Boost 1.58</a>, <a href="http://www.blackmagicdesign.com/support/sdks">DeckLink</a> _(optional)_, <a href="http://zbar.sourceforge.net/download.html">ZBar</a></p>
 <h4>Installation Instructions:</h4>
+<p>If you intend to use Windows or Mac, you will need to run a Docker image. The Docker image is pre-configured with the appropriate libraries. Please refer to the instructions here: <a href="http://docs.uwarg.com/computer-vision/">Docker Installation</a></p>
+<p><em>For Linux:</em></p>
 <ol type="1">
+<li>Install the dependencies listed above. This may vary based on your system.</li>
 <li>Clone the Project</li>
-<li>Install dependencies</li>
-<li>Use CMake to setup the project from the CMake list</li>
-<li>Compile</li>
+<li>Run <code>./build.sh</code> to build and compile the project.</li>
 </ol>
+<p>Refer to the detailed instructions here: <a href="http://docs.uwarg.com/computer-vision/Building-the-project-[Linux]/">Linux Installation</a></p>
+<h4>Running the Program</h4>
+<p>After compiling, an executable will be present in the build directory. To run it type:</p>
+<p><code>./warg-cv</code></p>
+<h4>Testing the Program</h4>
+<p>After compiling, in the build directory run:</p>
+<p><code>make test</code> or `make test ARGS='-V'` for verbose output</p>
 <h4>Goal:</h4>
 <p>To fill this chart with the right values: <a href="https://drive.google.com/open?id=0B8ozhZojJMQbWTBWaXBiXzBQcFk">Judges Evaluation Sheet</a></p>
-<p>This includes latitudes, longitudes, centroids, areas, volumes, and QR codes.</p>
+<p>This evaluation sheet includes spots to fill with latitudes, longitudes, centroids, areas, volumes, and QR code values.</p>
 <h3>Licensing</h3>
-<p>Copyright (c) 2015, Waterloo Aerial Robotics Group (WARG)</p>
+<p>Copyright (c) 2015-2016, Waterloo Aerial Robotics Group (WARG)</p>
 <p>All rights reserved.</p>
 <p>Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:</p>
 <ol type="1">
