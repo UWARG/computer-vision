@@ -12,6 +12,8 @@ System Overview:
 Photos to use for testing:
 * [2014 Competition](https://drive.google.com/open?id=0BySpWXvmBM4JWGhrZGk5UWNqNm8&authuser=0)
 * [2015 Competition](https://drive.google.com/open?id=0B8ozhZojJMQbfkx4WTlOYnJQV3dKcHFxc0F5c1JkU2FHRzRsM2VVU3VzV3JGeUlZQU9iN00&authuser=1)
+* [2016 Competition](https://ece.uwaterloo.ca/~warg/downloads/flightdata/competition2016/)
+* [All Flight Data](https://ece.uwaterloo.ca/~warg/downloads/flightdata/)
 
 CONOPS/Rules:
 * [2015 CONOPS/Rules](https://drive.google.com/open?id=0BySpWXvmBM4JajdsemZFb0o2Ukk&authuser=0)
