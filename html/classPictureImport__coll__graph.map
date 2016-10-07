@@ -1,4 +1,4 @@
 <map id="PictureImport" name="PictureImport">
-<area shape="rect" id="node2" href="$classImageImport.html" title="Abstract class for importing frames and corresponding metadata. " alt="" coords="11,221,133,328"/>
-<area shape="rect" id="node3" href="$classMetadataInput.html" title="A class for reading telemetry logs and searching for log entries. " alt="" coords="5,6,139,157"/>
+<area shape="rect" id="node2" href="$classImageImport.html" title="Abstract class for importing frames and corresponding metadata. " alt="" coords="11,219,133,325"/>
+<area shape="rect" id="node3" href="$classMetadataInput.html" title="A class for reading telemetry logs and searching for log entries. " alt="" coords="5,5,139,156"/>
 </map>

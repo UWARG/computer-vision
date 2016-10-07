@@ -1,11 +1,11 @@
 <map id="modules/core/include/frame.h" name="modules/core/include/frame.h">
-<area shape="rect" id="node2" href="$pixel__object_8h.html" title="modules/core/include\l/pixel_object.h" alt="" coords="47,97,192,138"/>
-<area shape="rect" id="node4" href="$decklink__import_8h_source.html" title="modules/imgimport/include\l/decklink_import.h" alt="" coords="182,187,359,229"/>
-<area shape="rect" id="node5" href="$imgimport_8h.html" title="modules/imgimport/include\l/imgimport.h" alt="" coords="289,97,465,138"/>
-<area shape="rect" id="node7" href="$target__analyzer_8h.html" title="Module for analyzing individual PixelTargets and combining them into a set of unique Targets..." alt="" coords="491,97,661,138"/>
-<area shape="rect" id="node8" href="$object__detector_8h_source.html" title="modules/targetid/include\l/object_detector.h" alt="" coords="685,97,848,138"/>
-<area shape="rect" id="node9" href="$target__identifier_8h.html" title="Module for identifying targets in Frames. " alt="" coords="744,187,907,229"/>
-<area shape="rect" id="node10" href="$volume__calc_8h.html" title="Module for calculating the volume of a target. " alt="" coords="923,97,1076,138"/>
-<area shape="rect" id="node3" href="$pixel__object_8cpp.html" title="modules/core/src/pixel\l_object.cpp" alt="" coords="5,187,157,229"/>
-<area shape="rect" id="node6" href="$pictureimport_8h_source.html" title="modules/imgimport/include\l/pictureimport.h" alt="" coords="383,187,560,229"/>
+<area shape="rect" id="node2" href="$pixel__object_8h.html" title="modules/core/include\l/pixel_object.h" alt="" coords="48,95,193,136"/>
+<area shape="rect" id="node4" href="$decklink__import_8h_source.html" title="modules/imgimport/include\l/decklink_import.h" alt="" coords="183,184,360,225"/>
+<area shape="rect" id="node5" href="$imgimport_8h.html" title="modules/imgimport/include\l/imgimport.h" alt="" coords="289,95,467,136"/>
+<area shape="rect" id="node7" href="$target__analyzer_8h.html" title="Module for analyzing individual PixelTargets and combining them into a set of unique Targets..." alt="" coords="491,95,662,136"/>
+<area shape="rect" id="node8" href="$object__detector_8h_source.html" title="modules/targetid/include\l/object_detector.h" alt="" coords="686,95,849,136"/>
+<area shape="rect" id="node9" href="$target__identifier_8h.html" title="Module for identifying targets in Frames. " alt="" coords="745,184,907,225"/>
+<area shape="rect" id="node10" href="$volume__calc_8h.html" title="Module for calculating the volume of a target. " alt="" coords="923,95,1078,136"/>
+<area shape="rect" id="node3" href="$pixel__object_8cpp.html" title="modules/core/src/pixel\l_object.cpp" alt="" coords="5,184,159,225"/>
+<area shape="rect" id="node6" href="$pictureimport_8h_source.html" title="modules/imgimport/include\l/pictureimport.h" alt="" coords="384,184,561,225"/>
 </map>
