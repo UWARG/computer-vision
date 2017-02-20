@@ -37,6 +37,8 @@
 #include <boost/log/core.hpp>
 #include <boost/log/trivial.hpp>
 #include <boost/log/expressions.hpp>
+#include <boost/algorithm/string.hpp>
+#include <functional>
 #include <boost/program_options.hpp>
 #include <queue>
 #include <chrono>
@@ -60,6 +62,7 @@ const int BUFFER_SIZE = 20;
 
 Frame* next_image();
 int handle_args(int argc, char** argv);
+void handle_input();
 queue<Frame*> in_buffer;
 queue<Target*> out_buffer;
 queue<Frame*> intermediate_buffer;
@@ -69,7 +72,7 @@ boost::thread_group threadpool;
 
 vector<string> file_names;
 int workers = 0;
-bool hasMoreFrames = true;
+bool readingFrames = false;
 string outputDir = "./";
 bool intermediate = false;
 int processors;
@@ -99,14 +102,14 @@ void worker(Frame* f) {
 
 void read_images() {
     Frame* currentFrame;
-    while (hasMoreFrames) {
+    while (readingFrames) {
         if (in_buffer.size() < BUFFER_SIZE) {
             Frame* f = importer->next_frame();
             if (f) {
                 in_buffer.push(f);
             }
             else {
-                hasMoreFrames = false;
+                readingFrames = false;
             }
         }
         boost::this_thread::sleep(boost::posix_time::milliseconds(aveFrameTime/processors));
@@ -115,7 +118,7 @@ void read_images() {
 
 void assign_workers() {
     Frame* current;
-    while (hasMoreFrames || in_buffer.size() > 0) {
+    while (readingFrames || in_buffer.size() > 0) {
         if (in_buffer.size() > 0) {
             current = in_buffer.front();
             // spawn worker to process image;
@@ -130,7 +133,7 @@ void assign_workers() {
 
 void output() {
     filebuf fb;
-    while (hasMoreFrames || out_buffer.size() > 0 || intermediate_buffer.size() > 0 || workers > 0) {
+    while (readingFrames || out_buffer.size() > 0 || intermediate_buffer.size() > 0 || workers > 0) {
         if (out_buffer.size() > 0) {
             fb.open("out.txt", ios::app);
             ostream out(&fb);
@@ -152,7 +155,7 @@ void output() {
 
 void init() {
 #ifdef RELEASE
-    logging::core::get()->set_filter(logging::trivial::severity >= logging::trivial::info);
+    logging::core::get()->set_filter(logging::trivial::severity >= logging::trivial::error);
 #else
     logging::core::get()->set_filter(logging::trivial::severity >= logging::trivial::debug);
 #endif
@@ -164,20 +167,101 @@ int main(int argc, char** argv) {
     if (retArg = handle_args(argc, argv) != 0)
         return retArg;
 
+    boost::asio::io_service::work work(ioService);
     processors = boost::thread::hardware_concurrency();
 
-    ioService.post(boost::bind(read_images));
-    ioService.post(boost::bind(assign_workers));
-    ioService.post(boost::bind(output));
+    while (!cin.eof()) handle_input();
 
-    boost::asio::io_service::work work(ioService);
-    for (int i = 0; i < processors; i++) {
-        threadpool.create_thread(boost::bind(&boost::asio::io_service::run, &ioService));
-    }
     threadpool.join_all();
     delete logReader;
     delete importer;
     return 0;
+}
+
+void queue_work(std::function<void()> func) {
+    ioService.post(boost::bind(func));
+    while(threadpool.size() < processors)
+        threadpool.create_thread(boost::bind(&boost::asio::io_service::run, &ioService));
+}
+
+/**
+ * @class Command
+ * @brief Describes a CLI Command that can be run in the program's repl
+ */
+class Command {
+public:
+    /**
+     * @brief Constructor for a CLI command
+     * @arg name Command name
+     * @arg desc Command Description
+     * @arg args List of argument names
+     * @arg execute Function to execute when command is run, The vector of strings contains the arguments passed to the command at runtime
+     */
+    Command(string name, string desc, initializer_list<string> args, std::function<void(vector<string>)> execute): name(name), desc(desc), args(args), execute(execute) { }
+    string name, desc;
+    vector<string> args;
+    std::function<void(vector<string>)> execute;
+};
+
+vector<Command> commands = {
+    Command("help", "display this help message", {}, [=](vector<string> args) {
+        cout << "Commands:" << endl << endl;
+        string space = string("");
+        for (Command cmd : commands) {
+            space.resize(20 - cmd.name.length() + 1 + boost::algorithm::join(cmd.args, " ").length(), ' ');
+            cout << cmd.name << " " << boost::algorithm::join(cmd.args, " ") << space << " - " << cmd.desc << endl;
+        }
+    }),
+    Command("log.info", "sets log level to info", {}, [](vector<string> args) {
+        logging::core::get()->set_filter(logging::trivial::severity >= logging::trivial::info);
+    }),
+    Command("log.debug", "sets log level to debug", {}, [](vector<string> args) {
+        logging::core::get()->set_filter(logging::trivial::severity >= logging::trivial::debug);
+    }),
+    Command("log.error", "sets log level to error", {}, [](vector<string> args) {
+        logging::core::get()->set_filter(logging::trivial::severity >= logging::trivial::error);
+    }),
+    Command("frames.start", "starts fetching frames", {}, [](vector<string> args) {
+        if (!readingFrames) {
+            queue_work(read_images);
+            readingFrames = true;
+        } else {
+           BOOST_LOG_TRIVIAL(error) << "Frames are already being fetched";
+        }
+    }),
+    Command("frames.stop", "starts fetching frames", {}, [](vector<string> args) {
+        if (readingFrames) {
+            readingFrames = false;
+        } else {
+           BOOST_LOG_TRIVIAL(error) << "Frames are not being fetched";
+        }
+    })
+};
+
+void handle_input() {
+    cout << "wargcv$ ";
+    string input;
+    getline(cin, input);
+    vector<string> args;
+    boost::split(args, input, boost::is_any_of(" "));
+    bool valid = false;
+
+    for (Command cmd : commands) {
+        if (args.size() > 0 && args[0].compare(cmd.name) == 0) {
+            if (args.size() - 1 == cmd.args.size()) {
+                BOOST_LOG_TRIVIAL(info) << "Executing command: " << cmd.name;
+                cmd.execute(vector<string>(args.begin() + 1, args.end()));
+                valid = true;
+            } else {
+                cout << "Usage: " << endl;
+                cout << cmd.name << " " << boost::algorithm::join(cmd.args, " ") << " - " << cmd.desc << endl;
+            }
+        }
+    }
+    if (!valid && !cin.eof()) {
+        BOOST_LOG_TRIVIAL(info) << "Executing command: " << commands[0].name;
+        commands[0].execute(vector<string>());
+    }
 }
 
 int handle_args(int argc, char** argv) {
