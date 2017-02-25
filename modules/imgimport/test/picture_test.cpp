@@ -12,6 +12,7 @@
 #include <opencv2/imgproc/imgproc.hpp>
 #include "benchmark.h"
 #include "metadata_input.h"
+#include "metadata_reader.h"
 
 using namespace std;
 using namespace cv;
@@ -36,7 +37,8 @@ BOOST_AUTO_TEST_CASE(picture_test){
 
     BOOST_REQUIRE(count > 0);
 
-    MetadataInput* mdin=new MetadataInput(telemetry_path);
+    MetadataInput* mdin = new MetadataInput();
+    mdin->add_source(new MetadataReader(*mdin, telemetry_path));
     PictureImport PI(filePath, mdin);
     DIR* dr=opendir(filePath.c_str());
     struct dirent* drnt;

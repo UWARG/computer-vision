@@ -50,6 +50,7 @@
 #include "decklink_import.h"
 #include "pictureimport.h"
 #include "metadata_input.h"
+#include "metadata_reader.h"
 #include "target.h"
 
 using namespace std;
@@ -80,7 +81,7 @@ int processors;
 // Processing module classes
 ImageImport * importer = NULL;
 TargetIdentifier identifier;
-MetadataInput * logReader = NULL;
+MetadataInput *logReader = new MetadataInput();
 
 double aveFrameTime = 1000;
 int frameCount = 0;
@@ -235,7 +236,14 @@ vector<Command> commands = {
         } else {
            BOOST_LOG_TRIVIAL(error) << "Frames are not being fetched";
         }
+    }),
+    Command("telemetry.file.add", "Adds file as new telemetry source", {"file"}, [](vector<string> args) {
+        logReader->add_source(new MetadataReader(*logReader, args[0]));
+    }),
+    Command("telemetry.network.add", "Adds network address/port as new telemetry source", {"address", "port"}, [](vector<string> args) {
+        logReader->add_source(new MetadataReader(*logReader, args[0], args[1]));
     })
+
 };
 
 void handle_input() {
@@ -303,9 +311,9 @@ int handle_args(int argc, char** argv) {
         }
 
         if (vm.count("telemetry")) {
-            logReader = new MetadataInput(vm["telemetry"].as<string>());
+            logReader->add_source(new MetadataReader(*logReader, vm["telemetry"].as<string>()));
         } else if (vm.count("addr") && vm.count("port")) {
-            logReader = new MetadataInput(vm["addr"].as<string>(), vm["port"].as<string>());
+            logReader->add_source(new MetadataReader(*logReader, vm["addr"].as<string>(), vm["port"].as<string>()));
         }
 
 #ifdef HAS_DECKLINK
