@@ -47,6 +47,7 @@
 #include "frame.h"
 #include "target_identifier.h"
 #include "imgimport.h"
+#include "importer.h"
 #include "decklink_import.h"
 #include "pictureimport.h"
 #include "metadata_input.h"
@@ -58,8 +59,6 @@ using namespace boost;
 using namespace cv;
 namespace logging = boost::log;
 namespace po = boost::program_options;
-
-const int BUFFER_SIZE = 20;
 
 Frame* next_image();
 int handle_args(int argc, char** argv);
@@ -79,7 +78,7 @@ bool intermediate = false;
 int processors;
 
 // Processing module classes
-ImageImport * importer = NULL;
+Importer importer;
 TargetIdentifier identifier;
 MetadataInput *logReader = new MetadataInput();
 
@@ -101,34 +100,18 @@ void worker(Frame* f) {
     aveFrameTime = (std::chrono::duration <double, std::milli>(diff).count() + aveFrameTime*frameCount)/++frameCount;
 }
 
-void read_images() {
-    Frame* currentFrame;
-    while (readingFrames) {
-        if (in_buffer.size() < BUFFER_SIZE) {
-            Frame* f = importer->next_frame();
-            if (f) {
-                in_buffer.push(f);
-            }
-            else {
-                readingFrames = false;
-            }
-        }
-        boost::this_thread::sleep(boost::posix_time::milliseconds(aveFrameTime/processors));
-    }
-}
-
 void assign_workers() {
     Frame* current;
-    while (readingFrames || in_buffer.size() > 0) {
-        if (in_buffer.size() > 0) {
-            current = in_buffer.front();
+    while (readingFrames) {
+        if ((current = importer.next_frame()) != NULL) {
+
             // spawn worker to process image;
             BOOST_LOG_TRIVIAL(trace) << "Spawning worker...";
             ioService.post(boost::bind(worker, current));
             in_buffer.pop();
         }
 
-        boost::this_thread::sleep(boost::posix_time::milliseconds(30));
+        boost::this_thread::sleep(boost::posix_time::milliseconds(aveFrameTime/processors));
     }
 }
 
@@ -175,7 +158,6 @@ int main(int argc, char** argv) {
 
     threadpool.join_all();
     delete logReader;
-    delete importer;
     return 0;
 }
 
@@ -224,7 +206,7 @@ vector<Command> commands = {
     }),
     Command("frames.start", "starts fetching frames", {}, [](vector<string> args) {
         if (!readingFrames) {
-            queue_work(read_images);
+            queue_work(assign_workers);
             readingFrames = true;
         } else {
            BOOST_LOG_TRIVIAL(error) << "Frames are already being fetched";
@@ -242,6 +224,20 @@ vector<Command> commands = {
     }),
     Command("telemetry.network.add", "Adds network address/port as new telemetry source", {"address", "port"}, [](vector<string> args) {
         logReader->add_source(new MetadataReader(*logReader, args[0], args[1]));
+    }),
+    Command("frames.source.pictures.add", "", {"path", "delay"}, [=](vector<string> args) {
+        importer.add_source(new PictureImport(args[0], logReader), stol(args[1]));
+    }),
+#ifdef HAS_DECKLINK
+    Command("frames.source.decklink.add", "", {"delay"}, [=](vector<string> args) {
+        importer.add_source(new DeckLinkImport(logReader), stol(args[0]));
+    }),
+#endif // HAS_DECKLINK
+    Command("frames.source.remove", "Removes the source at the given index", {"index"}, [=](vector<string> args) {
+        importer.remove_source(stoi(args[0]));
+    }),
+    Command("frames.source.update_delay", "Updates the delay for the source at the given index", {"index", "delay"}, [=](vector<string> args) {
+        importer.update_delay(stoi(args[0]), stol(args[1]));
     })
 
 };
@@ -318,13 +314,13 @@ int handle_args(int argc, char** argv) {
 
 #ifdef HAS_DECKLINK
         if (vm.count("decklink")) {
-            importer = new DeckLinkImport(logReader);
+            importer.add_source(new DeckLinkImport(logReader), 500);
         }
 #endif // HAS_DECKLINK
 
         if (vm.count("images")) {
             string path = vm["images"].as<string>();
-            importer = new PictureImport(path, logReader);
+            importer.add_source(new PictureImport(path, logReader), 0);
         }
 
         if (vm.count("output")) {
