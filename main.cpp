@@ -63,6 +63,7 @@ namespace po = boost::program_options;
 Frame* next_image();
 int handle_args(int argc, char** argv);
 void handle_input();
+void handle_state_change();
 queue<Frame*> in_buffer;
 queue<Target*> out_buffer;
 queue<Frame*> intermediate_buffer;
@@ -72,7 +73,6 @@ boost::thread_group threadpool;
 
 vector<string> file_names;
 int workers = 0;
-bool readingFrames = false;
 string outputDir = "./";
 bool intermediate = false;
 int processors;
@@ -84,6 +84,12 @@ MetadataInput *logReader = new MetadataInput();
 
 double aveFrameTime = 1000;
 int frameCount = 0;
+
+struct State {
+    bool hasImageSource;
+    bool hasMetadataSource;
+    bool readingImages;
+} currentState;
 
 void worker(Frame* f) {
     auto start = std::chrono::steady_clock::now();
@@ -102,7 +108,7 @@ void worker(Frame* f) {
 
 void assign_workers() {
     Frame* current;
-    while (readingFrames) {
+    while (currentState.readingImages) {
         if ((current = importer.next_frame()) != NULL) {
 
             // spawn worker to process image;
@@ -117,7 +123,7 @@ void assign_workers() {
 
 void output() {
     filebuf fb;
-    while (readingFrames || out_buffer.size() > 0 || intermediate_buffer.size() > 0 || workers > 0) {
+    while (currentState.readingImages || out_buffer.size() > 0 || intermediate_buffer.size() > 0 || workers > 0) {
         if (out_buffer.size() > 0) {
             fb.open("out.txt", ios::app);
             ostream out(&fb);
@@ -147,6 +153,7 @@ void init() {
 
 int main(int argc, char** argv) {
     init();
+    currentState.hasImageSource = currentState.hasMetadataSource = currentState.readingImages = false;
     int retArg;
     if (retArg = handle_args(argc, argv) != 0)
         return retArg;
@@ -180,14 +187,14 @@ public:
      * @arg args List of argument names
      * @arg execute Function to execute when command is run, The vector of strings contains the arguments passed to the command at runtime
      */
-    Command(string name, string desc, initializer_list<string> args, std::function<void(vector<string>)> execute): name(name), desc(desc), args(args), execute(execute) { }
+    Command(string name, string desc, initializer_list<string> args, std::function<void(State&, vector<string>)> execute): name(name), desc(desc), args(args), execute(execute) { }
     string name, desc;
     vector<string> args;
-    std::function<void(vector<string>)> execute;
+    std::function<void(State&, vector<string>)> execute;
 };
 
 vector<Command> commands = {
-    Command("help", "display this help message", {}, [=](vector<string> args) {
+    Command("help", "display this help message", {}, [=](State &newState, vector<string> args) {
         cout << "Commands:" << endl << endl;
         string space = string("");
         for (Command cmd : commands) {
@@ -195,52 +202,76 @@ vector<Command> commands = {
             cout << cmd.name << " " << boost::algorithm::join(cmd.args, " ") << space << " - " << cmd.desc << endl;
         }
     }),
-    Command("log.info", "sets log level to info", {}, [](vector<string> args) {
+    Command("log.info", "sets log level to info", {}, [](State &newState, vector<string> args) {
         logging::core::get()->set_filter(logging::trivial::severity >= logging::trivial::info);
     }),
-    Command("log.debug", "sets log level to debug", {}, [](vector<string> args) {
+    Command("log.debug", "sets log level to debug", {}, [](State &newState, vector<string> args) {
         logging::core::get()->set_filter(logging::trivial::severity >= logging::trivial::debug);
     }),
-    Command("log.error", "sets log level to error", {}, [](vector<string> args) {
+    Command("log.error", "sets log level to error", {}, [](State &newState, vector<string> args) {
         logging::core::get()->set_filter(logging::trivial::severity >= logging::trivial::error);
     }),
-    Command("frames.start", "starts fetching frames", {}, [](vector<string> args) {
-        if (!readingFrames) {
-            queue_work(assign_workers);
-            readingFrames = true;
+    Command("frames.start", "starts fetching frames", {}, [=](State &newState, vector<string> args) {
+        if (!newState.readingImages) {
+            newState.readingImages = true;
+            importer.set_buffer_size(20);
         } else {
            BOOST_LOG_TRIVIAL(error) << "Frames are already being fetched";
         }
     }),
-    Command("frames.stop", "starts fetching frames", {}, [](vector<string> args) {
-        if (readingFrames) {
-            readingFrames = false;
+    Command("frames.stop", "starts fetching frames", {}, [=](State &newState, vector<string> args) {
+        if (newState.readingImages) {
+            newState.readingImages = false;
+            importer.set_buffer_size(0);
         } else {
            BOOST_LOG_TRIVIAL(error) << "Frames are not being fetched";
         }
     }),
-    Command("telemetry.file.add", "Adds file as new telemetry source", {"file"}, [](vector<string> args) {
+    Command("telemetry.file.add", "Adds file as new telemetry source", {"file"}, [=](State &newState, vector<string> args) {
         logReader->add_source(new MetadataReader(*logReader, args[0]));
     }),
-    Command("telemetry.network.add", "Adds network address/port as new telemetry source", {"address", "port"}, [](vector<string> args) {
+    Command("telemetry.network.add", "Adds network address/port as new telemetry source", {"address", "port"}, [=](State &newState, vector<string> args) {
         logReader->add_source(new MetadataReader(*logReader, args[0], args[1]));
     }),
-    Command("frames.source.pictures.add", "", {"path", "delay"}, [=](vector<string> args) {
-        importer.add_source(new PictureImport(args[0], logReader), stol(args[1]));
+    Command("frames.source.pictures.add", "", {"path", "delay"}, [=](State &newState, vector<string> args) {
+        if (logReader->num_sources() == 0) {
+            BOOST_LOG_TRIVIAL(error) << "Cannot add image source until a metadata source has been specified";
+        } else {
+            importer.add_source(new PictureImport(args[0], logReader), stol(args[1]));
+            newState.hasImageSource = true;
+        }
     }),
 #ifdef HAS_DECKLINK
-    Command("frames.source.decklink.add", "", {"delay"}, [=](vector<string> args) {
-        importer.add_source(new DeckLinkImport(logReader), stol(args[0]));
+    Command("frames.source.decklink.add", "", {"delay"}, [=](State &newState, vector<string> args) {
+        if (logReader->num_sources() == 0) {
+            BOOST_LOG_TRIVIAL(error) << "Cannot add image source until a metadata source has been specified";
+        } else {
+            importer.add_source(new DeckLinkImport(logReader), stol(args[0]));
+            newState.hasImageSource = true;
+        }
     }),
 #endif // HAS_DECKLINK
-    Command("frames.source.remove", "Removes the source at the given index", {"index"}, [=](vector<string> args) {
+    Command("frames.source.remove", "Removes the source at the given index", {"index"}, [=](State &newState, vector<string> args) {
         importer.remove_source(stoi(args[0]));
+        newState.hasImageSource = importer.num_sources() > 0;
     }),
-    Command("frames.source.update_delay", "Updates the delay for the source at the given index", {"index", "delay"}, [=](vector<string> args) {
+    Command("frames.source.update_delay", "Updates the delay for the source at the given index", {"index", "delay"}, [=](State &newState, vector<string> args) {
         importer.update_delay(stoi(args[0]), stol(args[1]));
     })
-
 };
+
+void handle_state_change(State &newState) {
+    if (!currentState.readingImages && newState.readingImages) {
+        if (newState.hasImageSource && newState.hasMetadataSource) {
+            queue_work(assign_workers);
+        } else {
+            BOOST_LOG_TRIVIAL(error) << "Trying to read images without both image and metadata source is not supported";
+        }
+    }
+    currentState.readingImages = newState.readingImages;
+    currentState.hasMetadataSource = newState.hasMetadataSource;
+    currentState.hasImageSource = newState.hasImageSource;
+}
 
 void handle_input() {
     cout << "wargcv$ ";
@@ -254,8 +285,11 @@ void handle_input() {
         if (args.size() > 0 && args[0].compare(cmd.name) == 0) {
             if (args.size() - 1 == cmd.args.size()) {
                 BOOST_LOG_TRIVIAL(info) << "Executing command: " << cmd.name;
-                cmd.execute(vector<string>(args.begin() + 1, args.end()));
+                State newState = currentState;
+                cmd.execute(newState, vector<string>(args.begin() + 1, args.end()));
+                handle_state_change(newState);
                 valid = true;
+                break;
             } else {
                 cout << "Usage: " << endl;
                 cout << cmd.name << " " << boost::algorithm::join(cmd.args, " ") << " - " << cmd.desc << endl;
@@ -264,7 +298,7 @@ void handle_input() {
     }
     if (!valid && !cin.eof()) {
         BOOST_LOG_TRIVIAL(info) << "Executing command: " << commands[0].name;
-        commands[0].execute(vector<string>());
+        commands[0].execute(currentState, vector<string>());
     }
 }
 
@@ -288,39 +322,34 @@ int handle_args(int argc, char** argv) {
         po::store(po::parse_command_line(argc, argv, description), vm);
         po::notify(vm);
 
-        if (vm.count("help") || vm.size() == 0) {
-            cout << description << endl;
-            return 1;
-        }
+        State newState = currentState;
 
-        int devices = vm.count("video") + vm.count("decklink") + vm.count("images");
-        if (devices > 1) {
-            cout << "Invalid options: You can only specify one image source at a time" << endl;
-            return 1;
-        } else if(devices == 0) {
-            cout << "Error: You must specify an image source!" << endl;
-            return 1;
-        }
-        if (!vm.count("telemetry") && !(vm.count("addr") && vm.count("port"))) {
-            cout << "Invalid options; You must specify a telemetry file, or port and address" << endl;
+        if (vm.count("help")) {
+            cout << description << endl;
             return 1;
         }
 
         if (vm.count("telemetry")) {
             logReader->add_source(new MetadataReader(*logReader, vm["telemetry"].as<string>()));
-        } else if (vm.count("addr") && vm.count("port")) {
+            currentState.hasMetadataSource = true;
+        }
+
+        if (vm.count("addr") && vm.count("port")) {
             logReader->add_source(new MetadataReader(*logReader, vm["addr"].as<string>(), vm["port"].as<string>()));
+            newState.hasMetadataSource = true;
         }
 
 #ifdef HAS_DECKLINK
         if (vm.count("decklink")) {
             importer.add_source(new DeckLinkImport(logReader), 500);
+            newState.hasImageSource = true;
         }
 #endif // HAS_DECKLINK
 
         if (vm.count("images")) {
             string path = vm["images"].as<string>();
             importer.add_source(new PictureImport(path, logReader), 0);
+            newState.hasImageSource = true;
         }
 
         if (vm.count("output")) {
@@ -330,6 +359,7 @@ int handle_args(int argc, char** argv) {
         if (vm.count("intermediate")) {
             intermediate = true;
         }
+        handle_state_change(newState);
     }
     catch (std::exception& e) {
         cout << e.what() << endl;

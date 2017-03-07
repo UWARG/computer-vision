@@ -66,10 +66,33 @@ public:
      * @param delayms new delay in milliseconds
      */
     void update_delay(int index, long msdelay);
+
+    /**
+     * @brief returns the number of sources
+     */
+    int num_sources();
+
+    /**
+     * @brief Sets the size of the importer's buffer
+     *
+     * Must be called to start reading frames since default buffer size is zero
+     * If set to zero or less the importer will stop reading frames until
+     * set_buffer_size is called again with a bufferSize greater than zero
+     *
+     * @param bufferSize The size of the new buffer
+     */
+    void set_buffer_size(int bufferSize);
+
+    /**
+     * @brief current buffer size
+     * @returns current buffer size
+     */
+    int get_buffer_size();
 private:
     boost::asio::io_service ioService;
     std::vector<Source *> sources;
     std::priority_queue<Frame *> cache;
+    int bufferSize;
 };
 
 #endif // IMPORTER_H_INCLUDED

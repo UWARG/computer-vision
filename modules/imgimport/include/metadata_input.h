@@ -64,6 +64,10 @@ public:
      */
     void add_source(MetadataReader *reader);
 
+    /**
+     * @brief returns the number of sources
+     */
+    int num_sources();
 private:
 
     /**

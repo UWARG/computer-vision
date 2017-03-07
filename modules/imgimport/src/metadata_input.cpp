@@ -90,3 +90,7 @@ Metadata MetadataInput::next_metadata() {
 void MetadataInput::add_source(MetadataReader *reader) {
     sources.push_back(reader);
 }
+
+int MetadataInput::num_sources() {
+    return sources.size();
+}
