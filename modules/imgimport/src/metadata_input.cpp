@@ -32,10 +32,38 @@ MetadataInput::MetadataInput() : size(0) {
 }
 
 void MetadataInput::push_back(unordered_map<string, string> newEntry) {
+    if (newEntry.find("time") == newEntry.end()) {
+        BOOST_LOG_TRIVIAL(error) << "Trying to add an entry with no time column";
+        return;
+    }
+
+    int index = size, upper = size, lower = 0;
     size++;
+    long newTime = stol(newEntry["time"]);
+    while((index < size - 1 && index >= 0 && time[index] < newTime)
+                || (index > 0 && index < size && time[index - 1] > newTime)) {
+        if (index == size - 1 && time[index - 1] > newTime) {
+            upper = index;
+            index = (index + lower)/2;
+        } else if (time[index] > newTime) {
+            upper = index;
+            index = (index + lower)/2;
+        } else {
+            lower = index;
+            index = (index + upper)/2;
+        }
+    }
     for (pair<string, string> p : newEntry) {
-        data[p.first].resize(size, "");
-        data[p.first][size - 1] = p.second;
+        if (index == size - 1) {
+            data[p.first].push_back(p.second);
+        } else {
+            data[p.first].insert(data[p.first].begin() + index, p.second);
+        }
+    }
+    if (index == size - 1) {
+        time.push_back(newTime);
+    } else {
+        time.insert(time.begin() + index, newTime);
     }
 }
 
@@ -93,4 +121,14 @@ void MetadataInput::add_source(MetadataReader *reader) {
 
 int MetadataInput::num_sources() {
     return sources.size();
+}
+
+int MetadataInput::check_data_order() {
+    vector<string> time = data["time"];
+    for (int i = 1; i < time.size(); i++) {
+        if (stol(time[i]) < stol(time[i - 1])) {
+            return i;
+        }
+    }
+    return 0;
 }

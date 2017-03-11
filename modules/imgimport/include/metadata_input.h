@@ -68,6 +68,12 @@ public:
      * @brief returns the number of sources
      */
     int num_sources();
+
+    /**
+     * Reports first index of the data where it is out of order
+     * @returns index of the first out of order entry or zero if data is in order
+     */
+    int check_data_order();
 private:
 
     /**
@@ -116,6 +122,8 @@ private:
      *  increasing order from the first entry received
      */
     std::unordered_map<std::string, std::vector<std::string> > data;
+
+    std::vector<long> time;
 
     std::vector<MetadataReader *> sources;
 

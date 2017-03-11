@@ -63,6 +63,10 @@ BOOST_AUTO_TEST_CASE(picture_test){
 
     BOOST_REQUIRE(frames.size() == count);
 
+    // Ensure that order is preserved when adding non-chronological data
+    mdin->add_source(new MetadataReader(*mdin, telemetry_path));
+    BOOST_REQUIRE(mdin->check_data_order() == 0);
+
     for (Frame * show : frames) {
         Mat picture_stored=show->get_img();
         Mat original_picture;
