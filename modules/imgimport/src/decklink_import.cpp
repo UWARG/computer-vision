@@ -62,7 +62,7 @@ IDeckLink* deckLink;
 
 Frame* img;
 
-DeckLinkImport::DeckLinkImport(MetadataInput * reader) : ImageImport(reader){
+DeckLinkImport::DeckLinkImport(MetadataInput * reader, Camera &camera) : ImageImport(reader, camera){
     initVideoSource();
     startCapture();
     img = (Frame*) malloc(sizeof(Frame));

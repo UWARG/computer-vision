@@ -42,13 +42,14 @@
 #include <opencv2/core/core.hpp>
 #include "metadata.h"
 #include <vector>
+#include "camera.h"
 
 class PixelObject;
 
 class Frame{
 public:
-    Frame(cv::Mat * img, std::string id, Metadata m);
-    
+    Frame(cv::Mat * img, std::string id, Metadata m, Camera &camera);
+
     /**
      * @brief 
      *
@@ -111,6 +112,11 @@ private:
      * @brief Targets that appear in the frame
      */
     std::vector<PixelObject *> objects;
+
+    /*
+     * @brief Camera used to capture the frame
+     */
+    Camera &camera;
 };
 
 

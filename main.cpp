@@ -53,6 +53,7 @@
 #include "metadata_input.h"
 #include "metadata_reader.h"
 #include "target.h"
+#include "camera.h"
 
 using namespace std;
 using namespace boost;
@@ -84,6 +85,38 @@ MetadataInput *logReader = new MetadataInput();
 
 double aveFrameTime = 1000;
 int frameCount = 0;
+
+double fisheyeMatrix[] = {
+    2.4052826789763981e+03, 0, 2000,
+    0, 2.4052826789763981e+03, 1500,
+    0, 0, 1
+};
+
+double fisheyeDistortion[] = {
+    6.0190515380007324e-02, -1.8618345553370965e+00, 0, 0,
+    2.9590336363673964e+00
+};
+
+
+Camera goProFisheye(
+    Size(4000, 3000),
+    Size(5.76, 4.29),
+    Mat(
+        Size(3, 3),
+        CV_8UC1,
+        fisheyeMatrix
+    ),
+    Mat(
+        Size(5, 1),
+        CV_8UC1,
+        fisheyeDistortion
+    )
+);
+
+/*Camera goProRect(
+
+)*/
+
 
 struct State {
     bool hasImageSource;
@@ -237,7 +270,7 @@ vector<Command> commands = {
         if (logReader->num_sources() == 0) {
             BOOST_LOG_TRIVIAL(error) << "Cannot add image source until a metadata source has been specified";
         } else {
-            importer.add_source(new PictureImport(args[0], logReader), stol(args[1]));
+            importer.add_source(new PictureImport(args[0], logReader, goProFisheye), stol(args[1]));
             newState.hasImageSource = true;
         }
     }),
@@ -246,7 +279,7 @@ vector<Command> commands = {
         if (logReader->num_sources() == 0) {
             BOOST_LOG_TRIVIAL(error) << "Cannot add image source until a metadata source has been specified";
         } else {
-            importer.add_source(new DeckLinkImport(logReader), stol(args[0]));
+            importer.add_source(new DeckLinkImport(logReader, goProRect), stol(args[0]));
             newState.hasImageSource = true;
         }
     }),
@@ -341,14 +374,14 @@ int handle_args(int argc, char** argv) {
 
 #ifdef HAS_DECKLINK
         if (vm.count("decklink")) {
-            importer.add_source(new DeckLinkImport(logReader), 500);
+            importer.add_source(new DeckLinkImport(logReader, goProRect), 500);
             newState.hasImageSource = true;
         }
 #endif // HAS_DECKLINK
 
         if (vm.count("images")) {
             string path = vm["images"].as<string>();
-            importer.add_source(new PictureImport(path, logReader), 0);
+            importer.add_source(new PictureImport(path, logReader, goProFisheye), 0);
             newState.hasImageSource = true;
         }
 

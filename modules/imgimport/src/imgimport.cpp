@@ -12,7 +12,7 @@
 
 #include "imgimport.h"
 
-ImageImport::ImageImport(MetadataInput * reader) : reader(reader) {
+ImageImport::ImageImport(MetadataInput * reader, Camera &camera) : reader(reader), camera(camera) {
 
 }
 

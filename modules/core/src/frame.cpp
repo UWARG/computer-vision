@@ -37,7 +37,8 @@
 #include "frame.h"
 #include "pixel_object.h"
 
-Frame::Frame(cv::Mat * img, std::string id, Metadata m): img(img), id(id), data(m){
+Frame::Frame(cv::Mat * img, std::string id, Metadata m, Camera &camera)
+    : img(img), id(id), data(m), camera(camera) {
 
 }
 
