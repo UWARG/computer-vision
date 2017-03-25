@@ -43,6 +43,13 @@ public:
     cv::Point2d get_fov();
 
     /**
+     * @brief Undistorts image
+     * @param img mat to be undistorted
+     * @return An orthorectified version of the given mat
+     */
+    cv::Mat * undistort(cv::Mat &img);
+
+    /**
      * @brief Example Camera for testing purposes
      */
     static Camera TestCamera();

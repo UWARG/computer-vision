@@ -38,8 +38,13 @@
 #include "pixel_object.h"
 
 Frame::Frame(cv::Mat * img, std::string id, Metadata m, Camera &camera)
-    : img(img), id(id), data(m), camera(camera) {
+    : img(camera.undistort(*img)), origImg(img), id(id), data(m), camera(camera) {
 
+}
+
+Frame::~Frame() {
+    delete img;
+    delete origImg;
 }
 
 std::string Frame::get_id(){

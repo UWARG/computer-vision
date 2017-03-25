@@ -50,6 +50,7 @@ class Frame{
 public:
     Frame(cv::Mat * img, std::string id, Metadata m, Camera &camera);
 
+    ~Frame();
     /**
      * @brief 
      *
@@ -97,6 +98,11 @@ private:
      * @brief image associated with the Frame 
      */
     cv::Mat * img;
+
+    /**
+     * @brief original image without undistortion
+     */
+    cv::Mat * origImg;
 
     /**
      * @brief Timestamp for the frame

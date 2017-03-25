@@ -14,6 +14,7 @@
  */
 
 #include <opencv2/calib3d.hpp>
+#include <opencv2/imgproc.hpp>
 #include <opencv2/core/core.hpp>
 #include "camera.h"
 
@@ -25,6 +26,12 @@ Camera::Camera(Size imageSize, Size sensorSize, Mat cameraMatrix, Mat distortion
     Point2d principalPoint;
     calibrationMatrixValues(cameraMatrix, imageSize, sensorSize.width, sensorSize.height, fovx, fovy, focalLength, principalPoint, aspectRatio);
     fov = Point2d(fovx, fovy);
+}
+
+Mat * Camera::undistort(Mat & img) {
+    Mat *tmp = new Mat();
+    cv::undistort(*tmp, img, cameraMatrix, distortionCoeffs);
+    return tmp;
 }
 
 Camera Camera::TestCamera() {
