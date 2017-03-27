@@ -97,6 +97,15 @@ double fisheyeDistortion[] = {
     2.9590336363673964e+00
 };
 
+double rectMatrix[] = {
+    0, 0, 960,
+    0, 0, 540,
+    0, 0, 1
+};
+
+double rectDistortion[] = {
+    0, 0, 0, 0, 0
+};
 
 Camera goProFisheye(
     Size(4000, 3000),
@@ -113,10 +122,20 @@ Camera goProFisheye(
     )
 );
 
-/*Camera goProRect(
-
-)*/
-
+Camera goProRect(
+    Size(1920, 1080),
+    Size(5.76, 4.29),
+    Mat(
+        Size(3, 3),
+        CV_8UC1,
+        rectMatrix
+    ),
+    Mat(
+        Size(5, 1),
+        CV_8UC1,
+        rectDistortion
+    )
+);
 
 struct State {
     bool hasImageSource;
