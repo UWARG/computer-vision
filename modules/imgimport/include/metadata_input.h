@@ -17,35 +17,24 @@
 #define METADATA_INPUT_H_INCLUDED
 
 #include "metadata.h"
+#include <unordered_map>
 #include <vector>
 #include <string>
 #include <unordered_map>
 #include <boost/asio.hpp>
 
+class MetadataReader;
+
 /**
- * @Class MetadataInput
- * @brief A class for reading telemetry logs and searching for log entries
+ * @class MetadataInput
+ * @brief A class for storing and searching telemetry logs
  */
 class MetadataInput{
 public:
-    MetadataInput();
-
     /*
-     * @brief constructor for MetadataInput which reads log from a file
-     *
-     * Throws a runtime error if the file cannot be read
-     *
-     * @param filename Path of the file to be read
+     * @brief constructor for MetadataInput
      */
-    MetadataInput(std::string filename);
-
-    /**
-     * @brief Constructor for MetadataInput for reading log over the network
-     *
-     * @param addr IP address to connect to which the log will be sent from
-     * @param port port to connect to
-     */
-    MetadataInput(std::string addr, std::string port);
+    MetadataInput();
 
     ~MetadataInput();
 
@@ -69,6 +58,22 @@ public:
      */
     Metadata next_metadata();
 
+    /**
+     * @brief Adds a new metadata source
+     * @param MetadataReader, will be deleted when the MetadataInput is deleted
+     */
+    void add_source(MetadataReader *reader);
+
+    /**
+     * @brief returns the number of sources
+     */
+    int num_sources();
+
+    /**
+     * Reports first index of the data where it is out of order
+     * @returns index of the first out of order entry or zero if data is in order
+     */
+    int check_data_order();
 private:
 
     /**
@@ -98,33 +103,13 @@ private:
     /**
      * @brief Adds a new entry to the log
      *
-     * @param newEntry csv row representing a telemetry log entry
+     * @param map representing a telemetry log entry, keys being column names
      */
-    void push_back(std::string newEntry);
-
-    /**
-     * @brief Sets the column headers for the log
-     * @param csv row containing column headers
-     */
-    void set_head_row(std::string headRow);
-
-    /**
-     *  @brief Reads the telemetry log over the network
-     *
-     *  Connecs to the address and port stored in addr and port fields
-     *  Reads reply and stores it in the log
-     *  Blocks forever and should only be used inside another thread
-     */
-    void read_log();
+    void push_back(std::unordered_map<std::string, std::string> newEntry);
 
     int cameraStatus=0;
 
     int size;
-
-    /**
-     * Index of the time header in the log
-     */
-    int timeIndex;
 
     /**
      * Column Headers for the log
@@ -138,9 +123,11 @@ private:
      */
     std::unordered_map<std::string, std::vector<std::string> > data;
 
-    boost::asio::io_service ioService;
-    std::string addr, port;
-    std::string buffer;
+    std::vector<long> time;
+
+    std::vector<MetadataReader *> sources;
+
+    friend class MetadataReader;
 };
 
 #endif // METADATA_INPUT_H_INCLUDED

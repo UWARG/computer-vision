@@ -49,6 +49,7 @@ Frame * PictureImport::next_frame(){
         if(strcmp(drnt->d_name,"..")==0||strcmp(drnt->d_name,".")==0){
             continue;
         }
+        BOOST_LOG_TRIVIAL(info) << "Reading " << filePath;
         string true_path=filePath+'/'+drnt->d_name;
         *img=imread(true_path,CV_LOAD_IMAGE_COLOR);
     }

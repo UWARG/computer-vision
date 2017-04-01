@@ -14,6 +14,7 @@
  */
 
 #include "metadata_input.h"
+#include "metadata_reader.h"
 #include <fstream>
 #include <iostream>
 #include <boost/log/trivial.hpp>
@@ -30,114 +31,46 @@ MetadataInput::MetadataInput() : size(0) {
 
 }
 
-MetadataInput::MetadataInput(string filename) : MetadataInput() {
-    string line;
-    ifstream finput(filename);
-    if(!finput.is_open()) {
-        throw runtime_error("failed to open the csv file");
-    }
-    getline(finput, line);
-    set_head_row(line);
-
-    bool f = false;
-    char comma;
-    while(!finput.eof()){
-        getline(finput, line);
-        if(finput.eof())
-            break;
-
-        push_back(line);
+void MetadataInput::push_back(unordered_map<string, string> newEntry) {
+    if (newEntry.find("time") == newEntry.end()) {
+        BOOST_LOG_TRIVIAL(error) << "Trying to add an entry with no time column";
+        return;
     }
 
-    finput.close();
-}
-
-void MetadataInput::read_log() {
-    enum { max_length = 1024 };
-
-    boost::asio::io_service io_service;
-
-    tcp::resolver resolver(io_service);
-    tcp::resolver::query query(tcp::v4(), addr.c_str(), port.c_str());
-    tcp::resolver::iterator iterator = resolver.resolve(query);
-
-    tcp::socket s(io_service);
-    boost::asio::connect(s, iterator);
-
-    while(true) {
-        char reply[max_length];
-        size_t reply_length = boost::asio::read(s,
-            boost::asio::buffer(reply, max_length));
-        for (int i = 0; i < reply_length; i++) {
-            buffer += reply[i];
-        }
-        int eol;
-        if ((eol = buffer.find_first_of('\n')) != string::npos) {
-            string line = buffer.substr(0, eol);
-            buffer = buffer.substr(eol + 1, string::npos);
-            BOOST_LOG_TRIVIAL(debug) << "reading line " << line;
-            if (heads.size() == 0) {
-                set_head_row(line);
-            } else {
-                push_back(line);
-            }
-        }
-    }
-}
-
-MetadataInput::MetadataInput(string addr, string port) : addr(addr), port(port), buffer(""), size(0) {
-    ioService.post(boost::bind(&MetadataInput::read_log, this));
-    boost::thread t(boost::bind(&boost::asio::io_service::run, &ioService));
-}
-
-void MetadataInput::set_head_row(string headRow) {
-    int len=headRow.length();
-    heads.push_back("");
-    int k=0;
-    for(int i=0;i<len;i++){
-        if(headRow[i]==','){
-            if (heads[k].compare("time") == 0) {
-                timeIndex = k;
-            }
-            k++;
-            heads.push_back("");
-        }
-        else{
-            if(headRow[i]!=13){
-                heads[k]+=headRow[i];
-            }
-        }
-    }
-}
-
-void MetadataInput::push_back(string newEntry) {
-    // TODO: Use a proper string split function
-    int len = newEntry.length();
-    len = newEntry.length();
-    vector<string> buffer(heads.size());
-    int k = 0;
-    for(int i = 0; i < len; i++){
-        if(newEntry[i]==','){
-            k++;
-            if(k == heads.size()){
-                break;
-            }
-        }
-        else{
-            if(newEntry[i] != 13){
-                buffer.at(k) += newEntry[i];
-            }
-        }
-    }
-    if (k + 1 < heads.size() || abs(stod(buffer[timeIndex])) < 1) return; // ignore missing entries
-    for (int i = 0; i < heads.size(); i++) {
-        data[heads[i]].push_back(buffer[i]);
-    }
+    int index = size, upper = size, lower = 0;
     size++;
+    long newTime = stol(newEntry["time"]);
+    while((index < size - 1 && index >= 0 && time[index] < newTime)
+                || (index > 0 && index < size && time[index - 1] > newTime)) {
+        if (index == size - 1 && time[index - 1] > newTime) {
+            upper = index;
+            index = (index + lower)/2;
+        } else if (time[index] > newTime) {
+            upper = index;
+            index = (index + lower)/2;
+        } else {
+            lower = index;
+            index = (index + upper)/2;
+        }
+    }
+    for (pair<string, string> p : newEntry) {
+        if (index == size - 1) {
+            data[p.first].push_back(p.second);
+        } else {
+            data[p.first].insert(data[p.first].begin() + index, p.second);
+        }
+    }
+    if (index == size - 1) {
+        time.push_back(newTime);
+    } else {
+        time.insert(time.begin() + index, newTime);
+    }
 }
 
 MetadataInput::~MetadataInput(){
-    ioService.stop();
+    for (int i = 0; i < sources.size(); i++) {
+        delete sources[i];
+    }
 }
 
 Metadata MetadataInput::bisearcher(double value,int begin,int end, string field){
@@ -180,4 +113,22 @@ Metadata MetadataInput::get_metadata(double timestamp){
 Metadata MetadataInput::next_metadata() {
     if (size == 0) throw runtime_error("no log entries available");
     return bisearcher(cameraStatus++, 0, size - 1, "cameraStatus");
+}
+
+void MetadataInput::add_source(MetadataReader *reader) {
+    sources.push_back(reader);
+}
+
+int MetadataInput::num_sources() {
+    return sources.size();
+}
+
+int MetadataInput::check_data_order() {
+    vector<string> time = data["time"];
+    for (int i = 1; i < time.size(); i++) {
+        if (stol(time[i]) < stol(time[i - 1])) {
+            return i;
+        }
+    }
+    return 0;
 }
