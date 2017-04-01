@@ -1,7 +1,5 @@
 var searchData=
 [
-  ['target',['Target',['../classTarget.html',1,'']]],
-  ['targetanalyzer',['TargetAnalyzer',['../classTargetAnalyzer.html',1,'']]],
-  ['targetidentifier',['TargetIdentifier',['../classTargetIdentifier.html',1,'']]],
-  ['targetloader',['TargetLoader',['../classTargetLoader.html',1,'']]]
+  ['source',['Source',['../classSource.html',1,'']]],
+  ['state',['State',['../structState.html',1,'']]]
 ];

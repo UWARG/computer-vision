@@ -83,13 +83,14 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#friends">Friends</a> &#124;
 <a href="classMetadataInput-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">MetadataInput Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 
-<p>A class for reading telemetry logs and searching for log entries.  
+<p>A class for storing and searching telemetry logs.  
  <a href="classMetadataInput.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="metadata__input_8h_source.html">metadata_input.h</a>&gt;</code></p>
@@ -103,59 +104,72 @@ Collaboration diagram for MetadataInput:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ad4f60e344c2800d018d617fce05e1529"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad4f60e344c2800d018d617fce05e1529"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>MetadataInput</b> (std::string filename)</td></tr>
-<tr class="separator:ad4f60e344c2800d018d617fce05e1529"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8f2f69c0d83c86b16c0fe71c5635f5e1"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMetadataInput.html#a8f2f69c0d83c86b16c0fe71c5635f5e1">MetadataInput</a> (std::string addr, std::string port)</td></tr>
-<tr class="memdesc:a8f2f69c0d83c86b16c0fe71c5635f5e1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor for <a class="el" href="classMetadataInput.html" title="A class for reading telemetry logs and searching for log entries. ">MetadataInput</a> for reading log over the network.  <a href="#a8f2f69c0d83c86b16c0fe71c5635f5e1">More...</a><br/></td></tr>
-<tr class="separator:a8f2f69c0d83c86b16c0fe71c5635f5e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae58bc177e81a09549d158fe0109da077"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structMetadata.html">Metadata</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMetadataInput.html#ae58bc177e81a09549d158fe0109da077">get_metadata</a> (double timestamp)</td></tr>
 <tr class="memdesc:ae58bc177e81a09549d158fe0109da077"><td class="mdescLeft">&#160;</td><td class="mdescRight">searches for the closest log entry to the given timestamp  <a href="#ae58bc177e81a09549d158fe0109da077">More...</a><br/></td></tr>
 <tr class="separator:ae58bc177e81a09549d158fe0109da077"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae60d243a30af35acdb4ebc998a8a5ef5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structMetadata.html">Metadata</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMetadataInput.html#ae60d243a30af35acdb4ebc998a8a5ef5">next_metadata</a> ()</td></tr>
 <tr class="memdesc:ae60d243a30af35acdb4ebc998a8a5ef5"><td class="mdescLeft">&#160;</td><td class="mdescRight">retrieves the next log entry corresponding to a time when the log notes a photograph was triggered  <a href="#ae60d243a30af35acdb4ebc998a8a5ef5">More...</a><br/></td></tr>
 <tr class="separator:ae60d243a30af35acdb4ebc998a8a5ef5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acfa8e5980f5f992cbb2b42f7d569fe65"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMetadataInput.html#acfa8e5980f5f992cbb2b42f7d569fe65">add_source</a> (<a class="el" href="classMetadataReader.html">MetadataReader</a> *reader)</td></tr>
+<tr class="memdesc:acfa8e5980f5f992cbb2b42f7d569fe65"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a new metadata source.  <a href="#acfa8e5980f5f992cbb2b42f7d569fe65">More...</a><br/></td></tr>
+<tr class="separator:acfa8e5980f5f992cbb2b42f7d569fe65"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad7aeac5546ef97b275b4273a5670a45e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad7aeac5546ef97b275b4273a5670a45e"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMetadataInput.html#ad7aeac5546ef97b275b4273a5670a45e">num_sources</a> ()</td></tr>
+<tr class="memdesc:ad7aeac5546ef97b275b4273a5670a45e"><td class="mdescLeft">&#160;</td><td class="mdescRight">returns the number of sources <br/></td></tr>
+<tr class="separator:ad7aeac5546ef97b275b4273a5670a45e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9f693e2888c3e2775c981ef3dec93475"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMetadataInput.html#a9f693e2888c3e2775c981ef3dec93475">check_data_order</a> ()</td></tr>
+<tr class="separator:a9f693e2888c3e2775c981ef3dec93475"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="friends"></a>
+Friends</h2></td></tr>
+<tr class="memitem:acadb8486dbfdb86ed00f6c4d2bdd386c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="acadb8486dbfdb86ed00f6c4d2bdd386c"></a>
+class&#160;</td><td class="memItemRight" valign="bottom"><b>MetadataReader</b></td></tr>
+<tr class="separator:acadb8486dbfdb86ed00f6c4d2bdd386c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>A class for reading telemetry logs and searching for log entries. </p>
-<p><a class="el" href="classMetadataInput.html" title="A class for reading telemetry logs and searching for log entries. ">MetadataInput</a> </p>
-</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="a8f2f69c0d83c86b16c0fe71c5635f5e1"></a>
+<div class="textblock"><p>A class for storing and searching telemetry logs. </p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="acfa8e5980f5f992cbb2b42f7d569fe65"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">MetadataInput::MetadataInput </td>
+          <td class="memname">void MetadataInput::add_source </td>
           <td>(</td>
-          <td class="paramtype">std::string&#160;</td>
-          <td class="paramname"><em>addr</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
+          <td class="paramtype"><a class="el" href="classMetadataReader.html">MetadataReader</a> *&#160;</td>
+          <td class="paramname"><em>reader</em></td><td>)</td>
           <td></td>
-          <td class="paramtype">std::string&#160;</td>
-          <td class="paramname"><em>port</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Constructor for <a class="el" href="classMetadataInput.html" title="A class for reading telemetry logs and searching for log entries. ">MetadataInput</a> for reading log over the network. </p>
+<p>Adds a new metadata source. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">addr</td><td>IP address to connect to which the log will be sent from </td></tr>
-    <tr><td class="paramname">port</td><td>port to connect to </td></tr>
+    <tr><td class="paramname"><a class="el" href="classMetadataReader.html" title="A class for reading telemetry logs. ">MetadataReader</a>,will</td><td>be deleted when the <a class="el" href="classMetadataInput.html" title="A class for storing and searching telemetry logs. ">MetadataInput</a> is deleted </td></tr>
   </table>
   </dd>
 </dl>
 
 </div>
 </div>
-<h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a9f693e2888c3e2775c981ef3dec93475"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int MetadataInput::check_data_order </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Reports first index of the data where it is out of order </p>
+<dl class="section return"><dt>Returns</dt><dd>index of the first out of order entry or zero if data is in order </dd></dl>
+
+</div>
+</div>
 <a class="anchor" id="ae58bc177e81a09549d158fe0109da077"></a>
 <div class="memitem">
 <div class="memproto">

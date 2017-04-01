@@ -1,4 +1,7 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$classContourCreator.html" title="ContourCreator" alt="" coords="5,5,116,32"/>
-<area shape="rect" id="node2" href="$classCannyContourCreator.html" title="CannyContourCreator" alt="" coords="164,5,313,32"/>
+<area shape="rect" id="node2" href="$classComPtr.html" title="ComPtr\&lt; T \&gt;" alt="" coords="211,5,309,32"/>
+<area shape="rect" id="node3" href="$classComPtr.html" title="ComPtr\&lt; DeckLinkInputCallback \&gt;" alt="" coords="147,56,373,83"/>
+<area shape="rect" id="node4" href="$classComPtr.html" title="ComPtr\&lt; IDeckLink \&gt;" alt="" coords="185,107,335,133"/>
+<area shape="rect" id="node5" href="$classComPtr.html" title="ComPtr\&lt; IDeckLinkInput \&gt;" alt="" coords="171,157,349,184"/>
+<area shape="rect" id="node6" href="$classComPtr.html" title="ComPtr\&lt; IDeckLinkVideoInput\lFrame \&gt;" alt="" coords="160,209,360,250"/>
 </map>

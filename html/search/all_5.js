@@ -1,6 +1,7 @@
 var searchData=
 [
   ['get_5farea',['get_area',['../classObject.html#aa3084e2e0eef87a6850cb0bd6e2fb713',1,'Object::get_area()'],['../classPixelObject.html#a1c7ff751f1e7dbf01cd587725c480360',1,'PixelObject::get_area()'],['../classTarget.html#a95b2936214ef22f9a576055b2a1edb3d',1,'Target::get_area()']]],
+  ['get_5fbuffer_5fsize',['get_buffer_size',['../classImporter.html#a6b554f87fbd08a58da696cfe1bcb0efd',1,'Importer']]],
   ['get_5fcentroid',['get_centroid',['../classObject.html#a5c6755cda8655c8e58c5a15513b9ccb7',1,'Object::get_centroid()'],['../classPixelObject.html#a00f936553dbccab57134aed62121e57a',1,'PixelObject::get_centroid()'],['../classTarget.html#af0130105fd3bc8b15a33dc7817ab7e9c',1,'Target::get_centroid()']]],
   ['get_5fcolour',['get_colour',['../classObject.html#a1aa5b5c71b1b68f35a6d561053329a23',1,'Object::get_colour()'],['../classPixelObject.html#a19f7d4097a539dbace5c15fa3c8802df',1,'PixelObject::get_colour()'],['../classTarget.html#aedc167eecb2b8295d16bf38a3fd6b6a0',1,'Target::get_colour()']]],
   ['get_5fcontour',['get_contour',['../classPixelObject.html#ae95d95db1f39efd516b4e501b7311d08',1,'PixelObject']]],
