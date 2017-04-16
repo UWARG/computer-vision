@@ -93,13 +93,18 @@ double fisheyeMatrix[] = {
 };
 
 double fisheyeDistortion[] = {
-    6.0190515380007324e-02, -1.8618345553370965e+00, 0, 0,
-    2.9590336363673964e+00
+    -0.392, 0.146, 0, 0, -0.023
+};
+
+double newFisheyeMatrix[] = {
+    2000, 0, 2000,
+    0, 2000, 1500,
+    0, 0, 1
 };
 
 double rectMatrix[] = {
-    0, 0, 960,
-    0, 0, 540,
+    2000, 0, 960,
+    0, 2000, 540,
     0, 0, 1
 };
 
@@ -109,31 +114,41 @@ double rectDistortion[] = {
 
 Camera goProFisheye(
     Size(4000, 3000),
-    Size(5.76, 4.29),
+    Size(6.248, 4.686),
     Mat(
         Size(3, 3),
-        CV_8UC1,
+        CV_64F,
         fisheyeMatrix
     ),
     Mat(
         Size(5, 1),
-        CV_8UC1,
+        CV_64F,
         fisheyeDistortion
+    ),
+    Mat(
+        Size(3, 3),
+        CV_64F,
+        newFisheyeMatrix
     )
 );
 
 Camera goProRect(
     Size(1920, 1080),
-    Size(5.76, 4.29),
+    Size(6.248, 3.514),
     Mat(
         Size(3, 3),
-        CV_8UC1,
+        CV_64F,
         rectMatrix
     ),
     Mat(
         Size(5, 1),
-        CV_8UC1,
+        CV_64F,
         rectDistortion
+    ),
+    Mat(
+        Size(3, 3),
+        CV_64F,
+        rectMatrix
     )
 );
 
