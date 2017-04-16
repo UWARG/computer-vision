@@ -42,6 +42,11 @@ Frame::Frame(cv::Mat * img, std::string id, Metadata m, Camera &camera)
 
 }
 
+void Frame::undistort(Camera &camera) {
+    delete img;
+    img = camera.undistort(*origImg);
+}
+
 Frame::~Frame() {
     delete img;
     delete origImg;
@@ -53,6 +58,10 @@ std::string Frame::get_id(){
 
 cv::Mat & Frame::get_img(){
     return *img;
+}
+
+cv::Mat & Frame::orig_img(){
+    return *origImg;
 }
 
 void Frame::add_object(PixelObject * o){

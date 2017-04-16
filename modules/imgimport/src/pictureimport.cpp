@@ -55,10 +55,12 @@ Frame * PictureImport::next_frame(){
     }
     string id(drnt->d_name);
     Metadata m;
-    try {
-        m = reader->next_metadata();
-    } catch (std::exception & e) {
-        BOOST_LOG_TRIVIAL(error) << "Error while retrieving metadata: " <<  e.what();
+    if (reader != NULL) {
+        try {
+            m = reader->next_metadata();
+        } catch (std::exception & e) {
+            BOOST_LOG_TRIVIAL(error) << "Error while retrieving metadata: " <<  e.what();
+        }
     }
     return new Frame(img, id, m, camera);
 }

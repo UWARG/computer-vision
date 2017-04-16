@@ -31,16 +31,16 @@ public:
      * @brief creates a Camera representing the specs for a given lens and sensor
      *
      * @param imageSize Size of the camera image
-     * @param sensorSize Physical size of the camera sensor
+     * @param fov The field of view of the camera
      * @param cameraMatrix OpenCV camera calibration matrix giving focal length and principal point
      * @param distortionCoeffs OpenCV distortion coefficients used for undistorting images
      */
-    Camera(cv::Size imageSize, cv::Size sensorSize, cv::Mat cameraMatrix, cv::Mat distortionCoeffs);
+    Camera(cv::Size imageSize, cv::Size2d fov, cv::Mat cameraMatrix, cv::Mat distortionCoeffs, cv::Mat newCameraMatrix);
 
     /**
      * @brief Returns the field of view of the camera in degrees for both horizontal and vertical dimensions
      */
-    cv::Point2d get_fov();
+    cv::Size2d get_fov();
 
     /**
      * @brief Undistorts image
@@ -53,10 +53,12 @@ public:
      * @brief Example Camera for testing purposes
      */
     static Camera TestCamera();
+
 private:
-    cv::Point2d fov;
+    cv::Size2d fov;
     cv::Mat cameraMatrix;
     cv::Mat distortionCoeffs;
+    cv::Mat newCameraMatrix;
 };
 
 #endif //CAMERA_H_INCLUDED

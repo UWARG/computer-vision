@@ -4,6 +4,11 @@ if(Boost_FOUND AND OpenCV_FOUND)
     add_executable(picture_test picture_test.cpp)
     target_link_libraries(picture_test ${OpenCV_LIBS} ${Boost_LIBRARIES} Core ImageImport)
 
+    add_executable(manual_calibration manual_calibration.cpp)
+    target_link_libraries(manual_calibration ${OpenCV_LIBS} ${Boost_LIBRARIES} Core ImageImport)
+
+    install(TARGETS manual_calibration DESTINATION bin)
+
     # Tests
     add_test("picture_test" picture_test ${TESTDATA_DIR}/photos ${TESTDATA_DIR} --log_format=XML --log_sink=TEST_PICTURE.xml --log_level=all --report_level=no)
 

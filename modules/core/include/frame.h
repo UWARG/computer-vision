@@ -63,7 +63,13 @@ public:
      *
      * @return image associated with the frame
      */
-    cv::Mat & get_img(); 
+    cv::Mat & get_img();
+
+    /**
+     * @brief Original Image
+     * @return original image before any calibration
+     */
+    cv::Mat & orig_img();
 
     /**
      * @brief Adds given object to the list of objects in the frame
@@ -91,6 +97,8 @@ public:
      * @param dir Directory to store the file
      */
     void save(std::string dir);
+
+    void undistort(Camera &camera);
 
 private:
     

@@ -20,17 +20,13 @@
 
 using namespace cv;
 
-Camera::Camera(Size imageSize, Size sensorSize, Mat cameraMatrix, Mat distortionCoeffs)
-        : cameraMatrix(cameraMatrix), distortionCoeffs(distortionCoeffs) {
-    double fovx, fovy, focalLength, aspectRatio;
-    Point2d principalPoint;
-    calibrationMatrixValues(cameraMatrix, imageSize, sensorSize.width, sensorSize.height, fovx, fovy, focalLength, principalPoint, aspectRatio);
-    fov = Point2d(fovx, fovy);
+Camera::Camera(Size imageSize, Size2d fov, Mat cameraMatrix, Mat distortionCoeffs, Mat newCameraMatrix = Mat())
+        : cameraMatrix(cameraMatrix), distortionCoeffs(distortionCoeffs), newCameraMatrix(newCameraMatrix), fov(fov) {
 }
 
 Mat * Camera::undistort(Mat & img) {
     Mat *tmp = new Mat();
-    cv::undistort(*tmp, img, cameraMatrix, distortionCoeffs);
+    cv::undistort(img, *tmp, cameraMatrix, distortionCoeffs, newCameraMatrix);
     return tmp;
 }
 
@@ -48,7 +44,7 @@ Camera Camera::TestCamera() {
 
     return Camera(
         Size(4000, 3000),
-        Size(5.76, 4.29),
+        Size2d(120, 90),
         Mat(
             Size(3, 3),
             CV_8UC1,
@@ -62,6 +58,6 @@ Camera Camera::TestCamera() {
     );
 }
 
-Point2d Camera::get_fov() {
+Size2d Camera::get_fov() {
     return fov;
 }

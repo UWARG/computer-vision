@@ -114,7 +114,7 @@ double rectDistortion[] = {
 
 Camera goProFisheye(
     Size(4000, 3000),
-    Size(6.248, 4.686),
+    Size2d(120, 90),
     Mat(
         Size(3, 3),
         CV_64F,
@@ -134,7 +134,7 @@ Camera goProFisheye(
 
 Camera goProRect(
     Size(1920, 1080),
-    Size(6.248, 3.514),
+    Size2d(90, 67.5),
     Mat(
         Size(3, 3),
         CV_64F,
