@@ -103,8 +103,8 @@ double newFisheyeMatrix[] = {
 };
 
 double rectMatrix[] = {
-    2000, 0, 960,
-    0, 2000, 540,
+    2410, 0, 960,
+    0, 2410, 540,
     0, 0, 1
 };
 
