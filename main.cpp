@@ -207,7 +207,6 @@ void output() {
         }
         boost::this_thread::sleep(boost::posix_time::milliseconds(30));
     }
-    ioService.stop();
 }
 
 void init() {
@@ -229,7 +228,7 @@ int main(int argc, char** argv) {
     processors = boost::thread::hardware_concurrency();
 
     while (!cin.eof()) handle_input();
-
+    ioService.stop();
     threadpool.join_all();
     delete logReader;
     return 0;
@@ -330,7 +329,9 @@ vector<Command> commands = {
 void handle_state_change(State &newState) {
     if (!currentState.readingImages && newState.readingImages) {
         if (newState.hasImageSource && newState.hasMetadataSource) {
+            currentState.readingImages = true;
             queue_work(assign_workers);
+            queue_work(output);
         } else {
             BOOST_LOG_TRIVIAL(error) << "Trying to read images without both image and metadata source is not supported";
         }
@@ -398,18 +399,21 @@ int handle_args(int argc, char** argv) {
 
         if (vm.count("telemetry")) {
             logReader->add_source(new MetadataReader(*logReader, vm["telemetry"].as<string>()));
-            currentState.hasMetadataSource = true;
+            newState.hasMetadataSource = true;
+            cout << "Adding Telemetry source..." << endl;
         }
 
         if (vm.count("addr") && vm.count("port")) {
             logReader->add_source(new MetadataReader(*logReader, vm["addr"].as<string>(), vm["port"].as<string>()));
             newState.hasMetadataSource = true;
+            cout << "Adding Telemetry source..." << endl;
         }
 
 #ifdef HAS_DECKLINK
         if (vm.count("decklink")) {
             importer.add_source(new DeckLinkImport(logReader, goProRect), 500);
             newState.hasImageSource = true;
+            cout << "Adding video source..." << endl;
         }
 #endif // HAS_DECKLINK
 
@@ -417,6 +421,7 @@ int handle_args(int argc, char** argv) {
             string path = vm["images"].as<string>();
             importer.add_source(new PictureImport(path, logReader, goProFisheye), 0);
             newState.hasImageSource = true;
+            cout << "Adding picture source..." << endl;
         }
 
         if (vm.count("output")) {
