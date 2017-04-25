@@ -102,14 +102,14 @@ void on_file_change(int, void*) {
             newmatrix
         )
     );
-    frames[fileIndex]->undistort(camera);
+    Mat* img = frames[fileIndex]->undistort(camera);
 
     Mat dst;
-    Mat drawing = frames[fileIndex]->get_img().clone();
     Size size(960,640);
-    resize(drawing, dst, size);
+    resize(*img, dst, size);
 
     imshow("image", dst);
+    delete img;
 }
 
 int main(int argc, char ** argv) {

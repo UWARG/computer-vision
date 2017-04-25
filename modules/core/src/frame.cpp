@@ -42,9 +42,8 @@ Frame::Frame(cv::Mat * img, std::string id, Metadata m, Camera &camera)
 
 }
 
-void Frame::undistort(Camera &camera) {
-    delete img;
-    img = camera.undistort(*origImg);
+cv::Mat* Frame::undistort(Camera &camera) {
+    return camera.undistort(*origImg);
 }
 
 Frame::~Frame() {

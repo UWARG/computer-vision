@@ -98,7 +98,13 @@ public:
      */
     void save(std::string dir);
 
-    void undistort(Camera &camera);
+    /**
+     * @brief returns a new undistorted image using the given camera
+     * Intended for testing purposes, Does not modify the Frame.
+     * @param camera the camera to use for undistortion
+     * @return A new image that is the original image contained in this frame undistorted with the camera
+     */
+    cv::Mat* undistort(Camera &camera);
 
 private:
     
