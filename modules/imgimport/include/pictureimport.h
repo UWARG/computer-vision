@@ -46,6 +46,11 @@ public:
      * @return Frame to be analyzed
      */
     Frame* next_frame();
+
+    /**
+     * @brief String representation of the Importer
+     */
+    virtual std::string to_string();
 private:
     std::string filePath;
     DIR* dr;

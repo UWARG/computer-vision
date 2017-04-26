@@ -64,3 +64,7 @@ Frame * PictureImport::next_frame(){
     }
     return new Frame(img, id, m, camera);
 }
+
+std::string PictureImport::to_string() {
+    return "PictureImport";
+}

@@ -33,15 +33,20 @@ public:
      *  @param videoFile video file to be read
      *  @param reader log reader containing telemetry data for the video
      */
-    VideoImport(std::string videoFile, MetadataInput * reader, Camera &camera);
+    VideoImport(std::string videoFile, MetadataInput * reader, Camera &camera, long frameSkipMs);
 
     virtual Frame * next_frame();
 
+    /**
+     * @brief String representation of the Importer
+     */
+    virtual std::string to_string();
 private:
     cv::VideoCapture capture;
     double totalFrames;
     std::string fileName;
     std::time_t videoStartTime;
+    long frameSkipMs;
 };
 
 #endif // VIDEO_IMPORT_H_INCLUDED

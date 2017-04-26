@@ -37,7 +37,7 @@ std::time_t pt_to_time_t(const bt::ptime& pt) {
     return diff.ticks()/bt::time_duration::rep_type::ticks_per_second;
 }
 
-VideoImport::VideoImport(string videoFile, MetadataInput * reader, Camera &camera) : ImageImport(reader, camera) {
+VideoImport::VideoImport(string videoFile, MetadataInput * reader, Camera &camera, long frameSkipMs) : ImageImport(reader, camera), frameSkipMs(frameSkipMs) {
     capture.open(videoFile);
     if (!capture.isOpened()) {
         BOOST_LOG_TRIVIAL(error) << "Cannot open video file " << videoFile;
@@ -77,6 +77,7 @@ VideoImport::VideoImport(string videoFile, MetadataInput * reader, Camera &camer
 
 Frame * VideoImport::next_frame() {
     Mat * frame = new Mat();
+    double prevPos = capture.get(CAP_PROP_POS_MSEC);
     bool success = capture.read(*frame);
 
     if (!success) {
@@ -90,5 +91,10 @@ Frame * VideoImport::next_frame() {
 
     double time = utcTime->tm_hour * 10000 + utcTime->tm_min * 100 + utcTime->tm_sec + ((int)floor(pos) % 1000)/1000;
 
+    capture.set(CAP_PROP_POS_MSEC, prevPos + frameSkipMs);
     return new Frame(frame, fileName + boost::lexical_cast<string>(time) + ".jpg", reader->get_metadata(time), camera);
+}
+
+std::string VideoImport::to_string() {
+    return "VideoImport";
 }

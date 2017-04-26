@@ -308,6 +308,14 @@ vector<Command> commands = {
             newState.hasImageSource = true;
         }
     }),
+    Command("frames.source.videofile.add", "", {"path", "delay", "frameSkipMs"}, [=](State &newState, vector<string> args) {
+        if (logReader->num_sources() == 0) {
+            BOOST_LOG_TRIVIAL(error) << "Cannot add image source until a metadata source has been specified";
+        } else {
+            importer.add_source(new VideoImport(args[0], logReader, goProFisheye, stol(args[2])), stol(args[1]));
+            newState.hasImageSource = true;
+        }
+    }),
 #ifdef HAS_DECKLINK
     Command("frames.source.decklink.add", "", {"delay"}, [=](State &newState, vector<string> args) {
         if (logReader->num_sources() == 0) {
@@ -321,6 +329,10 @@ vector<Command> commands = {
     Command("frames.source.remove", "Removes the source at the given index", {"index"}, [=](State &newState, vector<string> args) {
         importer.remove_source(stoi(args[0]));
         newState.hasImageSource = importer.num_sources() > 0;
+    }),
+    Command("frames.source.list", "Lists frame sources", {}, [=](State &newState, vector<string> args) {
+        cout << importer.source_descriptions() << endl;
+
     }),
     Command("frames.source.update_delay", "Updates the delay for the source at the given index", {"index", "delay"}, [=](State &newState, vector<string> args) {
         importer.update_delay(stoi(args[0]), stol(args[1]));
@@ -428,7 +440,7 @@ int handle_args(int argc, char** argv) {
 
         if (vm.count("videofile")) {
             string path = vm["videofile"].as<string>();
-            importer.add_source(new VideoImport(path, logReader, goProRect), 100);
+            importer.add_source(new VideoImport(path, logReader, goProRect, 0), 100);
             newState.hasImageSource = true;
             cout << "Adding video source..." << endl;
         }
