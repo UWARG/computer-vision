@@ -53,6 +53,7 @@
 #include "metadata_input.h"
 #include "metadata_reader.h"
 #include "target.h"
+#include "camera.h"
 
 using namespace std;
 using namespace boost;
@@ -84,6 +85,72 @@ MetadataInput *logReader = new MetadataInput();
 
 double aveFrameTime = 1000;
 int frameCount = 0;
+
+double fisheyeMatrix[] = {
+    2.4052826789763981e+03, 0, 2000,
+    0, 2.4052826789763981e+03, 1500,
+    0, 0, 1
+};
+
+double fisheyeDistortion[] = {
+    -0.392, 0.146, 0, 0, -0.023
+};
+
+double newFisheyeMatrix[] = {
+    2000, 0, 2000,
+    0, 2000, 1500,
+    0, 0, 1
+};
+
+double rectMatrix[] = {
+    2410, 0, 960,
+    0, 2410, 540,
+    0, 0, 1
+};
+
+double rectDistortion[] = {
+    0, 0, 0, 0, 0
+};
+
+Camera goProFisheye(
+    Size(4000, 3000),
+    Size2d(120, 90),
+    Mat(
+        Size(3, 3),
+        CV_64F,
+        fisheyeMatrix
+    ),
+    Mat(
+        Size(5, 1),
+        CV_64F,
+        fisheyeDistortion
+    ),
+    Mat(
+        Size(3, 3),
+        CV_64F,
+        newFisheyeMatrix
+    )
+);
+
+Camera goProRect(
+    Size(1920, 1080),
+    Size2d(90, 67.5),
+    Mat(
+        Size(3, 3),
+        CV_64F,
+        rectMatrix
+    ),
+    Mat(
+        Size(5, 1),
+        CV_64F,
+        rectDistortion
+    ),
+    Mat(
+        Size(3, 3),
+        CV_64F,
+        rectMatrix
+    )
+);
 
 struct State {
     bool hasImageSource;
@@ -140,7 +207,6 @@ void output() {
         }
         boost::this_thread::sleep(boost::posix_time::milliseconds(30));
     }
-    ioService.stop();
 }
 
 void init() {
@@ -162,7 +228,7 @@ int main(int argc, char** argv) {
     processors = boost::thread::hardware_concurrency();
 
     while (!cin.eof()) handle_input();
-
+    ioService.stop();
     threadpool.join_all();
     delete logReader;
     return 0;
@@ -237,7 +303,7 @@ vector<Command> commands = {
         if (logReader->num_sources() == 0) {
             BOOST_LOG_TRIVIAL(error) << "Cannot add image source until a metadata source has been specified";
         } else {
-            importer.add_source(new PictureImport(args[0], logReader), stol(args[1]));
+            importer.add_source(new PictureImport(args[0], logReader, goProFisheye), stol(args[1]));
             newState.hasImageSource = true;
         }
     }),
@@ -246,7 +312,7 @@ vector<Command> commands = {
         if (logReader->num_sources() == 0) {
             BOOST_LOG_TRIVIAL(error) << "Cannot add image source until a metadata source has been specified";
         } else {
-            importer.add_source(new DeckLinkImport(logReader), stol(args[0]));
+            importer.add_source(new DeckLinkImport(logReader, goProRect), stol(args[0]));
             newState.hasImageSource = true;
         }
     }),
@@ -263,7 +329,9 @@ vector<Command> commands = {
 void handle_state_change(State &newState) {
     if (!currentState.readingImages && newState.readingImages) {
         if (newState.hasImageSource && newState.hasMetadataSource) {
+            currentState.readingImages = true;
             queue_work(assign_workers);
+            queue_work(output);
         } else {
             BOOST_LOG_TRIVIAL(error) << "Trying to read images without both image and metadata source is not supported";
         }
@@ -331,25 +399,29 @@ int handle_args(int argc, char** argv) {
 
         if (vm.count("telemetry")) {
             logReader->add_source(new MetadataReader(*logReader, vm["telemetry"].as<string>()));
-            currentState.hasMetadataSource = true;
+            newState.hasMetadataSource = true;
+            cout << "Adding Telemetry source..." << endl;
         }
 
         if (vm.count("addr") && vm.count("port")) {
             logReader->add_source(new MetadataReader(*logReader, vm["addr"].as<string>(), vm["port"].as<string>()));
             newState.hasMetadataSource = true;
+            cout << "Adding Telemetry source..." << endl;
         }
 
 #ifdef HAS_DECKLINK
         if (vm.count("decklink")) {
-            importer.add_source(new DeckLinkImport(logReader), 500);
+            importer.add_source(new DeckLinkImport(logReader, goProRect), 500);
             newState.hasImageSource = true;
+            cout << "Adding video source..." << endl;
         }
 #endif // HAS_DECKLINK
 
         if (vm.count("images")) {
             string path = vm["images"].as<string>();
-            importer.add_source(new PictureImport(path, logReader), 0);
+            importer.add_source(new PictureImport(path, logReader, goProFisheye), 0);
             newState.hasImageSource = true;
+            cout << "Adding picture source..." << endl;
         }
 
         if (vm.count("output")) {

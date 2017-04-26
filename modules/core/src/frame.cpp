@@ -37,8 +37,18 @@
 #include "frame.h"
 #include "pixel_object.h"
 
-Frame::Frame(cv::Mat * img, std::string id, Metadata m): img(img), id(id), data(m){
+Frame::Frame(cv::Mat * img, std::string id, Metadata m, Camera &camera)
+    : img(camera.undistort(*img)), origImg(img), id(id), data(m), camera(camera) {
 
+}
+
+cv::Mat* Frame::undistort(Camera &camera) {
+    return camera.undistort(*origImg);
+}
+
+Frame::~Frame() {
+    delete img;
+    delete origImg;
 }
 
 std::string Frame::get_id(){
@@ -47,6 +57,10 @@ std::string Frame::get_id(){
 
 cv::Mat & Frame::get_img(){
     return *img;
+}
+
+cv::Mat & Frame::orig_img(){
+    return *origImg;
 }
 
 void Frame::add_object(PixelObject * o){

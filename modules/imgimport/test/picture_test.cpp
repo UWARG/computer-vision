@@ -39,7 +39,8 @@ BOOST_AUTO_TEST_CASE(picture_test){
 
     MetadataInput* mdin = new MetadataInput();
     mdin->add_source(new MetadataReader(*mdin, telemetry_path));
-    PictureImport PI(filePath, mdin);
+    Camera camera = Camera::TestCamera();
+    PictureImport PI(filePath, mdin, camera);
     DIR* dr=opendir(filePath.c_str());
     struct dirent* drnt;
     vector<Frame *> frames;

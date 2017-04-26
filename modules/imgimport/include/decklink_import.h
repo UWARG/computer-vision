@@ -61,7 +61,7 @@ class DeckLinkImport : public ImageImport {
         /**
          * Creates a DeckLinkImport object
          */
-        DeckLinkImport(MetadataInput * reader);
+        DeckLinkImport(MetadataInput * reader, Camera &camera);
 
         virtual ~DeckLinkImport();
 

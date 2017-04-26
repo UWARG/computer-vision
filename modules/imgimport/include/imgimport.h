@@ -33,7 +33,7 @@ public:
      * *
      * @param reader
      */
-    ImageImport(MetadataInput * reader);
+    ImageImport(MetadataInput * reader, Camera &camera);
 
     virtual ~ImageImport();
 
@@ -46,6 +46,7 @@ public:
 
 protected:
     MetadataInput * reader;
+    Camera &camera;
 };
 
 #endif // IMAGE_IMPORT_H_INCLUDED

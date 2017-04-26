@@ -36,7 +36,7 @@ public:
      * @brief Creates a PictureImport object
      * @param filePath directory containing image files
      */
-    PictureImport(std::string filePath, MetadataInput * mdin);
+    PictureImport(std::string filePath, MetadataInput * mdin, Camera &camera);
 
     ~PictureImport();
 

@@ -26,8 +26,8 @@ using namespace cv;
 using namespace std;
 using namespace boost;
 
-PictureImport::PictureImport(std::string filePath, MetadataInput* mdin)
-              :ImageImport(mdin) {
+PictureImport::PictureImport(std::string filePath, MetadataInput* mdin, Camera &camera)
+              :ImageImport(mdin, camera) {
     this->filePath=filePath;
     dr=opendir(filePath.c_str());
 }
@@ -55,10 +55,12 @@ Frame * PictureImport::next_frame(){
     }
     string id(drnt->d_name);
     Metadata m;
-    try {
-        m = reader->next_metadata();
-    } catch (std::exception & e) {
-        BOOST_LOG_TRIVIAL(error) << "Error while retrieving metadata: " <<  e.what();
+    if (reader != NULL) {
+        try {
+            m = reader->next_metadata();
+        } catch (std::exception & e) {
+            BOOST_LOG_TRIVIAL(error) << "Error while retrieving metadata: " <<  e.what();
+        }
     }
-    return new Frame(img, id, m);
+    return new Frame(img, id, m, camera);
 }
