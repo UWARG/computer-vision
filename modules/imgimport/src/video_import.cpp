@@ -92,7 +92,7 @@ Frame * VideoImport::next_frame() {
     double time = utcTime->tm_hour * 10000 + utcTime->tm_min * 100 + utcTime->tm_sec + ((int)floor(pos) % 1000)/1000;
 
     capture.set(CAP_PROP_POS_MSEC, prevPos + frameSkipMs);
-    return new Frame(frame, fileName + boost::lexical_cast<string>(time) + ".jpg", reader->get_metadata(time), camera);
+    return new Frame(frame, fileName + boost::lexical_cast<string>(time) + ".jpg", reader != NULL ? reader->get_metadata(time) : Metadata(), camera);
 }
 
 std::string VideoImport::to_string() {

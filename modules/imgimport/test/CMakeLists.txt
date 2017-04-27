@@ -4,6 +4,9 @@ if(Boost_FOUND AND OpenCV_FOUND)
     add_executable(picture_test picture_test.cpp)
     target_link_libraries(picture_test ${OpenCV_LIBS} ${Boost_LIBRARIES} Core ImageImport)
 
+    add_executable(video_test video_test.cpp)
+    target_link_libraries(video_test ${OpenCV_LIBS} ${Boost_LIBRARIES} Core ImageImport)
+
     add_executable(manual_calibration manual_calibration.cpp)
     target_link_libraries(manual_calibration ${OpenCV_LIBS} ${Boost_LIBRARIES} Core ImageImport)
 
@@ -11,6 +14,7 @@ if(Boost_FOUND AND OpenCV_FOUND)
 
     # Tests
     add_test("picture_test" picture_test ${TESTDATA_DIR}/photos ${TESTDATA_DIR} --log_format=XML --log_sink=TEST_PICTURE.xml --log_level=all --report_level=no)
+    add_test("video_test" video_test ${TESTDATA_DIR}/vid.mp4 --log_format=XML --log_sink=TEST_PICTURE.xml --log_level=all --report_level=no)
 
     if (DeckLinkSDK_FOUND)
         ADD_DEFINITIONS("-DHAS_DECKLINK")
