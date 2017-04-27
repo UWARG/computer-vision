@@ -151,7 +151,7 @@ Frame* DeckLinkImport::next_frame(){
     } catch (std::exception & e) {
         BOOST_LOG_TRIVIAL(error) << "Error reading metadata: " << e.what();
     }
-    Frame* img = new Frame(&oFrame, boost::lexical_cast<string>(time) + ".jpg", m);
+    Frame* img = new Frame(&oFrame, boost::lexical_cast<string>(time) + ".jpg", m, camera);
     return img;
 }
 #endif

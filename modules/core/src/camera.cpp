@@ -20,14 +20,18 @@
 
 using namespace cv;
 
-Camera::Camera(Size imageSize, Size2d fov, Mat cameraMatrix, Mat distortionCoeffs, Mat newCameraMatrix = Mat())
-        : cameraMatrix(cameraMatrix), distortionCoeffs(distortionCoeffs), newCameraMatrix(newCameraMatrix), fov(fov) {
+Camera::Camera(Size imageSize, Size2d fov, Mat cameraMatrix, Mat distortionCoeffs, Mat newCameraMatrix = Mat(), bool applyUndistort)
+        : cameraMatrix(cameraMatrix), distortionCoeffs(distortionCoeffs), newCameraMatrix(newCameraMatrix), fov(fov), applyUndistort(applyUndistort) {
 }
 
 Mat * Camera::undistort(Mat & img) {
-    Mat *tmp = new Mat();
-    cv::undistort(img, *tmp, cameraMatrix, distortionCoeffs, newCameraMatrix);
-    return tmp;
+    if (applyUndistort) {
+        Mat *tmp = new Mat();
+        cv::undistort(img, *tmp, cameraMatrix, distortionCoeffs, newCameraMatrix);
+        return tmp;
+    } else {
+        return new Mat(img.clone());
+    }
 }
 
 Camera Camera::TestCamera() {
@@ -54,7 +58,7 @@ Camera Camera::TestCamera() {
             Size(5, 1),
             CV_8UC1,
             distMatrix
-        )
+        ), Mat(), false
     );
 }
 

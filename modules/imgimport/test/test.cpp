@@ -37,6 +37,7 @@
 #include <boost/log/trivial.hpp>
 #include <boost/log/expressions.hpp>
 #include "decklink_import.h"
+#include "camera.h"
 
 using namespace std;
 using namespace boost;
@@ -47,8 +48,8 @@ BOOST_AUTO_TEST_CASE(DecklinkVideoSource){
     if(boost::unit_test::framework::master_test_suite().argc <= 1) {
         BOOST_ERROR("Invalid number of arguments");
     }
-
-    DeckLinkImport * v = new DeckLinkImport(NULL);
+    Camera camera = Camera::TestCamera();
+    DeckLinkImport * v = new DeckLinkImport(NULL, camera);
     cv::Mat img;
     v->grabFrame(&img);
 
