@@ -53,6 +53,8 @@
 
 #include <functional>
 #include <boost/program_options.hpp>
+#include <opencv2/highgui.hpp>
+#include <opencv2/imgproc.hpp>
 #include <queue>
 #include <chrono>
 #include <iostream>
@@ -67,6 +69,7 @@
 #include "metadata_reader.h"
 #include "target.h"
 #include "camera.h"
+#include "pixel_object.h"
 
 using namespace std;
 using namespace boost;
@@ -81,7 +84,6 @@ Frame* next_image();
 int handle_args(int argc, char** argv);
 void handle_input();
 void handle_state_change();
-queue<Frame*> in_buffer;
 queue<Target*> out_buffer;
 queue<Frame*> intermediate_buffer;
 
@@ -93,6 +95,7 @@ int workers = 0;
 string outputDir = "./";
 bool intermediate = false;
 int processors;
+bool videoFeed = false;
 
 // Processing module classes
 Importer importer;
@@ -179,7 +182,7 @@ void worker(Frame* f) {
     workers++;
     assert(!f->get_img().empty());
     identifier.process_frame(f);
-    if (intermediate && f->get_objects().size() > 0) {
+    if ((intermediate && f->get_objects().size() > 0) || videoFeed) {
         intermediate_buffer.push(f);
     }
 
@@ -197,7 +200,6 @@ void assign_workers() {
             // spawn worker to process image;
             BOOST_LOG_TRIVIAL(trace) << "Spawning worker...";
             ioService.post(boost::bind(worker, current));
-            in_buffer.pop();
         }
 
         boost::this_thread::sleep(boost::posix_time::milliseconds(aveFrameTime/processors));
@@ -218,7 +220,23 @@ void output() {
         }
         if (intermediate_buffer.size() > 0) {
             Frame * f = intermediate_buffer.front();
-            f->save(outputDir);
+            if (f->get_objects().size() > 0) {
+                f->save(outputDir);
+            }
+            if (videoFeed) {
+                Mat tmp = f->get_img().clone();
+                for (PixelObject *p : f->get_objects()) {
+                    vector<vector<Point> > contours;
+                    contours.push_back(p->get_contour());
+                    Scalar color(rand()&255, rand()&255, rand()&255);
+                    drawContours(tmp, contours, 0, color, FILLED, 8);
+                }
+                BOOST_LOG_TRIVIAL(debug) << "Displaying image: " << f->get_id();
+                Mat resized;
+                resize(tmp, resized, Size(((double)tmp.cols / tmp.rows) * 600, 600));
+                imshow("Live Feed", resized);
+                waitKey(1);
+            }
             intermediate_buffer.pop();
         }
         boost::this_thread::sleep(boost::posix_time::milliseconds(30));
@@ -443,7 +461,9 @@ int handle_args(int argc, char** argv) {
             ("addr,a", po::value<string>(), "Address to connect to to recieve telemetry log")
             ("port,p", po::value<string>(), "Port to connect to to recieve telemetry log")
             ("output,o", po::value<string>(), "Directory to store output files; default is current directory")
-            ("intermediate", "When this is enabled, program will output intermediary frames that contain objects of interest");
+            ("intermediate", "When this is enabled, program will output intermediary frames that contain objects of interest")
+            ("videofile,f", po::value<string>(), "Path to video file to read frames from")
+            ("videofeed,l", "If set, proggram will display results in real time");
 
         po::variables_map vm;
         po::store(po::parse_command_line(argc, argv, description), vm);
@@ -489,6 +509,10 @@ int handle_args(int argc, char** argv) {
 
         if (vm.count("intermediate")) {
             intermediate = true;
+        }
+
+        if (vm.count("videofeed")) {
+            videoFeed = true;
         }
         handle_state_change(newState);
     }
