@@ -287,6 +287,9 @@ vector<Command> commands = {
             cout << cmd.name << " " << boost::algorithm::join(cmd.args, " ") << space << " - " << cmd.desc << endl;
         }
     }),
+    Command("log.trace", "sets log level to info", {}, [](State &newState, vector<string> args) {
+        logging::core::get()->set_filter(logging::trivial::severity >= logging::trivial::info);
+    }),
     Command("log.info", "sets log level to info", {}, [](State &newState, vector<string> args) {
         logging::core::get()->set_filter(logging::trivial::severity >= logging::trivial::info);
     }),
