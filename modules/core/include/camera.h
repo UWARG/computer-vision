@@ -34,8 +34,9 @@ public:
      * @param fov The field of view of the camera
      * @param cameraMatrix OpenCV camera calibration matrix giving focal length and principal point
      * @param distortionCoeffs OpenCV distortion coefficients used for undistorting images
+     * #param undistort Whether or not to apply undistortion to images. If false the camera acts as a placeholder that can be used for testing
      */
-    Camera(cv::Size imageSize, cv::Size2d fov, cv::Mat cameraMatrix, cv::Mat distortionCoeffs, cv::Mat newCameraMatrix);
+    Camera(cv::Size imageSize, cv::Size2d fov, cv::Mat cameraMatrix, cv::Mat distortionCoeffs, cv::Mat newCameraMatrix, bool applyUndistort = true);
 
     /**
      * @brief Returns the field of view of the camera in degrees for both horizontal and vertical dimensions
@@ -55,6 +56,7 @@ public:
     static Camera TestCamera();
 
 private:
+    bool applyUndistort;
     cv::Size2d fov;
     cv::Mat cameraMatrix;
     cv::Mat distortionCoeffs;
