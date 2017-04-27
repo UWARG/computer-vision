@@ -1,5 +1,6 @@
 <map id="modules/volumecalc/include/volume_calc.h" name="modules/volumecalc/include/volume_calc.h">
-<area shape="rect" id="node2" href="$frame_8h.html" title="Container class for storing photos or frames of video to be processed and analyzed. " alt="" coords="132,95,199,121"/>
-<area shape="rect" id="node6" href="$target_8h.html" title="target.h" alt="" coords="41,95,108,121"/>
+<area shape="rect" id="node2" href="$frame_8h.html" title="Container class for storing photos or frames of video to be processed and analyzed. " alt="" coords="225,95,292,121"/>
+<area shape="rect" id="node7" href="$target_8h.html" title="target.h" alt="" coords="135,95,201,121"/>
 <area shape="rect" id="node4" href="$metadata_8h.html" title="Structure for storing plane status information from the time that an image was taken. " alt="" coords="267,169,354,196"/>
+<area shape="rect" id="node6" href="$camera_8h.html" title="camera.h" alt="" coords="378,169,454,196"/>
 </map>

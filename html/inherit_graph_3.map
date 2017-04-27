@@ -1,3 +1,4 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node2" href="$classCvMatDeckLinkVideoFrame.html" title="CvMatDeckLinkVideoFrame" alt="" coords="204,5,391,32"/>
+<area shape="rect" id="node1" href="$classContourCreator.html" title="ContourCreator" alt="" coords="5,5,116,32"/>
+<area shape="rect" id="node2" href="$classCannyContourCreator.html" title="CannyContourCreator" alt="" coords="164,5,313,32"/>
 </map>

@@ -1,5 +1,7 @@
 var searchData=
 [
+  ['camera',['Camera',['../classCamera.html',1,'Camera'],['../classCamera.html#a1c7d7a24eb8c3540eb1802ec0f7aab0b',1,'Camera::Camera()']]],
+  ['camera_2eh',['camera.h',['../camera_8h.html',1,'']]],
   ['cannycontourcreator',['CannyContourCreator',['../classCannyContourCreator.html',1,'']]],
   ['check_5fdata_5forder',['check_data_order',['../classMetadataInput.html#a9f693e2888c3e2775c981ef3dec93475',1,'MetadataInput']]],
   ['command',['Command',['../classCommand.html',1,'Command'],['../classCommand.html#af2cb4b703a6555fa833a05da7c5a3cb4',1,'Command::Command()']]],

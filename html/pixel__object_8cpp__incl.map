@@ -1,5 +1,6 @@
 <map id="modules/core/src/pixel_object.cpp" name="modules/core/src/pixel_object.cpp">
-<area shape="rect" id="node2" href="$pixel__object_8h.html" title="pixel_object.h" alt="" coords="177,95,279,121"/>
-<area shape="rect" id="node5" href="$frame_8h.html" title="Container class for storing photos or frames of video to be processed and analyzed. " alt="" coords="195,169,261,196"/>
-<area shape="rect" id="node6" href="$metadata_8h.html" title="Structure for storing plane status information from the time that an image was taken. " alt="" coords="185,244,271,271"/>
+<area shape="rect" id="node2" href="$pixel__object_8h.html" title="pixel_object.h" alt="" coords="126,95,229,121"/>
+<area shape="rect" id="node5" href="$frame_8h.html" title="Container class for storing photos or frames of video to be processed and analyzed. " alt="" coords="215,169,281,196"/>
+<area shape="rect" id="node6" href="$metadata_8h.html" title="Structure for storing plane status information from the time that an image was taken. " alt="" coords="267,244,354,271"/>
+<area shape="rect" id="node7" href="$camera_8h.html" title="camera.h" alt="" coords="378,244,454,271"/>
 </map>

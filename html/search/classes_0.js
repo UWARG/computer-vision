@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['camera',['Camera',['../classCamera.html',1,'']]],
   ['cannycontourcreator',['CannyContourCreator',['../classCannyContourCreator.html',1,'']]],
   ['command',['Command',['../classCommand.html',1,'']]],
   ['comptr',['ComPtr',['../classComPtr.html',1,'']]],

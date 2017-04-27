@@ -1,5 +1,6 @@
 <map id="modules/imgimport/include/imgimport.h" name="modules/imgimport/include/imgimport.h">
-<area shape="rect" id="node2" href="$metadata__input_8h.html" title="metadata_input.h" alt="" coords="351,95,473,121"/>
-<area shape="rect" id="node8" href="$frame_8h.html" title="Container class for storing photos or frames of video to be processed and analyzed. " alt="" coords="216,95,283,121"/>
-<area shape="rect" id="node3" href="$metadata_8h.html" title="Structure for storing plane status information from the time that an image was taken. " alt="" coords="185,169,271,196"/>
+<area shape="rect" id="node2" href="$metadata__input_8h.html" title="metadata_input.h" alt="" coords="422,95,545,121"/>
+<area shape="rect" id="node8" href="$frame_8h.html" title="Container class for storing photos or frames of video to be processed and analyzed. " alt="" coords="281,95,347,121"/>
+<area shape="rect" id="node3" href="$metadata_8h.html" title="Structure for storing plane status information from the time that an image was taken. " alt="" coords="368,169,455,196"/>
+<area shape="rect" id="node10" href="$camera_8h.html" title="camera.h" alt="" coords="5,169,81,196"/>
 </map>

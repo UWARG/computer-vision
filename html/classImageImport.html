@@ -99,24 +99,24 @@ Inheritance diagram for ImageImport:</div>
 <div class="dyncontent">
 <div class="center"><img src="classImageImport__inherit__graph.png" border="0" usemap="#ImageImport_inherit__map" alt="Inheritance graph"/></div>
 <map name="ImageImport_inherit__map" id="ImageImport_inherit__map">
-<area shape="rect" id="node2" href="classDeckLinkImport.html" title="Module for extracting frames from DeckLink Video cards. " alt="" coords="5,160,148,311"/><area shape="rect" id="node3" href="classPictureImport.html" title="Class for reading image files from a directory. " alt="" coords="173,182,301,289"/></map>
+<area shape="rect" id="node2" href="classDeckLinkImport.html" title="Module for extracting frames from DeckLink Video cards. " alt="" coords="5,175,148,325"/><area shape="rect" id="node3" href="classPictureImport.html" title="Class for reading image files from a directory. " alt="" coords="173,197,301,303"/></map>
 </div>
 <div class="dynheader">
 Collaboration diagram for ImageImport:</div>
 <div class="dyncontent">
 <div class="center"><img src="classImageImport__coll__graph.png" border="0" usemap="#ImageImport_coll__map" alt="Collaboration graph"/></div>
 <map name="ImageImport_coll__map" id="ImageImport_coll__map">
-<area shape="rect" id="node2" href="classMetadataInput.html" title="A class for storing and searching telemetry logs. " alt="" coords="5,5,151,171"/></map>
+<area shape="rect" id="node2" href="classMetadataInput.html" title="A class for storing and searching telemetry logs. " alt="" coords="5,5,151,171"/><area shape="rect" id="node3" href="classCamera.html" title="Container class for storing information about the camera used to capture an image *..." alt="" coords="175,27,290,149"/></map>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:abf8a3d93464a5451cfe63dfac871c7f5"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classImageImport.html#abf8a3d93464a5451cfe63dfac871c7f5">ImageImport</a> (<a class="el" href="classMetadataInput.html">MetadataInput</a> *reader)</td></tr>
-<tr class="memdesc:abf8a3d93464a5451cfe63dfac871c7f5"><td class="mdescLeft">&#160;</td><td class="mdescRight"><ul>
+<tr class="memitem:acaa16493bcb573d9fbf5e9d05e95bdde"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classImageImport.html#acaa16493bcb573d9fbf5e9d05e95bdde">ImageImport</a> (<a class="el" href="classMetadataInput.html">MetadataInput</a> *reader, <a class="el" href="classCamera.html">Camera</a> &amp;camera)</td></tr>
+<tr class="memdesc:acaa16493bcb573d9fbf5e9d05e95bdde"><td class="mdescLeft">&#160;</td><td class="mdescRight"><ul>
 <li></li>
 </ul>
- <a href="#abf8a3d93464a5451cfe63dfac871c7f5">More...</a><br/></td></tr>
-<tr class="separator:abf8a3d93464a5451cfe63dfac871c7f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+ <a href="#acaa16493bcb573d9fbf5e9d05e95bdde">More...</a><br/></td></tr>
+<tr class="separator:acaa16493bcb573d9fbf5e9d05e95bdde"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acbf182e5ff9baf205a0e1aceadab654d"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classFrame.html">Frame</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classImageImport.html#acbf182e5ff9baf205a0e1aceadab654d">next_frame</a> ()=0</td></tr>
 <tr class="memdesc:acbf182e5ff9baf205a0e1aceadab654d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves the next frame to be analyzed.  <a href="#acbf182e5ff9baf205a0e1aceadab654d">More...</a><br/></td></tr>
 <tr class="separator:acbf182e5ff9baf205a0e1aceadab654d"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -126,11 +126,14 @@ Protected Attributes</h2></td></tr>
 <tr class="memitem:a86f5c4d28a8ea126e066542c3d723d11"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a86f5c4d28a8ea126e066542c3d723d11"></a>
 <a class="el" href="classMetadataInput.html">MetadataInput</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>reader</b></td></tr>
 <tr class="separator:a86f5c4d28a8ea126e066542c3d723d11"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a27ec83c0a4fd09f97ec38c93f93c7062"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a27ec83c0a4fd09f97ec38c93f93c7062"></a>
+<a class="el" href="classCamera.html">Camera</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>camera</b></td></tr>
+<tr class="separator:a27ec83c0a4fd09f97ec38c93f93c7062"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Abstract class for importing frames and corresponding metadata. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="abf8a3d93464a5451cfe63dfac871c7f5"></a>
+<a class="anchor" id="acaa16493bcb573d9fbf5e9d05e95bdde"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -138,8 +141,18 @@ Protected Attributes</h2></td></tr>
           <td class="memname">ImageImport::ImageImport </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="classMetadataInput.html">MetadataInput</a> *&#160;</td>
-          <td class="paramname"><em>reader</em></td><td>)</td>
+          <td class="paramname"><em>reader</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype"><a class="el" href="classCamera.html">Camera</a> &amp;&#160;</td>
+          <td class="paramname"><em>camera</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">

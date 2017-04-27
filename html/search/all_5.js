@@ -9,6 +9,7 @@ var searchData=
   ['get_5fcropped_5fimage',['get_cropped_image',['../classPixelObject.html#a4117a9c1202b5bb24448312729f8e538',1,'PixelObject']]],
   ['get_5ferror',['get_error',['../classObject.html#adfb54fa113635017f5cb320277e1678b',1,'Object::get_error()'],['../classPixelObject.html#aa3527f17e49f6de8f1a9b9a4d2952552',1,'PixelObject::get_error()'],['../classTarget.html#afe0a6457a9da8d8612d399073e1187c0',1,'Target::get_error()']]],
   ['get_5ferror_5fangle',['get_error_angle',['../classObject.html#afe3a047b61eb5cb17d85d01cc0ec478e',1,'Object::get_error_angle()'],['../classPixelObject.html#ab539307a29d090ae66289d0da39845d7',1,'PixelObject::get_error_angle()'],['../classTarget.html#a1e3867f3e67797ca7c03984e30c260de',1,'Target::get_error_angle()']]],
+  ['get_5ffov',['get_fov',['../classCamera.html#a0a60d3f71a1a98cede1a32594ce866df',1,'Camera']]],
   ['get_5fid',['get_id',['../classFrame.html#af65f00928295d18429434fd4c1df07c6',1,'Frame']]],
   ['get_5fimage',['get_image',['../classObject.html#a58c65c45a4753ca6c3d4d58959f5f2a5',1,'Object::get_image()'],['../classPixelObject.html#a23967de7c944b26c5b6beebf90f4ce8c',1,'PixelObject::get_image()'],['../classTarget.html#a6349615c6cf5c878464457478bdbc3c7',1,'Target::get_image()']]],
   ['get_5fimg',['get_img',['../classFrame.html#a1831991b586a2b54bb79fe084f2684aa',1,'Frame']]],

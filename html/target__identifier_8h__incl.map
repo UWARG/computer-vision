@@ -1,7 +1,8 @@
 <map id="modules/targetid/include/target_identifier.h" name="modules/targetid/include/target_identifier.h">
-<area shape="rect" id="node2" href="$frame_8h.html" title="Container class for storing photos or frames of video to be processed and analyzed. " alt="" coords="125,169,191,196"/>
-<area shape="rect" id="node6" href="$object__detector_8h_source.html" title="object_detector.h" alt="" coords="210,95,333,121"/>
+<area shape="rect" id="node2" href="$frame_8h.html" title="Container class for storing photos or frames of video to be processed and analyzed. " alt="" coords="209,169,275,196"/>
+<area shape="rect" id="node7" href="$object__detector_8h_source.html" title="object_detector.h" alt="" coords="299,95,422,121"/>
 <area shape="rect" id="node4" href="$metadata_8h.html" title="Structure for storing plane status information from the time that an image was taken. " alt="" coords="5,244,92,271"/>
-<area shape="rect" id="node7" href="$filter_8h.html" title="filter.h" alt="" coords="367,169,426,196"/>
-<area shape="rect" id="node10" href="$contour__creator_8h_source.html" title="contour_creator.h" alt="" coords="215,169,338,196"/>
+<area shape="rect" id="node6" href="$camera_8h.html" title="camera.h" alt="" coords="200,244,276,271"/>
+<area shape="rect" id="node8" href="$filter_8h.html" title="filter.h" alt="" coords="470,169,529,196"/>
+<area shape="rect" id="node11" href="$contour__creator_8h_source.html" title="contour_creator.h" alt="" coords="307,169,430,196"/>
 </map>

@@ -1,3 +1,4 @@
 <map id="ImageImport" name="ImageImport">
 <area shape="rect" id="node2" href="$classMetadataInput.html" title="A class for storing and searching telemetry logs. " alt="" coords="5,5,151,171"/>
+<area shape="rect" id="node3" href="$classCamera.html" title="Container class for storing information about the camera used to capture an image *..." alt="" coords="175,27,290,149"/>
 </map>
