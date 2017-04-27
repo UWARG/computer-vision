@@ -37,6 +37,8 @@
 #include <boost/log/core.hpp>
 #include <boost/log/trivial.hpp>
 #include <boost/log/expressions.hpp>
+#include <boost/log/utility/setup/file.hpp>
+#include <boost/log/utility/setup/common_attributes.hpp>
 #include <boost/algorithm/string.hpp>
 #include <functional>
 #include <boost/program_options.hpp>
@@ -64,6 +66,8 @@ using namespace boost;
 using namespace cv;
 namespace logging = boost::log;
 namespace po = boost::program_options;
+namespace sinks = boost::log::sinks;
+namespace keywords = boost::log::keywords;
 
 Frame* next_image();
 int handle_args(int argc, char** argv);
@@ -229,6 +233,13 @@ void output() {
 }
 
 void init() {
+    logging::add_common_attributes();
+    logging::add_file_log
+    (
+        keywords::file_name = "warg-cv_%N.log",
+        keywords::rotation_size = 10 * 1024 * 1024,
+        keywords::time_based_rotation = sinks::file::rotation_at_time_point(0, 0, 0)
+    );
 #ifdef RELEASE
     logging::core::get()->set_filter(logging::trivial::severity >= logging::trivial::error);
 #else
