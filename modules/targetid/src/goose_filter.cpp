@@ -38,7 +38,7 @@ void GooseFilter::filter_contours(vector<vector<Point> > &contours) {
             double hullArea = contourArea(hull);
             double solidity = area/hullArea;
             double equiDiameter = sqrt(4*area/PI);
-            RotatedRect ellipse = fitEllipse(contour);
+            RotatedRect ellipse = contour.size() > 4 ? fitEllipse(contour) : bounds;
 
             keep = aspectRatio > 0.2 && aspectRatio < 5 &&
                 extent > 0.6 &&
