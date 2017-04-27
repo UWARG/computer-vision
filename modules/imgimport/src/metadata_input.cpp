@@ -106,12 +106,12 @@ Metadata MetadataInput::metadata_at_index(int index, double timestamp) {
 }
 
 Metadata MetadataInput::get_metadata(double timestamp){
-    if (size == 0) throw runtime_error("no log entries available");
+    if (size == 0) throw new runtime_error("no log entries available");
     return bisearcher(timestamp, 0, size-1, "time");
 }
 
 Metadata MetadataInput::next_metadata() {
-    if (size == 0) throw runtime_error("no log entries available");
+    if (size == 0) throw new runtime_error("no log entries available");
     return bisearcher(cameraStatus++, 0, size - 1, "cameraStatus");
 }
 

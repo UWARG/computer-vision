@@ -35,7 +35,7 @@ MetadataReader::MetadataReader(MetadataInput &input, string filename) : Metadata
     string line;
     ifstream finput(filename);
     if(!finput.is_open()) {
-        throw runtime_error("failed to open the csv file");
+        throw new runtime_error("failed to open the csv file");
     }
     getline(finput, line);
     set_head_row(line);
