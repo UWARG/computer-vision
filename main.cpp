@@ -347,9 +347,11 @@ vector<Command> commands = {
     }),
     Command("telemetry.file.add", "Adds file as new telemetry source", {"file"}, [=](State &newState, vector<string> args) {
         logReader->add_source(new MetadataReader(*logReader, args[0]));
+        newState.hasMetadataSource = true;
     }),
     Command("telemetry.network.add", "Adds network address/port as new telemetry source", {"address", "port"}, [=](State &newState, vector<string> args) {
         logReader->add_source(new MetadataReader(*logReader, args[0], args[1]));
+        newState.hasMetadataSource = true;
     }),
     Command("frames.source.pictures.add", "", {"path", "delay"}, [=](State &newState, vector<string> args) {
         if (logReader->num_sources() == 0) {
@@ -370,6 +372,7 @@ vector<Command> commands = {
     }),
 #endif // HAS_DECKLINK
     Command("frames.source.remove", "Removes the source at the given index", {"index"}, [=](State &newState, vector<string> args) {
+        if (importer.num_sources() <= stoi(args[0])) throw std::runtime_error(string("Not a valid index: ") + args[0]);
         importer.remove_source(stoi(args[0]));
         newState.hasImageSource = importer.num_sources() > 0;
     }),
@@ -406,7 +409,11 @@ void handle_input() {
             if (args.size() - 1 == cmd.args.size()) {
                 BOOST_LOG_TRIVIAL(info) << "Executing command: " << cmd.name;
                 State newState = currentState;
-                cmd.execute(newState, vector<string>(args.begin() + 1, args.end()));
+                try {
+                    cmd.execute(newState, vector<string>(args.begin() + 1, args.end()));
+                } catch (std::exception & e) {
+                    BOOST_LOG_TRIVIAL(error) << e.what();
+                }
                 handle_state_change(newState);
                 valid = true;
                 break;
