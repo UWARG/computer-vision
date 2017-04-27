@@ -44,6 +44,11 @@ public:
      */
     virtual Frame * next_frame() = 0;
 
+    /**
+     * @brief String representation of the Importer
+     */
+    virtual std::string to_string() = 0;
+
 protected:
     MetadataInput * reader;
     Camera &camera;
