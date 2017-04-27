@@ -1,9 +1,9 @@
-/* 
+/*
     This file is part of WARG's computer-vision
 
     Copyright (c) 2015, Waterloo Aerial Robotics Group (WARG)
     All rights reserved.
- 
+
     Redistribution and use in source and binary forms, with or without
     modification, are permitted provided that the following conditions are met:
     1. Redistributions of source code must retain the above copyright
@@ -39,9 +39,8 @@
 using namespace std;
 using namespace cv;
 
-ObjectDetector::ObjectDetector(Filter * filter, ContourCreator * contourCreator){
-    this->filter = filter;
-    this->ccreator = contourCreator;
+ObjectDetector::ObjectDetector(Filter * filter, ContourCreator * contourCreator, ContourFilter *cfilter)
+    : filter(filter), ccreator(contourCreator), cfilter(cfilter) {
 }
 
 void ObjectDetector::process_frame(Frame * f){
@@ -50,6 +49,10 @@ void ObjectDetector::process_frame(Frame * f){
     vector<vector<Point> > contours = *(ccreator->get_contours(*filtered));
     BOOST_LOG_TRIVIAL(info) << "Found " << contours.size() << " Contours in frame " << f->get_id();
     delete filtered;
+
+    if (cfilter != NULL) {
+        cfilter->filter_contours(contours);
+    }
     for(vector<Point> contour : contours){
         string type;
         Point2d centroid;

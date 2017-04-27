@@ -1,4 +1,4 @@
-/* 
+/*
     This file is part of WARG's computer-vision
 
     Copyright (c) 2015, Waterloo Aerial Robotics Group (WARG)
@@ -11,9 +11,9 @@
     2. Redistributions in binary form must reproduce the above copyright
        notice, this list of conditions and the following disclaimer in the
        documentation and/or other materials provided with the distribution.
-    3. Usage of this code MUST be explicitly referenced to WARG and this code 
+    3. Usage of this code MUST be explicitly referenced to WARG and this code
        cannot be used in any competition against WARG.
-    4. Neither the name of the WARG nor the names of its contributors may be used 
+    4. Neither the name of the WARG nor the names of its contributors may be used
        to endorse or promote products derived from this software without specific
        prior written permission.
 
@@ -27,8 +27,8 @@
     ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
     (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
     SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-*/	
-	
+*/
+
 #ifndef TARGET_IDENTIFIER_H_INCLUDED
 #define TARGET_IDENTIFIER_H_INCLUDED
 
@@ -38,7 +38,7 @@
  * @brief Module for identifying targets in Frames
  *
  * Module analyzes frames using OpenCV tools,
- * locates objects of interest and gathers information 
+ * locates objects of interest and gathers information
  * about the objects such as target colour, pixel area,
  * perimeter and shape.
  *
@@ -65,6 +65,7 @@ public:
 private:
     ObjectDetector * detector;
     Filter * filter;
+    ContourFilter *cfilter;
     ContourCreator * cCreator;
 };
 

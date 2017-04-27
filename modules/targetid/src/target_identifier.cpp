@@ -1,9 +1,9 @@
-/* 
+/*
     This file is part of WARG's computer-vision
 
     Copyright (c) 2015, Waterloo Aerial Robotics Group (WARG)
     All rights reserved.
- 
+
     Redistribution and use in source and binary forms, with or without
     modification, are permitted provided that the following conditions are met:
     1. Redistributions of source code must retain the above copyright
@@ -32,16 +32,19 @@
 #include "target_identifier.h"
 #include "k_means_filter.h"
 #include "canny_contour_creator.h"
+#include "goose_filter.h"
 
 TargetIdentifier::TargetIdentifier(){
     filter = new KMeansFilter();
     cCreator = new CannyContourCreator();
-    detector = new ObjectDetector(filter, cCreator);
+    cfilter = new GooseFilter();
+    detector = new ObjectDetector(filter, cCreator, cfilter);
 }
 
 TargetIdentifier::~TargetIdentifier(){
     delete detector;
     delete filter;
+    delete cfilter;
     delete cCreator;
 }
 
