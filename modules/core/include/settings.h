@@ -80,12 +80,10 @@ typedef struct _mSettings{
     TargetIdentificationSettings ti;
 } mSettings;
 
-
-static mSettings mset;
-
 class Settings{
 private:
 
+mSettings mset;
 static Settings* set;
 /*
  * Private constructor to prevent repeated initialization of singleton.
@@ -98,16 +96,9 @@ public:
      * instantiated it is initialized.
      * @return the singleton Settings
      */
-     static Settings * getInstance(){
-        if (!set){
-            set = new Settings;
-        }
-        return set;
-     }
+     static Settings * getInstance();
 
-     static mSettings get_settings(){
-        return mset;
-     }
+     mSettings& get_settings();
 };
 
 #endif // SETTINGS_H_INCLUDED

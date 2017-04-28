@@ -185,10 +185,11 @@ void worker(Frame* f) {
     workers++;
     assert(!f->get_img().empty());
     identifier.process_frame(f);
-    if ((intermediate && f->get_objects().size() > 0) || videoFeed) {
+    int poSize = f->get_objects().size();
+    if ((intermediate && poSize > 0) || videoFeed) {
         intermediate_buffer.push(f);
     }
-    
+
     //Analyze the image after it is identified
     analyzer = TargetAnalyzer::getInstance();
     for (int i = 0; i < poSize; i++){
