@@ -4,7 +4,7 @@
  *
  * @section LICENSE
  *
- *  Copyright (c) 2015, Waterloo Aerial Robotics Group (WARG)
+ *  Copyright (c) 2015-2016, Waterloo Aerial Robotics Group (WARG)
  *  All rights reserved.
  *
  *  This software is licensed under a modified version of the BSD 3 clause license
@@ -33,7 +33,7 @@ class Object;
 
 class Target{
 public:
-    Target(std::string type);
+    Target();
 
     /**
      * @brief Getter for Target image
@@ -54,7 +54,16 @@ public:
      *
      * @return GPS co-ordinates of the Target
      */
-    cv::Point2f get_centroid();
+    cv::Point2d get_centroid();
+
+    /**
+     * @brief Getter for the pixel distance
+     *
+     * @return The distance covered by each pixel of the image in the X and Y
+     * directions.
+     */
+    cv::Point2d get_pixel_distance();
+
 
     /**
      * @brief Getter for area
@@ -106,6 +115,7 @@ public:
      *         create this instance of Target
      */
     const std::vector<Object *> & get_objects();
+
 private:
 
     /**
@@ -126,7 +136,7 @@ private:
     /**
      * @brief GPS co-ordinates of the centre of the Target
      */
-    cv::Point2f centroid;
+    cv::Point2d centroid;
     
     /**
      * @brief area of the target in square metres

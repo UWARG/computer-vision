@@ -80,12 +80,30 @@ TargetParameters targetLoader:getParameters(){
        return 0;
 }
 */
+
 TargetLoader::TargetLoader(const char* file){
    if (readFile(file)){
       std::string data = std::string(rawData);
       readJSON(data,&jsonParameters);
    }
 }
+
+/*
+PixelObject* TargetLoader::getPixelObject(){
+    using boost::property_tree::ptree;
+    ptree::const_iterator end = jsonParameters.end();
+    for (ptree::const_iterator it = jsonParameters.begin(); it != end; ++it) {
+        if (it->first == "contour"){
+            std::cout << it->first << ": " << it->second.get_value<std::string>() << std::endl;
+            recursivePrint(it->second);
+        }
+    }
+    PixelObject* po = new PixelObject(cv::Mat & crop,
+    std::vector<cv::Point> & contour, cv::Point2d centroid, double area, double
+    perimeter, cv::Scalar colour, cv::Point2d error, double errorAngle);
+    
+    return po;
+}*/
 
 bool TargetLoader::readFile(const char* fileLocation){
    ifstream jFile(fileLocation, ifstream::in | ios::ate);

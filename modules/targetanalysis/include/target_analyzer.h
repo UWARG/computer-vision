@@ -1,33 +1,18 @@
-/* 
-    This file is part of WARG's computer-vision
+/**
+ * @file target_analyzer.h
+ * @author WARG
+ *
+ * @section LICENSE
+ *
+ *  Copyright (c) 2015-2017, Waterloo Aerial Robotics Group (WARG)
+ *  All rights reserved.
+ *
+ *  This software is licensed under a modified version of the BSD 3 clause license
+ *  that should have been included with this software in a file called COPYING.txt
+ *  Otherwise it is available at:
+ *  https://raw.githubusercontent.com/UWARG/computer-vision/master/COPYING.txt
+ */
 
-    Copyright (c) 2015, Waterloo Aerial Robotics Group (WARG)
-    All rights reserved.
-
-    Redistribution and use in source and binary forms, with or without
-    modification, are permitted provided that the following conditions are met:
-    1. Redistributions of source code must retain the above copyright
-       notice, this list of conditions and the following disclaimer.
-    2. Redistributions in binary form must reproduce the above copyright
-       notice, this list of conditions and the following disclaimer in the
-       documentation and/or other materials provided with the distribution.
-    3. Usage of this code MUST be explicitly referenced to WARG and this code 
-       cannot be used in any competition against WARG.
-    4. Neither the name of the WARG nor the names of its contributors may be used 
-       to endorse or promote products derived from this software without specific
-       prior written permission.
-
-    THIS SOFTWARE IS PROVIDED BY WARG ''AS IS'' AND ANY
-    EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
-    WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
-    DISCLAIMED. IN NO EVENT SHALL WARG BE LIABLE FOR ANY
-    DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
-    (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
-    LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
-    ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
-    (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
-    SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-*/
 
 #ifndef TARGET_ANALYZER_H_INCLUDED
 #define TARGET_ANALYZER_H_INCLUDED
@@ -48,35 +33,180 @@
 **/
 
 #include "frame.h"
+#include "pixel_object.h"
+#include "object.h"
+#include <math.h>
+#include <vector>
 
+//Classes
+
+/**
+ * @class TargetAnalyzer
+ *  
+ * TargetAnalyzer is a wrapper module for the PixelObjectList class. It handles
+ * the entry and exit points for every form of interaction with the target
+ * analysis module.
+ * This class is a singleton.
+ *
+ * @brief Provides a procedure for analyzing pixel objects, as well as
+ * extracting data from the results. PixelObjectList is a singleton.
+ *
+ */
 class TargetAnalyzer {
+    /*
+     * analyzer is the static singleton instance of the TargetAnalyzer class
+     */
     static TargetAnalyzer * analyzer;
-    TargetAnalyzer();
+    /*
+     * Private constructor due to singleton design pattern.
+     */ 
+    TargetAnalyzer(){};
 
-    void cleanup();                
+    /*
+     * Settings variables for threshold and threshold biasing in the
+     * grouping algorithm
+     *
+     * VISUAL_THRESHOLD determines how similar two contours need to be inorder
+     * to be designated a 'duplicate'.
+     *
+     * GPS_THRESHOLD determines how similar two GPS coordinates must be inorder
+     * to be designated a 'duplicate'. A value of 0.1 coorresponds to 10 meter
+     * accuracy (1/0.1 = 10m)
+     *
+     * COLOUR_THRESHOLD determines how similar two pixel object colours must be inorder
+     * to be designated a 'duplicate'. This is based on a relative RGB scale,
+     * where White and Black are the polar opposites and would be designated a 0
+     * (based on a euclidean RGB distance).
+     *
+     * GPS_THRESHOLD_BIAS determines how important GPS similarity is in
+     * comparison to VISUAL and COLOR parameters. This value is applied AFTER it matches
+     * the original GPS_THRESHOLD.
+     *   
+     * VISUAL_THRESHOLD_BIAS determines how important GPS similarity is in
+     * comparison to GPS and COLOR parameters. This value is applied AFTER it matches
+     * the original VISUAL_THRESHOLD.
+     *
+     * COLOUR_THRESHOLD_BIAS determines how important colour similarity is in
+     * comparison to GPS and visual/physical parameters. This value is applied AFTER it matches
+     * the original COLOUR_THRESHOLD.
+     */
+    double THRESHOLD[4] = {0.1,0.6,0.9,0.5}; double THRESHOLD_BIAS[4] =
+    {0.5,0.1,0,0};
+
     public:
-
-        static const TargetAnalyzer * getInstance();
-
-        /**
-         * @brief Analyzes a pixeltarget and returns a pointer to the unique target 
-         *        it belongs to
-         *
-         * @param p PixelTarget to be analyzed
-         * @param f Frame that the PixelTarget belongs to
-         * @return pointer to the Target that the PixelTarget belongs to
+        /*
+         * getInstance() returns the singleton instance of this class. If it is not
+         * instantiated it is initialized.
+         * @return the singleton TargetAnalyzer
          */
-        Target * analyze_targets_in_frame(PixelTarget * p, Frame * f);
-
-        /**
-         * @brief retrieves a vector containing all of the unique Targets that 
-         *        have been indentified. 
-         *        The caller of the function should not delete the Targets as they
-         *        will be deleted by the TargetAnalyzer destructor
-         *        
-         * @return vector containing the unique Targets which have been analyzed
+        static TargetAnalyzer * getInstance(){
+            if (!analyzer){
+                analyzer = new TargetAnalyzer;
+            }
+            return analyzer;
+        }
+   
+        /*
+         * @brief AlgorithmNum enumerates a variety of settings for determining
+         * the variance and significance of GPS, CONTOUR and COLOUR correlation.
          */
-        vector<Target *> get_processed();
+        enum AlgorithmNum{
+            GPS = 0,
+            CONTOUR = 1,
+            COLOUR = 2,
+            MATCH = 3,
+        };
+
+        /*
+         * analyze_pixelobject(PixelObject* po) is the entry function into this
+         * module, it initializes the comparisons that are made for each
+         * PixelObject.
+         * @param po the PixelObject that as being analyzed.
+         */
+        void analyze_pixelobject(PixelObject* po);
+
+        /*
+         * @brief get_threshold() is a getter for the threshold parameter of a
+         * particular analysis algorithm
+         * @param an the algorithm for which the threshold settings are
+         * requested for, as defined by enum AlgorithmNum
+         * @return the threshold setting for the particular algorithm
+         */
+        double get_threshold(AlgorithmNum an);
+       
+        /*
+         * @brief get_threshold_bias() is a getter for the threshold_bias
+         * parameter of a particular analysis algorithm.
+         * @param an the algorithm for which the threshold_bias settings are
+         * requested for, as defined by enum AlgorithmNum
+         * @return the threshold_bias setting for the particular algorithm
+         */
+        double get_threshold_bias(AlgorithmNum an); 
+        
+        /*
+         * @brief set_threshold() is a setter for the threshold parameter of a
+         * particular analysis algorithm
+         * @param an the algorithm for which the threshold settings are
+         * requested for, as defined by enum AlgorithmNum
+         * @param value the threshold setting for the particular algorithm
+         */
+        void set_threshold(AlgorithmNum an, double value);
+       
+        /*
+         * @brief set_threshold_bias() is a getter for the threshold_bias
+         * parameter of a particular analysis algorithm.
+         * @param an the algorithm for which the threshold_bias settings are
+         * requested for, as defined by enum AlgorithmNum
+         * @param value the threshold_bias setting for the particular algorithm
+         */
+        void set_threshold_bias(AlgorithmNum an, double value); 
+        /*
+         * getGPS(...) calculates the GPS coordinates (latitude, longitude) of a
+         * specific point in a frame.
+         * @param point the point at which the latitude and longitude should be
+         * determined at.
+         * @param cameraAlpha the alpha angle of the lens of the camera. This
+         * defines how much can be seen and what effect altitude has on the image
+         * scaling.
+         * @param f the frame for which the point is calculated for.
+         * @return A Point, where the first value is the latitude and the second is
+         * the longitude.
+         */
+        int getGPS(cv::Point2d point, cv::Point2d cameraAlpha,Frame* f, cv::Point2d* returnResult);
+
+
+        /*
+         * @brief getGPSDistance() calculates the distance between two GPS coordinates in meters.
+         * @param lat1 the latitude of the first point
+         * @param lon1 the longitude of the first point
+         * @param lat2 the latitude of the second point
+         * @param lon2 the longitude of the second point
+         * @return the distance in meters between the two GPS coordinates.
+         */
+        double getGPSDistance(double lat1, double lon1, double lat2, double lon2);
+
+        /*
+         * @brief getGPSDistance() calculates the distance between two GPS coordinates in meters.
+         * @param gps1 the gps coordinates of the first point
+         * @param gps2 the gps coordinates of the second point
+         * @return the distance in meters between the two GPS coordinates.
+         */
+        double getGPSDistance(cv::Point2d gps1, cv::Point2d gps2); 
+
+        /*
+         * extract_objects() provides a list of unique objects that have been
+         * identified, where the non-unique ones have been grouped.
+         * @return the vector of Objects with identifies the unique ones found.
+         */
+        std::vector<Object*> extract_objects();
+
+        /*
+         * get_unique_objects_length() provides the total number of objects that
+         * have been found within the data acquired.
+         * @return the integer number of Objects that can be extracted by using
+         * the extract_objects() function.
+         */ 
+        int get_unique_objects_length();
 };
 
 #endif // TARGET_ANALYZER_H_INCLUDED

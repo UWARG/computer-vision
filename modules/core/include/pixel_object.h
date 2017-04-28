@@ -4,7 +4,7 @@
  *
  * @section LICENSE
  *
- *  Copyright (c) 2015, Waterloo Aerial Robotics Group (WARG)
+ *  Copyright (c) 2015-2017, Waterloo Aerial Robotics Group (WARG)
  *  All rights reserved.
  *
  *  This software is licensed under a modified version of the BSD 3 clause license
@@ -65,6 +65,28 @@ public:
      * @return Average colour of the interiour of the Object's contour
      */
     cv::Scalar get_colour();
+    
+    /**
+     * @brief Getter for GPS centroid
+     *
+     * @return GPS location of the Object in its frame
+     */
+    cv::Point2d get_gps_centroid();
+
+    /**
+     * @brief Setter for GPS centroid
+     *
+     * @param gps The GPS centroid of the Object in its frame
+     */
+    void set_gps_centroid(cv::Point2d gps);
+
+    /**
+     * @brief Getter for area
+     *
+     * @return Area of the Object in meters
+     */
+    double get_gps_area();
+
 
     /**
      * @brief Getter for error
@@ -103,14 +125,28 @@ private:
     std::vector<cv::Point> contour;
 
     /**
-     * @brief Pixel location of the centre of the Object
+     * @brief Pixel location of the centre of the PixelObject
      */
     cv::Point2d centroid;
+    
+    /**
+     * @brief GPS location of the centre of the PixelObject. This is calculated
+     * from PixelObject::centroid after targetanalysis.
+     */
+    cv::Point2d gps_centroid;
+
 
     /**
      * @brief area of the target in pixels
      */
     double area;
+
+    /**
+     * @brief area of the target in meters. This is computed after
+     * targetanalysis has been completed.
+     */
+    double gps_area;
+
 
     /**
      * @brief perimeter of the target in pixels
@@ -141,6 +177,7 @@ private:
      * @brief Cropped picture of object
      */
     cv::Mat crop;
+    
 };
 
 

@@ -4,7 +4,7 @@
  *
  * @section LICENSE
  *
- *  Copyright (c) 2015, Waterloo Aerial Robotics Group (WARG)
+ *  Copyright (c) 2015-2017, Waterloo Aerial Robotics Group (WARG)
  *  All rights reserved.
  *
  *  This software is licensed under a modified version of the BSD 3 clause license
@@ -42,6 +42,19 @@ double PixelObject::get_perimeter(){
 cv::Scalar PixelObject::get_colour(){
     return colour;
 }
+
+cv::Point2d PixelObject::get_gps_centroid(){
+    return gps_centroid;
+}
+
+void PixelObject::set_gps_centroid(cv::Point2d gps){
+    gps_centroid = gps;
+}
+
+double PixelObject::get_gps_area(){
+    return gps_area;
+}
+
 
 cv::Point2d PixelObject::get_error(){
     return error;

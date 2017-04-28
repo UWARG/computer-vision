@@ -2,39 +2,41 @@
  * @file object.h
  * @author WARG
  *
+ *
  * @section LICENSE
  *
- *  Copyright (c) 2015, Waterloo Aerial Robotics Group (WARG)
+ *  Copyright (c) 2015-2017, Waterloo Aerial Robotics Group (WARG)
  *  All rights reserved.
  *
- *  This software is licensed under a modified version of the BSD 3 clause license
- *  that should have been included with this software in a file called COPYING.txt
+ *  This software is licensed under a modified version of the BSD 3
+ *  clause license
+ *  that should have been included with this software in a file called
+ *  COPYING.txt
  *  Otherwise it is available at:
  *  https://raw.githubusercontent.com/UWARG/computer-vision/master/COPYING.txt
  */
 
 
+
 #ifndef OBJECT_H_INCLUDED
 #define OBJECT_H_INCLUDED
-
-/**
- * @class Object
- *
- * @brief Container class for storing information about
- *     identified targets in real-world measurements
- *     Adding PixelObjects consolidates their information
- *     into the Object
- *
- */
 
 #include <opencv2/core/core.hpp>
 #include <vector>
 
 class PixelObject;
 
+/*
+ * @class PixelObject
+ * @brief Container class for storing information about
+ *     identified targets in real-world measurements
+ *     Adding PixelObjects consolidates their information
+ *     into the Object
+ */ 
+
 class Object {
 public:
-    Object(std::string type);
+    Object();
 
     /**
      * @brief Getter for Object image
@@ -55,7 +57,7 @@ public:
      *
      * @return GPS co-ordinates of the Object
      */
-    cv::Point2f get_centroid();
+    cv::Point2d get_centroid();
 
     /**
      * @brief Getter for area
@@ -83,7 +85,7 @@ public:
      *
      * @return 2D error magnitude of the Object's location in metres
      */
-    cv::Point2f get_error();
+    cv::Point2d get_error();
 
     /**
      * @brief Getter for error angle
@@ -96,9 +98,9 @@ public:
      * @brief Adds given PixelObject to Object's storage
      *        and recalculate target information
      *
-     * @param o PixelObject to be added
+     * @param po PixelObject to be added
      */
-    void add_object(Object * o);
+    void add_pobject(PixelObject * po);
 
     /**
      * @brief Getter for pixel Objects
@@ -106,7 +108,8 @@ public:
      * @return Array containing all of the PixelObjects that were used to
      *         create this instance of Object
      */
-    const std::vector<Object *> & get_objects();
+    const std::vector<PixelObject *> & get_pobjects();
+
 private:
 
     /**
@@ -127,7 +130,7 @@ private:
     /**
      * @brief GPS co-ordinates of the centre of the Object
      */
-    cv::Point2f centroid;
+    cv::Point2d centroid;
 
     /**
      * @brief area of the target in square metres
@@ -147,7 +150,7 @@ private:
     /**
      * @brief Calculated location error of the target as a 2D rectangle in metres
      */
-    cv::Point2f error;
+    cv::Point2d error;
 
     /**
      * @brief Angle of the error as degrees clockwise from North
@@ -159,6 +162,22 @@ private:
      * Each PixelObject is a specific instance of this Object
      */
     std::vector<PixelObject *> pixelObjects;
+
+     /**
+     * @brief Updates Object parameters based on the PixelObjects contained
+     * within it. For now this includes calculating the average
+     * positions/colours/areas with potential error
+     *
+     */ 
+    void update();
+
+    /**
+     * @brief Recalculates Object parameters based on the PixelObjects contained
+     * within it. For now this includes calculating the average
+     * positions/colours/areas with potential error
+     *
+     */ 
+    void recalculate();
 };
 
 

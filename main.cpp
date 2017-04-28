@@ -1,7 +1,7 @@
 /*
     This file is part of WARG's computer-vision
 
-    Copyright (c) 2015, Waterloo Aerial Robotics Group (WARG)
+    Copyright (c) 2015-2017, Waterloo Aerial Robotics Group (WARG)
     All rights reserved.
 
     Redistribution and use in source and binary forms, with or without
@@ -61,6 +61,7 @@
 #include <fstream>
 #include "frame.h"
 #include "target_identifier.h"
+#include "target_analyzer.h"
 #include "imgimport.h"
 #include "importer.h"
 #include "decklink_import.h"
@@ -101,6 +102,7 @@ bool videoFeed = false;
 // Processing module classes
 Importer importer;
 TargetIdentifier identifier;
+TargetAnalyzer * analyzer = NULL;
 MetadataInput *logReader = new MetadataInput();
 
 double aveFrameTime = 1000;
@@ -185,6 +187,12 @@ void worker(Frame* f) {
     identifier.process_frame(f);
     if ((intermediate && f->get_objects().size() > 0) || videoFeed) {
         intermediate_buffer.push(f);
+    }
+    
+    //Analyze the image after it is identified
+    analyzer = TargetAnalyzer::getInstance();
+    for (int i = 0; i < poSize; i++){
+        analyzer->analyze_pixelobject(f->get_objects()[i]);
     }
 
     workers--;

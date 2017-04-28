@@ -87,3 +87,15 @@ void Frame::save(std::string dir) {
     exifData["Exif.Photo.UserComment"] = ss.str();
     image->writeMetadata();
 }
+
+cv::Point2d Frame::get_pixel_distance(){
+    return Frame::pixel_distance;
+}
+
+void Frame::set_pixel_distance(double x, double y){
+    Frame::pixel_distance = cv::Point2d(x,y);
+}
+
+void Frame::set_pixel_distance(cv::Point2d pd){
+    Frame::pixel_distance = pd;
+}
