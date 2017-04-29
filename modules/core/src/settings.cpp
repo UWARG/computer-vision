@@ -14,21 +14,24 @@
  */
 
 #include <stddef.h>
+#include <iostream>
 #include "settings.h"
+
+using namespace std;
 
 Settings *Settings::set = NULL;
 
 Settings::Settings(){
 //Note: This constructor is private and is only used for initialization.
 //TODO: This should read from a JSON file eventually
-    mset.TargetAnalyzerSettings.at("COMPARE_AREA").t_double = 400;
-    mset.TargetAnalyzerSettings.at("MATCH_THRESHOLD").t_double = 0.5;
-    mset.TargetAnalyzerSettings.at("GPS_THRESHOLD").t_double = 0.1;
-    mset.TargetAnalyzerSettings.at("VISUAL_THRESHOLD").t_double= 0.6;
-    mset.TargetAnalyzerSettings.at("COLOUR_THRESHOLD").t_double= 0.9;
-    mset.TargetAnalyzerSettings.at("GPS_THRESHOLD_BIAS").t_double= 0.5;
-    mset.TargetAnalyzerSettings.at("VISUAL_THRESHOLD_BIAS").t_double= 0.1;
-    mset.TargetAnalyzerSettings.at("COLOUR_THRESHOLD_BIAS").t_double= 0;
+    mset.TargetAnalyzerSettings.insert({"COMPARE_AREA",400});
+    mset.TargetAnalyzerSettings.insert({"MATCH_THRESHOLD",0.5});
+    mset.TargetAnalyzerSettings.insert({"GPS_THRESHOLD",0.1});
+    mset.TargetAnalyzerSettings.insert({"VISUAL_THRESHOLD",0.6});
+    mset.TargetAnalyzerSettings.insert({"COLOUR_THRESHOLD",0.9});
+    mset.TargetAnalyzerSettings.insert({"GPS_THRESHOLD_BIAS",0.5});
+    mset.TargetAnalyzerSettings.insert({"VISUAL_TRESHOLD_BIAS",0.1});
+    mset.TargetAnalyzerSettings.insert({"COLOUR_THRESHOLD_BIAS",0});
 }
 
 Settings * Settings::getInstance() {
@@ -40,4 +43,16 @@ Settings * Settings::getInstance() {
 
 mSettings& Settings::get_settings(){
     return mset;
+}
+
+void Settings::print_settings(){
+    for (auto it:mset.ImageImportSettings){
+        cout << it.first << ": " << it.second.t_double << endl;
+    }
+    for (auto it:mset.TargetAnalyzerSettings){
+        cout << it.first << ": " << it.second.t_double << endl;
+    }
+    for (auto it:mset.TargetIdentificationSettings){
+        cout << it.first << ": " << it.second.t_double << endl;
+    }
 }

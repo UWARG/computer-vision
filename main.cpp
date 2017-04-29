@@ -72,6 +72,7 @@
 #include "camera.h"
 #include "video_import.h"
 #include "pixel_object.h"
+#include "settings.h"
 
 using namespace std;
 using namespace boost;
@@ -418,6 +419,23 @@ vector<Command> commands = {
     }),
     Command("frames.source.update_delay", "Updates the delay for the source at the given index", {"index", "delay"}, [=](State &newState, vector<string> args) {
         importer.update_delay(stoi(args[0]), stol(args[1]));
+    }),
+    Command("settings.list", "Lists all the settings", {}, [=](State $newState, vector<string> args){ 
+        //Settings::getInstance()->print_settings();
+    }),
+    Command("settings.targetanalyzer.changeDouble", "Changes the setting values in the TargetAnalyzer module", {"key","value"}, [=](State &newState, vector<string> args){
+        unordered_map<string,SettingTypes> temp =
+        Settings::getInstance()->get_settings().TargetAnalyzerSettings;
+        
+        unordered_map<string,SettingTypes>::const_iterator got =
+        temp.find(args[0]);
+        if (got != temp.end()){
+            temp.at(args[0]) = SettingTypes(stod(args[1]));
+            cout << "Values Updated." << endl;
+        }
+        else{
+            
+        }
     })
 };
 

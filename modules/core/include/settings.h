@@ -27,7 +27,10 @@
 
 union SettingTypes{
     double t_double;
-    
+    int t_int;
+   SettingTypes(double a){t_double = a;};
+   SettingTypes(int a){t_int = a;};
+   SettingTypes(){};
 };
 
 typedef struct _mSettings{
@@ -55,6 +58,8 @@ public:
      static Settings * getInstance();
 
      mSettings& get_settings();
+
+     void print_settings();
 };
 
 #endif // SETTINGS_H_INCLUDED
