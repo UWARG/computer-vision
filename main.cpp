@@ -109,24 +109,25 @@ double aveFrameTime = 1000;
 int frameCount = 0;
 
 double fisheyeMatrix[] = {
-    2.4052826789763981e+03, 0, 2000,
-    0, 2.4052826789763981e+03, 1500,
+    2.4052826789763981e+03, 0, 960,
+    0, 2.4052826789763981e+03, 540,
     0, 0, 1
 };
 
 double fisheyeDistortion[] = {
-    -0.392, 0.146, 0, 0, -0.023
+//    -0.392, 0.146, 0, 0, -0.023 Images
+-2.3, 6.6, 0, 0, -8.4 // Pictures
 };
 
 double newFisheyeMatrix[] = {
-    2000, 0, 2000,
-    0, 2000, 1500,
+    2080, 0, 960,
+    0, 2080, 540,
     0, 0, 1
 };
 
 double rectMatrix[] = {
-    2410, 0, 960,
-    0, 2410, 540,
+    2410, 0, 2000,
+    0, 2410, 1500,
     0, 0, 1
 };
 
@@ -135,8 +136,8 @@ double rectDistortion[] = {
 };
 
 Camera goProFisheye(
-    Size(4000, 3000),
-    Size2d(120, 90),
+    Size(1920, 1080),
+    Size2d(112.6, 96.7),
     Mat(
         Size(3, 3),
         CV_64F,
@@ -155,8 +156,8 @@ Camera goProFisheye(
 );
 
 Camera goProRect(
-    Size(1920, 1080),
-    Size2d(90, 67.5),
+    Size(4000, 3000),
+    Size2d(96.22, 79.38),
     Mat(
         Size(3, 3),
         CV_64F,
