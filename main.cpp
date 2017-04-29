@@ -106,28 +106,31 @@ TargetIdentifier identifier;
 TargetAnalyzer * analyzer = NULL;
 MetadataInput *logReader = new MetadataInput();
 
+vector<PixelObject *> poBuffer;
+
 double aveFrameTime = 1000;
 int frameCount = 0;
 
 double fisheyeMatrix[] = {
-    2.4052826789763981e+03, 0, 2000,
-    0, 2.4052826789763981e+03, 1500,
+    2.4052826789763981e+03, 0, 960,
+    0, 2.4052826789763981e+03, 540,
     0, 0, 1
 };
 
 double fisheyeDistortion[] = {
-    -0.392, 0.146, 0, 0, -0.023
+//    -0.392, 0.146, 0, 0, -0.023 Images
+-2.3, 6.6, 0, 0, -8.4 // Pictures
 };
 
 double newFisheyeMatrix[] = {
-    2000, 0, 2000,
-    0, 2000, 1500,
+    2080, 0, 960,
+    0, 2080, 540,
     0, 0, 1
 };
 
 double rectMatrix[] = {
-    2410, 0, 960,
-    0, 2410, 540,
+    2410, 0, 2000,
+    0, 2410, 1500,
     0, 0, 1
 };
 
@@ -136,8 +139,8 @@ double rectDistortion[] = {
 };
 
 Camera goProFisheye(
-    Size(4000, 3000),
-    Size2d(120, 90),
+    Size(1920, 1080),
+    Size2d(112.6, 96.7),
     Mat(
         Size(3, 3),
         CV_64F,
@@ -156,8 +159,8 @@ Camera goProFisheye(
 );
 
 Camera goProRect(
-    Size(1920, 1080),
-    Size2d(90, 67.5),
+    Size(4000, 3000),
+    Size2d(96.22, 79.38),
     Mat(
         Size(3, 3),
         CV_64F,
@@ -194,7 +197,7 @@ void worker(Frame* f) {
     //Analyze the image after it is identified
     analyzer = TargetAnalyzer::getInstance();
     for (int i = 0; i < poSize; i++){
-        analyzer->analyze_pixelobject(f->get_objects()[i]);
+        poBuffer.push_back(f->get_objects()[i]);
     }
 
     workers--;
@@ -214,6 +217,15 @@ void assign_workers() {
         }
 
         boost::this_thread::sleep(boost::posix_time::milliseconds(aveFrameTime/processors));
+    }
+}
+
+void analyze() {
+    while (poBuffer.size() > 0 || currentState.readingImages || workers > 0) {
+        if (poBuffer.size() > 0) {
+            analyzer->analyze_pixelobject(poBuffer[0]);
+        }
+        boost::this_thread::sleep(boost::posix_time::milliseconds(10));
     }
 }
 
@@ -306,6 +318,7 @@ int main(int argc, char** argv) {
     processors = boost::thread::hardware_concurrency();
 
     while (!cin.eof()) handle_input();
+    currentState.readingImages = false;
     ioService.stop();
     threadpool.join_all();
     delete logReader;
@@ -445,6 +458,7 @@ void handle_state_change(State &newState) {
             currentState.readingImages = true;
             queue_work(assign_workers);
             queue_work(output);
+            queue_work(analyze);
         } else {
             BOOST_LOG_TRIVIAL(error) << "Trying to read images without both image and metadata source is not supported";
         }

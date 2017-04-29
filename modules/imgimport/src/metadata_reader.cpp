@@ -48,7 +48,7 @@ MetadataReader::MetadataReader(MetadataInput &input, string filename) : Metadata
             break;
 
         vector<string> args;
-        boost::split(args, line, boost::is_any_of(" "));
+        boost::split(args, line, boost::is_any_of(","));
         unordered_map<string, string> kvp;
         if (args.size() != heads.size()) continue;
         for (int i = 0; i < args.size(); i++) {
@@ -88,7 +88,7 @@ void MetadataReader::read_log() {
                 set_head_row(line);
             } else {
                 vector<string> args;
-                boost::split(args, line, boost::is_any_of(" "));
+                boost::split(args, line, boost::is_any_of(","));
                 unordered_map<string, string> kvp;
                 if (args.size() != heads.size()) continue;
                 for (int i = 0; i < args.size(); i++) {
