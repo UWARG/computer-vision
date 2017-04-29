@@ -105,6 +105,8 @@ TargetIdentifier identifier;
 TargetAnalyzer * analyzer = NULL;
 MetadataInput *logReader = new MetadataInput();
 
+vector<PixelObject *> poBuffer;
+
 double aveFrameTime = 1000;
 int frameCount = 0;
 
@@ -194,7 +196,7 @@ void worker(Frame* f) {
     //Analyze the image after it is identified
     analyzer = TargetAnalyzer::getInstance();
     for (int i = 0; i < poSize; i++){
-        analyzer->analyze_pixelobject(f->get_objects()[i]);
+        poBuffer.push_back(f->get_objects()[i]);
     }
 
     workers--;
@@ -214,6 +216,15 @@ void assign_workers() {
         }
 
         boost::this_thread::sleep(boost::posix_time::milliseconds(aveFrameTime/processors));
+    }
+}
+
+void analyze() {
+    while (poBuffer.size() > 0 || currentState.readingImages || workers > 0) {
+        if (poBuffer.size() > 0) {
+            analyzer->analyze_pixelobject(poBuffer[0]);
+        }
+        boost::this_thread::sleep(boost::posix_time::milliseconds(10));
     }
 }
 
@@ -306,6 +317,7 @@ int main(int argc, char** argv) {
     processors = boost::thread::hardware_concurrency();
 
     while (!cin.eof()) handle_input();
+    currentState.readingImages = false;
     ioService.stop();
     threadpool.join_all();
     delete logReader;
@@ -428,6 +440,7 @@ void handle_state_change(State &newState) {
             currentState.readingImages = true;
             queue_work(assign_workers);
             queue_work(output);
+            queue_work(analyze);
         } else {
             BOOST_LOG_TRIVIAL(error) << "Trying to read images without both image and metadata source is not supported";
         }
