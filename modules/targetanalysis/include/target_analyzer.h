@@ -90,9 +90,7 @@ class TargetAnalyzer {
      * comparison to GPS and visual/physical parameters. This value is applied AFTER it matches
      * the original COLOUR_THRESHOLD.
      */
-    double THRESHOLD[4] = {0.1,0.6,0.9,0.5}; double THRESHOLD_BIAS[4] =
-    {0.5,0.1,0,0};
-
+    
     public:
         /*
          * getInstance() returns the singleton instance of this class. If it is not
@@ -107,17 +105,6 @@ class TargetAnalyzer {
         }
    
         /*
-         * @brief AlgorithmNum enumerates a variety of settings for determining
-         * the variance and significance of GPS, CONTOUR and COLOUR correlation.
-         */
-        enum AlgorithmNum{
-            GPS = 0,
-            CONTOUR = 1,
-            COLOUR = 2,
-            MATCH = 3,
-        };
-
-        /*
          * analyze_pixelobject(PixelObject* po) is the entry function into this
          * module, it initializes the comparisons that are made for each
          * PixelObject.
@@ -125,41 +112,6 @@ class TargetAnalyzer {
          */
         void analyze_pixelobject(PixelObject* po);
 
-        /*
-         * @brief get_threshold() is a getter for the threshold parameter of a
-         * particular analysis algorithm
-         * @param an the algorithm for which the threshold settings are
-         * requested for, as defined by enum AlgorithmNum
-         * @return the threshold setting for the particular algorithm
-         */
-        double get_threshold(AlgorithmNum an);
-       
-        /*
-         * @brief get_threshold_bias() is a getter for the threshold_bias
-         * parameter of a particular analysis algorithm.
-         * @param an the algorithm for which the threshold_bias settings are
-         * requested for, as defined by enum AlgorithmNum
-         * @return the threshold_bias setting for the particular algorithm
-         */
-        double get_threshold_bias(AlgorithmNum an); 
-        
-        /*
-         * @brief set_threshold() is a setter for the threshold parameter of a
-         * particular analysis algorithm
-         * @param an the algorithm for which the threshold settings are
-         * requested for, as defined by enum AlgorithmNum
-         * @param value the threshold setting for the particular algorithm
-         */
-        void set_threshold(AlgorithmNum an, double value);
-       
-        /*
-         * @brief set_threshold_bias() is a getter for the threshold_bias
-         * parameter of a particular analysis algorithm.
-         * @param an the algorithm for which the threshold_bias settings are
-         * requested for, as defined by enum AlgorithmNum
-         * @param value the threshold_bias setting for the particular algorithm
-         */
-        void set_threshold_bias(AlgorithmNum an, double value); 
         /*
          * getGPS(...) calculates the GPS coordinates (latitude, longitude) of a
          * specific point in a frame.

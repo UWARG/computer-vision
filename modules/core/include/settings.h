@@ -22,62 +22,18 @@
 #ifndef SETTINGS_H_INCLUDED
 #define SETTINGS_H_INCLUDED
 
-typedef struct _TargetAnalyzerSettings{
-    /**
-     * @brief Area to use for visual comparisons. Larger values require more
-     * computational time.
-     */
-    int COMPARE_AREA;
+#include <unordered_map>
+#include <string>
 
-    /**
-     * @brief Error associated with the time
-     */
-    double MATCH_THRESHOLD;
-
-    /**
-     * @brief Latitude of the plane at time of frame capture
-     */
-    double GPS_THRESHOLD;
+union SettingTypes{
+    double t_double;
     
-    /**
-     * @brief Longitude of the plane at time of frame capture
-     */
-    double VISUAL_THRESHOLD;
-    
-    /**
-     * @brief Error associated with the latitude 
-     */
-    double COLOUR_THRESHOLD;
-    
-    /**
-     * @brief Error associated with the longitude
-     */
-    double GPS_THRESHOLD_BIAS;
-
-    /**
-     * @brief Pitch of the camera at time of frame capture
-     */
-    double VISUAL_THRESHOLD_BIAS;
-    
-    /**
-     * @brief Roll of the camera at time of frame capture
-     */
-    double COLOUR_THRESHOLD_BIAS;
-
-} TargetAnalyzerSettings;
-
-typedef struct _ImageImportSettings{
-    int a;       
-} ImageImportSettings;
-
-typedef struct _TargetIdentificationSettings{
-    int a;
-} TargetIdentificationSettings;
+};
 
 typedef struct _mSettings{
-    ImageImportSettings im;
-    TargetAnalyzerSettings ta;
-    TargetIdentificationSettings ti;
+    std::unordered_map<std::string,SettingTypes> ImageImportSettings;
+    std::unordered_map<std::string,SettingTypes> TargetAnalyzerSettings;
+    std::unordered_map<std::string,SettingTypes> TargetIdentificationSettings;
 } mSettings;
 
 class Settings{
@@ -88,7 +44,7 @@ static Settings* set;
 /*
  * Private constructor to prevent repeated initialization of singleton.
  */
-Settings(){};
+Settings();
 public:
     /*
      * getInstance() returns the singleton instance of this class. If it

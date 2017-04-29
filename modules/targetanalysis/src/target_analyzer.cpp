@@ -48,23 +48,6 @@ int TargetAnalyzer::get_unique_objects_length(){
     return pol->getListLength();
 }
 
-double TargetAnalyzer::get_threshold(AlgorithmNum an){
-    return THRESHOLD[an];
-}
-
-double TargetAnalyzer::get_threshold_bias(AlgorithmNum an){
-    return THRESHOLD_BIAS[an];
-}
-
-void TargetAnalyzer::set_threshold(AlgorithmNum an, double value){
-    THRESHOLD[an] = value;
-}
-
-void TargetAnalyzer::set_threshold_bias(AlgorithmNum an, double value){
-    THRESHOLD_BIAS[an] = value;
-}
-
-
 //Based on the GPS location of the image, calculates the
 //GPS location of a certain pixel in the image.
 int TargetAnalyzer::getGPS(cv::Point2d point, cv::Point2d cameraAlpha,

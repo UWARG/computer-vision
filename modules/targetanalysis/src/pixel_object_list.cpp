@@ -33,7 +33,7 @@ using namespace boost;
 using namespace std;
 using namespace cv;
 
-TargetAnalyzerSettings settings = Settings::getInstance()->get_settings().ta;
+unordered_map<string,SettingTypes> settings = Settings::getInstance()->get_settings().TargetAnalyzerSettings;
 
 PixelObjectList* PixelObjectList::firstInstance = NULL;
 
@@ -77,16 +77,15 @@ double PixelObjectList::compareNode(PixelObject* po1, Object* o2){
     //Compare Pixel Objects based on Metadata and visual queues
     //Uses Hierarchical Structure: GPS data is most important, followed by
     //Contour/Shape, followed by Colour
-    TargetAnalyzer* ta = TargetAnalyzer::getInstance();
-    using TA = TargetAnalyzer; 
     double gps = compareGPS(po1, o2);
-
-    if (gps > settings.GPS_THRESHOLD){//    if (gps > ta->get_threshold(TA::GPS)){
+    if (gps > settings.at("GPS_THRESHOLD").t_double){//    if (gps > ta->get_threshold(TA::GPS)){
         double visual = compareContours(po1, o2);
-        if (visual > ta->get_threshold(TA::CONTOUR)){
+        if (visual > settings.at("VISUAL_THRESHOLD").t_double){
             double colour = compareColour(po1, o2);
-            if (colour > ta->get_threshold(TA::COLOUR)){
-                return (gps + ta->get_threshold_bias(TA::GPS))*(visual + ta->get_threshold_bias(TA::CONTOUR))*(colour + ta->get_threshold_bias(TA::COLOUR)); 
+            if (colour > settings.at("COLOUR_THRESHOLD").t_double){
+                return (gps + settings.at("COLOUR_THRESHOLD_BIAS").t_double)*(visual +
+                settings.at("VISUAL_THRESHOLD_BIAS").t_double)*(colour +
+                settings.at("COLOUR_THRESHOLD_BIAS").t_double); 
             }
         }
     }
@@ -293,7 +292,7 @@ void PixelObjectList::addAndCompare(PixelObject* po){
         tempPointer = tempPointer->next;
     }
     //Is the best match good enough - FUZZY LOGIC
-    if (maxSimilarity >= TargetAnalyzer::getInstance()->get_threshold(TargetAnalyzer::MATCH)){
+    if (maxSimilarity >= settings.at("MATCH_THRESHOLD").t_double){
         //The add_pobject function should also recalculate all parameters of the
         //object.
         listMatch[iMax].node->o->add_pobject(po);
