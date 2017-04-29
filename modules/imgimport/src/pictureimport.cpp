@@ -21,10 +21,22 @@
 #include <dirent.h>
 #include <boost/log/trivial.hpp>
 #include <iostream>
+#include <exiv2/exiv2.hpp>
+#include <boost/date_time.hpp>
+#include <boost/date_time/posix_time/posix_time.hpp>
 
 using namespace cv;
 using namespace std;
 using namespace boost;
+namespace bt = boost::posix_time;
+
+static std::time_t pt_to_time_t(const bt::ptime& pt) {
+    bt::ptime timet_start(boost::gregorian::date(1970,1,1));
+    bt::time_duration diff = pt - timet_start;
+    return diff.ticks()/bt::time_duration::rep_type::ticks_per_second;
+}
+
+static const std::locale dateFormat = std::locale(std::locale::classic(),new bt::time_input_facet("%Y:%m:%d %H:%M:%S"));
 
 PictureImport::PictureImport(std::string filePath, MetadataInput* mdin, Camera &camera)
               :ImageImport(mdin, camera) {
@@ -40,6 +52,7 @@ PictureImport::~PictureImport(){
 Frame * PictureImport::next_frame(){
     Mat* img=new Mat;
     struct dirent* drnt;
+    string timestamp;
     while(img->empty()){
 	drnt=readdir(dr);
         if(drnt==NULL){
@@ -49,15 +62,31 @@ Frame * PictureImport::next_frame(){
         if(strcmp(drnt->d_name,"..")==0||strcmp(drnt->d_name,".")==0){
             continue;
         }
-        BOOST_LOG_TRIVIAL(info) << "Reading " << filePath;
         string true_path=filePath+'/'+drnt->d_name;
+        BOOST_LOG_TRIVIAL(info) << "Reading " << true_path;
         *img=imread(true_path,CV_LOAD_IMAGE_COLOR);
+        // TODO: Read timestamp from file exif creation date
+        Exiv2::Image::AutoPtr image = Exiv2::ImageFactory::open(true_path);
+        image->readMetadata();
+        Exiv2::ExifData &exifData = image->exifData();
+        timestamp = exifData["Exif.Photo.DateTimeOriginal"].value().toString();
     }
     string id(drnt->d_name);
     Metadata m;
     if (reader != NULL) {
         try {
-            m = reader->next_metadata();
+            bt::ptime pt;
+            std::istringstream is(timestamp);
+            is.imbue(dateFormat);
+            is >> pt;
+            time_t frameTime = pt_to_time_t(pt);
+            tm * utcTime = gmtime(&frameTime);
+
+            double time = utcTime->tm_hour * 10000 + utcTime->tm_min * 100 + utcTime->tm_sec;
+
+            BOOST_LOG_TRIVIAL(trace) << "Picture creation date: " << time;
+
+            m = reader->get_metadata(time);
         } catch (std::exception & e) {
             BOOST_LOG_TRIVIAL(error) << "Error while retrieving metadata: " <<  e.what();
         }
