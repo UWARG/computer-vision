@@ -32,14 +32,18 @@ MetadataInput::MetadataInput() : size(0) {
 }
 
 void MetadataInput::push_back(unordered_map<string, string> newEntry) {
-    if (newEntry.find("time") == newEntry.end()) {
+    if (newEntry.find("gps_time") == newEntry.end()) {
         BOOST_LOG_TRIVIAL(error) << "Trying to add an entry with no time column";
         return;
     }
 
+    if (newEntry["gps_time"].size() <= 1) {
+        BOOST_LOG_TRIVIAL(trace) << "gps_time cell is not filled";
+        return;
+    }
     int index = size, upper = size, lower = 0;
     size++;
-    long newTime = stol(newEntry["time"]);
+    long newTime = (long)stod(newEntry["gps_time"]);
     while((index < size - 1 && index >= 0 && time[index] < newTime)
                 || (index > 0 && index < size && time[index - 1] > newTime)) {
         if (index == size - 1 && time[index - 1] > newTime) {
@@ -76,10 +80,10 @@ MetadataInput::~MetadataInput(){
 Metadata MetadataInput::bisearcher(double value,int begin,int end, string field){
     if (end - begin <= 1) {
         if (abs(value - stod(data[field].at(begin))) < abs(value - stod(data[field].at(end)))) {
-            return metadata_at_index(begin, field.compare("time") == 0 ? value : stod(data["time"].at(begin)));
+            return metadata_at_index(begin, field.compare("gps_time") == 0 ? value : stod(data["gps_time"].at(begin)));
         }
         else {
-            return metadata_at_index(end, field.compare("time") == 0 ? value : stod(data["time"].at(end)));
+            return metadata_at_index(end, field.compare("gps_time") == 0 ? value : stod(data["gps_time"].at(end)));
         }
     }
     if (value < stod(data[field].at((begin + end)/2))) {
@@ -92,7 +96,7 @@ Metadata MetadataInput::bisearcher(double value,int begin,int end, string field)
 
 Metadata MetadataInput::metadata_at_index(int index, double timestamp) {
     Metadata reader;
-    reader.time = stod(data["time"].at(index));
+    reader.time = stod(data["gps_time"].at(index));
     reader.lat = stod(data["lat"].at(index));
     reader.lon = stod(data["lon"].at(index));
     reader.pitch = stod(data["pitch"].at(index));
@@ -107,7 +111,7 @@ Metadata MetadataInput::metadata_at_index(int index, double timestamp) {
 
 Metadata MetadataInput::get_metadata(double timestamp){
     if (size == 0) throw runtime_error("no log entries available");
-    return bisearcher(timestamp, 0, size-1, "time");
+    return bisearcher(timestamp, 0, size-1, "gps_time");
 }
 
 Metadata MetadataInput::next_metadata() {
@@ -124,7 +128,7 @@ int MetadataInput::num_sources() {
 }
 
 int MetadataInput::check_data_order() {
-    vector<string> time = data["time"];
+    vector<string> time = data["gps_time"];
     for (int i = 1; i < time.size(); i++) {
         if (stol(time[i]) < stol(time[i - 1])) {
             return i;

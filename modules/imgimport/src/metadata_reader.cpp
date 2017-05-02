@@ -52,6 +52,7 @@ MetadataReader::MetadataReader(MetadataInput &input, string filename) : Metadata
         unordered_map<string, string> kvp;
         if (args.size() != heads.size()) continue;
         for (int i = 0; i < args.size(); i++) {
+            boost::replace_all(args[i], " ", "");
             kvp.insert({heads[i], args[i]});
         }
         input.push_back(kvp);
