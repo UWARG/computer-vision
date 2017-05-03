@@ -13,12 +13,13 @@ Photos to use for testing:
 * [2014 Competition](https://drive.google.com/open?id=0BySpWXvmBM4JWGhrZGk5UWNqNm8&authuser=0)
 * [2015 Competition](https://drive.google.com/open?id=0B8ozhZojJMQbfkx4WTlOYnJQV3dKcHFxc0F5c1JkU2FHRzRsM2VVU3VzV3JGeUlZQU9iN00&authuser=1)
 * [2016 Competition](https://ece.uwaterloo.ca/~warg/downloads/flightdata/competition2016/)
+* [2017 Competition](https://ece.uwaterloo.ca/~warg/downloads/flightdata/competition2017/)
 * [All Flight Data](https://ece.uwaterloo.ca/~warg/downloads/flightdata/)
 
 CONOPS/Rules:
 * [2015 CONOPS/Rules](https://drive.google.com/open?id=0BySpWXvmBM4JajdsemZFb0o2Ukk&authuser=0)
 * [2016 CONOPS/Rules](https://drive.google.com/open?id=0BySpWXvmBM4JUnhyaGN0NW5OR1k)
-* [2017 CONOPS/Rules](https://drive.google.com/file/d/0BySpWXvmBM4JNlFyX18xTUpPOG8/view?usp=sharing)
+* [2017 CONOPS/Rules](https://ece.uwaterloo.ca/~warg/downloads/flightdata/competition2017/2017%20CONOPS%20and%20RULES_20161123_rev2.pdf)
 
 ### Building and Installing
 
