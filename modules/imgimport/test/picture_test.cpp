@@ -52,15 +52,15 @@ BOOST_AUTO_TEST_CASE(picture_test){
         frames.push_back(show);
     }
 
-    Metadata m = mdin->get_metadata(221000.5);
-    BOOST_CHECK(abs(m.time - 221000.59375) < 0.00001);
-    BOOST_CHECK(abs(m.lat - 49.907920000110124) < 0.00001);
-    BOOST_CHECK(abs(m.lon - -98.2732866668043) < 0.00001);
-    BOOST_CHECK(abs(m.heading - 318) < 0.00001);
-    BOOST_CHECK(abs(m.altitude - 103.313) < 0.01);
+    Metadata m = mdin->get_metadata(131017.4);
+    BOOST_CHECK(abs(m.time - 131017.3984375) < 0.00001);
+    BOOST_CHECK(abs(m.lat - 48.5107879638672) < 0.00001);
+    BOOST_CHECK(abs(m.lon - -71.6448364257812) < 0.00001);
+    BOOST_CHECK(abs(m.heading - 305) < 0.00001);
+    BOOST_CHECK(abs(m.altitude - 84.5625) < 0.01);
     BOOST_TEST_MESSAGE("Altitude " << m.altitude);
 
-    benchmark_function("Metadata Lookup", [&]() { m = mdin->get_metadata((rand() % 6514) + 215410); }, 1000);
+    benchmark_function("Metadata Lookup", [&]() { m = mdin->get_metadata((rand() % 255) + 130906); }, 1000);
 
     BOOST_REQUIRE(frames.size() == count);
 
