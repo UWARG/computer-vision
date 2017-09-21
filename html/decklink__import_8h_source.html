@@ -141,14 +141,17 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;        <span class="keywordtype">int</span> <a class="code" href="classDeckLinkImport.html#a9bf0aced6fb2d7570ed19bbeed90732d">grabFrame</a>(cv::Mat* frame);</div>
 <div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;        </div>
 <div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;        <span class="keyword">virtual</span> <a class="code" href="classFrame.html">Frame</a>* <a class="code" href="classDeckLinkImport.html#a614aaa363af837d46346236497c3f324">next_frame</a>();</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    <span class="keyword">private</span>:</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;        <span class="keywordtype">int</span> initVideoSource();</div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;};</div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;<span class="preprocessor">#endif // DECKLINK_IMPORT_H_INCLUDED</span></div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;        <span class="keyword">virtual</span> std::string <a class="code" href="classDeckLinkImport.html#a91b48eb2fdf1550963da35e2aaf58fe7">to_string</a>();</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;    <span class="keyword">private</span>:</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;        <span class="keywordtype">int</span> initVideoSource();</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;};</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;<span class="preprocessor">#endif // DECKLINK_IMPORT_H_INCLUDED</span></div>
 <div class="ttc" id="classDeckLinkImport_html_a8f10f559e8d247b2893eedd2ff20e3de"><div class="ttname"><a href="classDeckLinkImport.html#a8f10f559e8d247b2893eedd2ff20e3de">DeckLinkImport::stopCapture</a></div><div class="ttdeci">int stopCapture()</div></div>
 <div class="ttc" id="classImageImport_html"><div class="ttname"><a href="classImageImport.html">ImageImport</a></div><div class="ttdoc">Abstract class for importing frames and corresponding metadata. </div><div class="ttdef"><b>Definition:</b> imgimport.h:29</div></div>
 <div class="ttc" id="classDeckLinkImport_html"><div class="ttname"><a href="classDeckLinkImport.html">DeckLinkImport</a></div><div class="ttdoc">Module for extracting frames from DeckLink Video cards. </div><div class="ttdef"><b>Definition:</b> decklink_import.h:59</div></div>
+<div class="ttc" id="classDeckLinkImport_html_a91b48eb2fdf1550963da35e2aaf58fe7"><div class="ttname"><a href="classDeckLinkImport.html#a91b48eb2fdf1550963da35e2aaf58fe7">DeckLinkImport::to_string</a></div><div class="ttdeci">virtual std::string to_string()</div><div class="ttdoc">String representation of the Importer. </div></div>
 <div class="ttc" id="classMetadataInput_html"><div class="ttname"><a href="classMetadataInput.html">MetadataInput</a></div><div class="ttdoc">A class for storing and searching telemetry logs. </div><div class="ttdef"><b>Definition:</b> metadata_input.h:32</div></div>
 <div class="ttc" id="classDeckLinkImport_html_a614aaa363af837d46346236497c3f324"><div class="ttname"><a href="classDeckLinkImport.html#a614aaa363af837d46346236497c3f324">DeckLinkImport::next_frame</a></div><div class="ttdeci">virtual Frame * next_frame()</div></div>
 <div class="ttc" id="classDeckLinkImport_html_a9bf0aced6fb2d7570ed19bbeed90732d"><div class="ttname"><a href="classDeckLinkImport.html#a9bf0aced6fb2d7570ed19bbeed90732d">DeckLinkImport::grabFrame</a></div><div class="ttdeci">int grabFrame(cv::Mat *frame)</div></div>

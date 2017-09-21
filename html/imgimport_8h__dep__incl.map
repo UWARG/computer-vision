@@ -2,5 +2,8 @@
 <area shape="rect" id="node2" href="$decklink__import_8h_source.html" title="modules/imgimport/include\l/decklink_import.h" alt="" coords="5,95,183,136"/>
 <area shape="rect" id="node3" href="$importer_8h.html" title="modules/imgimport/include\l/importer.h" alt="" coords="207,95,384,136"/>
 <area shape="rect" id="node5" href="$pictureimport_8h_source.html" title="modules/imgimport/include\l/pictureimport.h" alt="" coords="408,95,585,136"/>
+<area shape="rect" id="node6" href="$video__import_8h.html" title="modules/imgimport/include\l/video_import.h" alt="" coords="609,95,787,136"/>
 <area shape="rect" id="node4" href="$importer_8cpp.html" title="modules/imgimport/src\l/importer.cpp" alt="" coords="218,184,373,225"/>
+<area shape="rect" id="node7" href="$video__import_8cpp.html" title="modules/imgimport/src\l/video_import.cpp" alt="" coords="530,184,685,225"/>
+<area shape="rect" id="node8" href="$video__test_8cpp.html" title="modules/imgimport/test\l/video_test.cpp" alt="" coords="709,184,868,225"/>
 </map>

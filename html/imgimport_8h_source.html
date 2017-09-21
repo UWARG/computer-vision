@@ -102,12 +102,15 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;</div>
 <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="keyword">virtual</span> <a class="code" href="classFrame.html">Frame</a> * <a class="code" href="classImageImport.html#acbf182e5ff9baf205a0e1aceadab654d">next_frame</a>() = 0;</div>
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="keyword">protected</span>:</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <a class="code" href="classMetadataInput.html">MetadataInput</a> * reader;</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <a class="code" href="classCamera.html">Camera</a> &amp;camera;</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;};</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="keyword">virtual</span> std::string <a class="code" href="classImageImport.html#ae9df84f8dff519f40cd818d316a54fee">to_string</a>() = 0;</div>
 <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="preprocessor">#endif // IMAGE_IMPORT_H_INCLUDED</span></div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="keyword">protected</span>:</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <a class="code" href="classMetadataInput.html">MetadataInput</a> * reader;</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <a class="code" href="classCamera.html">Camera</a> &amp;camera;</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;};</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="preprocessor">#endif // IMAGE_IMPORT_H_INCLUDED</span></div>
+<div class="ttc" id="classImageImport_html_ae9df84f8dff519f40cd818d316a54fee"><div class="ttname"><a href="classImageImport.html#ae9df84f8dff519f40cd818d316a54fee">ImageImport::to_string</a></div><div class="ttdeci">virtual std::string to_string()=0</div><div class="ttdoc">String representation of the Importer. </div></div>
 <div class="ttc" id="classImageImport_html"><div class="ttname"><a href="classImageImport.html">ImageImport</a></div><div class="ttdoc">Abstract class for importing frames and corresponding metadata. </div><div class="ttdef"><b>Definition:</b> imgimport.h:29</div></div>
 <div class="ttc" id="classImageImport_html_acaa16493bcb573d9fbf5e9d05e95bdde"><div class="ttname"><a href="classImageImport.html#acaa16493bcb573d9fbf5e9d05e95bdde">ImageImport::ImageImport</a></div><div class="ttdeci">ImageImport(MetadataInput *reader, Camera &amp;camera)</div><div class="ttdef"><b>Definition:</b> imgimport.cpp:15</div></div>
 <div class="ttc" id="classMetadataInput_html"><div class="ttname"><a href="classMetadataInput.html">MetadataInput</a></div><div class="ttdoc">A class for storing and searching telemetry logs. </div><div class="ttdef"><b>Definition:</b> metadata_input.h:32</div></div>

@@ -104,9 +104,9 @@ Collaboration diagram for Camera:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a1c7d7a24eb8c3540eb1802ec0f7aab0b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCamera.html#a1c7d7a24eb8c3540eb1802ec0f7aab0b">Camera</a> (cv::Size imageSize, cv::Size2d fov, cv::Mat cameraMatrix, cv::Mat distortionCoeffs, cv::Mat newCameraMatrix)</td></tr>
-<tr class="memdesc:a1c7d7a24eb8c3540eb1802ec0f7aab0b"><td class="mdescLeft">&#160;</td><td class="mdescRight">creates a <a class="el" href="classCamera.html" title="Container class for storing information about the camera used to capture an image *...">Camera</a> representing the specs for a given lens and sensor  <a href="#a1c7d7a24eb8c3540eb1802ec0f7aab0b">More...</a><br/></td></tr>
-<tr class="separator:a1c7d7a24eb8c3540eb1802ec0f7aab0b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a36c55a96ee9b138fa40b346437bacd12"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCamera.html#a36c55a96ee9b138fa40b346437bacd12">Camera</a> (cv::Size imageSize, cv::Size2d fov, cv::Mat cameraMatrix, cv::Mat distortionCoeffs, cv::Mat newCameraMatrix, bool applyUndistort=true)</td></tr>
+<tr class="memdesc:a36c55a96ee9b138fa40b346437bacd12"><td class="mdescLeft">&#160;</td><td class="mdescRight">creates a <a class="el" href="classCamera.html" title="Container class for storing information about the camera used to capture an image *...">Camera</a> representing the specs for a given lens and sensor  <a href="#a36c55a96ee9b138fa40b346437bacd12">More...</a><br/></td></tr>
+<tr class="separator:a36c55a96ee9b138fa40b346437bacd12"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0a60d3f71a1a98cede1a32594ce866df"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0a60d3f71a1a98cede1a32594ce866df"></a>
 cv::Size2d&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCamera.html#a0a60d3f71a1a98cede1a32594ce866df">get_fov</a> ()</td></tr>
 <tr class="memdesc:a0a60d3f71a1a98cede1a32594ce866df"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the field of view of the camera in degrees for both horizontal and vertical dimensions. <br/></td></tr>
@@ -125,7 +125,7 @@ static <a class="el" href="classCamera.html">Camera</a>&#160;</td><td class="mem
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Container class for storing information about the camera used to capture an image *. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="a1c7d7a24eb8c3540eb1802ec0f7aab0b"></a>
+<a class="anchor" id="a36c55a96ee9b138fa40b346437bacd12"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -157,7 +157,13 @@ static <a class="el" href="classCamera.html">Camera</a>&#160;</td><td class="mem
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">cv::Mat&#160;</td>
-          <td class="paramname"><em>newCameraMatrix</em>&#160;</td>
+          <td class="paramname"><em>newCameraMatrix</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>applyUndistort</em> = <code>true</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -173,7 +179,7 @@ static <a class="el" href="classCamera.html">Camera</a>&#160;</td><td class="mem
     <tr><td class="paramname">imageSize</td><td>Size of the camera image </td></tr>
     <tr><td class="paramname">fov</td><td>The field of view of the camera </td></tr>
     <tr><td class="paramname">cameraMatrix</td><td>OpenCV camera calibration matrix giving focal length and principal point </td></tr>
-    <tr><td class="paramname">distortionCoeffs</td><td>OpenCV distortion coefficients used for undistorting images </td></tr>
+    <tr><td class="paramname">distortionCoeffs</td><td>OpenCV distortion coefficients used for undistorting images #param undistort Whether or not to apply undistortion to images. If false the camera acts as a placeholder that can be used for testing </td></tr>
   </table>
   </dd>
 </dl>

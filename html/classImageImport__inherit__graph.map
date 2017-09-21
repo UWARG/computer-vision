@@ -1,4 +1,5 @@
 <map id="ImageImport" name="ImageImport">
-<area shape="rect" id="node2" href="$classDeckLinkImport.html" title="Module for extracting frames from DeckLink Video cards. " alt="" coords="5,175,148,325"/>
-<area shape="rect" id="node3" href="$classPictureImport.html" title="Class for reading image files from a directory. " alt="" coords="173,197,301,303"/>
+<area shape="rect" id="node2" href="$classDeckLinkImport.html" title="Module for extracting frames from DeckLink Video cards. " alt="" coords="5,189,148,355"/>
+<area shape="rect" id="node3" href="$classPictureImport.html" title="Class for reading image files from a directory. " alt="" coords="173,211,301,333"/>
+<area shape="rect" id="node4" href="$classVideoImport.html" title="{VideoImport\n||+ VideoImport()\l+ next_frame()\l+ to_string()\l}" alt="" coords="325,219,437,325"/>
 </map>

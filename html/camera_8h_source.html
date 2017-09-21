@@ -93,26 +93,27 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor"></span></div>
 <div class="line"><a name="l00028"></a><span class="lineno"><a class="line" href="classCamera.html">   28</a></span>&#160;<span class="keyword">class </span><a class="code" href="classCamera.html">Camera</a> {</div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <a class="code" href="classCamera.html#a1c7d7a24eb8c3540eb1802ec0f7aab0b">Camera</a>(cv::Size imageSize, cv::Size2d fov, cv::Mat cameraMatrix, cv::Mat distortionCoeffs, cv::Mat newCameraMatrix);</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    cv::Size2d <a class="code" href="classCamera.html#a0a60d3f71a1a98cede1a32594ce866df">get_fov</a>();</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    cv::Mat * <a class="code" href="classCamera.html#aaefb1188b16ed8b8a29f7a18a91c4a4a">undistort</a>(cv::Mat &amp;img);</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <span class="keyword">static</span> <a class="code" href="classCamera.html">Camera</a> <a class="code" href="classCamera.html#a24673ee135461ce66f1da154c56886c3">TestCamera</a>();</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    cv::Size2d fov;</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    cv::Mat cameraMatrix;</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    cv::Mat distortionCoeffs;</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    cv::Mat newCameraMatrix;</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;};</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="preprocessor">#endif //CAMERA_H_INCLUDED</span></div>
-<div class="ttc" id="classCamera_html_a0a60d3f71a1a98cede1a32594ce866df"><div class="ttname"><a href="classCamera.html#a0a60d3f71a1a98cede1a32594ce866df">Camera::get_fov</a></div><div class="ttdeci">cv::Size2d get_fov()</div><div class="ttdoc">Returns the field of view of the camera in degrees for both horizontal and vertical dimensions...</div><div class="ttdef"><b>Definition:</b> camera.cpp:61</div></div>
-<div class="ttc" id="classCamera_html_a24673ee135461ce66f1da154c56886c3"><div class="ttname"><a href="classCamera.html#a24673ee135461ce66f1da154c56886c3">Camera::TestCamera</a></div><div class="ttdeci">static Camera TestCamera()</div><div class="ttdoc">Example Camera for testing purposes. </div><div class="ttdef"><b>Definition:</b> camera.cpp:33</div></div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <a class="code" href="classCamera.html#a36c55a96ee9b138fa40b346437bacd12">Camera</a>(cv::Size imageSize, cv::Size2d fov, cv::Mat cameraMatrix, cv::Mat distortionCoeffs, cv::Mat newCameraMatrix, <span class="keywordtype">bool</span> applyUndistort = <span class="keyword">true</span>);</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    cv::Size2d <a class="code" href="classCamera.html#a0a60d3f71a1a98cede1a32594ce866df">get_fov</a>();</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    cv::Mat * <a class="code" href="classCamera.html#aaefb1188b16ed8b8a29f7a18a91c4a4a">undistort</a>(cv::Mat &amp;img);</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <span class="keyword">static</span> <a class="code" href="classCamera.html">Camera</a> <a class="code" href="classCamera.html#a24673ee135461ce66f1da154c56886c3">TestCamera</a>();</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <span class="keywordtype">bool</span> applyUndistort;</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    cv::Size2d fov;</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    cv::Mat cameraMatrix;</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    cv::Mat distortionCoeffs;</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    cv::Mat newCameraMatrix;</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;};</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="preprocessor">#endif //CAMERA_H_INCLUDED</span></div>
+<div class="ttc" id="classCamera_html_a0a60d3f71a1a98cede1a32594ce866df"><div class="ttname"><a href="classCamera.html#a0a60d3f71a1a98cede1a32594ce866df">Camera::get_fov</a></div><div class="ttdeci">cv::Size2d get_fov()</div><div class="ttdoc">Returns the field of view of the camera in degrees for both horizontal and vertical dimensions...</div><div class="ttdef"><b>Definition:</b> camera.cpp:65</div></div>
+<div class="ttc" id="classCamera_html_a24673ee135461ce66f1da154c56886c3"><div class="ttname"><a href="classCamera.html#a24673ee135461ce66f1da154c56886c3">Camera::TestCamera</a></div><div class="ttdeci">static Camera TestCamera()</div><div class="ttdoc">Example Camera for testing purposes. </div><div class="ttdef"><b>Definition:</b> camera.cpp:37</div></div>
 <div class="ttc" id="classCamera_html_aaefb1188b16ed8b8a29f7a18a91c4a4a"><div class="ttname"><a href="classCamera.html#aaefb1188b16ed8b8a29f7a18a91c4a4a">Camera::undistort</a></div><div class="ttdeci">cv::Mat * undistort(cv::Mat &amp;img)</div><div class="ttdoc">Undistorts image. </div><div class="ttdef"><b>Definition:</b> camera.cpp:27</div></div>
-<div class="ttc" id="classCamera_html_a1c7d7a24eb8c3540eb1802ec0f7aab0b"><div class="ttname"><a href="classCamera.html#a1c7d7a24eb8c3540eb1802ec0f7aab0b">Camera::Camera</a></div><div class="ttdeci">Camera(cv::Size imageSize, cv::Size2d fov, cv::Mat cameraMatrix, cv::Mat distortionCoeffs, cv::Mat newCameraMatrix)</div><div class="ttdoc">creates a Camera representing the specs for a given lens and sensor </div><div class="ttdef"><b>Definition:</b> camera.cpp:23</div></div>
+<div class="ttc" id="classCamera_html_a36c55a96ee9b138fa40b346437bacd12"><div class="ttname"><a href="classCamera.html#a36c55a96ee9b138fa40b346437bacd12">Camera::Camera</a></div><div class="ttdeci">Camera(cv::Size imageSize, cv::Size2d fov, cv::Mat cameraMatrix, cv::Mat distortionCoeffs, cv::Mat newCameraMatrix, bool applyUndistort=true)</div><div class="ttdoc">creates a Camera representing the specs for a given lens and sensor </div><div class="ttdef"><b>Definition:</b> camera.cpp:23</div></div>
 <div class="ttc" id="classCamera_html"><div class="ttname"><a href="classCamera.html">Camera</a></div><div class="ttdoc">Container class for storing information about the camera used to capture an image *...</div><div class="ttdef"><b>Definition:</b> camera.h:28</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->

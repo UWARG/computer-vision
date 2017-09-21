@@ -1,5 +1,5 @@
 <map id="DeckLinkImport" name="DeckLinkImport">
-<area shape="rect" id="node2" href="$classImageImport.html" title="Abstract class for importing frames and corresponding metadata. " alt="" coords="94,233,217,340"/>
+<area shape="rect" id="node2" href="$classImageImport.html" title="Abstract class for importing frames and corresponding metadata. " alt="" coords="94,233,217,355"/>
 <area shape="rect" id="node3" href="$classMetadataInput.html" title="A class for storing and searching telemetry logs. " alt="" coords="5,5,151,171"/>
 <area shape="rect" id="node4" href="$classCamera.html" title="Container class for storing information about the camera used to capture an image *..." alt="" coords="175,27,290,149"/>
 </map>
