@@ -20,18 +20,23 @@ CONOPS/Rules:
 * [2015 CONOPS/Rules](https://drive.google.com/open?id=0BySpWXvmBM4JajdsemZFb0o2Ukk&authuser=0)
 * [2016 CONOPS/Rules](https://drive.google.com/open?id=0BySpWXvmBM4JUnhyaGN0NW5OR1k)
 * [2017 CONOPS/Rules](https://ece.uwaterloo.ca/~warg/downloads/flightdata/competition2017/2017%20CONOPS%20and%20RULES_20161123_rev2.pdf)
+* [2018 CONOPS/Rules](https://www.unmannedsystems.ca/download/2018-student-uas-competition-conops-v1-0-24-aug-17/)
+
 
 ### Building and Installing
 
 **Build system**: CMake to set up build environment then whatever CMake gives you (depends on platform, make for Linux, etc.)
 
 **Dependencies**: 
-    [OpenCV 3.0](http://opencv.org/downloads.html),
+    [OpenCV 3.X](https://opencv.org/releases.html),
     [Boost 1.58](http://www.boost.org/users/download/),
     [DeckLink](http://www.blackmagicdesign.com/support/sdks) _(optional)_,
-    [ZBar] (http://zbar.sourceforge.net/download.html) 
+    [ZBar](http://zbar.sourceforge.net/download.html) 
 
-####Installation Instructions:
+Note on DeckLink Dependencies: The most recent tested SDK is: "Desktop Video 10.9.5 SDK". When downloaded, rename the extracted folder to "DeckLinkSDK", then copy the entire folder into the /usr/local/include directory, such that /usr/local/include/DeckLinkSDK/Linux/include exists.
+Note on OpenCV: Help for installing OpenCV can be found [here](https://www.learnopencv.com/install-opencv3-on-ubuntu/) if installing from source.
+
+#### Installation Instructions:
 If you intend to use Windows or Mac, you will need to run a Docker image. The Docker image is pre-configured with the appropriate libraries. Please refer to the instructions here: [Docker Installation](http://docs.uwarg.com/computer-vision/)
 
 *For Linux:*
@@ -42,17 +47,17 @@ If you intend to use Windows or Mac, you will need to run a Docker image. The Do
 
 Refer to the detailed instructions here: [Linux Installation](http://docs.uwarg.com/computer-vision/Building-the-project-[Linux]/)
 
-####Running the Program
+#### Running the Program
 After compiling, an executable will be present in the build directory. To run it type: 
 
 `./warg-cv`
 
-####Testing the Program
+#### Testing the Program
 After compiling, in the build directory run:
 
 `make test` or `make test ARGS='-V'` for verbose output
 
-####Goal:
+#### Goal:
 To fill this chart with the right values:
 [Judges Evaluation Sheet](https://drive.google.com/open?id=0B8ozhZojJMQbWTBWaXBiXzBQcFk)
 
